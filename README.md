@@ -6,3 +6,5 @@ Jen prvni commit, nic specialniho, jsem jen kokod co to testuje.
 Snaha o nastaveni privatniho gitu
 
 Tak jeste jednou
+
+Skálič je retard
