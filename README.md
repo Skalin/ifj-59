@@ -24,8 +24,10 @@ PŘEDNÁŠKA 2- 26.10. 2011
 TODO, zbytek doplním až to dokoukám
 
 ------------------------- Modely regulárních jazyků-------------------------
+
 PŘEDNÁŠKA 3- 26.10. 2011
 TODO
 PŘEDNÁŠKA 3- 3.10.
 TODO
+
 ------------------------- Speciální konečné automaty-----------------------
