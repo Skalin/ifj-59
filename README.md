@@ -2,10 +2,13 @@
 ifj-059-b/2/I
 
 ================= OBSAH PŘEDNÁŠEK =================
+
 Jedná se o přednášky ve wisu https://wis.fit.vutbr.cz/FIT/st/cwk.php?id=11438&csid=610913
+
 PDF přednášek lze stáhnout zde: https://wis.fit.vutbr.cz/…/course-f…/course/IFJ-IT/lectures…
 
 --------------------------- Úvody do překladačů----------------------------
+
 PŘEDNÁŠKA 2- 19. 9. 2011
 0:00:00 - 0:38:00 ... Úvod k předmětu
 0:38:00 - 1:47:00 ... Definice, Abecedy, Řetězce (podřetězce, délka řetězců, ...)
