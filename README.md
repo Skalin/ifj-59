@@ -58,7 +58,7 @@ TODO
 
 
 ===========================================================================
-[Štábní kultura]
+•[Štábní kultura]
 
 1. K příslušnému .c souboru VŽDY vytvořte i .h soubor obsahující PROTOTYPY FUNKCÍ a jejich DOKUMENTACE (Co je to za funkci, jaké má parametry, co vrací atp.)
 2. Složené závorky umísťovat ZA statement. (Například u ifů, funkcí atp., nikoli až na nový řádek)
@@ -70,26 +70,28 @@ TODO
 8. Veškerá makra se píší VELKÝMI PÍSMENY například ERROR-01, STATEMENT-F atp. 
 9. Mezery v případě závorek se píší následovně (something == true); ((something == true) || (position != null));
 
-[Štábní kultura GIT]
-I v gitu musí být pořádek, hlavně tedy u commitů, respektive v jejich komentářích
+•[Štábní kultura GIT]
+ I v gitu musí být pořádek, hlavně tedy u commitů, respektive v jejich komentářích
 
-Každý commit musí mít v názvu [IDENTIFIKÁTOR] verze Komentář
-IDENTIFIKÁTORY: ADD/MODIFY/DELETE
-ADD: Používáme v případě, že přidáváme ZCELA NOVÉ SOUBORY (V případě, že víte, že budete přidávat nové soubory a ZÁROVEŇ upravovat ty staré, proveďte 2 commity- první s ADD se zařazením nového souboru do systému. Posléze pak MODIFY)
-MODIFY: Používáme v případě, že jsme upravili stávající soubor/y
-DELETE: Používáme v případě, že jste smazali některé subory (optimalizace, ladící soubory, atp.). Identifikátor DELETE užívejte prosím POUZE V PŘÍPADĚ, kdy jste všechny soubory zařazené v COMMITU MAZALI (Aby se v commitu s DELETE nenalézely i MODIFY operace atp.)
+- Každý commit musí mít v názvu [IDENTIFIKÁTOR] verze Komentář
 
-verze: Označuje verzi, nad kterou jste dělali úpravy (Stanoví se plán verzí, např. lexikální analyzátor bude hotov do verze 1.0, pak tedy vše co se týká lexkálního analyzátoru bude mít verzi nižší než 1)
-Komentář: Stručně charakterizujte, jaké úpravy jste udělali ( Není třeba se nějak dlouze rozepisovat, stačí jen, abyste napsali s čím jste pracovali. Aby se v případě chyb po commitu dalo snadno poznat, od koho chyba pochází)
+- IDENTIFIKÁTORY: ADD/MODIFY/DELETE
+- ADD: Používáme v případě, že přidáváme ZCELA NOVÉ SOUBORY (V případě, že víte, že budete přidávat nové soubory a ZÁROVEŇ upravovat ty staré, proveďte 2 commity- první s ADD se zařazením nového souboru do systému. Posléze pak MODIFY)
+- MODIFY: Používáme v případě, že jsme upravili stávající soubor/y
+- DELETE: Používáme v případě, že jste smazali některé subory (optimalizace, ladící soubory, atp.). Identifikátor DELETE užívejte prosím POUZE V PŘÍPADĚ, kdy jste všechny soubory zařazené v COMMITU MAZALI (Aby se v commitu s DELETE nenalézely i MODIFY operace atp.)
 
-Příklad commitů:
+- verze: Označuje verzi, nad kterou jste dělali úpravy (Stanoví se plán verzí, např. lexikální analyzátor bude hotov do verze 1.0, pak tedy vše co se týká lexkálního analyzátoru bude mít verzi nižší než 1)
+
+- Komentář: Stručně charakterizujte, jaké úpravy jste udělali ( Není třeba se nějak dlouze rozepisovat, stačí jen, abyste napsali s čím jste pracovali. Aby se v případě chyb po commitu dalo snadno poznat, od koho chyba pochází)
+
+- Příklad commitů:
 [ADD] 0.8 Přidání souborů parser.c, parser.h 
 
 [MODIFY] 0.8 Úprava souborů parser.c/.h, přidány funkce pro získávání tokenů getToken(), mírná optimalizace funkce printToken(token Token)
 
 [MODIFY] 0.81 Úprava souborů parser.c, opravena chyba ve funkci getToken(), která pro null vracela špatné hodnoty
 
-U KAŽDÉHO COMMITU UVÁDĚJTE I SVŮJ NICK NA GITHUBU (nebo vaše jméno)
+• U KAŽDÉHO COMMITU UVÁDĚJTE I SVŮJ NICK NA GITHUBU (nebo vaše jméno)
 
 
 
