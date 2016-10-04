@@ -6,8 +6,9 @@ ifj-059-b/2/I
 - Správce serveru: Dominik Skála
 - Správce makefile: Dominik Skála
 - Tvůrce dokumentace: David Hél
+ 
 
-- Verze:
+Verze:
 - Číselné označení rozpětí verzí obsahující dané prvky
 - 0.1-0.2- Hotové základy projektu
 - -0.99- Kompletní a plně funkční lexikální analyzátor
