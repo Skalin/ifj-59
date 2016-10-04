@@ -44,3 +44,51 @@ PŘEDNÁŠKA 3- 3.10.
 TODO
 
 ------------------------- Speciální konečné automaty-----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+
+                                [ Návod ]
+
+===========================================================================
+
+1. Je třeba si vytvořit účet na GitHubu a kontaktovat mě (@Skalin), abych Vás přidal
+2. Následně je třeba si nainstalovat Git (debian/ubuntu: apt-get install git, redhat/centos: yum install git; windows: https://desktop.github.com/ nebo https://git-scm.com/downloads)
+3. Následně je třeba mít nainstalováno GCC (v linuxu standardně je, jinak instalace apt-get install gcc* nebo yum install gcc*; ve windows: doporučuji držet se tohoto návodu: https://www.jetbrains.com/help/clion/2016.1/quick-tutorial-on-configuring-clion-on-windows.html#d10151e64)
+4. Také je třeba nainstalovat clion, viz odkaz výše. Existuje i instalace pro Linux, tedy doporučuji použít tu, pokud jste linuxáři (POZOR! INSTALACE POD LINUXEM A CLONE PROJEKTU VYŽADUJE ROOTA!)
+5. Vytvoříme si složku např. C:\Programming, příp. u Linuxu: /home/Programming
+
+Linux part:
+6. Vstoupíme do dané složky "cd /home/Programming" a na linuxu provedeme jako root tento příkaz: sudo git clone https://github.com/Skalin/ifj-59
+7. Git požádá o údaje ke githubu, zadáme správné údaje
+8. Po přihlášení se nám zkopíruje obsah repozitáře do námi vybrané složky
+9. Stále jako root provedeme úpravu souborů a uložíme
+10. Po uložení napíšeme: "git commit -a", otevře se VI, ve kterém bude commit zpráva, kterou zapíšeme. Uložíme.
+11. Na základě rozhodnutí buď upravujeme dále a provádíme další commity, nebo si je ukládáme do repozítáře: "git push"
+12. POZOR! Po dnešním dni se začnou tvořit větve, o těch dám další briefing později.
+
+Windows part:
+6. Po instalaci CLionu jej spustíme
+7. Vybereme Preferences a v sekci: "Version Control" vybereme "Git" a nastavíme cestu k Git aplikaci. Pokud jste nainstalovali Git, cesta je: C:\Program Files\Git\bin\git.exe , pokud jste nainstalovali GitHub aplikaci, cesta je: C:\Users\<username>\AppData\Local\GitHub\PortableGit_<numbersandletters>\bin\git.exe
+8. Následně vybereme o dva řádky výše v sekci "Version Control" položku "GitHub", přihlásíme se ke GitHubu a zatrhneme položku "clone git repositores using SSH". Testneme připojení, mělo by projít, poté uložíme.
+9. V sekci: "Build, Executions and Deployment" vybereme "Toolchains", zde v sekci "Environment" nastavíme cestu k MinGW, standardně C:\MinGW
+10. Uložíme, klepneme na Import Project (případně File->Import project a naimportujeme cestu C:\Programming\ifj-59 a můžeme začít editovat.
+11. Po editaci a uložení (CTRL+S) klepneme pravým vlevo na celý projekt ifj-59, vybereme Git -> Commit Directory, vepíšeme commit message. Podle toho,zda-li chceme dále pracovat, vybereme pouze "commit..", pokud chceme vše uložit na server, doporučuji "commit and push".
+12. POZOR! Po dnešním dni se začnou tvořit větve, o těch dám další briefing později.
