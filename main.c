@@ -3,6 +3,7 @@
 
 int main() {
 
+    int a = 58;
     int johnnyJeKokod = 52;
 
     printf ("%d", johnnyJeKokod);
