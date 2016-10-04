@@ -8,7 +8,7 @@ int main() {
     printf ("%d", johnnyJeKokod);
 
     for (int i = 0; i <= johnnyJeKokod; i++) {
-        printf("Johnny je kokod po %d.\n", i);
+        printf("Johnny je kokod po %d.\n\n", i);
     }
 
     return 0;
