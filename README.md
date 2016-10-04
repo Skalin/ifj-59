@@ -65,7 +65,7 @@ TODO
 
 ===========================================================================
 
-   [ Návod ]
+      [ Návod ]
 
 1. Je třeba si vytvořit účet na GitHubu a kontaktovat mě ( @Skalin ), abych Vás přidal
 2. Následně je třeba si nainstalovat Git (debian/ubuntu: `apt-get install git`, redhat/centos: `yum install git`; windows: https://desktop.github.com/ nebo https://git-scm.com/downloads)
