@@ -72,7 +72,8 @@ TODO
 3. Následně je třeba mít nainstalováno GCC (v linuxu standardně je, jinak instalace apt-get install gcc* nebo yum install gcc*; ve windows: doporučuji držet se tohoto návodu: https://www.jetbrains.com/help/clion/2016.1/quick-tutorial-on-configuring-clion-on-windows.html#d10151e64)
 4. Také je třeba nainstalovat clion, viz odkaz výše. Existuje i instalace pro Linux, tedy doporučuji použít tu, pokud jste linuxáři (POZOR! INSTALACE POD LINUXEM A CLONE PROJEKTU VYŽADUJE ROOTA!)
 5. Vytvoříme si složku např. C:\Programming, příp. u Linuxu: /home/Programming
-Linux part:
+
+Tato část je pro Linux
  1. Vstoupíme do dané složky "cd /home/Programming" a na linuxu provedeme jako root tento příkaz: sudo git clone https://github.com/Skalin/ifj-59
  2. Git požádá o údaje ke githubu, zadáme správné údaje
  3. Po přihlášení se nám zkopíruje obsah repozitáře do námi vybrané složky
@@ -80,7 +81,8 @@ Linux part:
  5. Po uložení napíšeme: "git commit -a", otevře se VI, ve kterém bude commit zpráva, kterou zapíšeme. Uložíme.
  6. Na základě rozhodnutí buď upravujeme dále a provádíme další commity, nebo si je ukládáme do repozítáře: "git push"
  7. POZOR! Po dnešním dni se začnou tvořit větve, o těch dám další briefing později.
-Windows part:
+ 
+Tato část je pro Windows
  1. Po instalaci CLionu jej spustíme
  2. Vybereme Preferences a v sekci: "Version Control" vybereme "Git" a nastavíme cestu k Git aplikaci. Pokud jste nainstalovali Git, cesta je: C:\Program Files\Git\bin\git.exe , pokud jste nainstalovali GitHub aplikaci, cesta je: C:\Users\<username>\AppData\Local\GitHub\PortableGit_<numbersandletters>\bin\git.exe
  3. Následně vybereme o dva řádky výše v sekci "Version Control" položku "GitHub", přihlásíme se ke GitHubu a zatrhneme položku "clone git repositores using SSH". Testneme připojení, mělo by projít, poté uložíme.
