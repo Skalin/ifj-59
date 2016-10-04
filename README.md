@@ -2,15 +2,15 @@
 ifj-059-b/2/I
 ================= ZÁKLADNÍ INFORMACE =================
 
-• Vedoucí teamu: Jan Hrbotický
-• Správce serveru: Dominik Skála
-• Správce makefile: Dominik Skála
-• Tvůrce dokumentace: David Hél
+- Vedoucí teamu: Jan Hrbotický
+- Správce serveru: Dominik Skála
+- Správce makefile: Dominik Skála
+- Tvůrce dokumentace: David Hél
 
-Verze:
-• Číselné označení rozpětí verzí obsahující dané prvky
-• 0.1-0.2- Hotové základy projektu
-• -0.99- Kompletní a plně funkční lexikální analyzátor
+- Verze:
+- Číselné označení rozpětí verzí obsahující dané prvky
+- 0.1-0.2- Hotové základy projektu
+- -0.99- Kompletní a plně funkční lexikální analyzátor
 
 ================= OBSAH PŘEDNÁŠEK =================
 
