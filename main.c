@@ -1,18 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+int fib(int x);
 
 int main() {
+    int i;
 
-    int johnnyJeKokod = 52;
-
-    printf ("%d", johnnyJeKokod);
-
-    for (int i = 0; i <= johnnyJeKokod; i++) {
-        printf("Johnny je kokod po %d.\n\n", i);
-        printf("Nejakej text v linuxu");
+    for (i=1; i<20; i++) {
+        printf("Fib %d = %d\n", i, fib(i));
     }
-
     return 0;
+}
 
-
+int fib(int x) {
+    if (x == 1 || x == 2) {
+        return 1;
+    }
+    else {
+        int current=1;
+        int prev=1;
+        for(int i=2; i<x; i++) {
+            current += prev;
+            prev = current - prev;
+        }
+        return current;
+    }
 }
