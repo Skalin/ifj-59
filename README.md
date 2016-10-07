@@ -56,8 +56,8 @@ PŘEDNÁŠKA 3- 26.10. 2011
 
 PŘEDNÁŠKA 3- 3.10.
 
-0:00:00 - 0:31:00 ... Konečné automaty prakticky- pokračování z minulého záznamu
-0:31:00 - 1:32:00 ... Konečné automaty teoreticky- DŮLEŽITÉ ZÁKLADY
+0:00:00 - 0:31:00 ... Konečné automaty prakticky- pokračování z minulého záznamu\n
+0:31:00 - 1:32:00 ... Konečné automaty teoreticky- DŮLEŽITÉ ZÁKLADY\n
 1:32:00 - 2:19:00 ... Převod regulárních výrazů na konečný automat NEJDŮLEŽITĚJŠÍ ČÁST PŘEDNÁŠKY!
 2:19:00 - konec záznamu ... Speciální typy konečných automatů
 
