@@ -50,16 +50,16 @@ PŘEDNÁŠKA 2- 26.10. 2011
 
 PŘEDNÁŠKA 3- 26.10. 2011
 
-1:46:00 - 2:07:00 ... Regulární výrazy, úvod
-2:07:00 - 2:16:00 ... Regulární jazyk, úvod
-2:16:00 - konec záznamu ... Konečné automaty prakticky
+1:46:00 - 2:07:00 ... Regulární výrazy, úvod <br />
+2:07:00 - 2:16:00 ... Regulární jazyk, úvod <br />
+2:16:00 - konec záznamu ... Konečné automaty prakticky <br />
 
 PŘEDNÁŠKA 3- 3.10.
 
-0:00:00 - 0:31:00 ... Konečné automaty prakticky- pokračování z minulého záznamu\n
-0:31:00 - 1:32:00 ... Konečné automaty teoreticky- DŮLEŽITÉ ZÁKLADY\n
-1:32:00 - 2:19:00 ... Převod regulárních výrazů na konečný automat NEJDŮLEŽITĚJŠÍ ČÁST PŘEDNÁŠKY!
-2:19:00 - konec záznamu ... Speciální typy konečných automatů
+0:00:00 - 0:31:00 ... Konečné automaty prakticky- pokračování z minulého záznamu <br />
+0:31:00 - 1:32:00 ... Konečné automaty teoreticky- DŮLEŽITÉ ZÁKLADY<br />
+1:32:00 - 2:19:00 ... Převod regulárních výrazů na konečný automat NEJDŮLEŽITĚJŠÍ ČÁST PŘEDNÁŠKY! <br />
+2:19:00 - konec záznamu ... Speciální typy konečných automatů <br />
 
 ------------------------- Speciální konečné automaty-----------------------
 
@@ -73,7 +73,8 @@ Přednáška 5 - 17.10.
 
 0:00:00 - 0:00:00 ... TODO
 
------------------------- Modely bezkontextových jazyků --------------------
+----------------------- Modely bezkontextových jazyků --------------------
+
 ====================
 •[Štábní kultura]
 
