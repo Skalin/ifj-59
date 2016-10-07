@@ -43,22 +43,38 @@ PŘEDNÁŠKA 2- 26.10. 2011
 
 0:46:00 - 1:14:00 ... Syntaktický analyzátor !!! DŮLEŽITÉ !!!
 
-TODO, zbytek doplním až to dokoukám
+1:14:00 - 1:46:00 ... Zbytek částí překladače
+
 
 ------------------------- Modely regulárních jazyků-------------------------
 
 PŘEDNÁŠKA 3- 26.10. 2011
 
-TODO
+1:46:00 - 2:07:00 ... Regulární výrazy, úvod
+2:07:00 - 2:16:00 ... Regulární jazyk, úvod
+2:16:00 - konec záznamu ... Konečné automaty prakticky
 
 PŘEDNÁŠKA 3- 3.10.
 
-TODO
+0:00:00 - 0:31:00 ... Konečné automaty prakticky- pokračování z minulého záznamu
+0:31:00 - 1:32:00 ... Konečné automaty teoreticky- DŮLEŽITÉ ZÁKLADY
+1:32:00 - 2:19:00 ... Převod regulárních výrazů na konečný automat NEJDŮLEŽITĚJŠÍ ČÁST PŘEDNÁŠKY!
+2:19:00 - konec záznamu ... Speciální typy konečných automatů
 
 ------------------------- Speciální konečné automaty-----------------------
 
+Přednáška 4 - 10.10.
 
-===========================================================================
+0:00:00 - 0:00:00 ... TODO
+
+------------------------- Lexikální analýza -------------------------------
+
+Přednáška 5 - 17.10.
+
+0:00:00 - 0:00:00 ... TODO
+
+------------------------ Modely bezkontextových jazyků --------------------
+====================
 •[Štábní kultura]
 
 1. K příslušnému .c souboru VŽDY vytvořte i .h soubor obsahující PROTOTYPY FUNKCÍ a jejich DOKUMENTACE (Co je to za funkci, jaké má parametry, co vrací atp.)
