@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "lexical_analyzer.h"
 int fib(int x);
 
 int main() {
-    int i;
-
-    for (i=1; i<20; i++) {
-        printf("Fib %d = %d\n", i, fib(i));
-    }
+    
+    printKeyWordTable();
     return 0;
 }
 
