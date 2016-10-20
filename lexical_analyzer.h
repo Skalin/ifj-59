@@ -10,7 +10,16 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+/**
+  *Include všech souborů
+  */
+
 #include "lexical_analyzer.c"
+
+/**
+ * Definice
+ */
+#define NUMBER_OF_KEY_WORDS 17
 
 /**
  * Prototyp funkce
@@ -25,3 +34,16 @@ typedef enum {
 
 
 };
+
+
+/**
+ * Struktura tokenu
+ */
+typedef struct
+{
+
+} tToken;
+
+// Globální token
+extern tToken token;
+
