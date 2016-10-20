@@ -13,7 +13,6 @@
 #include "lexical_analyzer.h"
 
 #define NUMBER_OF_KEY_WORDS 17      //pocet klicovych slov
-#define NUMBER_OF_RESERVED_WORDS 
 
 char *keyWordTable[NUMBER_OF_KEY_WORDS] = {
     "boolean","break","class","continue","do",
