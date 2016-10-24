@@ -1,4 +1,4 @@
-/**
+/*
  * IFJ/IAL - Lexikální analyzátor
  * Varianta:    b/2/I
  * Subor:       lexical_analyzer.h
@@ -10,25 +10,25 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-/**
+/*
   *Include všech souborů
   */
 
 #include "lexical_analyzer.c"
 
-/**
+/*
  * Definice
  */
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
 
-/**
+/*
  * Prototyp funkce
  */
 void printKeyWordTable(); // Vytiskne obsah tabulky klíčových slov
 
 
-/**
+/*
  * Jednotlivé stavy automatu
  */
 typedef enum {
@@ -88,7 +88,7 @@ typedef enum {
 } tStatus;
 
 
-/**
+/*
  * Struktura tokenu
  */
 typedef struct
