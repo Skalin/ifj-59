@@ -99,6 +99,41 @@ typedef struct
     unsigned int allocated; // Status, jestli byl alokován
 } tToken;
 
-// Globální token
+/* Globální token */
 extern tToken token;
+
+/*
+ * Získá token z analyzátoru a vrátí jej
+ * @param token
+ * @return jeden načtený token z analyzátoru
+ */
+tToken * getToken( tToken * token );
+
+/*
+ * Inicializuje token a vrací pointer na token
+ * @param token
+ * @return ukazatel na inicializovaný token
+ */
+tToken * initToken( tToken * token );
+
+/*
+ * Ruší již předem vytvořený token
+ * @param token
+ */
+void destroyToken( tToken * token );
+
+/*
+ * Funkce aktualizuje hodnotu tokenu na hodnotu z parametru string
+ * @param token
+ * @param string
+ */
+tToken * updateToken( tToken * token, char *string );
+
+/*
+ * Projde pole keyword a přiřadí korektně k tokenu "id" z pole keyword
+ * @param token
+ */
+void keywordCheckToken( tToken * token );
+
+
 
