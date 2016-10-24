@@ -9,24 +9,62 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-
+// Include
 #include "lexical_analyzer.h"
+//---------------------------
 
+void keywordCheckToken(tToken *token) {
+    //Tabulky
+    char *keyWordTable[NUMBER_OF_KEY_WORDS] = {
+        "boolean","break","class","continue","do",
+        "double","else","false","for","if","int",
+        "return","String","static","true","void","while"
+    };
 
-char *keyWordTable[NUMBER_OF_KEY_WORDS] = {
-    "boolean","break","class","continue","do",
-    "double","else","false","for","if","int",
-    "return","String","static","true","void","while"
-};
+    tStatus keyWordTokenTable[NUMBER_OF_KEY_WORDS] = {
+            "LA_BOOLEAN","LA_BREAK","LA_CLASS","LA_CONTINUE","LA_DO",
+            "LA_DOUBLE","LA_ELSE","LA_FALSE","LA_FOR","LA_IF","LA_INT",
+            "LA_RETURN","LA_STRING","LA_STATIC","LA_TRUE","LA_VOID","LA_WHILE"
+    };
 
-char *keyWordTokenTable[NUMBER_OF_KEY_WORDS] = {
-    "token_boolean","token_break","token_class","token_continue","token_do",
-    "token_double","token_else","token_false","token_for","token_if","token_int",
-    "token_return","token_String","token_static","token_true","token_void","token_while"
-};
-
-void printKeyWordTable() {
-    for (int i = 0; i < 17; i++) {
-        printf("%3d. keyword: %10s    token: %s\n", i + 1, keyWordTable[i], keyWordTokenTable[i]);
+    // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), přiřadí do tToken type příslušnou hodnotu z druhé tabulky
+    // DONE Jan Hrbotický
+    for (int i=0; i<(NUMBER_OF_KEY_WORDS-1); i++) {
+        if (strcmp(keyWordTable[i], token->data) == 0)
+            token->status = keyWordTokenTable[i];
     }
+}
+
+
+// Pomocne objekty
+tToken * t_buffer;
+
+// Body
+
+tToken * initToken() {
+    // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
+    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
+    // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+}
+
+tToken updateToken( tToken * token, char *string ) {
+   // Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
+    // Pomoci strncat() pridat novy retezec nakonec
+    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
+    // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+}
+
+void token_return_token(TToken * token) {
+    // Do tokenu přiřadí načtené hodnoty z pomocného tokenu t_buffer
+    t_buffer = token;
+}
+
+void destroytoken( tToken * token) {
+    // Zruší daný token
+    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
+    // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+}
+
+tToken * getToken( tToken * token){
+    // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 }
