@@ -49,28 +49,37 @@ typedef struct
 extern tToken token;
 
 /*
- * @return Jeden načtený token z analyzátoru
+ * Získá token z analyzátoru a vrátí jej
+ * @param token
+ * @return jeden načtený token z analyzátoru
  */
-tToken get_Next_Token(){
-}
+tToken * getToken( tToken * token );
 
 /*
- * Inicializuje lexikální analyzátor
- * @param file vstupní soubor
- * @return ukazatel na inicializovaný lex. analyzátor
+ * Inicializuje token a vrací pointer na token
+ * @param token
+ * @return ukazatel na inicializovaný token
  */
-void init_Lex(FILE *file) {
-
-}
+tToken * initToken( tToken * token );
 
 /*
- * Ruší již předem vytvořený analyzátor
+ * Ruší již předem vytvořený token
+ * @param token
  */
-void destroy_Lex() {
-}
+void destroyToken( tToken * token );
 
+/*
+ * Funkce aktualizuje hodnotu tokenu na hodnotu z parametru string
+ * @param token
+ * @param string
+ */
+tToken * updateToken( tToken * token, char *string );
 
-
+/*
+ * Projde pole keyword a přiřadí korektně k tokenu "id" z pole keyword
+ * @param token
+ */
+void keywordCheckToken( tToken * token );
 
 
 
