@@ -45,19 +45,28 @@ typedef struct
 
 } tToken;
 
-// Globální token
+/* Globální token */
 extern tToken token;
 
-// Načte token ze souboru
+/*
+ * @return Jeden načtený token z analyzátoru
+ */
 tToken get_Next_Token(){
 }
 
-//inicializace lexikálního analyzátoru
-init_lex() {
+/*
+ * Inicializuje lexikální analyzátor
+ * @param file vstupní soubor
+ * @return ukazatel na inicializovaný lex. analyzátor
+ */
+void init_Lex(FILE *file) {
+
 }
 
-//destruktor lexikálního analyzatoru
-destroy_lex() {
+/*
+ * Ruší již předem vytvořený analyzátor
+ */
+void destroy_Lex() {
 }
 
 
