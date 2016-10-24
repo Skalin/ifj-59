@@ -48,3 +48,20 @@ typedef struct
 // Globální token
 extern tToken token;
 
+// Načte token ze souboru
+tToken get_Next_Token(){
+}
+
+//inicializace lexikálního analyzátoru
+init_lex() {
+}
+
+//destruktor lexikálního analyzatoru
+destroy_lex() {
+}
+
+
+
+
+
+
