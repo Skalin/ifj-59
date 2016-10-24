@@ -9,9 +9,8 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-// Include
-#include "lexical_analyzer.h"
-//---------------------------
+
+// some coding
 
 void keywordCheckToken(tToken *token) {
     //Tabulky
