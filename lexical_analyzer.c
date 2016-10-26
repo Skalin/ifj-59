@@ -66,4 +66,5 @@ void destroytoken( tToken * token) {
 
 tToken * getToken( tToken * token){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
+	int i = 1; // jen abych mohl provést commit a push na větev
 }
