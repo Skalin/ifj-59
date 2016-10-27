@@ -16,6 +16,50 @@ tGarbageListPtr listLast = NULL;
 
 void * plusMalloc(int length) {
     //Funkce alokuje paměť a zařadí nově alokovanou položku do listu
+
+    tGarbageListPtr tmp = malloc(sizeof(struct GarbageList));
+
+    if (tmp == NULL) {
+        return NULL;
+    }
+
+    if (tmp != NULL) {
+        tmp->data = NULL;
+        tmp->nextPtr = NULL;
+        tmp->length = NULL;
+    }
+
+    if (listFirst == NULL) {    //v pripade, ze je seznam prazdny, vkladame prvni prvek
+        listFirst = tmp;
+    }
+
+    else {
+        listFirst->nextPtr = tmp;
+        listFirst = tmp;
+    }
+
+    if (listLast == NULL) {
+        listLast = tmp;
+    }
+
+    else {
+        listLast->nextPtr = tmp;
+        listLast = tmp;
+    }
+
+    void *allocated = (void*)malloc(length);
+
+    if (allocated != NULL) {
+        tmp->data = allocated;
+        return allocated;
+    }
+
+    else {
+        return NULL;
+    }
+
+
+
 }
 
 void * plusRealloc(void * destPtr, int length) {
