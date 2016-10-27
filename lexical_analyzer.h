@@ -143,5 +143,5 @@ tToken * updateToken( tToken * token, char *string );
  */
 void keywordCheckToken( tToken * token );
 
-
+void tokenReturnToken( tToken * token );
 
