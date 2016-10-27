@@ -15,6 +15,8 @@
   */
 
 #include "lexical_analyzer.c"
+#include <stdio.h>
+#include <stdlib.h>
 
 /*
  * Definice

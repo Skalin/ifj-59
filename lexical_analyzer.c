@@ -64,16 +64,24 @@ void destroyToken( tToken * token) {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-tToken * getToken( tToken * token){
+tToken * getToken( tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
     char *c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
-	token->status = NULL;
+
+	c = fopen(file, "r");
 
 	while ( c != EOF ) {
 
+		fgetc(c);
 
 
+		while ( c != ';' || c != ' ' ) {
 
-	}
+
+		} // první cyklus
+
+	} // druhý cyklus
+
+	fclose(FILE);
 }
