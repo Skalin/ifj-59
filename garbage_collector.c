@@ -70,6 +70,35 @@ void plusAddReallocMem(void * tmpVar, int length, void * toNULL) {
     // Funkce slouží k alokaci další položky seznamu
     // po mallocu se položky struktury inicializují, data na tmpVar, nextPtr na NULL a lenght na parametr lenght
     // Provede e práce se seznamem (pokud nemá první prvek, pak je tohle první prvek, pokud nemá poslední a bla bla. viz 1. úkol IAL)
+
+    nullData(toNULL);
+
+    tGarbageListPtr tmp;
+    tmp = malloc(sizeof(struct tGarbageListPtr));
+
+    if (tmp != NULL) {
+        tmp->nextPtr = NULL;
+        tmp->data = tmpVar;
+        tmp->length = length;
+    }
+
+    if (listFirst == NULL) {
+        listFirst = tmp;
+    }
+
+    else {
+        listFirst->nextPtr = tmp;
+        listFirst = tmp;
+    }
+
+    if (listLast == NULL) {
+        listLast = tmp;
+    }
+
+    else {
+        listLast->nextPtr = tmp;
+        listLast = tmp;
+    }
 }
 
 void plusFree() {
@@ -78,6 +107,7 @@ void plusFree() {
 
 void nullData(void * target){
     // Funkce projde celej seznam, najde daný target v seznamu a vynuluje mu položku data
+
 }
 
 // Zkuste se inspirovat zde http://matejmarecek.blogspot.cz/2012/01/ifj-projekt-formalni-jazyky-prekladace.html
