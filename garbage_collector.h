@@ -27,14 +27,14 @@ typedef struct GarbageList
 
 /*
  * Funkce alokuje potřebnou paměť
- * @param length
- * @return pointer na alokované místo
+ * @param length    místo potřebné k alokaci
+ * @return          pointer na alokované místo
  */
 void * plusMalloc(int length);
 
 /*
  * Funkce realokuje potřebnou paměť
- * @param length
+ * @param length    místo potřebné k alokace
  */
 void * plusRealloc(void * destPtr, int length);
 
@@ -42,3 +42,17 @@ void * plusRealloc(void * destPtr, int length);
  * Funkce uvolní veškerou paměť
  */
 void plusFree();
+
+/*
+ * Funkce alokuje paměť pro další položky seznamu
+ * @param length    místo potřebné pro alokaci
+ * @param *target   ukazatel na položku v seznamu
+ * @param *tmpVar   ukazatel
+ */
+void plusAddReallocMem(void * tmpVar, int length, void * target);
+
+/*
+ * Funkce prochází seznam a danou položku nastaví na NULL
+ * @param *target    ukazatel na položku v seznamu
+ */
+void nullData(void * target);
