@@ -64,6 +64,8 @@ void destroyToken( tToken * token) {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
+void keywordCheckToken( tToken * token );
+
 tToken * getToken( tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
