@@ -53,12 +53,12 @@ tToken updateToken( tToken * token, char *string ) {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-void token_return_token(TToken * token) {
+void tokenReturnToken(TToken * token) {
     // Do tokenu přiřadí načtené hodnoty z pomocného tokenu t_buffer
     t_buffer = token;
 }
 
-void destroytoken( tToken * token) {
+void destroyToken( tToken * token) {
     // Zruší daný token
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
@@ -66,5 +66,14 @@ void destroytoken( tToken * token) {
 
 tToken * getToken( tToken * token){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
-	int i = 1; // jen abych mohl provést commit a push na větev
+
+    char *c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
+	token->status = NULL;
+
+	while ( c != EOF ) {
+
+
+
+
+	}
 }

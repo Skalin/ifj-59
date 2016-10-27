@@ -89,6 +89,12 @@ typedef enum {
 
 
 /*
+ * Statická proměnná pro soubor, která se určitě využije na více místech, proto je deklarována již zde
+ */
+
+static FILE *FILE;
+
+/*
  * Struktura tokenu
  */
 typedef struct
