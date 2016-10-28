@@ -14,16 +14,21 @@
   *Include všech souborů
   */
 
-#include "lexical_analyzer.c"
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /*
  * Definice
  */
 #define TRUE 1
+#define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
+
+// Globalni promenne pro pocitani radku a sloupcu, bude potreba v lex.c a v error.c
+int GlobalRow = 0;
+int GlobalLine = 0;
 
 /*
  * Prototyp funkce
@@ -90,13 +95,6 @@ typedef enum {
     LA_WHILE,
 } tStatus;
 
-
-/*
- * Statická proměnná pro soubor, která se určitě využije na více místech, proto je deklarována již zde
- */
-
-static FILE *FILE;
-
 /*
  * Struktura tokenu
  */
@@ -116,33 +114,33 @@ extern tToken token;
  * @param token
  * @return jeden načtený token z analyzátoru
  */
-tToken * getToken( tToken * token );
+tToken * getToken(tToken * token);
 
 /*
  * Inicializuje token a vrací pointer na token
  * @param token
  * @return ukazatel na inicializovaný token
  */
-tToken * initToken( tToken * token );
+tToken * initToken(tToken * token);
 
 /*
  * Ruší již předem vytvořený token
  * @param token
  */
-void destroyToken( tToken * token );
+void destroyToken(tToken * token);
 
 /*
  * Funkce aktualizuje hodnotu tokenu na hodnotu z parametru string
  * @param token
  * @param string
  */
-tToken * updateToken( tToken * token, char *string );
+tToken * updateToken(tToken * token, char *string);
 
 /*
  * Projde pole keyword a přiřadí korektně k tokenu "id" z pole keyword
  * @param token
  */
-void keywordCheckToken( tToken * token );
+void keywordCheckToken(tToken * token);
 
-void tokenReturnToken( tToken * token );
+void tokenReturnToken(tToken * token);
 

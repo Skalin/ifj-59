@@ -9,7 +9,6 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-#include "garbage_collector.c"
 
 #ifndef IFJ_59_GARBAGE_COLLECTOR_H
 #define IFJ_59_GARBAGE_COLLECTOR_H

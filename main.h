@@ -10,5 +10,5 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include "lexical_analyzer.h"
-#include "garbage_collector.h"
+#include "lexical_analyzer.c"
+#include "garbage_collector.c"
