@@ -146,6 +146,8 @@ void nullData(void * target){
         }
     }
 
+    listLast = NULL;
+    
     if (listFirst == NULL) {    //seznam je prázdý, nic se nestane
         return;
     }
