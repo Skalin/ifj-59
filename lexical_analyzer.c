@@ -45,25 +45,41 @@ tToken * initToken() {
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
+    unsigned int mallocSize = sizeof(tToken) + sizeof(char);
+
+    if (token = plusMalloc(mallocSize)){
+    } else {
+        //handle error
+        return 0; //todo
+    }
+
     token->status = LA_START;   // nastaví token do počátečního stavu
     token->data[0] = '\0';      // inicializace všech prvků na výchozí hodnoty
-    token->lenght = 0;
-    token->allocated = 0;
+    token->length = 0;
+    token->allocated = mallocSize;
 
     return token;
 }
 
 tToken updateToken( tToken * token, char *string ) {
-   // Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
+   // Alokace mista pokud je potreba, zvyseni delky ve strukture (length), kontrola jestli alokace probehla uspesne
     // Pomoci strncat() pridat novy retezec nakonec
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
     unsigned int stringLength = strlen(string);
 
-    // TODO TODO TODO jak zjistim jestli je potreba neco alokovat?
+    if (token->allocated < (stringLength + token->length) ) {
+        if (token = plusRealloc(token, sizeof(tToken) + sizeof(char)*(stringLength+token->length))) {    //TODO
+            token->allocated = stringLength + token->length;
+        } else {
+            // handle error
+            return 0; // todo
+        }
 
-    strncat(token.data, string, stringLength);      // připojení stringu na konec tokenu
+    }
+
+    strncat(token->data, string, stringLength);      // připojení stringu na konec tokenu
     token->length = token->length + stringLength;   // update délky tokenu
 
     return token;
