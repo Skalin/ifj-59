@@ -45,10 +45,10 @@ tToken * initToken() {
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
-    token.status = LA_START;
-    token.data[0] = '\0';
-    token.lenght = 0;
-    token.allocated = 0;
+    token->status = LA_START;   // nastaví token do počátečního stavu
+    token->data[0] = '\0';      // inicializace všech prvků na výchozí hodnoty
+    token->lenght = 0;
+    token->allocated = 0;
 
     return token;
 }
@@ -58,6 +58,15 @@ tToken updateToken( tToken * token, char *string ) {
     // Pomoci strncat() pridat novy retezec nakonec
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+
+    unsigned int stringLength = strlen(string);
+
+    // TODO TODO TODO jak zjistim jestli je potreba neco alokovat?
+
+    strncat(token.data, string, stringLength);      // připojení stringu na konec tokenu
+    token->length = token->length + stringLength;   // update délky tokenu
+
+    return token;
 }
 
 void token_return_token(TToken * token) {
@@ -65,7 +74,7 @@ void token_return_token(TToken * token) {
     t_buffer = token;
 }
 
-void destroytoken( tToken * token) {
+void destroyToken( tToken * token) {
     // Zruší daný token
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
@@ -75,7 +84,8 @@ void destroytoken( tToken * token) {
 
 void fillToken( tStatus status ) {
     // Nastaví status tokenu
-    token.status = status;
+    token->status = status;
+
 }
 
 
