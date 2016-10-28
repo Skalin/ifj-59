@@ -87,6 +87,7 @@ void plusAddReallocMem(void * tmpVar, int length, void * target) {
     nullData(target);
 
     tGarbageListPtr tmp;
+    tmp = NULL;
     tmp = malloc(sizeof(struct tGarbageListPtr));   //alokace pameti
 
     if (tmp != NULL) {
@@ -115,7 +116,17 @@ void plusAddReallocMem(void * tmpVar, int length, void * target) {
 }
 
 void plusFree() {
-    // Funkce uvolní data programu, která jsou na sebe navázaná v listu, nakonec uvolní i samotný list
+
+    tGarbageListPtr tmp;
+    tmp = NULL;
+
+    while (listFirst != NULL){      //procházíme list, kdokud není první položka nulová
+        tmp = listFirst;
+        listFirst = tmp->nextPtr;
+        free(tmp->data);            //uvolění dat programu
+        free(tmp);                  //uvolnění listu
+    }
+
 }
 
 void nullData(void * target){
