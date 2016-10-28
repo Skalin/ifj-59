@@ -71,12 +71,12 @@ tToken * getToken( tToken * token, char *file){
 
 	c = fopen(file, "r");
 
-	while ( 1 ) {
+	while ( TRUE ) {
 
 		fgetc(c);
 
 
-	} cyklus
+	} //cyklus
 
 	fclose(FILE);
 }
