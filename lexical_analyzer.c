@@ -53,7 +53,7 @@ tToken updateToken( tToken * token, char *string ) {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-void token_return_token(TToken * token) {
+void token_return_token(tToken * token) {
     // Do tokenu přiřadí načtené hodnoty z pomocného tokenu t_buffer
     t_buffer = token;
 }
