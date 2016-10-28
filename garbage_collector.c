@@ -63,13 +63,26 @@ void * plusMalloc(int length) {
 }
 
 void * plusRealloc(void * destPtr, int length) {
-    // Pomocí realloc() rozšíří danou paměť, pokud není alokovaná, zavolá plusMalloc() nad danou velikostí a navrátí pointer na alokovanou paměť
+
+    void *tmp = NULL;
+
+    if (destPtr != NULL) {                                      //paměť není alokována
+        tmp = realloc(destPtr, length);                         //rozšíření paměti pomocí realloc
+
+                if (tmp != destPtr) {
+                    plusAddReallocMem(tmp, length, destPtr);    //alokace další položky v seznamu
+                }
+
+        return tmp;
+    }
+
+    if (destPtr == NULL) {                                      //paměť není alokovánam, ukazatel je roven null
+        destPtr = plusMalloc(length);                           //volání funkce plusMalloc nad danou velikostí
+        return destPtr;                                         //vrací ukazatel na alokovanou paměť
+    }
 }
 
 void plusAddReallocMem(void * tmpVar, int length, void * target) {
-    // Funkce slouží k alokaci další položky seznamu
-    // po mallocu se položky struktury inicializují, data na tmpVar, nextPtr na NULL a lenght na parametr lenght
-    // Provede e práce se seznamem (pokud nemá první prvek, pak je tohle první prvek, pokud nemá poslední a bla bla. viz 1. úkol IAL)
 
     nullData(target);
 
@@ -106,7 +119,7 @@ void plusFree() {
 }
 
 void nullData(void * target){
-    // Funkce projde celej seznam, najde daný target v seznamu a vynuluje mu položku data
+
     tGarbageListPtr = tmp;
 
     if (listFirst != NULL) {            //pokud není seznam prazdný, prochazíme seznam
