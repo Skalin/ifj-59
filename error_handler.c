@@ -10,10 +10,9 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include <stdlib.h>
 #include "error_handler.h"
-#include "stdlib.h"
-#include "stdio.h"
-
+#include <stdio.h>
 
 void throwException( int errorNumber, int row) {
     int exit_code= 1;
