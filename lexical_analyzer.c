@@ -207,6 +207,5 @@ tToken * getToken( tToken * token, char *file){
 				}
 		} // konec switche
 	} //cyklus
-	free(status);
 	fclose(FILE);
 }
