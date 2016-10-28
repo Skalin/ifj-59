@@ -73,17 +73,12 @@ tToken * getToken( tToken * token, char *file){
 
 	c = fopen(file, "r");
 
-	while ( c != EOF ) {
+	while ( 1 ) {
 
 		fgetc(c);
 
 
-		while ( c != ';' || c != ' ' ) {
-
-
-		} // první cyklus
-
-	} // druhý cyklus
+	} cyklus
 
 	fclose(FILE);
 }

@@ -21,6 +21,7 @@
 /*
  * Definice
  */
+#define TRUE 1
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
 
