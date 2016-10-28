@@ -76,16 +76,14 @@ tToken * getToken( tToken * token, char *file){
 	token->status = LA_START;
 	int i;
 
-	buffer = plusMalloc(32);
+	char buffer[32];
 
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
-
-		if (buffer == 31) {
-			buffer = plusRealloc(32);
-		}
-
 		fgetc(c);
-		GlobalRow += 1;
+		i++; // delka "retezce"
+		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
+
+		buffer[i-1] = c; // pole je cislovano od 0
 
 		switch(state) {
 			case LA_START:
@@ -176,12 +174,28 @@ tToken * getToken( tToken * token, char *file){
 				}
 				// hodnoty
 				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) { // LA_SIMPLE_IDENT
-
+					token->status = LA_SIMPLE_IDENT;
+					continue;
 				}
 
 				if (c >= 48 && c <= 57) { // LA_INT
-
+					token->status = LA_INT;
+					continue;
 				}
+
+				if (c == 34) {
+					token->status = LA_STRING;
+					continue;
+				}
+
+			case LA_SIMPLE_IDENT:
+
+			case LA_INT:
+
+			case LA_STRING:
+
+
+				// dalsi porovnani, ale vetva KA
 			case LA_GREATER:
 				if (c == 61) {
 					token->status = LA_GREATER_EQ;
@@ -206,6 +220,18 @@ tToken * getToken( tToken * token, char *file){
 					break;
 				}
 		} // konec switche
+
+		if (i == 32) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer
+			updateToken(token, buffer);
+			token->length += i;
+			for (int j = 0; j < i; j++) {
+				buffer[j] = '\0';
+			}
+			i = 0;
+		}
 	} //cyklus
+	token->length += i;
+	updateToken(token, buffer);
+
 	fclose(FILE);
 }
