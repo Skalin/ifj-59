@@ -126,6 +126,8 @@ void plusFree() {
         free(tmp->data);            //uvolění dat programu
         free(tmp);                  //uvolnění listu
     }
+    
+    listLast = NULL;                //vynulování posledního prvku
 
 }
 
