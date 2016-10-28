@@ -44,6 +44,13 @@ tToken * initToken() {
     // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+
+    token.status = LA_START;
+    token.data[0] = '\0';
+    token.lenght = 0;
+    token.allocated = 0;
+
+    return token;
 }
 
 tToken updateToken( tToken * token, char *string ) {
@@ -62,7 +69,16 @@ void destroytoken( tToken * token) {
     // Zruší daný token
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+
+    plusFree(token);
 }
+
+void fillToken( tStatus status ) {
+    // Nastaví status tokenu
+    token.status = status;
+}
+
+
 
 tToken * getToken( tToken * token){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
