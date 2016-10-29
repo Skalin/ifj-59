@@ -10,23 +10,21 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-FILE *FILE;
-
 #include "lexical_analyzer.h"
 // some coding
 
 void keywordCheckToken(tToken *token) {
     //Tabulky
-    char *keyWordTable[NUMBER_OF_KEY_WORDS] = {
+    char * keyWordTable[] = {
         "boolean","break","class","continue","do",
         "double","else","false","for","if","int",
         "return","String","static","true","void","while"
     };
 
-    tStatus keyWordTokenTable[NUMBER_OF_KEY_WORDS] = {
-            "LA_BOOLEAN","LA_BREAK","LA_CLASS","LA_CONTINUE","LA_DO",
-            "LA_DOUBLE","LA_ELSE","LA_FALSE","LA_FOR","LA_IF","LA_INT",
-            "LA_RETURN","LA_STRING","LA_STATIC","LA_TRUE","LA_VOID","LA_WHILE"
+    tStatus keyWordTokenTable[] = {
+            "LA_KW_BOOLEAN","LA_KW_BREAK","LA_KW_CLASS","LA_KW_CONTINUE","LA_KW_DO",
+            "LA_KW_DOUBLE","LA_KW_ELSE","LA_KW_FALSE","LA_KW_FOR","LA_KW_IF","LA_KW_INT",
+            "LA_KW_RETURN","LA_KW_STRING","LA_KW_STATIC","LA_KW_TRUE","LA_KW_VOID","LA_KW_WHILE"
     };
 
     // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), přiřadí do tToken type příslušnou hodnotu z druhé tabulky
@@ -49,14 +47,14 @@ tToken * initToken() {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-tToken updateToken(tToken * token, char *string) {
+tToken * updateToken(tToken * token, char *string) {
    // Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
     // Pomoci strncat() pridat novy retezec nakonec
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-void tokenReturnToken(Token * token) {
+void tokenReturnToken(tToken * token) {
     // Do tokenu přiřadí načtené hodnoty z pomocného tokenu t_buffer
     t_buffer = token;
 }
@@ -71,23 +69,24 @@ tToken * getToken(tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
 	GlobalRow = 0;
-	GlobalLine = 0;
+	GlobalColumn = 0;
 
     char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
-	FILE = fopen(file, "r"); // stačí nám soubor pouze pro čtení
+	FILE * fp;
+	fp = fopen (file, "r"); // stačí nám soubor pouze pro čtení
 
 	initToken(token);
 	token->status = LA_START;
 	int i;
 
 	char buffer[32];
-
+/*
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(FILE);
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
-			GlobalLine++; // pocet radku
+			GlobalColumn++; // pocet radku
 			GlobalRow = 0; // reset pozice na radku
 		}
 		i++; // delka "retezce"
@@ -166,7 +165,6 @@ tToken * getToken(tToken * token, char *file){
 				} else if (c == 34) { // "
 					token->status = LA_STRING_PREP;
 					continue;
-				}
 				// konec stringu
 				} else {
 					throwException(1, GlobalRow, GlobalColumn);
@@ -261,7 +259,7 @@ tToken * getToken(tToken * token, char *file){
 
 			// string
 			case LA_STRING_PREP:
-				if (c == 92) { /* \ */
+				if (c == 92) {
 					token->status = LA_BACKSLASH;
 					continue;
 				} else if (c == 34) { // ""
@@ -274,7 +272,7 @@ tToken * getToken(tToken * token, char *file){
 				if (c == 34) { // "\"
 					token->status = LA_QUOTE;
 					continue;
-				} else if (c == 92) { /* "\\ */
+				} else if (c == 92) {
 					token->status = LA_DOUBLE_BACKSLASH;
 					continue;
 				} else if (c == 110) { // "\n
@@ -282,11 +280,11 @@ tToken * getToken(tToken * token, char *file){
 					continue;
 				} else if (c == 116) { // "\t
 					token->status = LA_TAB;
-				/* oktalovy cisla zatim kasleme, viz TODO
-				} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
-					token->status = LA_OCT1;
-					continue;
-				*/
+			// oktalovy cisla zatim kasleme, viz TODO
+			//	} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
+			//		token->status = LA_OCT1;
+			//		continue;
+			//
 				}
 			case LA_QUOTE:
 				if (c == 34) { // "\""
@@ -297,10 +295,10 @@ tToken * getToken(tToken * token, char *file){
 					continue;
 				}
 			case LA_DOUBLE_BACKSLASH:
-				if (c == 34) { /* "\\" */
+				if (c == 34) {
 					token->status = LA_STRING;
 					break;
-				} else {	/* "\\x */
+				} else {
 					token->status = LA_STRING_PREP;
 					continue;
 				}
@@ -321,11 +319,7 @@ tToken * getToken(tToken * token, char *file){
 					continue;
 				}
 
-			/*
-			 * zde pak bude octal, jeste neni doresen jak ma koncit
-			 *
-			 *
-			 */
+			// zde pak bude octal, jeste neni doresen jak ma koncit
 
 			// dalsi porovnani KA
 			case LA_GREATER:
@@ -404,6 +398,7 @@ tToken * getToken(tToken * token, char *file){
 		}
 	} //cyklus
 
+*/
 	keywordCheckToken(token);
 	token->length += i;
 	updateToken(token, buffer);

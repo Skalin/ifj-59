@@ -85,23 +85,23 @@ typedef enum {
     LA_OCT2, // Druhý znak octanového čísla
     LA_OCT, // Třetí znak octanového čísla, finální octanové číslo
     // Keywords
-    LA_BOOLEAN,
-    LA_BREAK,
-    LA_CLASS,
-    LA_CONTINUE,
-    LA_DO,
-    LA_DOUBLE,
-    LA_ELSE,
-    LA_FALSE,
-    LA_FOR,
-    LA_IF,
-    LA_INT,
-    LA_RETURN,
-    LA_STRING,
-    LA_STATIC,
-    LA_TRUE,
-    LA_VOID,
-    LA_WHILE,
+	LA_KW_BOOLEAN,
+	LA_KW_BREAK,
+	LA_KW_CLASS,
+	LA_KW_CONTINUE,
+	LA_KW_DO,
+	LA_KW_DOUBLE,
+	LA_KW_ELSE,
+	LA_KW_FALSE,
+	LA_KW_FOR,
+	LA_KW_IF,
+	LA_KW_INT,
+	LA_KW_RETURN,
+	LA_KW_STRING,
+	LA_KW_STATIC,
+	LA_KW_TRUE,
+	LA_KW_VOID,
+	LA_KW_WHILE,
 } tStatus;
 
 /*
@@ -110,9 +110,9 @@ typedef enum {
 typedef struct
 {
     tStatus status;  // Status konečného automatu
-    char data[]; // Data, která obshahuje
     unsigned int length; // Délka, počet charů
     unsigned int allocated; // Status, jestli byl alokován
+	char data[]; // Data, která obshahuje
 } tToken;
 
 /* Globální token */
@@ -123,7 +123,7 @@ extern tToken token;
  * @param token
  * @return jeden načtený token z analyzátoru
  */
-tToken * getToken(tToken * token);
+tToken * getToken(tToken * token, FILE);
 
 /*
  * Inicializuje token a vrací pointer na token
