@@ -1,7 +1,7 @@
-/*
+/**
  * IFJ/IAL - Error handler
  * Varianta:    b/2/I
- * Subor:       error_handler.h
+ * Soubor:       error_handler.h
  * Tým:         59
  * Autoři:      Jan Hrbotický, xhrbot01@stud.fit.vutbr.cz
  *              Dominik Skála, xskala11@stud.fit.vutbr.cz
