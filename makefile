@@ -4,5 +4,5 @@ BIN=projekt
 
 makeFiles= main.c garbage_collector.c error_handler.c
 
-make:
+all: main.c
     $(CC) $(CFLAGS) $(makeFiles) -o $(BIN)
