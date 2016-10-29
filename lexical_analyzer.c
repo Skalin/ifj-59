@@ -11,6 +11,7 @@
  */
 
 #include "lexical_analyzer.h"
+#include "main.h"
 // some coding
 
 void keywordCheckToken(tToken *token) {
@@ -167,7 +168,7 @@ tToken * getToken( tToken * token, char *file){
 				}
 				// konec stringu
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			// identifikatory
@@ -180,7 +181,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_COMPLETE_IDENT:
@@ -189,7 +190,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 			// konec identifikatoru
 
@@ -206,7 +207,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_DOT_DOUBLE:
@@ -226,7 +227,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_DOUBLE_pE:
@@ -237,7 +238,7 @@ tToken * getToken( tToken * token, char *file){
 					token->status = LA_DOUBLE_E_SIGN;
 					continue;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_DOUBLE_E_SIGN:
@@ -245,7 +246,7 @@ tToken * getToken( tToken * token, char *file){
 					token->status = LA_DOUBLE_E;
 					continue;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_DOUBLE_E:
@@ -254,7 +255,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			// string
@@ -333,7 +334,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_LESS:
@@ -343,7 +344,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_ASSIGNMENT:
@@ -353,7 +354,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_EXCL_MARK:
@@ -363,7 +364,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			// komentare
@@ -377,7 +378,7 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_MULTI:
@@ -387,8 +388,9 @@ tToken * getToken( tToken * token, char *file){
 				} else if (isspace(c)) {
 					break;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
+			default:
 		} // konec switche
 
 		if (i == 32) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer

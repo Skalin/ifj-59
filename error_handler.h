@@ -10,11 +10,14 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include "error_handler.c"
+#include <stdlib.h>
+#include <stdio.h>
 
 /*
  * Ukonci program a jako navratovou chybu pouzije prvni parametr
  * @param errorNumber hodnota erroru
+ * @param row cislo sloupce kterem se chyba vyskytla
+ * @param line cislo radku na kterem se chyba vyskytla
  * @return
  */
-void throwException( int errorNumber, int row);
+void throwException(int errorNumber, int row, int column);

@@ -26,9 +26,11 @@
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
 
-// Globalni promenne pro pocitani radku a sloupcu, bude potreba v lex.c a v error.c
+FILE * FILE;
+
+// Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
 int GlobalRow = 0;
-int GlobalLine = 0;
+int GlobalColumn = 0;
 
 /*
  * Prototyp funkce
@@ -78,7 +80,7 @@ typedef enum {
     LA_BACKSLASH, // Backslash '\'
     LA_DOUBLE_BACKSLASH, // Escape baskslashe '\\'
     LA_TAB, // Escape odtabování '\t'
-	LA_NEW_LINE // Escape noveho radku '\n'
+	LA_NEW_LINE, // Escape noveho radku '\n'
     LA_QUOTE, // Escape uvozovek '"'
     LA_OCT1, // První znak octanového čísla
     LA_OCT2, // Druhý znak octanového čísla

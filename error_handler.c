@@ -10,27 +10,25 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdlib.h>
 #include "error_handler.h"
-#include <stdio.h>
 
-void throwException( int errorNumber, int row) {
-    int exit_code= 1;
-    fprintf(stderr, "FILE: %s | Error on line %d", "Doplnit globalni promennou na file", row);
+void throwException(int errorNumber, int row, int column) {
+    int exit_code;
+    fprintf(stderr, "FILE: %s | Error on line %d, in column %d", "Doplnit nazev globalni promenne FILE", row, column);
 
     switch(errorNumber) {
         case 1:
             fprintf(stderr, "Lex mistake (Invalid token)");
-            exit_code= 1;
+            exit_code = 1;
             break;
         case 99:
             fprintf(stderr, "Internal error ");
-            exit_code= 99;
+            exit_code = 99;
             break;
             //Sem doplňujte případné další chyby
         default:
             fprintf(stderr, "Unknown error");
-            exit_code= 10;
+            exit_code = 10;
             break;
     }
 
