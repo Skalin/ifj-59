@@ -11,7 +11,6 @@
  */
 
 #include "lexical_analyzer.h"
-#include "main.h"
 // some coding
 
 void keywordCheckToken(tToken *token) {
