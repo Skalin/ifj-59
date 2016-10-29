@@ -12,7 +12,6 @@
 #include "garbage_collector.h"
 #include "error_handler.c"
 #include <stdlib.h>
-#include <stdio.h>
 
 tGarbageListPtr listFirst = NULL;
 tGarbageListPtr listLast = NULL;
