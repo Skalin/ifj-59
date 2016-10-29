@@ -9,8 +9,12 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "error_handler.h"
+#include "lexical_analyzer.h"
+#include "garbage_collector.h"
 
 void throwException(int errorNumber, int row, int column) {
     int exit_code;
