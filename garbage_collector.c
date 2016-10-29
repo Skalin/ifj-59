@@ -10,6 +10,8 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "garbage_collector.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 tGarbageListPtr listFirst = NULL;
 tGarbageListPtr listLast = NULL;
@@ -21,6 +23,7 @@ void * plusMalloc(int length) {
 
     if (tmp == NULL) {
         throwException(99,NULL,NULL);
+        return NULL;
     }
 
     if (tmp != NULL) {          //inicializace dat, další položky seznamu a velikosti seznamu
@@ -56,6 +59,7 @@ void * plusMalloc(int length) {
 
     else {
         throwException(99,NULL,NULL);
+        return NULL;
     }
 
 
