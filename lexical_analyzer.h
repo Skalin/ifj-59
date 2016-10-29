@@ -41,7 +41,7 @@ void printKeyWordTable(); // Vytiskne obsah tabulky klíčových slov
  */
 typedef enum {
     LA_START,   //Startovací stav										*
-    LA_KEYWORD, // Klíčové slovo
+    LA_KEYWORD, // Klíčové slovo										*
     LA_INT,     //Int													*
     LA_DOT_DOUBLE, //Int s tečkou										*
     LA_DOUBLE, //Double													*
@@ -51,7 +51,7 @@ typedef enum {
     LA_SIMPLE_IDENT, // jednoduchý indentifikátor						*
     LA_COMPLETE_IDENT, // Kompletní identifikátor						*
     LA_STRING_PREP, // Začátek a tělo stringu							*
-    LA_STRING, // Kompletní string
+    LA_STRING, // Kompletní string										*
     LA_EOF, // EOF														*
     LA_DIV, // Dělení '/'												*
     LA_SIMPLE_COMMENT, // Jednořádkový komentář '//'					*
