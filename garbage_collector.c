@@ -94,7 +94,7 @@ void plusAddReallocMem(void * tmpVar, int length, void * target) {
 
     tGarbageListPtr tmp;
     tmp = NULL;
-    tmp = malloc(sizeof(struct tGarbageList));   //alokace pameti
+    tmp = malloc(sizeof(struct tGarbageListPtr *));   //alokace pameti
 
     if (tmp != NULL) {
         tmp->nextPtr = NULL;        //inicializace další položky na null
