@@ -14,13 +14,21 @@
   *Include všech souborů
   */
 
-#include "lexical_analyzer.c"
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 /*
  * Definice
  */
+#define TRUE 1
+#define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
+
+// Globalni promenne pro pocitani radku a sloupcu, bude potreba v lex.c a v error.c
+int GlobalRow = 0;
+int GlobalLine = 0;
 
 /*
  * Prototyp funkce
@@ -70,6 +78,7 @@ typedef enum {
     LA_BACKSLASH, // Backslash '\'
     LA_DOUBLE_BACKSLASH, // Escape baskslashe '\\'
     LA_TAB, // Escape odtabování '\t'
+	LA_NEW_LINE // Escape noveho radku '\n'
     LA_QUOTE, // Escape uvozovek '"'
     LA_OCT1, // První znak octanového čísla
     LA_OCT2, // Druhý znak octanového čísla
@@ -94,7 +103,6 @@ typedef enum {
     LA_WHILE,
 } tStatus;
 
-
 /*
  * Struktura tokenu
  */
@@ -114,33 +122,33 @@ extern tToken token;
  * @param token
  * @return jeden načtený token z analyzátoru
  */
-tToken * getToken( tToken * token );
+tToken * getToken(tToken * token);
 
 /*
  * Inicializuje token a vrací pointer na token
  * @param token
  * @return ukazatel na inicializovaný token
  */
-tToken * initToken( tToken * token );
+tToken * initToken(tToken * token);
 
 /*
  * Ruší již předem vytvořený token
  * @param token
  */
-void destroyToken( tToken * token );
+void destroyToken(tToken * token);
 
 /*
  * Funkce aktualizuje hodnotu tokenu na hodnotu z parametru string
  * @param token
  * @param string
  */
-tToken * updateToken( tToken * token, char *string );
+tToken * updateToken(tToken * token, char *string);
 
 /*
  * Projde pole keyword a přiřadí korektně k tokenu "id" z pole keyword
  * @param token
  */
-void keywordCheckToken( tToken * token );
+void keywordCheckToken(tToken * token);
 
-
+void tokenReturnToken(tToken * token);
 
