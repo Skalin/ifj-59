@@ -239,6 +239,7 @@ tToken * getToken( tToken * token, char *file){
 
 /*
  * TODO:
+ * chybove stavy
  * zpracovani escape
  * zpracovani stringu
  * zpracovani cisel
