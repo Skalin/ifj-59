@@ -94,7 +94,7 @@ tToken * getToken( tToken * token, char *file){
 
 		switch(token->status) {
 			case LA_START:	// pocatecni stav automatu
-				if ((isspace(c))) {
+				if (isspace(c)) {
 					continue;
 				} else if (c == EOF) {	// EOF
 					token->status = LA_EOF;
@@ -151,7 +151,7 @@ tToken * getToken( tToken * token, char *file){
 					continue;
 				// konec mat. operaci
 				// identifikatory
-				} else if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) { // LA_SIMPLE_IDENT
+				} else if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || c == 36) { // LA_SIMPLE_IDENT
 					token->status = LA_SIMPLE_IDENT;
 					continue;
 				// konec identifikatoru
@@ -166,21 +166,28 @@ tToken * getToken( tToken * token, char *file){
 					continue;
 				}
 				// konec stringu
+				} else {
+					throwException(1, GlobalRow, GlobalLine);
+				}
 
 			// identifikatory
 			case LA_SIMPLE_IDENT:
-				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) { // a..z,A..Z,_,$
+				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || c == 36) { // a..z,A..Z,_,$
 					continue;
 				} else if (c == 46) { // .
 					token->status = LA_COMPLETE_IDENT;
 					continue;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
 
 			case LA_COMPLETE_IDENT:
-				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) { // a..z,A..Z,_,$
+				if (((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c == 95) || (c == 36))) { // a..z,A..Z,_,$
 					continue;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
@@ -196,6 +203,8 @@ tToken * getToken( tToken * token, char *file){
 				} else if (c == 101 || c == 69) { // e nebo E
 					token->status = LA_DOUBLE_pE;
 					continue;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
@@ -211,9 +220,11 @@ tToken * getToken( tToken * token, char *file){
 			case LA_DOUBLE:
 				if (c >= 48 && c <= 57) { // 0..9
 					continue;
-				} else if (c == 101 || c == 69) { // e nebo E
+				} else if ((c == 101) || (c == 69)) { // e nebo E
 					token->status = LA_DOUBLE_pE;
 					continue;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
@@ -240,6 +251,8 @@ tToken * getToken( tToken * token, char *file){
 			case LA_DOUBLE_E:
 				if (c >= 48 && c <= 57) { // 0..9
 					continue;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
@@ -317,6 +330,8 @@ tToken * getToken( tToken * token, char *file){
 				if (c == 61) { // >=
 					token->status = LA_GREATER_EQ;
 					break;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
@@ -324,6 +339,8 @@ tToken * getToken( tToken * token, char *file){
 			case LA_LESS:
 				if (c == 61) { // <=
 					token->status = LA_LESS_EQ;
+					break;
+				} else if (isspace(c)) {
 					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
@@ -333,6 +350,8 @@ tToken * getToken( tToken * token, char *file){
 				if (c == 61) { // ==
 					token->status = LA_COMPARASION;
 					break;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
@@ -340,6 +359,8 @@ tToken * getToken( tToken * token, char *file){
 			case LA_EXCL_MARK:
 				if (c == 61) { // !=
 					token->status = LA_COMPARASION_NE;
+					break;
+				} else if (isspace(c)) {
 					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
@@ -353,6 +374,8 @@ tToken * getToken( tToken * token, char *file){
 				} else if (c == 42) {
 					token->status = LA_BLOCK_COMMENT_START;
 					break;
+				} else if (isspace(c)) {
+					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
 				}
@@ -360,6 +383,8 @@ tToken * getToken( tToken * token, char *file){
 			case LA_MULTI:
 				if (c == 47) {
 					token->status = LA_BLOCK_COMMENT_END;
+					break;
+				} else if (isspace(c)) {
 					break;
 				} else {
 					throwException(1, GlobalRow, GlobalLine);
