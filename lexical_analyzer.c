@@ -10,6 +10,8 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+FILE *FILE;
+
 #include "lexical_analyzer.h"
 // some coding
 
@@ -73,7 +75,7 @@ tToken * getToken(tToken * token, char *file){
 
     char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
-	c = fopen(file, "r"); // stačí nám soubor pouze pro čtení
+	FILE = fopen(file, "r"); // stačí nám soubor pouze pro čtení
 
 	initToken(token);
 	token->status = LA_START;
@@ -82,7 +84,7 @@ tToken * getToken(tToken * token, char *file){
 	char buffer[32];
 
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
-		fgetc(c);
+		c = fgetc(FILE);
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
 			GlobalLine++; // pocet radku
