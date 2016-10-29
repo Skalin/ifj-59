@@ -30,7 +30,7 @@ void * plusMalloc(int length) {
     if (tmp != NULL) {          //inicializace dat, další položky seznamu a velikosti seznamu
         tmp->data = NULL;
         tmp->nextPtr = NULL;
-        tmp->length = NULL;
+        tmp->length = 0;
     }
 
     if (listFirst == NULL) {    //v případě, ze je seznam prazdný, vkládame první prvek
