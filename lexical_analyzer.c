@@ -68,6 +68,9 @@ void destroyToken( tToken * token) {
 tToken * getToken( tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
+	GlobalRow = 0;
+	GlobalLine = 0;
+
     char *c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
 	c = fopen(file, "r"); // stačí nám soubor pouze pro čtení
@@ -80,8 +83,12 @@ tToken * getToken( tToken * token, char *file){
 
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		fgetc(c);
-		i++; // delka "retezce"
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
+		if (c == '\n') {
+			GlobalLine++; // pocet radku
+			GlobalRow = 0; // reset pozice na radku
+		}
+		i++; // delka "retezce"
 
 		buffer[i-1] = c; // pole je cislovano od 0
 
