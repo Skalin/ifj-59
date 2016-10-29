@@ -86,136 +86,211 @@ tToken * getToken( tToken * token, char *file){
 		buffer[i-1] = c; // pole je cislovano od 0
 
 		switch(token->status) {
-			case LA_START:
+			case LA_START:	// pocatecni stav automatu
 				if ((isspace(c))) {
 					continue;
 				}
-				// EOF
-				if (c == EOF) {
+				if (c == EOF) {	// EOF
 					token->status = LA_EOF;
 					break;
 				}
 				// oddelovac
-				if (c == 59) { // LA_SEMICOLON
+				if (c == 59) { // ;
 					token->status = LA_SEMICOLON;
 					break;
 				}
 				// zavorky
-				if (c == 91) { // LA_SQ_BRACKET_L
+				if (c == 91) { // [
 					token->status = LA_SQ_BRACKET_L;
 					break;
 				}
 
-				if (c == 93) { // LA_SQ_BRACKET_R
+				if (c == 93) { // ]
 					token->status = LA_SQ_BRACKET_R;
 					break;
 				}
 
-				if (c == 40) { // LA_BRACKET_L
+				if (c == 40) { // (
 					token->status = LA_BRACKET_L;
 					break;
 				}
 
-				if (c == 41) { // LA_BRACKET_R
+				if (c == 41) { // )
 					token->status = LA_BRACKET_R;
 					break;
 				}
 
-				if (c == 123) { // LA_BRACE_L
+				if (c == 123) { // {
 					token->status = LA_BRACE_L;
 					break;
 				}
 
-				if (c == 125) { // LA_BRACE_R
+				if (c == 125) { // }
 					token->status = LA_BRACE_R;
 					break;
 				}
-
-				// porovnani
-				if (c == 47) { // LA_DIV
+				// konec zavorek
+				// matematicke operace
+				if (c == 47) { // /
 					token->status = LA_DIV;
 					continue;
 				}
 
-				if (c == 42) { // LA_MULTI
+				if (c == 42) { // *
 					token->status = LA_MULTI;
 					continue;
 				}
 
-				if (c == 43) { // LA_PLUS
+				if (c == 43) { // +
 					token->status = LA_PLUS;
 					break;
 				}
 
-				if (c == 45) { // LA_MINUS
+				if (c == 45) { // -
 					token->status = LA_MINUS;
 					break;
 				}
 
-				if (c == 62) { // LA_GREATER
+				if (c == 62) { // >
 					token->status = LA_GREATER;
 					continue;
 				}
 
-				if (c == 60) { // LA_LESS
+				if (c == 60) { // <
 					token->status = LA_LESS;
 					continue;
 				}
 
-				if (c == 33) { // LA_EXCL_MARK
+				if (c == 33) { // !
 					token->status = LA_EXCL_MARK;
 					continue;
 				}
 
-				if (c == 61) { // LA_ASSIGNMENT
+				if (c == 61) { // =
 					token->status = LA_ASSIGNMENT;
 					continue;
 				}
-				// hodnoty
+				// konec mat. operaci
+				// identifikatory
 				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) { // LA_SIMPLE_IDENT
 					token->status = LA_SIMPLE_IDENT;
 					continue;
 				}
-
-				if (c >= 48 && c <= 57) { // LA_INT
+				// cislice
+				if (c >= 48 && c <= 57) { // 0..9
 					token->status = LA_INT;
 					continue;
 				}
-
-				if (c == 34) {
-					token->status = LA_STRING;
+				// zacatek stringu
+				if (c == 34) { // "
+					token->status = LA_STRING_PREP;
 					continue;
 				}
 
+			// identifikatory
 			case LA_SIMPLE_IDENT:
+				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) { // a..z,A..Z,_,$
+					continue;
+				} else if (c == 46) { // .
+					token->status = LA_COMPLETE_IDENT;
+					continue;
+				}
 
+			case LA_COMPLETE_IDENT:
+				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) { // a..z,A..Z,_,$
+					continue;
+				}
+			// konec identifikatoru
+
+			// cisla
 			case LA_INT:
+				if (c >= 48 && c <= 57) { // 0..9
+					continue;
+				} else if (c == 46) { // .
+					token->status = LA_DOT_DOUBLE;
+					continue;
+				} else if (c == 101 || c == 69) { // e nebo E
+					token->status = LA_DOUBLE_pE;
+					continue;
+				}
 
-			case LA_STRING:
+			case LA_DOT_DOUBLE:
+				if (c >= 48 && c <= 57) { // 0..9
+					token->status = LA_DOUBLE;
+					continue;
+				}
+
+			case LA_DOUBLE:
+				if (c >= 48 && c <= 57) { // 0..9
+					continue;
+				} else if (c == 101 || c == 69) { // e nebo E
+					token->status = LA_DOUBLE_pE;
+					continue;
+				}
+
+			case LA_DOUBLE_pE:
+				if (c >= 48 && c <= 57) { // 0..9
+					token->status = LA_DOUBLE_E;
+					continue;
+				} else if (c == 43 || c == 45) { // + nebo -
+					token->status = LA_DOUBLE_E_SIGN;
+					continue;
+				}
+
+			case LA_DOUBLE_E_SIGN:
+				if (c >= 48 && c <= 57) { // 0..9
+					token->status = LA_DOUBLE_E;
+					continue;
+				}
+
+			case LA_DOUBLE_E:
+				if (c >= 48 && c <= 57) { // 0..9
+					continue;
+				}
+
+			// string
+			case LA_STRING_PREP:
 
 
-				// dalsi porovnani, ale vetva KA
+
+			// dalsi porovnani KA
 			case LA_GREATER:
-				if (c == 61) {
+				if (c == 61) { // >=
 					token->status = LA_GREATER_EQ;
 					break;
 				}
 
 			case LA_LESS:
-				if (c == 61) {
+				if (c == 61) { // <=
 					token->status = LA_LESS_EQ;
 					break;
 				}
 
 			case LA_ASSIGNMENT:
-				if (c == 61) {
+				if (c == 61) { // ==
 					token->status = LA_COMPARASION;
 					break;
 				}
 
 			case LA_EXCL_MARK:
-				if (c == 61) {
+				if (c == 61) { // !=
 					token->status = LA_COMPARASION_NE;
+					break;
+				}
+
+			// komentare
+			case LA_DIV:
+				if (c == 47) {
+					token->status = LA_SIMPLE_COMMENT;
+					break;
+				} else if (c == 42) {
+					token->status = LA_BLOCK_COMMENT_START;
+					break;
+				}
+
+			case LA_MULTI:
+				if (c == 47) {
+					token->status = LA_BLOCK_COMMENT_END;
 					break;
 				}
 		} // konec switche
@@ -240,8 +315,6 @@ tToken * getToken( tToken * token, char *file){
  * chybove stavy
  * zpracovani escape
  * zpracovani stringu
- * zpracovani cisel
  * prevod oktalovych cisel na decimalni a nasledny prevod na ASCII
- * zpracovani identifikatoru
  * vyresit alokaci
  */

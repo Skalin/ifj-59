@@ -40,41 +40,41 @@ void printKeyWordTable(); // Vytiskne obsah tabulky klíčových slov
  * Jednotlivé stavy automatu
  */
 typedef enum {
-    LA_START,   //Startovací stav
+    LA_START,   //Startovací stav										*
     LA_KEYWORD, // Klíčové slovo
-    LA_INT,     //Int
-    LA_DOT_DOUBLE, //Int s tečkou
-    LA_DOUBLE, //Double
-    LA_DOUBLE_pE, // Double s 'e'
-    LA_DOUBLE_E_SIGN, //Znaménkové e
-    LA_DOUBLE_E, //Konečné double
-    LA_SIMPLE_IDENT, // jednoduchý indentifikátor
+    LA_INT,     //Int													*
+    LA_DOT_DOUBLE, //Int s tečkou										*
+    LA_DOUBLE, //Double													*
+    LA_DOUBLE_pE, // Double s 'e'										*
+    LA_DOUBLE_E_SIGN, //Znaménkové e									*
+    LA_DOUBLE_E, //Konečné double										*
+    LA_SIMPLE_IDENT, // jednoduchý indentifikátor						*
     LA_COMPLETE_IDENT, // Kompletní identifikátor
     LA_STRING_PREP, // Začátek a tělo stringu
     LA_STRING, // Kompletní string
-    LA_EOF, // EOF
-    LA_DIV, // Dělení '/'
-    LA_SIMPLE_COMMENT, // Jednořádkový komentář '//'
-    LA_BLOCK_COMMENT_END, // Konec blokového komentáře '*/'
-    LA_MULTI, // Násobení '*'
-    LA_BLOCK_COMMENT_START, // Začátek blokového komentáře '/*'
-    LA_PLUS, // Plus '+'
-    LA_MINUS, // Minus '-'
-    LA_SQ_BRACKET_L, // Hranatá závorka, levá '['
-    LA_SQ_BRACKET_R, // Hranatá závorka, pravá ']'
-    LA_BRACKET_L, // Levá závorka '('
-    LA_BRACKET_R, // Pravá závorka ')'
-    LA_BRACE_L, // Levá složená závorka '{'
-    LA_BRACE_R, // Prava slozena zavorka '}'
-    LA_GREATER, // Větší než '>'
-    LA_GREATER_EQ, // Vetsi rovno '>='
-    LA_LESS, // Mensi '<'
-    LA_LESS_EQ, // Mensi rovno '<='
-    LA_ASSIGNMENT, // Prirazeni '='
-    LA_COMPARASION, // Porovnani '=='
-    LA_EXCL_MARK, // Vykricnik '!'
-    LA_COMPARASION_NE, // Nerovna se '!='
-    LA_SEMICOLON, // Strednik ';'
+    LA_EOF, // EOF														*
+    LA_DIV, // Dělení '/'												*
+    LA_SIMPLE_COMMENT, // Jednořádkový komentář '//'					*
+    LA_BLOCK_COMMENT_END, // Konec blokového komentáře '*/'				*
+    LA_MULTI, // Násobení '*'											*
+    LA_BLOCK_COMMENT_START, // Začátek blokového komentáře '/*'			*
+    LA_PLUS, // Plus '+'												*
+    LA_MINUS, // Minus '-'												*
+    LA_SQ_BRACKET_L, // Hranatá závorka, levá '['						*
+    LA_SQ_BRACKET_R, // Hranatá závorka, pravá ']'						*
+    LA_BRACKET_L, // Levá závorka '('									*
+    LA_BRACKET_R, // Pravá závorka ')'									*
+    LA_BRACE_L, // Levá složená závorka '{'								*
+    LA_BRACE_R, // Prava slozena zavorka '}'							*
+    LA_GREATER, // Větší než '>'										*
+    LA_GREATER_EQ, // Vetsi rovno '>='									*
+    LA_LESS, // Mensi '<'												*
+    LA_LESS_EQ, // Mensi rovno '<='										*
+    LA_ASSIGNMENT, // Prirazeni '='										*
+	LA_COMPARASION, // Porovnani '=='									*
+    LA_EXCL_MARK, // Vykricnik '!'										*
+    LA_COMPARASION_NE, // Nerovna se '!='								*
+    LA_SEMICOLON, // Strednik ';'										*
     // Keywords
     LA_BOOLEAN,
     LA_BREAK,
