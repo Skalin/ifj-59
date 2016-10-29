@@ -49,8 +49,8 @@ typedef enum {
     LA_DOUBLE_E_SIGN, //Znaménkové e									*
     LA_DOUBLE_E, //Konečné double										*
     LA_SIMPLE_IDENT, // jednoduchý indentifikátor						*
-    LA_COMPLETE_IDENT, // Kompletní identifikátor
-    LA_STRING_PREP, // Začátek a tělo stringu
+    LA_COMPLETE_IDENT, // Kompletní identifikátor						*
+    LA_STRING_PREP, // Začátek a tělo stringu							*
     LA_STRING, // Kompletní string
     LA_EOF, // EOF														*
     LA_DIV, // Dělení '/'												*
@@ -78,6 +78,7 @@ typedef enum {
 	LA_BACKSLASH, // Backslash '\'
 	LA_DOUBLE_BACKSLASH, // Escape baskslashe '\\'
 	LA_TAB, // Escape odtabování '\t'
+	LA_NEW_LINE // Escape noveho radku '\n'
 	LA_QUOTE, // Escape uvozovek '"'
 	LA_OCT1, // První znak octanového čísla
 	LA_OCT2, // Druhý znak octanového čísla

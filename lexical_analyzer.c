@@ -250,8 +250,23 @@ tToken * getToken( tToken * token, char *file){
 
 			// string
 			case LA_STRING_PREP:
-				if (c == 47) {
-					token->status = LA_BA
+				if (c == 92) {
+					token->status = LA_BACKSLASH;
+					continue;
+				} else if (c == 34) {
+					token->status = LA_STRING;
+					continue;
+				} else {
+					continue;
+				}
+
+			case LA_BACKSLASH:
+				if (c == 34) {
+					token->status = LA_QUOTE;
+					continue;
+				} else if (c == 92) {
+					token->status = LA_DOUBLE_BACKSLASH;
+					continue;
 				}
 
 
