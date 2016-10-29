@@ -9,8 +9,6 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "error_handler.h"
 

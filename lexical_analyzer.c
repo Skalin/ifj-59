@@ -13,10 +13,6 @@
   *Include všech souborů
   */
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
 #include "lexical_analyzer.h"
 // some coding
 
@@ -49,20 +45,17 @@ tToken * t_buffer;
 
 // Body
 
-tToken * initToken() {
+tToken * initToken(tToken * token) {
     // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
     // TODO mám tady vytvářet nový token nebo používám globalní?
-    unsigned int mallocSize = 16;
-
-    token = plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
 
     token->status = LA_START;   // nastaví token do počátečního stavu
     token->data[0] = '\0';      // inicializace všech prvků na výchozí hodnoty
     token->length = 0;
-    token->allocated = mallocSize;
+    token->allocated = 0;
 
     return token;
 }

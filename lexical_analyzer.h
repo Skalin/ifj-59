@@ -10,6 +10,11 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "error_handler.h"
 /*
  * Definice
  */

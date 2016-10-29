@@ -10,6 +10,8 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include <stdio.h>
+#include <stdlib.h>
 /*
  * Ukonci program a jako navratovou chybu pouzije prvni parametr
  * @param errorNumber hodnota erroru
