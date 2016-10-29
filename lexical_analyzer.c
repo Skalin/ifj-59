@@ -250,6 +250,9 @@ tToken * getToken( tToken * token, char *file){
 
 			// string
 			case LA_STRING_PREP:
+				if (c == 47) {
+					token->status = LA_BA
+				}
 
 
 
