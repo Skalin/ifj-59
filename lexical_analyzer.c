@@ -232,8 +232,6 @@ tToken * getToken( tToken * token, char *file){
 	token->length += i;
 	updateToken(token, buffer);
 
-	fclose(FILE);
-
 	return token;
 }
 
