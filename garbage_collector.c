@@ -23,7 +23,7 @@ void * plusMalloc(int length) {
     tGarbageListPtr tmp = malloc(sizeof(struct GarbageList));
 
     if (tmp == NULL) {
-        throwException(99,NULL,NULL);
+        throwException(99,0,0);
         return NULL;
     }
 
@@ -59,7 +59,7 @@ void * plusMalloc(int length) {
     }
 
     else {
-        throwException(99,NULL,NULL);
+        throwException(99,0,0);
         return NULL;
     }
 
