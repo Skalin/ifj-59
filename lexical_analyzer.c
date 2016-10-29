@@ -18,8 +18,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "lexical_analyzer.h"
-#include "error_handler.c"
-#include "garbage_collector.h"
 // some coding
 
 void keywordCheckToken(tToken *token) {
@@ -101,10 +99,9 @@ void destroyToken(tToken * token) {
     plusFree(token);
 }
 
-void fillToken(tStatus status) {
+void fillToken(tToken * token, tStatus status) {
     // Nastaví status tokenu
     token->status = status;
-
 }
 
 

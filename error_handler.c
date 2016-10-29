@@ -14,8 +14,6 @@
 #include <stdio.h>
 
 #include "error_handler.h"
-#include "lexical_analyzer.h"
-#include "garbage_collector.h"
 
 void throwException(int errorNumber, int row, int column) {
     int exit_code;

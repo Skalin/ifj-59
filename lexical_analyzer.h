@@ -121,7 +121,7 @@ tToken * getToken(tToken * token, char *file);
  * @param token
  * @return ukazatel na inicializovaný token
  */
-tToken * initToken(tToken * token);
+tToken * initToken();
 
 /*
  * Ruší již předem vytvořený token
@@ -146,7 +146,7 @@ void keywordCheckToken(tToken * token);
  * Naplní status tokenu
  * @param status
  */
-void fillToken(tStatus status);
+void fillToken(tToken * token, tStatus status);
 
 /*
  * Naplni obsah bufferu predanym tokenem
