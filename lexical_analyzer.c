@@ -52,6 +52,9 @@ tToken * initToken(tToken * token) {
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
+	unsigned int mallocSize = 16;
+
+	token = plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
     // TODO mám tady vytvářet nový token nebo používám globalní?
 
     token->status = LA_START;   // nastaví token do počátečního stavu
