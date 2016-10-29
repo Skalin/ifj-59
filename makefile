@@ -5,4 +5,4 @@ BIN=projekt
 makeFiles= main.c garbage_collector.c error_handler.c
 
 all: main.c
-    $(CC) $(CFLAGS) $(makeFiles) -o $(BIN)
+\t$(CC) $(CFLAGS) $(makeFiles) -o $(BIN)
