@@ -47,35 +47,35 @@ tToken * initToken() {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-tToken updateToken( tToken * token, char *string ) {
+tToken updateToken(tToken * token, char *string) {
    // Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
     // Pomoci strncat() pridat novy retezec nakonec
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-void tokenReturnToken( Token * token ) {
+void tokenReturnToken(Token * token) {
     // Do tokenu přiřadí načtené hodnoty z pomocného tokenu t_buffer
     t_buffer = token;
 }
 
-void destroyToken( tToken * token) {
+void destroyToken(tToken * token) {
     // Zruší daný token
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-tToken * getToken( tToken * token, char *file){
+tToken * getToken(tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
 	GlobalRow = 0;
 	GlobalLine = 0;
 
-    char *c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
+    char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
 	c = fopen(file, "r"); // stačí nám soubor pouze pro čtení
 
-	initToken();
+	initToken(token);
 	token->status = LA_START;
 	int i;
 
