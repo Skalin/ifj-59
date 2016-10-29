@@ -20,7 +20,7 @@ void * plusMalloc(int length) {
     tGarbageListPtr tmp = malloc(sizeof(struct GarbageList));
 
     if (tmp == NULL) {
-        return throw_exception(99, NULL);
+        throwException(99,NULL,NULL);
     }
 
     if (tmp != NULL) {          //inicializace dat, další položky seznamu a velikosti seznamu
@@ -55,7 +55,7 @@ void * plusMalloc(int length) {
     }
 
     else {
-        return throw_exception(99, NULL);
+        throwException(99,NULL,NULL);
     }
 
 
