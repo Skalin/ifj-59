@@ -14,6 +14,8 @@
   */
 
 #include "lexical_analyzer.h"
+#include "garbage_collector.h"
+#include "error_handler.h"
 // some coding
 
 void keywordCheckToken(tToken *token) {
