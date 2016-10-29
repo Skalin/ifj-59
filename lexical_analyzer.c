@@ -266,17 +266,62 @@ tToken * getToken( tToken * token, char *file){
 				} else {
 					continue;
 				}
-
 			case LA_BACKSLASH:
-				if (c == 34) {
+				if (c == 34) { // \"
 					token->status = LA_QUOTE;
 					continue;
-				} else if (c == 92) {
+				} else if (c == 92) { /* \\ */
 					token->status = LA_DOUBLE_BACKSLASH;
+					continue;
+				} else if (c == 110) { // \n
+					token->status = LA_NEW_LINE;
+					continue;
+				} else if (c == 116) { // \t
+					token->status = LA_TAB;
+				/* oktalovy cisla zatim mrdame, viz TODO
+				} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
+					token->status = LA_OCT1;
+					continue;
+				*/
+				}
+			case LA_QUOTE:
+				if (c == 34) { // \""
+					token->status = LA_STRING;
+					break;
+				} else {
+					token->status = LA_STRING_PREP;
+					continue;
+				}
+			case LA_DOUBLE_BACKSLASH:
+				if (c == 34) {
+					token->status = LA_STRING;
+					break;
+				} else {
+					token->status = LA_STRING_PREP;
+					continue;
+				}
+			case LA_NEW_LINE:
+				if (c == 34) {
+					token->status = LA_STRING;
+					break;
+				} else {
+					token->status = LA_STRING_PREP;
+					continue;
+				}
+			case LA_TAB:
+				if (c == 34) {
+					token->status = LA_STRING;
+					break;
+				} else {
+					token->status = LA_STRING_PREP;
 					continue;
 				}
 
-
+			/*
+			 * zde pak bude octal, jeste neni doresen jak ma koncit
+			 *
+			 *
+			 */
 
 			// dalsi porovnani KA
 			case LA_GREATER:
@@ -329,6 +374,7 @@ tToken * getToken( tToken * token, char *file){
 			i = 0;
 		}
 	} //cyklus
+
 	token->length += i;
 	updateToken(token, buffer);
 
@@ -338,8 +384,6 @@ tToken * getToken( tToken * token, char *file){
 /*
  * TODO:
  * chybove stavy
- * zpracovani escape
- * zpracovani stringu
  * prevod oktalovych cisel na decimalni a nasledny prevod na ASCII
  * vyresit alokaci
  */

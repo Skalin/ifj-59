@@ -75,11 +75,11 @@ typedef enum {
     LA_EXCL_MARK, // Vykricnik '!'										*
     LA_COMPARASION_NE, // Nerovna se '!='								*
     LA_SEMICOLON, // Strednik ';'										*
-	LA_BACKSLASH, // Backslash '\'
-	LA_DOUBLE_BACKSLASH, // Escape baskslashe '\\'
-	LA_TAB, // Escape odtabování '\t'
-	LA_NEW_LINE // Escape noveho radku '\n'
-	LA_QUOTE, // Escape uvozovek '"'
+	LA_BACKSLASH, // Backslash '\'										*
+	LA_DOUBLE_BACKSLASH, // Escape baskslashe '\\'						*
+	LA_TAB, // Escape odtabování '\t'									*
+	LA_NEW_LINE // Escape noveho radku '\n'								*
+	LA_QUOTE, // Escape uvozovek '"'									*
 	LA_OCT1, // První znak octanového čísla
 	LA_OCT2, // Druhý znak octanového čísla
 	LA_OCT, // Třetí znak octanového čísla, finální octanové číslo
