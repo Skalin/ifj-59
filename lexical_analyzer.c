@@ -21,11 +21,12 @@ void keywordCheckToken(tToken *token) {
         "return","String","static","true","void","while"
     };
 
-    tStatus keyWordTokenTable[] = {
-            "LA_KW_BOOLEAN","LA_KW_BREAK","LA_KW_CLASS","LA_KW_CONTINUE","LA_KW_DO",
-            "LA_KW_DOUBLE","LA_KW_ELSE","LA_KW_FALSE","LA_KW_FOR","LA_KW_IF","LA_KW_INT",
-            "LA_KW_RETURN","LA_KW_STRING","LA_KW_STATIC","LA_KW_TRUE","LA_KW_VOID","LA_KW_WHILE"
-    };
+	tStatus keyWordTokenTable[] = {
+			LA_KW_BOOLEAN,LA_KW_BREAK,LA_KW_CLASS,LA_KW_CONTINUE,LA_KW_DO,
+			LA_KW_DOUBLE,LA_KW_ELSE,LA_KW_FALSE,LA_KW_FOR,LA_KW_IF,LA_KW_INT,
+			LA_KW_RETURN,LA_KW_STRING,LA_KW_STATIC,LA_KW_TRUE,LA_KW_VOID,LA_KW_WHILE
+	};
+	token->status = LA_SIMPLE_IDENT;
 
     // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), přiřadí do tToken type příslušnou hodnotu z druhé tabulky
     // DONE Jan Hrbotický
@@ -65,7 +66,7 @@ void destroyToken(tToken * token) {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 }
 
-tToken * getToken(tToken * token, char *file){
+tToken * getToken(tToken * token, FILE){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
 	GlobalRow = 0;
