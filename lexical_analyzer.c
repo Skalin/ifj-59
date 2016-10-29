@@ -235,3 +235,13 @@ tToken * getToken( tToken * token, char *file){
 
 	fclose(FILE);
 }
+
+/*
+ * TODO:
+ * zpracovani escape
+ * zpracovani stringu
+ * zpracovani cisel
+ * prevod oktalovych cisel na decimalni a nasledny prevod na ASCII
+ * zpracovani identifikatoru
+ * vyresit alokaci
+ */
