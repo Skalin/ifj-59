@@ -85,10 +85,9 @@ tToken * getToken( tToken * token, char *file){
 
 		buffer[i-1] = c; // pole je cislovano od 0
 
-		switch(state) {
+		switch(token->status) {
 			case LA_START:
-				// TOHLE JE NA DODELANI PRO JOHNYHO, AZ VYRESI CO S TEMA OCTALOVYMA HODNOTAMA
-				if ((isspace(c)) || (0 != 0) /* sem prijde whitespace pres octaly */) {
+				if ((isspace(c))) {
 					continue;
 				}
 				// EOF
@@ -234,6 +233,8 @@ tToken * getToken( tToken * token, char *file){
 	updateToken(token, buffer);
 
 	fclose(FILE);
+
+	return token;
 }
 
 /*
