@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.c" afterPath="$PROJECT_DIR$/lexical_analyzer.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.h" afterPath="$PROJECT_DIR$/lexical_analyzer.h" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="lexical_analyzer.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="lexical_analyzer.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1292">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+            <state relative-caret-position="51">
+              <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
               <folding>
                 <element signature="e#435#453#0" expanded="true" />
               </folding>
@@ -45,10 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="1241">
               <caret line="73" column="11" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
               <folding />
             </state>
@@ -137,8 +137,8 @@
         <option value="$PROJECT_DIR$/garbage_collector.c" />
         <option value="$PROJECT_DIR$/error_handler.h" />
         <option value="$PROJECT_DIR$/error_handler.c" />
-        <option value="$PROJECT_DIR$/lexical_analyzer.h" />
         <option value="$PROJECT_DIR$/lexical_analyzer.c" />
+        <option value="$PROJECT_DIR$/lexical_analyzer.h" />
       </list>
     </option>
   </component>
@@ -427,7 +427,7 @@
       <workItem from="1477736298039" duration="9059000" />
       <workItem from="1477746807062" duration="214000" />
       <workItem from="1477748198912" duration="2655000" />
-      <workItem from="1477757515760" duration="669000" />
+      <workItem from="1477757515760" duration="699000" />
     </task>
     <task id="LOCAL-00001" summary="[MODIFY] 0.2 - přídána funkce pro alokaci paměti&#10;">
       <created>1477584289722</created>
@@ -527,11 +527,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477757702590</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="[MODIFY] 0.2 - some minor changes">
+      <created>1477758195021</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1477758195021</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26838000" />
+    <option name="totallyTimeSpent" value="26868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
@@ -768,21 +775,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
+    <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1292">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-          <folding>
-            <element signature="e#435#453#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1241">
+          <caret line="73" column="11" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
+    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="73" column="11" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="51">
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+          <folding>
+            <element signature="e#435#453#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

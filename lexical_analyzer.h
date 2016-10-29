@@ -27,8 +27,6 @@
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
 
-FILE * FILE;
-
 // Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
 int GlobalRow = 0;
 int GlobalColumn = 0;
