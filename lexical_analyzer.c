@@ -100,7 +100,7 @@ void fillToken( tStatus status ) {
 
 
 
-tToken * getToken(tToken * token, FILE){
+tToken * getToken(tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
 	GlobalRow = 0;
@@ -116,9 +116,9 @@ tToken * getToken(tToken * token, FILE){
 	int i;
 
 	char buffer[32];
-/*
+
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
-		c = fgetc(FILE);
+		c = fgetc(fp);
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
 			GlobalColumn++; // pocet radku
@@ -249,7 +249,7 @@ tToken * getToken(tToken * token, FILE){
 					token->status = LA_DOUBLE;
 					continue;
 				} else {
-					throwException(1, GlobalRow, GlobalLine);
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_DOUBLE:
@@ -421,6 +421,7 @@ tToken * getToken(tToken * token, FILE){
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 			default:
+				break;
 		} // konec switche
 
 		if (i == 32) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer
@@ -433,7 +434,6 @@ tToken * getToken(tToken * token, FILE){
 		}
 	} //cyklus
 
-*/
 	keywordCheckToken(token);
 	token->length += i;
 	updateToken(token, buffer);

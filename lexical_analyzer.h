@@ -124,7 +124,7 @@ extern tToken token;
  * @param token
  * @return jeden načtený token z analyzátoru
  */
-tToken * getToken(tToken * token, FILE);
+tToken * getToken(tToken * token, char *file);
 
 /*
  * Inicializuje token a vrací pointer na token
@@ -156,7 +156,11 @@ void keywordCheckToken(tToken * token);
  * Naplní status tokenu
  * @param status
  */
-void fillToken( tStatus status );
+void fillToken(tStatus status);
 
+/*
+ * Naplni obsah bufferu predanym tokenem
+ * @param token
+ */
 void tokenReturnToken(tToken * token);
 
