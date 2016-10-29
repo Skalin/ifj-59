@@ -9,8 +9,17 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+/*
+  *Include všech souborů
+  */
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include "lexical_analyzer.h"
+#include "error_handler.c"
+#include "garbage_collector.h"
 // some coding
 
 void keywordCheckToken(tToken *token) {
@@ -92,7 +101,7 @@ void destroyToken(tToken * token) {
     plusFree(token);
 }
 
-void fillToken( tStatus status ) {
+void fillToken(tStatus status) {
     // Nastaví status tokenu
     token->status = status;
 
