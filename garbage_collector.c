@@ -10,6 +10,9 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "garbage_collector.h"
+#include "error_handler.c"
+#include <stdlib.h>
+#include <stdio.h>
 
 tGarbageListPtr listFirst = NULL;
 tGarbageListPtr listLast = NULL;
@@ -20,13 +23,14 @@ void * plusMalloc(int length) {
     tGarbageListPtr tmp = malloc(sizeof(struct GarbageList));
 
     if (tmp == NULL) {
-        throwException(99,NULL,NULL);
+        throwException(99,0,0);
+        return NULL;
     }
 
     if (tmp != NULL) {          //inicializace dat, další položky seznamu a velikosti seznamu
         tmp->data = NULL;
         tmp->nextPtr = NULL;
-        tmp->length = NULL;
+        tmp->length = 0;
     }
 
     if (listFirst == NULL) {    //v případě, ze je seznam prazdný, vkládame první prvek
@@ -55,7 +59,8 @@ void * plusMalloc(int length) {
     }
 
     else {
-        throwException(99,NULL,NULL);
+        throwException(99,0,0);
+        return NULL;
     }
 
 
@@ -71,9 +76,10 @@ void * plusRealloc(void * destPtr, int length) {
 
                 if (tmp != destPtr) {
                     plusAddReallocMem(tmp, length, destPtr);    //alokace další položky v seznamu
+                    return tmp;
                 }
 
-        return tmp;
+        
     }
 
     if (destPtr == NULL) {                                      //paměť není alokovánam, ukazatel je roven null
@@ -88,7 +94,7 @@ void plusAddReallocMem(void * tmpVar, int length, void * target) {
 
     tGarbageListPtr tmp;
     tmp = NULL;
-    tmp = malloc(sizeof(struct tGarbageListPtr));   //alokace pameti
+    tmp = malloc(sizeof(struct tGarbageList));   //alokace pameti
 
     if (tmp != NULL) {
         tmp->nextPtr = NULL;        //inicializace další položky na null
@@ -133,7 +139,7 @@ void plusFree() {
 
 void nullData(void * target){
 
-    tGarbageListPtr = tmp;
+    tGarbageListPtr tmp;
 
     if (listFirst != NULL) {            //pokud není seznam prazdný, prochazíme seznam
 
