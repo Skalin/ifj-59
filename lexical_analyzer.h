@@ -152,5 +152,11 @@ tToken * updateToken(tToken * token, char *string);
  */
 void keywordCheckToken(tToken * token);
 
+/*
+ * Naplní status tokenu
+ * @param status
+ */
+void fillToken( tStatus status );
+
 void tokenReturnToken(tToken * token);
 

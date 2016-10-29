@@ -46,6 +46,18 @@ tToken * initToken() {
     // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+
+    // TODO mám tady vytvářet nový token nebo používám globalní?
+    unsigned int mallocSize = 16;
+
+    token = plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
+
+    token->status = LA_START;   // nastaví token do počátečního stavu
+    token->data[0] = '\0';      // inicializace všech prvků na výchozí hodnoty
+    token->length = 0;
+    token->allocated = mallocSize;
+
+    return token;
 }
 
 tToken * updateToken(tToken * token, char *string) {
@@ -53,6 +65,18 @@ tToken * updateToken(tToken * token, char *string) {
     // Pomoci strncat() pridat novy retezec nakonec
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+
+    unsigned int stringLength = strlen(string);
+
+    if (token->allocated < (stringLength + token->length) ) {     // pokud je alokováno méně než je potřeba
+        token = plusRealloc(token, sizeof(tToken) + sizeof(char)*(stringLength+token->length) );   //TODO
+        token->allocated = stringLength + token->length;      // update hodnoty allocated v tokenu
+    }
+
+    strncat(token->data, string, stringLength);      // připojení stringu na konec tokenu
+    token->length = token->length + stringLength;   // update délky tokenu
+
+    return token;
 }
 
 void tokenReturnToken(tToken * token) {
@@ -64,7 +88,17 @@ void destroyToken(tToken * token) {
     // Zruší daný token
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+
+    plusFree(token);
 }
+
+void fillToken( tStatus status ) {
+    // Nastaví status tokenu
+    token->status = status;
+
+}
+
+
 
 tToken * getToken(tToken * token, FILE){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
