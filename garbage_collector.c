@@ -10,6 +10,7 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "garbage_collector.h"
+#include "error_handler.c"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -75,9 +76,10 @@ void * plusRealloc(void * destPtr, int length) {
 
                 if (tmp != destPtr) {
                     plusAddReallocMem(tmp, length, destPtr);    //alokace další položky v seznamu
+                    return tmp;
                 }
 
-        return tmp;
+        
     }
 
     if (destPtr == NULL) {                                      //paměť není alokovánam, ukazatel je roven null
@@ -137,7 +139,7 @@ void plusFree() {
 
 void nullData(void * target){
 
-    tGarbageListPtr = tmp;
+    tGarbageListPtr tmp;
 
     if (listFirst != NULL) {            //pokud není seznam prazdný, prochazíme seznam
 
