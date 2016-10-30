@@ -97,17 +97,10 @@ void destroyToken(tToken * token) {
     plusFree(token);
 }
 
-<<<<<<< HEAD
 void fillToken(tToken * token, tokenType type) {
     // Nastaví typ tokenu
     token->type = type;
-=======
-void fillToken(tToken * token, tStatus status) {
-    // Nastaví status tokenu
-    token->type = status;
->>>>>>> origin/master
 }
-
 
 
 tToken * getToken(tToken * token, char *file){
@@ -123,317 +116,423 @@ tToken * getToken(tToken * token, char *file){
 
 	initToken(token);
 	token->type = LA_START;
-	int i;
+
+	tStatus status = LA_START;
 
 	char buffer[32];
+	memset(&buffer, 0, 32);
+	int i;
 
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(fp);
+		
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
 			GlobalColumn++; // pocet radku
 			GlobalRow = 0; // reset pozice na radku
 		}
-		i++; // delka "retezce"
 
-		buffer[i-1] = c; // pole je cislovano od 0
-
-		switch(token->type) {
+		switch(status) {
 			case LA_START:	// pocatecni stav automatu
-				if (isspace(c)) {
-					continue;
-				} else if (c == EOF) {	// EOF
-					
-					= LA_EOF;
-					break;
+				while(isspace(c)) { 
+					c = fgetc(fp);
+				}
+				if (c == EOF) {	// EOF	
+					token->type = t_eof;
+					return token;
 				// oddelovac
 				} else if (c == 59) { // ;
-					token->type = LA_SEMICOLON;
-					break;
+					token->type = t_semicolon;
+					return token;
 				// konec oddelovacu
 				// zavorky
 				} else if (c == 91) { // [
-					token->type = LA_SQ_BRACKET_L;
-					break;
+					token->type = t_sq_bracket_l;
+					return token;
 				} else if (c == 93) { // ]
-					token->type = LA_SQ_BRACKET_R;
-					break;
+					token->type = t_sq_bracket_r;
+					return token;
 				} else if (c == 40) { // (
-					token->type = LA_BRACKET_L;
-					break;
+					token->type = t_bracket_l;
+					return token;
 				} else if (c == 41) { // )
-					token->type = LA_BRACKET_R;
-					break;
+					token->type = t_bracket_r;
+					return token;
 				} else if (c == 123) { // {
-					token->type = LA_BRACE_L;
-					break;
+					token->type = t_brace_l;
+					return token;
 				} else if (c == 125) { // }
-					token->type = LA_BRACE_R;
-					break;
+					token->type = t_brace_r;
+					return token;
 				// konec zavorek
 				// matematicke operace
 				} else if (c == 47) { // /
-					token->type = LA_DIV;
-					continue;
+					status = LA_DIV;
+					break;
 				} else if (c == 42) { // *
-					token->type = LA_MULTI;
-					continue;
+					status = LA_MULTI;
+					break;
 				} else if (c == 43) { // +
-					token->type = LA_PLUS;
+					token->type = t_plus;
 					break;
 				} else if (c == 45) { // -
-					token->type = LA_MINUS;
+					token->type = t_minus;
 					break;
 				} else if (c == 62) { // >
-					token->type = LA_GREATER;
-					continue;
+					status = LA_GREATER;
+					break;
 				} else if (c == 60) { // <
-					token->type = LA_LESS;
-					continue;
+					status = LA_LESS;
+					break;
 				} else if (c == 33) { // !
-					token->type = LA_EXCL_MARK;
-					continue;
+					status = LA_EXCL_MARK;
+					break;
 				} else if (c == 61) { // =
-					token->type = LA_ASSIGNMENT;
-					continue;
+					status = LA_ASSIGNMENT;
+					break;
 				// konec mat. operaci
 				// identifikatory
 				} else if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || c == 36) { // LA_SIMPLE_IDENT
-					token->type = LA_SIMPLE_IDENT;
-					continue;
+					buffer[i] = c;
+					i++;
+					status= LA_SIMPLE_IDENT;
 				// konec identifikatoru
 				// cislice
-				}else if (c >= 48 && c <= 57) { // 0..9
-					token->type = LA_INT;
-					continue;
+				} else if (c >= 48 && c <= 57) { // 0..9
+					buffer[i] = c;
+					i++;
+					status= LA_INT;
 				// konec cislic
 				// zacatek stringu
 				} else if (c == 34) { // "
-					token->type = LA_STRING_PREP;
-					continue;
+					status = LA_STRING_PREP;
 				// konec stringu
 				} else {
 					throwException(1, GlobalRow, GlobalColumn);
 				}
+				break;
 
 			// identifikatory
 			case LA_SIMPLE_IDENT:
 				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || c == 36) { // a..z,A..Z,_,$
-					continue;
+					buffer[i] = c;
+					i++;
 				} else if (c == 46) { // .
-					token->type = LA_COMPLETE_IDENT;
-					continue;
-				} else if (isspace(c)) {
-					break;
+					status = LA_COMPLETE_IDENT;
+					buffer[i] = c;
+					i++;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					keywordCheckToken(token);
+					return token;
 				}
+				break;
 
 			case LA_COMPLETE_IDENT:
 				if (((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c == 95) || (c == 36))) { // a..z,A..Z,_,$
-					continue;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_complete_ident;
+					return token;	
 				}
+				break;
 			// konec identifikatoru
 
 			// cisla
 			case LA_INT:
 				if (c >= 48 && c <= 57) { // 0..9
-					continue;
+					buffer[i] = c;
+					i++;
 				} else if (c == 46) { // .
-					token->type = LA_DOT_DOUBLE;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_DOT_DOUBLE;
 				} else if (c == 101 || c == 69) { // e nebo E
-					token->type = LA_DOUBLE_pE;
-					continue;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					status = LA_DOUBLE_pE;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_int;
+					return token;	
 				}
+				break;
 
 			case LA_DOT_DOUBLE:
 				if (c >= 48 && c <= 57) { // 0..9
-					token->type = LA_DOUBLE;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_DOUBLE;
 				} else {
 					throwException(1, GlobalRow, GlobalColumn);
 				}
+				break;
 
 			case LA_DOUBLE:
 				if (c >= 48 && c <= 57) { // 0..9
-					continue;
+					buffer[i] = c;
+					i++;
 				} else if ((c == 101) || (c == 69)) { // e nebo E
-					token->type = LA_DOUBLE_pE;
-					continue;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					status = LA_DOUBLE_pE;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_double;
+					return token;
 				}
+				break;
 
 			case LA_DOUBLE_pE:
 				if (c >= 48 && c <= 57) { // 0..9
-					token->type = LA_DOUBLE_E;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_DOUBLE_E;
 				} else if (c == 43 || c == 45) { // + nebo -
-					token->type = LA_DOUBLE_E_SIGN;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_DOUBLE_E_SIGN;
 				} else {
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_DOUBLE_E_SIGN:
 				if (c >= 48 && c <= 57) { // 0..9
-					token->type = LA_DOUBLE_E;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_DOUBLE_E;
 				} else {
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 
 			case LA_DOUBLE_E:
 				if (c >= 48 && c <= 57) { // 0..9
-					continue;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_double_e;
+					return token;
 				}
 
 			// string
 			case LA_STRING_PREP:
-				if (c == 92) {
-					token->type = LA_BACKSLASH;
-					continue;
+				if (c == 92) { // "\"
+					buffer[i] = c;
+					i++;
+					status = LA_BACKSLASH;
 				} else if (c == 34) { // ""
-					token->type = LA_STRING;
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_string;
+					return token;
 				} else { // "xxxxxx
-					continue;
+					buffer[i] = c;
+					i++;
 				}
+				break;
 			case LA_BACKSLASH:
 				if (c == 34) { // "\"
-					token->type = LA_QUOTE;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_QUOTE;
 				} else if (c == 92) {
-					token->type = LA_DOUBLE_BACKSLASH;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_DOUBLE_BACKSLASH;
 				} else if (c == 110) { // "\n
-					token->type = LA_NEW_LINE;
-					continue;
+					buffer[i] = c;
+					i++;
+					status = LA_NEW_LINE;
 				} else if (c == 116) { // "\t
-					token->type = LA_TAB;
+					buffer[i] = c;
+					i++;
+					status = LA_TAB;
 			// oktalovy cisla zatim kasleme, viz TODO
 			//	} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
 			//		token->status = LA_OCT1;
 			//		continue;
 			//
+				} else {
+					buffer[i] = c;
+					i++;
+					status = LA_STRING_PREP;	
 				}
+				break;
 			case LA_QUOTE:
 				if (c == 34) { // "\""
-					token->type = LA_STRING;
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_string;
+					return token;
 				} else { // "\"x
-					token->type = LA_STRING_PREP;
-					continue;
+					status = LA_STRING_PREP;
 				}
+				break;
 			case LA_DOUBLE_BACKSLASH:
 				if (c == 34) {
-					token->type = LA_STRING;
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_string;
+					return token;
 				} else {
-					token->type = LA_STRING_PREP;
-					continue;
+					status = LA_STRING_PREP;
 				}
+				break;
 			case LA_NEW_LINE:
 				if (c == 34) { // "\n"
-					token->type = LA_STRING;
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_string;
+					return token;
 				} else { // "\nx
-					token->type = LA_STRING_PREP;
-					continue;
+					status = LA_STRING_PREP;
 				}
+				break;
 			case LA_TAB:
 				if (c == 34) { // "\t"
-					token->type = LA_STRING;
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_string;
+					return token;
 				} else { // "\tx
-					token->type = LA_STRING_PREP;
-					continue;
+					status = LA_STRING_PREP;
 				}
+				break;
 
 			// zde pak bude octal, jeste neni doresen jak ma koncit
 
 			// dalsi porovnani KA
 			case LA_GREATER:
 				if (c == 61) { // >=
-					token->type = LA_GREATER_EQ;
-					break;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_greater_eq;
+					return token;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_greater;
+					return token;
 				}
-
+				break;
 			case LA_LESS:
 				if (c == 61) { // <=
-					token->type = LA_LESS_EQ;
-					break;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_less_eq;
+					return token;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+				 	buffer[i] = c;
+				 	i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_less;
+					return token;
 				}
-
+				break;
 			case LA_ASSIGNMENT:
 				if (c == 61) { // ==
-					token->type = LA_COMPARASION;
-					break;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_comparasion;
+					return token;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_assignment;
+					return token;
 				}
-
+				break;
 			case LA_EXCL_MARK:
 				if (c == 61) { // !=
-					token->type = LA_COMPARASION_NE;
-					break;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_comparasion_ne;
+					return token;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_excl_mark;
+					return token;
 				}
-
+				break;
 			// komentare
 			case LA_DIV:
 				if (c == 47) {
-					token->type = LA_SIMPLE_COMMENT;
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_simple_comment;
+					return token;
 				} else if (c == 42) {
-					token->type = LA_BLOCK_COMMENT_START;
-					break;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_block_comment_start;
+					return token;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_div;
+					return token;
 				}
 
 			case LA_MULTI:
 				if (c == 47) {
-					token->type = LA_BLOCK_COMMENT_END;
-					break;
-				} else if (isspace(c)) {
-					break;
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_block_comment_end;
+					return token;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					buffer[i] = c;
+					i++;
+					ungetc(c, fp);
+					token = updateToken(token, buffer);
+					token->type= t_multi;
+					return token;
 				}
 			default:
 				break;
 		} // konec switche
+
 
 		if (i == 32) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer
 			updateToken(token, buffer);
@@ -450,7 +549,7 @@ tToken * getToken(tToken * token, char *file){
 	updateToken(token, buffer);
 
 	return token;
-}
+} //end of function
 
 /*
  * TODO:
