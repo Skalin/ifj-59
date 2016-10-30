@@ -97,9 +97,9 @@ void destroyToken(tToken * token) {
     plusFree(token);
 }
 
-void fillToken(tToken * token, tStatus status) {
-    // Nastaví status tokenu
-    token->status = status;
+void fillToken(tToken * token, tokenType type) {
+    // Nastaví typ tokenu
+    token->type = type;
 }
 
 

@@ -17,8 +17,8 @@
 
 typedef enum {
 	//Error status
-	t_error
-	
+	t_error,
+
     // Date types
     t_int, 
     t_double,
@@ -74,7 +74,7 @@ typedef enum {
 	t_kw_do,
 	t_kw_if,
 	t_kw_else,
-	t_kt_true,
+	t_kw_true,
 	t_kw_false,
 } tokenType;
 
