@@ -30,12 +30,6 @@
 #define NUMBER_OF_RESERVED_WORDS
 
 /*
- * DEBUG Prototyp funkce
- */
-void printKeyWordTable(); // Vytiskne obsah tabulky klíčových slov
-
-
-/*
  * Jednotlivé stavy automatu
  */
 typedef enum {
