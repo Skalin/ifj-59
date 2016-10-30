@@ -12,7 +12,7 @@
 /*
   *Include všech souborů
   */
-
+#include "typedef.h"
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
@@ -27,17 +27,17 @@ void keywordCheckToken(tToken *token) {
     };
 
 	tStatus keyWordTokenTable[] = {
-			LA_KW_BOOLEAN,LA_KW_BREAK,LA_KW_CLASS,LA_KW_CONTINUE,LA_KW_DO,
-			LA_KW_DOUBLE,LA_KW_ELSE,LA_KW_FALSE,LA_KW_FOR,LA_KW_IF,LA_KW_INT,
-			LA_KW_RETURN,LA_KW_STRING,LA_KW_STATIC,LA_KW_TRUE,LA_KW_VOID,LA_KW_WHILE
+		t_kw_boolean, t_kw_break, t_kw_class, t_kw_continue, t_kw_do, 
+		t_kw_double, t_kw_else, t_kw_false, t_kw_for, t_kw_if, t_kw_int,
+		t_kw_return, t_kw_string, t_kw_static, t_kw_true, t_kw_void, t_kw_while,
 	};
-	token->status = LA_SIMPLE_IDENT;
+	token->type = LA_SIMPLE_IDENT;
 
     // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), přiřadí do tToken type příslušnou hodnotu z druhé tabulky
     // DONE Jan Hrbotický
     for (int i=0; i<(NUMBER_OF_KEY_WORDS-1); i++) {
         if (strcmp(keyWordTable[i], token->data) == 0)
-            token->status = keyWordTokenTable[i];
+            token->type = keyWordTokenTable[i];
     }
 }
 
@@ -57,7 +57,7 @@ tToken * initToken(tToken * token) {
 	token = plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
     // TODO mám tady vytvářet nový token nebo používám globalní?
 
-    token->status = LA_START;   // nastaví token do počátečního stavu
+    token->type = t_error;   // nastaví token do počátečního stavu
     token->data[0] = '\0';      // inicializace všech prvků na výchozí hodnoty
     token->length = 0;
     token->allocated = 0;

@@ -28,7 +28,7 @@ int GlobalRow = 0;
 int GlobalColumn = 0;
 
 /*
- * Prototyp funkce
+ * DEBUG Prototyp funkce
  */
 void printKeyWordTable(); // Vytiskne obsah tabulky klíčových slov
 
@@ -100,16 +100,6 @@ typedef enum {
 	LA_KW_WHILE,
 } tStatus;
 
-/*
- * Struktura tokenu
- */
-typedef struct
-{
-    tStatus status;  // Status konečného automatu
-    unsigned int length; // Délka, počet charů
-    unsigned int allocated; // Status, jestli byl alokován
-	char data[]; // Data, která obshahuje
-} tToken;
 
 /* Globální token */
 extern tToken token;
@@ -148,10 +138,10 @@ tToken * updateToken(tToken * token, char *string);
 void keywordCheckToken(tToken * token);
 
 /*
- * Naplní status tokenu
- * @param status
+ * Naplní type tokenu
+ * @param type
  */
-void fillToken(tToken * token, tStatus status);
+void fillToken(tToken * token, tokenType type);
 
 /*
  * Naplni obsah bufferu predanym tokenem
