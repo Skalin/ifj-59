@@ -3,6 +3,6 @@ project(ifj_59)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -Wall -Werror -pedantic")
 
-set(SOURCE_FILES main.c main.h lexical_analyzer.c lexical_analyzer.h garbage_collector.c garbage_collector.h error_handler.c error_handler.h)
+set(SOURCE_FILES main.c main.h lexical_analyzer.c lexical_analyzer.h garbage_collector.c garbage_collector.h error_handler.c error_handler.h typedef.c typedef.h)
 
 add_executable(ifj_59 ${SOURCE_FILES})
