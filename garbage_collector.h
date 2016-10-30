@@ -12,10 +12,10 @@
 
 
 
-#ifndef IFJ_59_GARBAGE_COLLECTOR_H
-#define IFJ_59_GARBAGE_COLLECTOR_H
+#ifndef GARBAGE_COLLECTOR
+#define GARBAGE_COLLECTOR
 
-#endif //IFJ_59_GARBAGE_COLLECTOR_H
+
 
 
 typedef struct GarbageList
@@ -59,3 +59,5 @@ void plusAddReallocMem(void * tmpVar, int length, void * target);
  * @param *target    ukazatel na položku v seznamu
  */
 void nullData(void * target);
+
+#endif //IFJ_59_GARBAGE_COLLECTOR_H

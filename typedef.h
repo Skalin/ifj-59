@@ -15,6 +15,9 @@
  * Struktura typů tokenů
  */
 
+#ifndef TYPEDEF
+#define TYPEDEF
+
 typedef enum {
 	//Error status
 	t_error,
@@ -90,3 +93,5 @@ typedef struct
     unsigned int allocated; // Status, jestli byl alokován
 	char data[]; // Data, která obshahuje
 } tToken;
+
+#endif

@@ -12,7 +12,7 @@
 
 #include "error_handler.h"
 #include "garbage_collector.h"
-#include "lexical_analyzer.h"
+
 
 void throwException(int errorNumber, int row, int column) {
     int exit_code;

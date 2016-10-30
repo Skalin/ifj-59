@@ -9,6 +9,8 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+#ifndef ERROR_HANDLER
+#define ERROR_HANDLER
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,3 +22,5 @@
  * @return
  */
 void throwException(int errorNumber, int row, int column);
+
+#endif

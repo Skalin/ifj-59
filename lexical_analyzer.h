@@ -9,6 +9,9 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+#ifndef LEXICAL_ANALYZER
+#define LEXICAL_ANALYZER
+
 
 #include <string.h>
 #include <stdio.h>
@@ -19,14 +22,16 @@
 /*
  * Definice
  */
+
+
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
 
 // Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
-int GlobalRow = 0;
-int GlobalColumn = 0;
+//int GlobalRow = 0;
+//int GlobalColumn = 0;
 
 /*
  * DEBUG Prototyp funkce
@@ -150,3 +155,5 @@ void fillToken(tToken * token, tokenType type);
  */
 void tokenReturnToken(tToken * token);
 
+
+#endif
