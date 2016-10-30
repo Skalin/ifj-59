@@ -10,3 +10,4 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "typedef.h"
+#include "garbage_collector.h"

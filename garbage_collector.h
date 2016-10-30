@@ -10,7 +10,7 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include "error_handler.h"
+
 
 #ifndef IFJ_59_GARBAGE_COLLECTOR_H
 #define IFJ_59_GARBAGE_COLLECTOR_H
