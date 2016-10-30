@@ -15,6 +15,7 @@
 #include "typedef.h"
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
+#include "error_handler.h"
 
 // some coding
 
@@ -106,6 +107,12 @@ void fillToken(tToken * token, tokenType type) {
 tToken * getToken(tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
+
+    // Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
+    int GlobalRow = 0;
+    int GlobalColumn = 0;    
+    
+    
 	GlobalRow = 0;
 	GlobalColumn = 0;
 
@@ -121,7 +128,7 @@ tToken * getToken(tToken * token, char *file){
 
 	char buffer[32];
 	memset(&buffer, 0, 32);
-	int i;
+	int i = 0;
 
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(fp);
