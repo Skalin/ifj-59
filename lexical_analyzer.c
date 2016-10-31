@@ -123,8 +123,7 @@ tToken * getToken(){
 
 	 // stačí nám soubor pouze pro čtení
 
-	tToken * token;
-	initToken(); //pomocny token
+	tToken * token = initToken(); //pomocny token
 
 	tStatus status = LA_START;
 

@@ -104,6 +104,6 @@ typedef struct tGlobal {
 	char *fileName; // globalni nazev souboru
 } tGlobal;
 
-extern struct tGlobal global;
+struct tGlobal global;
 
 #endif
