@@ -10,7 +10,6 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "garbage_collector.h"
-#include "error_handler.h"
 #include <stdlib.h>
 
 tGarbageListPtr listFirst = NULL;
