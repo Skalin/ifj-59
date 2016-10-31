@@ -132,7 +132,7 @@ tToken * getToken(){
 	char buffer[32];
 	memset(&buffer, 0, 32);
 	int i = 0;
-    /*
+
 
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(global.fileName);
@@ -233,7 +233,7 @@ tToken * getToken(){
 					buffer[i] = c;
 					i++;
 				} else {
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					keywordCheckToken(token);
 					return token;
@@ -245,7 +245,7 @@ tToken * getToken(){
 					buffer[i] = c;
 					i++;
 				} else {
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_complete_ident;
 					return token;	
@@ -267,7 +267,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_pE;
 				} else {
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_int;
 					return token;	
@@ -293,7 +293,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_pE;
 				} else {
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_double;
 					return token;
@@ -327,7 +327,7 @@ tToken * getToken(){
 					buffer[i] = c;
 					i++;
 				} else {
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_double_e;
 					return token;
@@ -435,14 +435,14 @@ tToken * getToken(){
 				if (c == 61) { // >=
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_greater_eq;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_greater;
 					return token;
@@ -452,14 +452,14 @@ tToken * getToken(){
 				if (c == 61) { // <=
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_less_eq;
 					return token;
 				} else {
 				 	buffer[i] = c;
 				 	i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_less;
 					return token;
@@ -469,14 +469,14 @@ tToken * getToken(){
 				if (c == 61) { // ==
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_comparasion;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_assignment;
 					return token;
@@ -486,14 +486,14 @@ tToken * getToken(){
 				if (c == 61) { // !=
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_comparasion_ne;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_excl_mark;
 					return token;
@@ -504,21 +504,21 @@ tToken * getToken(){
 				if (c == 47) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_simple_comment;
 					return token;
 				} else if (c == 42) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_block_comment_start;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_div;
 					return token;
@@ -528,14 +528,14 @@ tToken * getToken(){
 				if (c == 47) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_block_comment_end;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_multi;
 					return token;
