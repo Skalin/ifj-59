@@ -85,7 +85,7 @@ void * plusRealloc(void * destPtr, int length) {
         return destPtr;                                         //vrací ukazatel na alokovanou paměť
     }
     
-    return NULL;
+    return tmp;
 }
 
 void plusAddReallocMem(void * tmpVar, int length, void * target) {

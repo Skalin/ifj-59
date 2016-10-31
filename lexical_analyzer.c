@@ -32,7 +32,7 @@ void keywordCheckToken(tToken *token) {
 		t_kw_double, t_kw_else, t_kw_false, t_kw_for, t_kw_if, t_kw_int,
 		t_kw_return, t_kw_string, t_kw_static, t_kw_true, t_kw_void, t_kw_while,
 	};
-	token->type = LA_SIMPLE_IDENT;
+	token->type = LA_SIMPLE_IDENT; // ERROR do token->type nemůžeš přiřadit hodnodu tStatus
 
     // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), přiřadí do tToken type příslušnou hodnotu z druhé tabulky
     // DONE Jan Hrbotický
@@ -73,12 +73,14 @@ tToken * updateToken(tToken * token, char *string) {
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
     unsigned int stringLength = strlen(string);
-
+    
+    
     if (token->allocated < (stringLength + token->length) ) {     // pokud je alokováno méně než je potřeba
         token = plusRealloc(token, sizeof(tToken) + sizeof(char)*(stringLength+token->length) );   //TODO
         token->allocated = stringLength + token->length;      // update hodnoty allocated v tokenu
     }
-
+    
+    
     strncat(token->data, string, stringLength);      // připojení stringu na konec tokenu
     token->length = token->length + stringLength;   // update délky tokenu
 
@@ -122,14 +124,15 @@ tToken * getToken(tToken * token, char *file){
 	fp = fopen (file, "r"); // stačí nám soubor pouze pro čtení
 
 	initToken(token);
-	token->type = LA_START;
+	//token->type = LA_START;  ERROR do typu tokenu se tady snažíš přiřadit hodnotu typu tStatus (neopravněný přístup do paměti)
 
 	tStatus status = LA_START;
 
 	char buffer[32];
 	memset(&buffer, 0, 32);
 	int i = 0;
-
+    
+/*
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(fp);
 		
@@ -541,9 +544,10 @@ tToken * getToken(tToken * token, char *file){
 		} // konec switche
 
 
+
 		if (i == 32) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer
 			updateToken(token, buffer);
-			token->length += i;
+			//token->length += i; ERROR tohle by měla obsloužit funkce updateToken 
 			for (int j = 0; j < i; j++) {
 				buffer[j] = '\0';
 			}
@@ -551,10 +555,11 @@ tToken * getToken(tToken * token, char *file){
 		}
 	} //cyklus
 
+    
 	keywordCheckToken(token);
-	token->length += i;
+	//token->length += i; ERROR opět tohle má dělat funkce updateToken
 	updateToken(token, buffer);
-
+*/
 	return token;
 } //end of function
 
