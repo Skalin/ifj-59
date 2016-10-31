@@ -49,14 +49,14 @@ tToken * t_buffer;
 
 // Body
 
-tToken * initToken(tToken * token) {
+tToken * initToken() {
     // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
     // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
     // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
 	unsigned int mallocSize = 16;
 
-	token = plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
+	tToken * token = (tToken *) plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
     // TODO mám tady vytvářet nový token nebo používám globalní?
 
     token->type = t_error;   // nastaví token do počátečního stavu
@@ -123,9 +123,8 @@ tToken * getToken(){
 
 	 // stačí nám soubor pouze pro čtení
 
-	tToken token;
-	initToken(token); //pomocny token
-	//token->type = LA_START;  ERROR do typu tokenu se tady snažíš přiřadit hodnotu typu tStatus (neopravněný přístup do paměti)
+	tToken * token;
+	initToken(); //pomocny token
 
 	tStatus status = LA_START;
 
