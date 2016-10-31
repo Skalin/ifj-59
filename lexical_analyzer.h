@@ -122,8 +122,6 @@ void destroyToken(tToken * token);
 
 /*
  * Funkce aktualizuje hodnotu tokenu na hodnotu z parametru string
- * @param token
- * @param string
  */
 tToken * updateToken();
 

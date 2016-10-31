@@ -120,10 +120,10 @@ tToken * getToken(){
 
     char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
-	tGlobal->FILE = fopen (tGlobal->file, "r"); // stačí nám soubor pouze pro čtení
+	tGlobal->file = fopen (tGlobal->fileName, "r"); // stačí nám soubor pouze pro čtení
 
 	tToken token;
-	initToken(token);
+	initToken(token); //pomocny token
 	//token->type = LA_START;  ERROR do typu tokenu se tady snažíš přiřadit hodnotu typu tStatus (neopravněný přístup do paměti)
 
 	tStatus status = LA_START;
@@ -134,7 +134,7 @@ tToken * getToken(){
     
 /*
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
-		c = fgetc(tGlobal->file);
+		c = fgetc(tGlobal->fileName);
 		
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
@@ -145,7 +145,7 @@ tToken * getToken(){
 		switch(status) {
 			case LA_START:	// pocatecni stav automatu
 				while(isspace(c)) { 
-					c = fgetc(tGlobal->file);
+					c = fgetc(tGlobal->fileName);
 				}
 				if (c == EOF) {	// EOF	
 					token->type = t_eof;
@@ -232,7 +232,7 @@ tToken * getToken(){
 					buffer[i] = c;
 					i++;
 				} else {
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					keywordCheckToken(token);
 					return token;
@@ -244,7 +244,7 @@ tToken * getToken(){
 					buffer[i] = c;
 					i++;
 				} else {
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_complete_ident;
 					return token;	
@@ -266,7 +266,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_pE;
 				} else {
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_int;
 					return token;	
@@ -292,7 +292,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_pE;
 				} else {
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_double;
 					return token;
@@ -326,7 +326,7 @@ tToken * getToken(){
 					buffer[i] = c;
 					i++;
 				} else {
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_double_e;
 					return token;
@@ -341,7 +341,7 @@ tToken * getToken(){
 				} else if (c == 34) { // ""
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -382,7 +382,7 @@ tToken * getToken(){
 				if (c == 34) { // "\""
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -406,7 +406,7 @@ tToken * getToken(){
 				if (c == 34) { // "\n"
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -418,7 +418,7 @@ tToken * getToken(){
 				if (c == 34) { // "\t"
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -434,14 +434,14 @@ tToken * getToken(){
 				if (c == 61) { // >=
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_greater_eq;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_greater;
 					return token;
@@ -451,14 +451,14 @@ tToken * getToken(){
 				if (c == 61) { // <=
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_less_eq;
 					return token;
 				} else {
 				 	buffer[i] = c;
 				 	i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_less;
 					return token;
@@ -468,14 +468,14 @@ tToken * getToken(){
 				if (c == 61) { // ==
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_comparasion;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_assignment;
 					return token;
@@ -485,14 +485,14 @@ tToken * getToken(){
 				if (c == 61) { // !=
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_comparasion_ne;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_excl_mark;
 					return token;
@@ -503,21 +503,21 @@ tToken * getToken(){
 				if (c == 47) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_simple_comment;
 					return token;
 				} else if (c == 42) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_block_comment_start;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_div;
 					return token;
@@ -527,14 +527,14 @@ tToken * getToken(){
 				if (c == 47) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_block_comment_end;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->file);
+					ungetc(c, tGlobal->fileName);
 					token = updateToken(token, buffer);
 					token->type= t_multi;
 					return token;
