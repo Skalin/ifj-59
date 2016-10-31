@@ -100,9 +100,9 @@ typedef struct
  */
 
 typedef struct tGlobal {
-	FILE* file; // FILE
+	FILE *file; // FILE
 	char *fileName; // globalni nazev souboru
-};
+} tGlobal;
 
 extern struct tGlobal global;
 
