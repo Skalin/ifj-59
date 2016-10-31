@@ -122,6 +122,7 @@ tToken * getToken(){
 
 	tGlobal->FILE = fopen (tGlobal->file, "r"); // stačí nám soubor pouze pro čtení
 
+	tToken token;
 	initToken(token);
 	//token->type = LA_START;  ERROR do typu tokenu se tady snažíš přiřadit hodnotu typu tStatus (neopravněný přístup do paměti)
 
