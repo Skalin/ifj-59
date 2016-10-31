@@ -105,7 +105,7 @@ extern tToken token;
  * @param token
  * @return jeden načtený token z analyzátoru
  */
-tToken * getToken(tToken * token, char *file);
+tToken * getToken();
 
 /*
  * Inicializuje token a vrací pointer na token
@@ -123,7 +123,7 @@ void destroyToken(tToken * token);
 /*
  * Funkce aktualizuje hodnotu tokenu na hodnotu z parametru string
  */
-tToken * updateToken();
+tToken * updateToken(tToken * token, char *string);
 
 /*
  * Projde pole keyword a přiřadí korektně k tokenu "id" z pole keyword

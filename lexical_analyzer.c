@@ -120,9 +120,9 @@ tToken * getToken(){
 
     char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
-	tGlobal->file = fopen (tGlobal->fileName, "r"); // stačí nám soubor pouze pro čtení
+	tGlobal.file = fopen (tGlobal.fileName, "r"); // stačí nám soubor pouze pro čtení
 
-	tToken token;
+	tToken * token;
 	initToken(token); //pomocny token
 	//token->type = LA_START;  ERROR do typu tokenu se tady snažíš přiřadit hodnotu typu tStatus (neopravněný přístup do paměti)
 
@@ -134,7 +134,7 @@ tToken * getToken(){
     
 /*
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
-		c = fgetc(tGlobal->fileName);
+		c = fgetc(tGlobal.fileName);
 		
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
@@ -475,7 +475,7 @@ tToken * getToken(){
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->fileName);
+					ungetc(c, tGlobal.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_assignment;
 					return token;
@@ -485,14 +485,14 @@ tToken * getToken(){
 				if (c == 61) { // !=
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->fileName);
+					ungetc(c, tGlobal.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_comparasion_ne;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->fileName);
+					ungetc(c, tGlobal.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_excl_mark;
 					return token;
@@ -503,7 +503,7 @@ tToken * getToken(){
 				if (c == 47) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal->fileName);
+					ungetc(c, tGlobal.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_simple_comment;
 					return token;

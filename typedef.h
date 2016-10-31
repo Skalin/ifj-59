@@ -99,7 +99,7 @@ typedef struct
  */
 
 struct {
-	FILE *file; // FILE
+	FILE* file; // FILE
 
 	char *fileName; // globalni nazev souboru
 } tGlobal;
