@@ -69,7 +69,12 @@ void * plusRealloc(void * destPtr, int length) {
 
     void *tmp = NULL;
 
-    if (destPtr != NULL) {                                      //paměť není alokována
+     if (destPtr == NULL) {                                      //paměť není alokovánam, ukazatel je roven null
+        destPtr = plusMalloc(length);                           //volání funkce plusMalloc nad danou velikostí
+        return destPtr;                                         //vrací ukazatel na alokovanou paměť
+    }   
+    
+    else {                                      //paměť není alokována
         tmp = realloc(destPtr, length);                         //rozšíření paměti pomocí realloc
 
                 if (tmp != destPtr) {
@@ -79,13 +84,8 @@ void * plusRealloc(void * destPtr, int length) {
 
         
     }
-
-    if (destPtr == NULL) {                                      //paměť není alokovánam, ukazatel je roven null
-        destPtr = plusMalloc(length);                           //volání funkce plusMalloc nad danou velikostí
-        return destPtr;                                         //vrací ukazatel na alokovanou paměť
-    }
     
-    return tmp;
+
 }
 
 void plusAddReallocMem(void * tmpVar, int length, void * target) {
