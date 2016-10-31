@@ -17,6 +17,13 @@
 #include "garbage_collector.h"
 #include "error_handler.h"
 
+/*
+ * Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
+ */
+int GlobalRow = 0;
+int GlobalColumn = 0;
+
+
 // some coding
 
 void keywordCheckToken(tToken *token) {
@@ -108,12 +115,6 @@ void fillToken(tToken * token, tokenType type) {
 
 tToken * getToken(tToken * token, char *file){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
-
-
-    // Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
-    int GlobalRow = 0;
-    int GlobalColumn = 0;    
-    
     
 	GlobalRow = 0;
 	GlobalColumn = 0;
