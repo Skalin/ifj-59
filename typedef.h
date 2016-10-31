@@ -10,6 +10,7 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include <stdio.h>
 
 /*
  * Struktura typů tokenů
