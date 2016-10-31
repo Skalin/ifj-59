@@ -16,6 +16,7 @@
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
+#include <stdio.h>
 
 // some coding
 
@@ -120,7 +121,7 @@ tToken * getToken(){
 
     char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
-	tGlobal.file = fopen (tGlobal.fileName, "r"); // stačí nám soubor pouze pro čtení
+	 // stačí nám soubor pouze pro čtení
 
 	tToken * token;
 	initToken(token); //pomocny token
@@ -131,10 +132,10 @@ tToken * getToken(){
 	char buffer[32];
 	memset(&buffer, 0, 32);
 	int i = 0;
-    
+    /*
 
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
-		c = fgetc(tGlobal.fileName);
+		c = fgetc(global.fileName);
 		
 		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
@@ -145,7 +146,7 @@ tToken * getToken(){
 		switch(status) {
 			case LA_START:	// pocatecni stav automatu
 				while(isspace(c)) { 
-					c = fgetc(tGlobal.fileName);
+					c = fgetc(global.fileName);
 				}
 				if (c == EOF) {	// EOF	
 					token->type = t_eof;
@@ -341,7 +342,7 @@ tToken * getToken(){
 				} else if (c == 34) { // ""
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -382,7 +383,7 @@ tToken * getToken(){
 				if (c == 34) { // "\""
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -406,7 +407,7 @@ tToken * getToken(){
 				if (c == 34) { // "\n"
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -418,7 +419,7 @@ tToken * getToken(){
 				if (c == 34) { // "\t"
 					buffer[i] = c;
 					i++;
-					ungetc(c, tGlobal.fileName);
+					ungetc(c, global.fileName);
 					token = updateToken(token, buffer);
 					token->type= t_string;
 					return token;
@@ -555,7 +556,7 @@ tToken * getToken(){
 		}
 	} //cyklus
 
-    
+    */
 	keywordCheckToken(token);
 	//token->length += i; ERROR opět tohle má dělat funkce updateToken
 	updateToken(token, buffer);

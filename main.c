@@ -10,6 +10,7 @@ bool header = false;
 int main() {
     char *file = "testing/test_files/fac_iter.ifj";  
     tToken *pToken = NULL;
+    global.fileName = fopen(argv[1], "r");
 /*
     pToken = initToken();   // Inicializace tokenu
     printToken(pToken);
