@@ -10,6 +10,7 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "garbage_collector.h"
+#include "error_handler.h"
 #include <stdlib.h>
 
 tGarbageListPtr listFirst = NULL;
@@ -81,7 +82,8 @@ void * plusRealloc(void * destPtr, int length) {
                     plusAddReallocMem(tmp, length, destPtr);    //alokace další položky v seznamu
                     return tmp;
                 }
-
+        
+        return tmp;
         
     }
     
