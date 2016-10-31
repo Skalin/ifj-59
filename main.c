@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
     char *file = "testing/test_files/fac_iter.ifj";  
     tToken *pToken = NULL;
     global.fileName = argv[1];
-    global.FILE = fopen(global.fileName, "r");
+    global.file = fopen(global.fileName, "r");
 /*
     pToken = initToken();   // Inicializace tokenu
     printToken(pToken);
