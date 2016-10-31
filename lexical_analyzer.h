@@ -125,7 +125,7 @@ void destroyToken(tToken * token);
  * @param token
  * @param string
  */
-tToken * updateToken(tToken * token, char *string);
+tToken * updateToken();
 
 /*
  * Projde pole keyword a přiřadí korektně k tokenu "id" z pole keyword

@@ -94,4 +94,16 @@ typedef struct
 	char data[]; // Data, která obshahuje
 } tToken;
 
+/*
+ * Struktura globálních proměnných
+ */
+
+struct {
+	FILE *FILE; // FILE
+
+	char *file; // globalni nazev souboru
+} tGlobal;
+
+extern struct tGlobal global;
+
 #endif
