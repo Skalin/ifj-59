@@ -245,7 +245,7 @@ tToken * getToken(){
 				} else {
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_complete_ident;
+					token->type = t_complete_ident;
 					return token;	
 				}
 				break;
@@ -267,7 +267,7 @@ tToken * getToken(){
 				} else {
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_int;
+					token->type = t_int;
 					return token;	
 				}
 				break;
@@ -293,7 +293,7 @@ tToken * getToken(){
 				} else {
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_double;
+					token->type = t_double;
 					return token;
 				}
 				break;
@@ -327,22 +327,20 @@ tToken * getToken(){
 				} else {
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_double_e;
+					token->type = t_double_e;
 					return token;
 				}
 
 			// string
 			case LA_STRING_PREP:
 				if (c == 92) { // "\"
-					buffer[i] = c;
-					i++;
 					status = LA_BACKSLASH;
 				} else if (c == 34) { // ""
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_string;
+					token->type = t_string;
 					return token;
 				} else { // "xxxxxx
 					buffer[i] = c;
@@ -351,39 +349,38 @@ tToken * getToken(){
 				break;
 			case LA_BACKSLASH:
 				if (c == 34) { // "\"
-					buffer[i] = c;
+					buffer[i] = '\"';
 					i++;
-					status = LA_QUOTE;
+					status = LA_STRING_PREP;
 				} else if (c == 92) {
-					buffer[i] = c;
+					buffer[i] = '\\';
 					i++;
-					status = LA_DOUBLE_BACKSLASH;
+					status = LA_STRING_PREP;
 				} else if (c == 110) { // "\n
-					buffer[i] = c;
+					buffer[i] = '\n';
 					i++;
-					status = LA_NEW_LINE;
+					status = LA_STRING_PREP;
 				} else if (c == 116) { // "\t
-					buffer[i] = c;
+					buffer[i] = '\t';
 					i++;
-					status = LA_TAB;
+					status = LA_STRING_PREP;
 			// oktalovy cisla zatim kasleme, viz TODO
 			//	} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
 			//		token->status = LA_OCT1;
 			//		continue;
 			//
 				} else {
-					buffer[i] = c;
-					i++;
-					status = LA_STRING_PREP;	
+					throwException(1, GlobalRow, GlobalColumn);
 				}
 				break;
+/*
 			case LA_QUOTE:
 				if (c == 34) { // "\""
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_string;
+					token->type = t_string;
 					return token;
 				} else { // "\"x
 					status = LA_STRING_PREP;
@@ -395,7 +392,7 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_string;
+					token->type = t_string;
 					return token;
 				} else {
 					status = LA_STRING_PREP;
@@ -407,7 +404,7 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_string;
+					token->type = t_string;
 					return token;
 				} else { // "\nx
 					status = LA_STRING_PREP;
@@ -419,13 +416,13 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_string;
+					token->type = t_string;
 					return token;
 				} else { // "\tx
 					status = LA_STRING_PREP;
 				}
 				break;
-
+*/
 			// zde pak bude octal, jeste neni doresen jak ma koncit
 
 			// dalsi porovnani KA
@@ -435,14 +432,14 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_greater_eq;
+					token->type = t_greater_eq;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_greater;
+					token->type = t_greater;
 					return token;
 				}
 				break;
@@ -452,14 +449,14 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_less_eq;
+					token->type = t_less_eq;
 					return token;
 				} else {
 				 	buffer[i] = c;
 				 	i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_less;
+					token->type = t_less;
 					return token;
 				}
 				break;
@@ -469,14 +466,14 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_comparasion;
+					token->type = t_comparasion;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_assignment;
+					token->type = t_assignment;
 					return token;
 				}
 				break;
@@ -486,14 +483,14 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_comparasion_ne;
+					token->type = t_comparasion_ne;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_excl_mark;
+					token->type = t_excl_mark;
 					return token;
 				}
 				break;
@@ -504,21 +501,21 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_simple_comment;
+					token->type = t_simple_comment;
 					return token;
 				} else if (c == 42) {
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_block_comment_start;
+					token->type = t_block_comment_start;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_div;
+					token->type = t_div;
 					return token;
 				}
 
@@ -528,14 +525,14 @@ tToken * getToken(){
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_block_comment_end;
+					token->type = t_block_comment_end;
 					return token;
 				} else {
 					buffer[i] = c;
 					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
-					token->type= t_multi;
+					token->type = t_multi;
 					return token;
 				}
 			default:
