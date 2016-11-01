@@ -87,8 +87,7 @@ typedef enum {
  * Struktura tokenu
  */
 
-typedef struct
-{
+typedef struct {
     tokenType type;  // Typ tokenu
     unsigned int length; // Délka, počet charů
     unsigned int allocated; // Status, jestli byl alokován
@@ -99,7 +98,7 @@ typedef struct
  * Struktura globálních proměnných
  */
 
-typedef struct tGlobal {
+typedef struct tGlobal{
 	FILE *file; // FILE
 	char *fileName; // globalni nazev souboru
 } tGlobal;
