@@ -12,15 +12,15 @@
 
 #include "error_handler.h"
 #include "garbage_collector.h"
-
+#include "typedef.h"
 
 void throwException(int errorNumber, int row, int column) {
     int exit_code;
-    fprintf(stderr, "FILE: %s | Error on line %d, in column %d", "Doplnit nazev globalni promenne FILE", row, column);
+    fprintf(stderr, "FILE: %s | Error on line %d, in column %d\n", global.fileName, row, column);
 
     switch(errorNumber) {
         case 1:
-            fprintf(stderr, "Lex mistake (Invalid token)");
+            fprintf(stderr, "Lex mistake (Invalid token)\n");
             exit_code = 1;
             break;
         case 99:
@@ -29,12 +29,12 @@ void throwException(int errorNumber, int row, int column) {
             break;
             //Sem doplňujte případné další chyby
         default:
-            fprintf(stderr, "Unknown error");
+            fprintf(stderr, "Unknown error\n");
             exit_code = 10;
             break;
     }
 
-    fprintf(stderr, "Problem occured. Previous log may show you where the mistake is." );
-    fprintf(stderr, "===================== EXITING PROGRAM with error %d =====================", exit_code);
+    fprintf(stderr, "Problem occured. Previous log may show you where the mistake is.\n" );
+    fprintf(stderr, "===================== EXITING PROGRAM with error %d =====================\n", exit_code);
     exit(exit_code);
 }

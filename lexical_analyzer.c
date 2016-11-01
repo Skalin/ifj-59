@@ -31,13 +31,13 @@ void keywordCheckToken(tToken *token) {
 	tStatus keyWordTokenTable[] = {
 		t_kw_boolean, t_kw_break, t_kw_class, t_kw_continue, t_kw_do, 
 		t_kw_double, t_kw_else, t_kw_false, t_kw_for, t_kw_if, t_kw_int,
-		t_kw_return, t_kw_string, t_kw_static, t_kw_true, t_kw_void, t_kw_while,
+		t_kw_return, t_kw_string, t_kw_static, t_kw_true, t_kw_void, t_kw_while
 	};
-	token->type = LA_SIMPLE_IDENT; // ERROR do token->type nemůžeš přiřadit hodnodu tStatus
+	token->type = t_simple_ident; 
 
     // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), přiřadí do tToken type příslušnou hodnotu z druhé tabulky
     // DONE Jan Hrbotický
-    for (int i=0; i<(NUMBER_OF_KEY_WORDS-1); i++) {
+    for (int i=0; i < NUMBER_OF_KEY_WORDS; i++) {
         if (strcmp(keyWordTable[i], token->data) == 0)
             token->type = keyWordTokenTable[i];
     }
@@ -152,52 +152,90 @@ tToken * getToken(){
 				// oddelovac
 				} else if (c == 59) { // ;
 					token->type = t_semicolon;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
 					return token;
 				// konec oddelovacu
 				// zavorky
 				} else if (c == 91) { // [
 					token->type = t_sq_bracket_l;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
 					return token;
 				} else if (c == 93) { // ]
 					token->type = t_sq_bracket_r;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
 					return token;
 				} else if (c == 40) { // (
 					token->type = t_bracket_l;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
 					return token;
 				} else if (c == 41) { // )
 					token->type = t_bracket_r;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
 					return token;
 				} else if (c == 123) { // {
 					token->type = t_brace_l;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);                    
 					return token;
 				} else if (c == 125) { // }
 					token->type = t_brace_r;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
 					return token;
 				// konec zavorek
 				// matematicke operace
 				} else if (c == 47) { // /
 					status = LA_DIV;
+                    buffer[i] = c;
+					i++;
 					break;
 				} else if (c == 42) { // *
 					status = LA_MULTI;
+                    buffer[i] = c;
+					i++;
 					break;
 				} else if (c == 43) { // +
 					token->type = t_plus;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
 					break;
 				} else if (c == 45) { // -
 					token->type = t_minus;
+                    buffer[i] = c;
+					i++;
 					break;
 				} else if (c == 62) { // >
 					status = LA_GREATER;
+                    buffer[i] = c;
+					i++;
 					break;
 				} else if (c == 60) { // <
 					status = LA_LESS;
+                    buffer[i] = c;
+					i++;
 					break;
 				} else if (c == 33) { // !
 					status = LA_EXCL_MARK;
+                    buffer[i] = c;
+					i++;
 					break;
 				} else if (c == 61) { // =
 					status = LA_ASSIGNMENT;
+                    buffer[i] = c;
+					i++;
 					break;
 				// konec mat. operaci
 				// identifikatory
@@ -217,13 +255,13 @@ tToken * getToken(){
 					status = LA_STRING_PREP;
 				// konec stringu
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, GlobalRow, GlobalColumn); 
 				}
 				break;
 
 			// identifikatory
 			case LA_SIMPLE_IDENT:
-				if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || c == 36) { // a..z,A..Z,_,$
+				if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || c == 36) { // a..z,A..Z,_,$
 					buffer[i] = c;
 					i++;
 				} else if (c == 46) { // .
@@ -264,7 +302,7 @@ tToken * getToken(){
 					buffer[i] = c;
 					i++;
 					status = LA_DOUBLE_pE;
-				} else {
+				} else { 
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_int;
@@ -278,7 +316,8 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, GlobalRow, GlobalColumn); 
+                    
 				}
 				break;
 
@@ -308,7 +347,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_E_SIGN;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, GlobalRow, GlobalColumn); 
 				}
 
 			case LA_DOUBLE_E_SIGN:
@@ -317,7 +356,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_E;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, GlobalRow, GlobalColumn); 
 				}
 
 			case LA_DOUBLE_E:
@@ -430,13 +469,10 @@ tToken * getToken(){
 				if (c == 61) { // >=
 					buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_greater_eq;
 					return token;
 				} else {
-					buffer[i] = c;
-					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_greater;
@@ -445,16 +481,13 @@ tToken * getToken(){
 				break;
 			case LA_LESS:
 				if (c == 61) { // <=
-					buffer[i] = c;
+                    buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_less_eq;
 					return token;
 				} else {
-				 	buffer[i] = c;
-				 	i++;
-					ungetc(c, global.file);
+					ungetc(c, global.file); 
 					token = updateToken(token, buffer);
 					token->type = t_less;
 					return token;
@@ -464,13 +497,10 @@ tToken * getToken(){
 				if (c == 61) { // ==
 					buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_comparasion;
 					return token;
 				} else {
-					buffer[i] = c;
-					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_assignment;
@@ -481,13 +511,10 @@ tToken * getToken(){
 				if (c == 61) { // !=
 					buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_comparasion_ne;
 					return token;
 				} else {
-					buffer[i] = c;
-					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_excl_mark;
@@ -499,20 +526,16 @@ tToken * getToken(){
 				if (c == 47) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_simple_comment;
 					return token;
 				} else if (c == 42) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_block_comment_start;
 					return token;
 				} else {
-					buffer[i] = c;
-					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_div;
@@ -523,13 +546,10 @@ tToken * getToken(){
 				if (c == 47) {
 					buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_block_comment_end;
 					return token;
 				} else {
-					buffer[i] = c;
-					i++;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_multi;
