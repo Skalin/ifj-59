@@ -10,7 +10,7 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
-    global.fileName = "testing/test1.ifj"; 
+    global.fileName = "./testing/test1.ifj";
     global.file = fopen(global.fileName, "r");
    
     tToken *pToken = NULL;

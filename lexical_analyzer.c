@@ -349,6 +349,7 @@ tToken * getToken(){
 				} else {
 					throwException(1, GlobalRow, GlobalColumn); 
 				}
+				break;
 
 			case LA_DOUBLE_E_SIGN:
 				if (c >= 48 && c <= 57) { // 0..9
@@ -358,6 +359,7 @@ tToken * getToken(){
 				} else {
 					throwException(1, GlobalRow, GlobalColumn); 
 				}
+				break;
 
 			case LA_DOUBLE_E:
 				if (c >= 48 && c <= 57) { // 0..9
@@ -369,6 +371,7 @@ tToken * getToken(){
 					token->type = t_double_e;
 					return token;
 				}
+				break;
 
 			// string
 			case LA_STRING_PREP:
@@ -541,6 +544,7 @@ tToken * getToken(){
 					token->type = t_div;
 					return token;
 				}
+				break;
 
 			case LA_MULTI:
 				if (c == 47) {
@@ -555,6 +559,7 @@ tToken * getToken(){
 					token->type = t_multi;
 					return token;
 				}
+				break;
 			default:
 				break;
 		} // konec switche
