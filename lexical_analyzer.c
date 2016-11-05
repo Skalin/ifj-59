@@ -283,7 +283,7 @@ tToken * getToken(){
 
 			case LA_COMPLETE_IDENT:
 				if (buffer[i-1] = 46) {
-					if (c != 95 && c != 36 && c < 65 && c > 90 && c < 97 && c > 122) {
+					if (c < 65 && c > 90 && c < 97 && c > 122 && c != 95 && c != 36) {
 						throwException(1, GlobalRow, GlobalColumn);
 					}
 				}
