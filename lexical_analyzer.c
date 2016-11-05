@@ -420,56 +420,6 @@ tToken * getToken(){
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 				break;
-/*
-			case LA_QUOTE:
-				if (c == 34) { // "\""
-					buffer[i] = c;
-					i++;
-					ungetc(c, global.file);
-					token = updateToken(token, buffer);
-					token->type = t_string;
-					return token;
-				} else { // "\"x
-					status = LA_STRING_PREP;
-				}
-				break;
-			case LA_DOUBLE_BACKSLASH:
-				if (c == 34) {
-					buffer[i] = c;
-					i++;
-					ungetc(c, global.file);
-					token = updateToken(token, buffer);
-					token->type = t_string;
-					return token;
-				} else {
-					status = LA_STRING_PREP;
-				}
-				break;
-			case LA_NEW_LINE:
-				if (c == 34) { // "\n"
-					buffer[i] = c;
-					i++;
-					ungetc(c, global.file);
-					token = updateToken(token, buffer);
-					token->type = t_string;
-					return token;
-				} else { // "\nx
-					status = LA_STRING_PREP;
-				}
-				break;
-			case LA_TAB:
-				if (c == 34) { // "\t"
-					buffer[i] = c;
-					i++;
-					ungetc(c, global.file);
-					token = updateToken(token, buffer);
-					token->type = t_string;
-					return token;
-				} else { // "\tx
-					status = LA_STRING_PREP;
-				}
-				break;
-*/
 			// zde pak bude octal, jeste neni doresen jak ma koncit
 
 			// dalsi porovnani KA
@@ -578,6 +528,10 @@ tToken * getToken(){
 				buffer[j] = '\0';
 			}
 			i = 0;
+		}
+
+		if (c == EOF) {
+			throwException(1, GlobalRow, GlobalColumn);
 		}
 	} //cyklus
 
