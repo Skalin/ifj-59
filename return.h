@@ -18,17 +18,17 @@
  * Pokud dojde k chybě, vrací se návratová hodnota podle zadání. 
  */
 typedef enum {
-  E_NO_ERROR;            
-  E_SCANNER_ERROR;
-  E_PARSER_ERROR;
-  E_SEM_NO_DEF_ERROR;
-  E_SEM_TYPE_COMP_ERROR;
-  E_SEM_OTHER_ERROR;
-  E_INPUT_ERROR;
-  E_VAR_NO_INIT_ERROR;
-  E_DIV_BY_ZERO_ERROR;
-  E_OTHERS_ERROR;
-  E_INTERNAL_ERROR;
+  E_NO_ERROR;              //činnost proběhla bez chyb (0)
+  E_SCANNER_ERROR;         //chyba lexykánlí analýzy (1)
+  E_PARSER_ERROR;          //chyba syntaktické analýzy (2)
+  E_SEM_NO_DEF_ERROR;      //sémantická chyba nedefinovaná třída/funkce/proměnná, pokus o redefinici třídy/funkce/proměnné, atd (3)
+  E_SEM_TYPE_COMP_ERROR;   //sémantická chyba typové kompatibility (4)
+  E_SEM_OTHER_ERROR;       //sémantická chyba - ostatní (6)
+  E_INPUT_ERROR;           //chyba při načítání číselné hodnoty ze vstupu (7)
+  E_VAR_NO_INIT_ERROR;     //chyba při práci s neinicializovanou proměnnou (8)
+  E_DIV_BY_ZERO_ERROR;     //dělení nulou (9)
+  E_OTHERS_ERROR;          //ostatní běhové chyby (10)
+  E_INTERNAL_ERROR;        //interní chyba interpretu (99)
 } retError;
 
 #endif
