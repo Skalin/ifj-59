@@ -135,7 +135,7 @@
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
-              <caret line="284" column="47" selection-start-line="284" selection-start-column="47" selection-end-line="284" selection-end-column="47" />
+              <caret line="284" column="44" selection-start-line="284" selection-start-column="44" selection-end-line="284" selection-end-column="44" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
@@ -484,14 +484,7 @@
       <workItem from="1477765362576" duration="4810000" />
       <workItem from="1477864381455" duration="14289000" />
       <workItem from="1477998961923" duration="3464000" />
-      <workItem from="1478367872277" duration="3123000" />
-    </task>
-    <task id="LOCAL-00011" summary="[MODIFY] 0.2 - merge getToken">
-      <created>1477748268694</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1477748268694</updated>
+      <workItem from="1478367872277" duration="3190000" />
     </task>
     <task id="LOCAL-00012" summary="[MODIFY] 0.2 - some minor changes">
       <created>1477751064401</created>
@@ -829,11 +822,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478370939462</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="[MODIFY] 0.2 - uprava complete_ident">
+      <created>1478371010984</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1478371010984</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57432000" />
+    <option name="totallyTimeSpent" value="57499000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1341,7 +1341,7 @@
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
-          <caret line="284" column="47" selection-start-line="284" selection-start-column="47" selection-end-line="284" selection-end-column="47" />
+          <caret line="284" column="44" selection-start-line="284" selection-start-column="44" selection-end-line="284" selection-end-column="44" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>

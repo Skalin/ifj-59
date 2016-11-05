@@ -282,7 +282,7 @@ tToken * getToken(){
 				break;
 
 			case LA_COMPLETE_IDENT:
-				printf("%s a %s", &buffer[i], &buffer[i-1]);
+				printf("id: %d %s a %s", i, &buffer[i], &buffer[i-1]);
 				if (buffer[i-1] == 46) {
 					if ((c < 65 && c > 90) || (c < 97 && c > 122) || c != 95 || c != 36) {
 						throwException(1, GlobalRow, GlobalColumn);
