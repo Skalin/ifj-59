@@ -12,36 +12,21 @@ while
 78.4e5
 78.4e-5
 
+"musjsd"
 
-:
-"\\008"     t_error
-"""         t_error
-"sas        t_error
-:
-string
+"mujstring"
+indentifikator
+"muj dalsi string"
+String
 while
 +
 -
-:
+
 ""
 "sjsd"     
 "\\"        
 "\t"        
-"\""        
-"\\asd"     
-"\tfd"      
-"\"fas"     
-"\\ asd"    
-"\t fd"     
-"\" fas"    
-" \\ asd"   
-"d \t fd"   
-"s\" fas"   
-"\\001"   
-752.45e-54  
-as.    
-95sa        
-
-452.        t_error
-122.45e     t_error
-857.45e-    t_error
+"\"" 
+idet
+"""
+dalsi

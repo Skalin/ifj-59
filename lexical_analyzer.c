@@ -211,11 +211,14 @@ tToken * getToken(){
                     buffer[i] = c;
 					i++;
                     token = updateToken(token, buffer);
+                    return token;
 					break;
 				} else if (c == 45) { // -
 					token->type = t_minus;
                     buffer[i] = c;
 					i++;
+                    token = updateToken(token, buffer);
+                    return token;
 					break;
 				} else if (c == 62) { // >
 					status = LA_GREATER;
@@ -252,6 +255,8 @@ tToken * getToken(){
 				// konec cislic
 				// zacatek stringu
 				} else if (c == 34) { // "
+                    buffer[i] = c;
+					i++;
 					status = LA_STRING_PREP;
 				// konec stringu
 				} else {
@@ -380,7 +385,7 @@ tToken * getToken(){
 				} else if (c == 34) { // ""
 					buffer[i] = c;
 					i++;
-					ungetc(c, global.file);
+					
 					token = updateToken(token, buffer);
 					token->type = t_string;
 					return token;
