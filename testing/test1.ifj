@@ -1,32 +1,119 @@
-55
-452
-65
-54.454
-dks15.da   
-text
-text
-95s
-String
-while
+"Očekávám t_int"
+    1
+    01
+    05789
+    99999
+    
+"Očekávám t_double"
+    123.123
+    012.012
+    
+"Očekávám t_double_e"
+    123.123e-789
+    123.124e+565
+    025e98
+    125e-56
 
-78.4e5
-78.4e-5
+"Očekávám t_simple_ident"
+    ident
+    ident4
+    Ident
+    $ident
+    __ident
+    opravdu_dlouhy_nazev_indetifikatoru_odedeleny_podtrzitky45
+    
+"Očekávám t_complete_ident"
+    ids.isd
+    $asd.gf
+    __.sd
+    _._
+    
+"Očekávám i_int a t_simple_ident"
+    1_sed
 
-"musjsd"
+"Očekávám t_kw_XXX"      
+    class
+    static
+    boolean
+    double
+    int
+    String
+    void
+    while
+    for
+    break
+    return
+    continue
+    do
+    if
+    else
+    true
+    false
+"Očekávám t_div"
+    /
+"Očekávám t_multi"
+    *
+"Očekávám t_plus"
+    +
+"Očekávám t_minus"
+    -
+"Očekávám t_greater"
+    >
+"Očekávám t_greater_eq"
+    >=
+"Očekávám t_less"
+    <
+"Očekávám t_less_eq"
+    <=
+"Očekávám t_assignment"
+    =
+"Očekávám t_comparasion"
+    ==
+"Očekávám t_excl_mark"
+    !
+"Očekávám t_comparasion_ne"
+    != 
+"Očekávám t_sq_bracket_l" 
+    [
+"Očekávám t_sq_bracket_r" 
+    ]
+"Očekávám t_bracket_l"  
+(
+"Očekávám t_bracket_r" 
+    )
+"Očekávám t_brace_l"  
+    {
+"Očekávám t_brace_r"  
+    }
+"Očekávám t_semicolon"  
+    ;
+"Očekávám t_simple_comment"  
+    //
+"Očekávám t_block_comment_start"  
+    /*
+"Očekávám t_block_comment_end"  
+    */
 
-"mujstring"
-indentifikator
-"muj dalsi string"
-String
-while
-+
--
-
-""
-"sjsd"     
-"\\"        
-"\t"        
-"\"" 
-idet
-"""
-dalsi
+"Očekávám t_string"
+    ""
+    "ahoj"
+    "string s mezerami"
+    "(){}[]==!?/0+-*'@^<>%°"
+    "Příliš žluťoučký kůň úpěl ďábelské ódy :-)"
+    "opravdu velice dlouhý string, navíc se spoustou divných znaků, včetně čárek a diakritiky"
+    "jeden radek\ndruhy radek"
+    "\ttabulator"
+    "lomitko\\"
+    "uvozovky\"\"\""
+    "oktalova cisla\017"
+    "\377"    
+    
+"Očekávám t_error"
+    123.
+    456.54e
+    456.54e-
+    """
+    "\5"
+    "\z"
+    ifdf.
+    
