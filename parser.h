@@ -13,18 +13,16 @@
 #ifndef IFJ_59_PARSER_H
 #define IFJ_59_PARSER_H
 
-#endif //IFJ_59_PARSER_H
-
-/**
-GLOBÁLNÍ PROMĚNNÉ
-*/
-extern tSymbolTable *table;
-
 
 /**
 HLAVIČKY FUNKCÍ
 */
-int parser (tSymbolTable *table);   //syntaktický analyzátor
+void parse ();  
+void body ();
+void function ();
+void arguments ();
+void params ();
+void nextParams ();
+void class ();
 
-
-
+#endif //IFJ_59_PARSER_H
