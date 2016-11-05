@@ -282,6 +282,11 @@ tToken * getToken(){
 				break;
 
 			case LA_COMPLETE_IDENT:
+				if (buffer[i-1] = 46) {
+					if (c != 95 && c != 36 && c < 65 && c > 90 && c < 97 && c > 122) {
+						throwException(1, GlobalRow, GlobalColumn);
+					}
+				}
 				if (((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c == 95) || (c == 36))) { // a..z,A..Z,_,$
 					buffer[i] = c;
 					i++;
@@ -289,7 +294,7 @@ tToken * getToken(){
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_complete_ident;
-					return token;	
+					return token;
 				}
 				break;
 			// konec identifikatoru

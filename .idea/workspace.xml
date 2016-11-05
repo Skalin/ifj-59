@@ -11,7 +11,7 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.2 - uprava escape a stringu">
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.c" afterPath="$PROJECT_DIR$/lexical_analyzer.c" />
     </list>
@@ -134,8 +134,8 @@
       <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="421" column="22" selection-start-line="421" selection-start-column="22" selection-end-line="421" selection-end-column="22" />
+            <state relative-caret-position="143">
+              <caret line="286" column="67" selection-start-line="286" selection-start-column="67" selection-end-line="286" selection-end-column="67" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
@@ -484,14 +484,7 @@
       <workItem from="1477765362576" duration="4810000" />
       <workItem from="1477864381455" duration="14289000" />
       <workItem from="1477998961923" duration="3464000" />
-      <workItem from="1478367872277" duration="267000" />
-    </task>
-    <task id="LOCAL-00002" summary="[MODIFY] 0.2 - přídána funkce k alokaci další položky seznamu&#10;">
-      <created>1477592927321</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1477592927323</updated>
+      <workItem from="1478367872277" duration="1004000" />
     </task>
     <task id="LOCAL-00003" summary="[MODIFY] 0.2 - přídána funkce, která nuluje danou položku + doplněny komentáře&#10;">
       <created>1477596520145</created>
@@ -829,11 +822,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478006509155</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="[MODIFY] 0.2 - dodatečná kontrola EOF, smazání starého nefunkčního escape kodu">
+      <created>1478368189225</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1478368189226</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54576000" />
+    <option name="totallyTimeSpent" value="55313000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -919,7 +919,8 @@
     <MESSAGE value="[MODIFY] 0.2 - chybějící include pro error_handler.h a úprava pozice glob. promenných Rows a Columns" />
     <MESSAGE value="[MODIFY] 0.2 - global file" />
     <MESSAGE value="[MODIFY] 0.2 - uprava escape a stringu" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.2 - uprava escape a stringu" />
+    <MESSAGE value="[MODIFY] 0.2 - dodatečná kontrola EOF, smazání starého nefunkčního escape kodu" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.2 - dodatečná kontrola EOF, smazání starého nefunkčního escape kodu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1336,8 +1337,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="421" column="22" selection-start-line="421" selection-start-column="22" selection-end-line="421" selection-end-column="22" />
+        <state relative-caret-position="143">
+          <caret line="286" column="67" selection-start-line="286" selection-start-column="67" selection-end-line="286" selection-end-column="67" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>
