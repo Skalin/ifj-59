@@ -526,7 +526,7 @@ tToken * getToken(){
 
 
 
-		if (i == 32) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer
+		if (i == 31) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer
 			updateToken(token, buffer);
 			//token->length += i; ERROR tohle by měla obsloužit funkce updateToken 
 			for (int j = 0; j < i; j++) {

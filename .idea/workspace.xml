@@ -134,8 +134,8 @@
       <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="286" column="67" selection-start-line="286" selection-start-column="67" selection-end-line="286" selection-end-column="67" />
+            <state relative-caret-position="194">
+              <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
@@ -484,14 +484,7 @@
       <workItem from="1477765362576" duration="4810000" />
       <workItem from="1477864381455" duration="14289000" />
       <workItem from="1477998961923" duration="3464000" />
-      <workItem from="1478367872277" duration="1004000" />
-    </task>
-    <task id="LOCAL-00003" summary="[MODIFY] 0.2 - přídána funkce, která nuluje danou položku + doplněny komentáře&#10;">
-      <created>1477596520145</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1477596520145</updated>
+      <workItem from="1478367872277" duration="1106000" />
     </task>
     <task id="LOCAL-00004" summary="[MODIFY] 0.2 - přídána funkce realokující paměť + doplněny komentáře&#10;">
       <created>1477625027714</created>
@@ -829,11 +822,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478368189226</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="[MODIFY] 0.2 - uprava identifikatoru">
+      <created>1478368897251</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1478368897251</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55313000" />
+    <option name="totallyTimeSpent" value="55415000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -920,7 +920,8 @@
     <MESSAGE value="[MODIFY] 0.2 - global file" />
     <MESSAGE value="[MODIFY] 0.2 - uprava escape a stringu" />
     <MESSAGE value="[MODIFY] 0.2 - dodatečná kontrola EOF, smazání starého nefunkčního escape kodu" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.2 - dodatečná kontrola EOF, smazání starého nefunkčního escape kodu" />
+    <MESSAGE value="[MODIFY] 0.2 - uprava identifikatoru" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.2 - uprava identifikatoru" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1337,8 +1338,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="286" column="67" selection-start-line="286" selection-start-column="67" selection-end-line="286" selection-end-column="67" />
+        <state relative-caret-position="194">
+          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>
