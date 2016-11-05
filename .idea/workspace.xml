@@ -134,8 +134,8 @@
       <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="284" column="40" selection-start-line="284" selection-start-column="40" selection-end-line="284" selection-end-column="40" />
+            <state relative-caret-position="314">
+              <caret line="285" column="72" selection-start-line="285" selection-start-column="72" selection-end-line="285" selection-end-column="72" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
@@ -484,14 +484,7 @@
       <workItem from="1477765362576" duration="4810000" />
       <workItem from="1477864381455" duration="14289000" />
       <workItem from="1477998961923" duration="3464000" />
-      <workItem from="1478367872277" duration="3422000" />
-    </task>
-    <task id="LOCAL-00013" summary="[MODIFY] 0.2 - some minor changes">
-      <created>1477757547202</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1477757547202</updated>
+      <workItem from="1478367872277" duration="4080000" />
     </task>
     <task id="LOCAL-00014" summary="[MODIFY] 0.2 - some minor changes">
       <created>1477757702590</created>
@@ -829,11 +822,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478371077405</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="[MODIFY] 0.2 - uprava complete_ident">
+      <created>1478371309988</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1478371309988</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57731000" />
+    <option name="totallyTimeSpent" value="58389000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1340,8 +1340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="284" column="40" selection-start-line="284" selection-start-column="40" selection-end-line="284" selection-end-column="40" />
+        <state relative-caret-position="314">
+          <caret line="285" column="72" selection-start-line="285" selection-start-column="72" selection-end-line="285" selection-end-column="72" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>
