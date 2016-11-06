@@ -17,12 +17,16 @@
 /**
 HLAVIČKY FUNKCÍ
 */
-void parse ();  
-void body ();
-void function ();
-void arguments ();
-void params ();
-void nextParams ();
-void class ();
+void pMain();  
+void pClass();
+void pVars();
+void pVar();
+void pFunction();
+void pArgs();
+void pCommands();
+void pIf();
+void pWhile();
 
+int isVar(int type);
+  
 #endif //IFJ_59_PARSER_H
