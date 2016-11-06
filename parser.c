@@ -15,3 +15,51 @@
 #include "parser.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
+
+void pMain(){
+/**
+ *
+ */
+}
+void pClass(){
+/**
+ *
+ */
+}
+void pVars(){
+/**
+ *
+ */
+}
+void pVar(){
+/**
+ *
+ */
+}
+void pFunction(){
+/**
+ *
+ */
+}
+void pArgs(){
+/**
+ *
+ */
+}
+void pCommands(){
+/**
+ *
+ */
+}
+void pIf(){
+/**
+ *
+ */
+}
+void pWhile(){
+/**
+ *
+ */
+}
+
+int isVar(int type){}
