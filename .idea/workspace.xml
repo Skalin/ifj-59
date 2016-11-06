@@ -14,7 +14,6 @@
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.c" afterPath="$PROJECT_DIR$/lexical_analyzer.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.h" afterPath="$PROJECT_DIR$/lexical_analyzer.h" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+            <state relative-caret-position="365">
+              <caret line="431" column="24" selection-start-line="431" selection-start-column="24" selection-end-line="431" selection-end-column="24" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
@@ -410,14 +409,7 @@
       <workItem from="1477864381455" duration="14289000" />
       <workItem from="1477998961923" duration="3464000" />
       <workItem from="1478367872277" duration="4358000" />
-      <workItem from="1478436466368" duration="2214000" />
-    </task>
-    <task id="LOCAL-00016" summary="[MODIFY] 0.2 - some minor changes">
-      <created>1477758223916</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1477758223916</updated>
+      <workItem from="1478436466368" duration="3513000" />
     </task>
     <task id="LOCAL-00017" summary="[MODIFY] 0.2 - some minor changes">
       <created>1477758560618</created>
@@ -755,11 +747,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478372244004</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="[MODIFY] 0.2 - prvni stage octaloveho cisla, oprava cislovani radku a &quot;sloupcu&quot;">
+      <created>1478438743167</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1478438743168</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60881000" />
+    <option name="totallyTimeSpent" value="62180000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -824,7 +823,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.2 - přídána funkce pro alokaci paměti&#10;" />
     <MESSAGE value="[MODIFY] 0.2 - přídána funkce k alokaci další položky seznamu&#10;" />
     <MESSAGE value="[MODIFY] 0.2 - přídána funkce, která nuluje danou položku + doplněny komentáře&#10;" />
     <MESSAGE value="[MODIFY] 0.2 - přídána funkce realokující paměť + doplněny komentáře&#10;" />
@@ -849,7 +847,8 @@
     <MESSAGE value="[MODIFY] 0.2 - uprava identifikatoru" />
     <MESSAGE value="[MODIFY] 0.2 - uprava bufferu" />
     <MESSAGE value="[MODIFY] 0.2 - uprava complete_ident" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.2 - uprava complete_ident" />
+    <MESSAGE value="[MODIFY] 0.2 - prvni stage octaloveho cisla, oprava cislovani radku a &quot;sloupcu&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.2 - prvni stage octaloveho cisla, oprava cislovani radku a &quot;sloupcu&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1246,14 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="149" column="32" selection-start-line="149" selection-start-column="32" selection-end-line="149" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/error_handler.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1264,10 +1255,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="149" column="32" selection-start-line="149" selection-start-column="32" selection-end-line="149" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+        <state relative-caret-position="365">
+          <caret line="431" column="24" selection-start-line="431" selection-start-column="24" selection-end-line="431" selection-end-column="24" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>

@@ -417,7 +417,6 @@ tToken * getToken(){
 					buffer[i] = '\t';
 					i++;
 					status = LA_STRING_PREP;
-			// oktalovy cisla zatim kasleme, viz TODO
 				} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
 					octalBuffer[0] = c;
 					status = LA_OCT1;
@@ -425,14 +424,29 @@ tToken * getToken(){
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 				break;
-			// zde pak bude octal, jeste neni doresen jak ma koncit
-			case LA_OCT1;
+			// octalovy cisla -> \00 .. \37
+			case LA_OCT1:
 				if (c >= 48 && c <= 55) {
-
+					octalBuffer[1] = c;
+					status = LA_OCT2;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn)
+					throwException(1, GlobalRow, GlobalColumn);
 				}
-
+				break;
+			// octalovy cisla -> \001 .. \377
+			case LA_OCT2:
+				if (c >= 49 && c <= 55) {
+					octalBuffer[2] = c;
+					c = octToAscii(octalBuffer);
+					i++;
+					for (int j = 0; j <= 2; j++) {
+						octalBuffer[i] = '\0';
+					}
+					status = LA_STRING_PREP;
+				} else {
+					throwException(1, GlobalRow, GlobalColumn);
+				}
+				break;
 			// dalsi porovnani KA
 			case LA_GREATER:
 				if (c == 61) { // >=
