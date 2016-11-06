@@ -440,7 +440,7 @@ tToken * getToken(){
 					c = octToAscii(octalBuffer);
 					i++;
 					for (int j = 0; j <= 2; j++) {
-						octalBuffer[i] = '\0';
+						octalBuffer[j] = '\0';
 					}
 					status = LA_STRING_PREP;
 				} else {
