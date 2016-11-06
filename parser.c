@@ -53,7 +53,7 @@ void pSingleCommand(){
  */
 }
 void pIf(){
-/**
+/***
  * if ( <expr> ) <commands> else <commands>
  */
 }
