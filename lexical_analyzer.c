@@ -128,6 +128,7 @@ tToken * getToken(){
 	tStatus status = LA_START;
 
 	char buffer[32];
+	char octalBuffer[3];
 	memset(&buffer, 0, 32);
 	int i = 0;
 
@@ -135,10 +136,10 @@ tToken * getToken(){
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(global.file);
 		
-		GlobalRow++; // pozice na radku, resetuje se pri kazdem novem radku..
+		GlobalColumn++; // pozice na radku, resetuje se pri kazdem novem radku..
 		if (c == '\n') {
-			GlobalColumn++; // pocet radku
-			GlobalRow = 0; // reset pozice na radku
+			GlobalRow++; // pocet radku
+			GlobalColumn = 0; // reset pozice na radku
 		}
 
 		switch(status) {
@@ -416,17 +417,36 @@ tToken * getToken(){
 					buffer[i] = '\t';
 					i++;
 					status = LA_STRING_PREP;
-			// oktalovy cisla zatim kasleme, viz TODO
-			//	} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
-			//		token->status = LA_OCT1;
-			//		continue;
-			//
+				} else if (c >= 48 && c <= 51) { // octalovy cisla -> \0 .. \3
+					octalBuffer[0] = c;
+					status = LA_OCT1;
 				} else {
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 				break;
-			// zde pak bude octal, jeste neni doresen jak ma koncit
-
+			// octalovy cisla -> \00 .. \37
+			case LA_OCT1:
+				if (c >= 48 && c <= 55) {
+					octalBuffer[1] = c;
+					status = LA_OCT2;
+				} else {
+					throwException(1, GlobalRow, GlobalColumn);
+				}
+				break;
+			// octalovy cisla -> \001 .. \377
+			case LA_OCT2:
+				if (c >= 49 && c <= 55) {
+					octalBuffer[2] = c;
+					c = octToAscii(octalBuffer);
+					i++;
+					for (int j = 0; j <= 2; j++) {
+						octalBuffer[i] = '\0';
+					}
+					status = LA_STRING_PREP;
+				} else {
+					throwException(1, GlobalRow, GlobalColumn);
+				}
+				break;
 			// dalsi porovnani KA
 			case LA_GREATER:
 				if (c == 61) { // >=
@@ -547,8 +567,14 @@ tToken * getToken(){
 	return token;
 } //end of function
 
+char octToAscii(char *octalArray) {
+	int decimalNumber = octalArray[0]*8*8 + octalArray[1]*8 + octalArray[2];
+	char c = decimalNumber;
+	return c;
+}
+
+
 /*
  * TODO:
  * prevod oktalovych cisel na decimalni a nasledny prevod na ASCII
- * vyresit alokaci
  */

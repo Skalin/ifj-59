@@ -143,5 +143,11 @@ void fillToken(tToken * token, tokenType type);
  */
 void tokenReturnToken(tToken * token);
 
+/*
+ * Funkce ziska z LA trimistne octalove cislo a prevede jej na char, ktery vrati
+ * @param octal
+ */
+char octToAscii(char *octalArray);
+
 
 #endif
