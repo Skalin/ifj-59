@@ -16,34 +16,30 @@
 #include "garbage_collector.h"
 #include "error_handler.h"
 
-void pMain(){
-/**
- *
- */
-}
 void pClass(){
 /**
- *
- */
-}
-void pVars(){
-/**
- *
- */
-}
-void pVar(){
-/**
+ * class Main {
+ * <type> Function {
+ * }
  *
  */
 }
 void pFunction(){
 /**
+ * <type> ID(<params>){<commands>}
+ */
+}
+void pVar(){
+/**
+ * <type> ID = <expr>;
+ * <type> ID;
  *
  */
 }
-void pArgs(){
+
+void pParams(){
 /**
- *
+ * <type> ID
  */
 }
 void pCommands(){
@@ -51,14 +47,19 @@ void pCommands(){
  *
  */
 }
-void pIf(){
+void pSingleCommand(){
 /**
  *
  */
 }
+void pIf(){
+/**
+ * if ( <expr> ) <commands> else <commands>
+ */
+}
 void pWhile(){
 /**
- *
+ * while ( <expr> ) { <commands> }
  */
 }
 
