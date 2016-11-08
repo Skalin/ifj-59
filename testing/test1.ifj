@@ -1,7 +1,20 @@
+"Očekávám t_string"
+    "\101\110\117\112"
+    "\257" 
+    
+"Očekávám t_error"   
+    """
+    ifdf.
+    456.54e
+    456.54e-
+    "\5"
+    "\z"
+    123.
+
 "Očekávám t_int"
     1
     01
-    05789
+    0554789
     99999
     
 "Očekávám t_double"
@@ -13,15 +26,15 @@
     123.124e+565
     025e98
     125e-56
-
+    
 "Očekávám t_simple_ident"
     ident
     ident4
     Ident
     $ident
     __ident
-    opravdu_dlouhy_nazev_indetifikatoru_odedeleny_podtrzitky45
-    
+    opravdu_dlouhy_nazev_indetifikatoru_odedeleny_podtrzitky_nyni_jeste_delsi45
+
 "Očekávám t_complete_ident"
     ids.isd
     $asd.gf
@@ -29,8 +42,21 @@
     _._
     
 "Očekávám i_int a t_simple_ident"
-    1_sed
-
+    1_sed        
+    
+"Očekávám t_string"
+    ""
+    "ahoj"
+    "string s mezerami"
+    "(){}[]==!?/0+-*'@^<>%°"
+    "Příliš žluťoučký kůň úpěl ďábelské ódy :-)"
+    "opravdu velice dlouhý string, navíc se spoustou divných znaků, včetně čárek a diakritiky"
+    "jeden radek\ndruhy radek"
+    "\ttabulator"
+    "lomitko\\"
+    "uvozovky\"\"\""
+         
+    
 "Očekávám t_kw_XXX"      
     class
     static
@@ -94,26 +120,3 @@
 "Očekávám t_block_comment_end"  
     */
 
-"Očekávám t_string"
-    ""
-    "ahoj"
-    "string s mezerami"
-    "(){}[]==!?/0+-*'@^<>%°"
-    "Příliš žluťoučký kůň úpěl ďábelské ódy :-)"
-    "opravdu velice dlouhý string, navíc se spoustou divných znaků, včetně čárek a diakritiky"
-    "jeden radek\ndruhy radek"
-    "\ttabulator"
-    "lomitko\\"
-    "uvozovky\"\"\""
-    "oktalova cisla\017"
-    "\377"    
-    
-"Očekávám t_error"
-    123.
-    456.54e
-    456.54e-
-    """
-    "\5"
-    "\z"
-    ifdf.
-    

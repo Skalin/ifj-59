@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
    
     tToken *pToken = NULL;
 
-    for (int j = 0; j <= 75; j++){
+    for (int j = 0; j <= 121; j++){
 
         pToken = getToken(); 
         printToken(pToken);    
