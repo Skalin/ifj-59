@@ -437,7 +437,7 @@ tToken * getToken(){
 			case LA_OCT2:
 				if (c >= 49 && c <= 55) {
 					octalBuffer[2] = c;
-					c = octToAscii(octalBuffer);
+					buffer[i] = c = octToAscii(octalBuffer);
 					i++;
 					for (int j = 0; j <= 2; j++) {
 						octalBuffer[j] = '\0';
