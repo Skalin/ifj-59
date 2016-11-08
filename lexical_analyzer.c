@@ -568,7 +568,7 @@ tToken * getToken(){
 } //end of function
 
 char octToAscii(char *octalArray) {
-	int decimalNumber = octalArray[0]*8*8 + octalArray[1]*8 + octalArray[2];
+	int decimalNumber = (int)octalArray[0]*8*8 + (int)octalArray[1]*8 + (int)octalArray[2];
 	char c = decimalNumber;
 	return c;
 }
