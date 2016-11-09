@@ -137,7 +137,7 @@ tToken * getToken(){
 		c = fgetc(global.file);
 		
 		GlobalColumn++; // pozice na radku, resetuje se pri kazdem novem radku..
-		if (c == 10co  && status != LA_STRING_PREP) {
+		if (c == 10 && status != LA_STRING_PREP) {
 			GlobalRow++; // pocet radku
 			GlobalColumn = 0; // reset pozice na radku
 		}
