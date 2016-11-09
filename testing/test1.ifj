@@ -1,6 +1,5 @@
 "Očekávám t_string"
     "\101\110\117\112"
-    "\257" 
     
 "Očekávám t_error"   
     """

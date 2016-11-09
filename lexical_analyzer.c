@@ -424,18 +424,19 @@ tToken * getToken(){
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 				break;
-			// octalovy cisla -> \00 .. \37
 			case LA_OCT1:
-				if (c >= 48 && c <= 55) {
+                if (c == 48) {  // 0
 					octalBuffer[1] = c;
-					status = LA_OCT2;
+					status = LA_OCT2_Z;
+				} else if (c >= 49 && c <= 55) {   // 1..7
+					octalBuffer[1] = c;
+					status = LA_OCT2_NZ;
 				} else {
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 				break;
-			// octalovy cisla -> \001 .. \377
-			case LA_OCT2:
-				if (c >= 49 && c <= 55) {
+			case LA_OCT2_Z:
+				if (c >= 49 && c <= 55) {   // 1..7
 					octalBuffer[2] = c;
 					buffer[i] = c = octToAscii(octalBuffer);
 					i++;
@@ -447,6 +448,19 @@ tToken * getToken(){
 					throwException(1, GlobalRow, GlobalColumn);
 				}
 				break;
+            case LA_OCT2_NZ:
+				if (c >= 48 && c <= 55) {   // 0..7
+					octalBuffer[2] = c;
+					buffer[i] = c = octToAscii(octalBuffer);
+					i++;
+					for (int j = 0; j <= 2; j++) {
+						octalBuffer[j] = '\0';
+					}
+					status = LA_STRING_PREP;
+				} else {
+					throwException(1, GlobalRow, GlobalColumn);
+				}
+				break;    
 			// dalsi porovnani KA
 			case LA_GREATER:
 				if (c == 61) { // >=
@@ -548,7 +562,6 @@ tToken * getToken(){
 
 		if (i == 31) { // pokud zaplnim buffer, nahraju data do tokenu, prictu delku bufferu a vynuluju buffer
 			updateToken(token, buffer);
-			//token->length += i; ERROR tohle by měla obsloužit funkce updateToken 
 			for (int j = 0; j < i; j++) {
 				buffer[j] = '\0';
 			}
@@ -568,9 +581,7 @@ tToken * getToken(){
 } //end of function
 
 char octToAscii(char *octalArray) {
-	int decimalNumber = (int)octalArray[0]*8*8 + (int)octalArray[1]*8 + (int)octalArray[2];
-	char c = decimalNumber;
-	return c;
+	return (octalArray[0]-48)*8*8 + (octalArray[1]-48)*8 + (octalArray[2]-48);
 }
 
 

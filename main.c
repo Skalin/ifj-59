@@ -19,7 +19,9 @@ int main(int argc, char* argv[]) {
 
         pToken = getToken(); 
         printToken(pToken);    
-    }
+    }/*
+    char pole[3] = "101";
+    printf("oct=%s ascii=%d\n",pole,octToAscii(pole));*/
     return 0;
 }
  
