@@ -74,8 +74,8 @@ typedef enum {
 	LA_NEW_LINE, // Escape noveho radku '\n'
     LA_QUOTE, // Escape uvozovek '"'
     LA_OCT1, // První znak octanového čísla
-    LA_OCT2, // Druhý znak octanového čísla
-    LA_OCT, // Třetí znak octanového čísla, finální octanové číslo
+    LA_OCT2_Z,  // Druhý znak octalového čísla (nulový)
+    LA_OCT2_NZ, // Druhý znak octalového čísla (nenulový)
     // Keywords
 	LA_KW_BOOLEAN,
 	LA_KW_BREAK,
