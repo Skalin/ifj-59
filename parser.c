@@ -15,6 +15,7 @@
 #include "parser.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
+#include "lexical_analyzer.h"
 
 void pClass(){
 /**
