@@ -32,7 +32,12 @@ void throwException(int errorNumber, int row, int column) {
         case 3:
             fprintf(stderr, "Semantic analyses error (Function, class or variable is not defined)\n");
             exit_code = 3;
-            break;        
+            break;   
+            
+        case 9:
+            fprintf(stderr, "Division by zero\n");
+            exit_code = 9;
+            break;    
             
         case 99:
             fprintf(stderr, "Internal error ");
