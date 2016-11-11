@@ -23,6 +23,17 @@ void throwException(int errorNumber, int row, int column) {
             fprintf(stderr, "Lex mistake (Invalid token)\n");
             exit_code = 1;
             break;
+            
+        case 2:
+            fprintf(stderr, "Syntactic analyses error\n");
+            exit_code = 2;
+            break;  
+            
+        case 3:
+            fprintf(stderr, "Semantic analyses error (Function, class or variable is not defined)\n");
+            exit_code = 3;
+            break;       
+            
         case 10:
             fprintf(stderr, "Allocation error\n");
             exit_code = 10;
