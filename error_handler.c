@@ -32,17 +32,23 @@ void throwException(int errorNumber, int row, int column) {
         case 3:
             fprintf(stderr, "Semantic analyses error (Function, class or variable is not defined)\n");
             exit_code = 3;
-            break;       
-            
-        case 10:
-            fprintf(stderr, "Allocation error\n");
-            exit_code = 10;
-            break;   
+            break;        
             
         case 99:
             fprintf(stderr, "Internal error ");
             exit_code = 99;
             break;
+            
+        case eAllocation:
+            fprintf(stderr, "Allocation error\n");
+            exit_code = 11;
+            break;        
+            
+        case eEOF:
+            fprintf(stderr, "End of file\n");
+            exit_code = 12;
+            break;       
+            
             //Sem doplňujte případné další chyby
         default:
             fprintf(stderr, "Unknown error\n");
