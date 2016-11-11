@@ -21,16 +21,16 @@ void pParse(){
   tToken * token;
   
   if ((token = malloc(sizeof(tToken))) == NULL) //
-	  {
+    {
     throwException(10,0,0);
     return NULL;
     }
   
   
- 	token = token_get();
-	if(token->type != t_eof)
-	  {
-		throwException(12,0,0);
+  token = token_get();
+  if(token->type != t_eof)
+    {
+    throwException(12,0,0);
     } 
   
 }  
