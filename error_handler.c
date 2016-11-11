@@ -23,6 +23,11 @@ void throwException(int errorNumber, int row, int column) {
             fprintf(stderr, "Lex mistake (Invalid token)\n");
             exit_code = 1;
             break;
+        case 10:
+            fprintf(stderr, "Allocation error\n");
+            exit_code = 10;
+            break;   
+            
         case 99:
             fprintf(stderr, "Internal error ");
             exit_code = 99;
