@@ -17,6 +17,13 @@
 #include "error_handler.h"
 #include "lexical_analyzer.h"
 
+void pParse(){
+  tToken * token;
+  
+  
+  
+}  
+
 void pClass(){
 /**
  * class Main {
