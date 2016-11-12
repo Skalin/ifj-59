@@ -11,11 +11,15 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "parser.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
 #include "lexical_analyzer.h"
+#include "table.h"
+#include "generator.h"
+#include "stack.h"
 
 void pParse(){
   tToken * token;
