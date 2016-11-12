@@ -94,15 +94,4 @@ typedef struct {
 	char data[]; // Data, která obshahuje
 } tToken;
 
-/*
- * Struktura globálních proměnných
- */
-
-typedef struct tGlobal{
-	FILE *file; // FILE
-	char *fileName; // globalni nazev souboru
-} tGlobal;
-
-struct tGlobal global;
-
 #endif
