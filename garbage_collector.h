@@ -51,8 +51,8 @@ void * plusMalloc(int length);
 /*
  * Funkce realokuje potřebnou paměť. Pokud není paměť alokovaná, volá funkci plusMalloc nad danou velikosti a vrací
  * pointer na alokovanou paměť.
- * @param length    místo potřebné k alokace
  * @param *destPtr  ukazatel koncovou adresu
+ * @param length    místo potřebné k alokace
  */
 void * plusRealloc(void * destPtr, int length);
 
@@ -63,9 +63,9 @@ void plusFree();
 
 /*
  * Funkce alokuje paměť pro další položky seznamu.
+ * @param *tmpVar   ukazatel
  * @param length    místo potřebné pro alokaci
  * @param *target   ukazatel na položku v seznamu
- * @param *tmpVar   ukazatel
  */
 void plusAddReallocMem(void * tmpVar, int length, void * target);
 
