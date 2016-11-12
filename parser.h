@@ -17,6 +17,7 @@
 /**
 HLAVIČKY FUNKCÍ
 */
+void pParse();  
 void pMain();  
 void pClass();
 void pVars();
