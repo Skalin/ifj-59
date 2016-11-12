@@ -16,6 +16,9 @@
 #define GARBAGE_COLLECTOR
 
 
+#include <stdio.h>
+
+
 
 
 typedef struct GarbageList
