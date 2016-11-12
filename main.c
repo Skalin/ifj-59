@@ -1,4 +1,6 @@
 #include "lexical_analyzer.h"
+#include "garbage_collector.h"
+#include "error_handler.h"
 #include <stdbool.h>
 
 static const char *tokenTypeString[] = {
@@ -10,18 +12,29 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
-    global.fileName = "./testing/test1.ifj";
-    global.file = fopen(global.fileName, "r");
-   
+    if(argc != 2)
+        printf("");
+        //throwException(99, 0, 0);
+    else {
+        global.file = fopen(argv[1], "r");
+        if ( global.file == NULL)
+        //    throwException(99, 0, 0);
+        global.fileName = argv[1];
+    }
+
+    /*
+
     tToken *pToken = NULL;
 
     for (int j = 0; j <= 121; j++){
 
         pToken = getToken(); 
         printToken(pToken);    
-    }/*
+    }
     char pole[3] = "101";
-    printf("oct=%s ascii=%d\n",pole,octToAscii(pole));*/
+    printf("oct=%s ascii=%d\n",pole,octToAscii(pole));
+
+     */
     return 0;
 }
  
