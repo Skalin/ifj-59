@@ -15,27 +15,36 @@
 #ifndef GARBAGE_COLLECTOR
 #define GARBAGE_COLLECTOR
 
+#include <stdlib.h>
+#include <stdio.h>
 
 
 
-typedef struct GarbageList
+struct GarbageList
 {
-    void * data;
-    int length;
-    void * nextPtr;
-} tGarbageList, *tGarbageListPtr;
+    void * dataPointer;
+    struct GarbageList * nextPtr; // Pointer on a new item
+};
 
 
 /*
  * Struktura globálních proměnných
  */
 
-typedef struct tGlobal{
-	FILE *file; // FILE
-	char *fileName; // globalni nazev souboru
-} tGlobal;
+struct tGlobal{
 
-struct tGlobal global;
+    // Listový seznam obsahující alokované položky
+    struct GarbageList * wholeList;
+    struct GarbageList * listLast;
+
+    // Globální práce se vstupním souborem
+    FILE *file; // FILE
+	char *fileName; // globalni nazev souboru
+
+    //Ostatní
+};
+
+extern struct tGlobal global;
 
 
 /*
@@ -43,7 +52,7 @@ struct tGlobal global;
  * @param length    místo potřebné k alokaci
  * @return          pointer na alokované místo
  */
-void * plusMalloc(int length);
+void * plusMalloc(unsigned int length);
 
 /*
  * Funkce realokuje potřebnou paměť. Pokud není paměť alokovaná, volá funkci plusMalloc nad danou velikosti a vrací
@@ -51,25 +60,23 @@ void * plusMalloc(int length);
  * @param length    místo potřebné k alokace
  * @param *destPtr  ukazatel koncovou adresu
  */
-void * plusRealloc(void * destPtr, int length);
+void * plusRealloc(void * destPtr,unsigned int length);
 
 /*
- * Funkce uvolní veškerou paměť. Dochází k uvolnění dat a nakonec si uvolní i samotný list.
+ * Funkce inicializuje global proměnnou
  */
-void plusFree();
+void globalInit();
 
 /*
- * Funkce alokuje paměť pro další položky seznamu.
- * @param length    místo potřebné pro alokaci
- * @param *target   ukazatel na položku v seznamu
- * @param *tmpVar   ukazatel
+ * Funkce uvolní paměť jednoho prvku seznamu
+ * @param memoryPtr ukazatel na paměť prvku, kterou chceme uvolnit
  */
-void plusAddReallocMem(void * tmpVar, int length, void * target);
+void plusFree(void * memoryPtr);
 
 /*
- * Funkce prochází seznam a danou položku nastaví na NULL.
- * @param *target    ukazatel na položku v seznamu
+ * * Funkce uvolní veškerou paměť a uzavře načítaný soubor
  */
-void nullData(void * target);
+void finalFree();
+
 
 #endif //IFJ_59_GARBAGE_COLLECTOR_H

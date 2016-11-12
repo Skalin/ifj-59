@@ -12,154 +12,119 @@
 #include "garbage_collector.h"
 #include "error_handler.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-tGarbageListPtr listFirst = NULL;
-tGarbageListPtr listLast = NULL;
+// Globální proměnná
+struct tGlobal global;
 
-void * plusMalloc(int length) {
-    //Funkce alokuje paměť a zařadí nově alokovanou položku do listu
+//Funkce alokuje paměť a zařadí nově alokovanou položku do listu
+void * plusMalloc(unsigned int length) {
 
-    tGarbageListPtr tmp = malloc(sizeof(struct GarbageList));
-
-    if (tmp == NULL) {
+    // Pokud existuje nějaký prvek
+    if (global.wholeList->nextPtr != NULL || global.listLast != global.wholeList) {
+        global.listLast->nextPtr = malloc(sizeof(struct GarbageList));
+        //Pokud došlo k chybě při alokaci, vyhoď vyjímku
+        if(global.listLast->nextPtr == NULL)
+            throwException(99,0,0);
+        global.listLast = global.listLast->nextPtr;
+    }
+    void * newItem = (global.listLast->dataPointer = malloc(length));
+    // Pokud došlo k chybě při alokaci, vyhoď vyjímku
+    if(newItem == NULL)
         throwException(99,0,0);
-        return NULL;
-    }
+    global.listLast->nextPtr = NULL;
 
-    if (tmp != NULL) {          //inicializace dat, další položky seznamu a velikosti seznamu
-        tmp->data = NULL;
-        tmp->nextPtr = NULL;
-        tmp->length = 0;
-    }
-
-    if (listFirst == NULL) {    //v případě, ze je seznam prazdný, vkládame první prvek
-        listFirst = tmp;
-    }
-
-    else {
-        listFirst->nextPtr = tmp;
-        listFirst = tmp;
-    }
-
-    if (listLast == NULL) {     //v případě, ze je seznam prazdný, vkládame poslední (první) prvek
-        listLast = tmp;
-    }
-
-    else {
-        listLast->nextPtr = tmp;
-        listLast = tmp;
-    }
-
-    void *allocated = (void*)malloc(length);
-
-    if (allocated != NULL) {
-        tmp->data = allocated;
-        return allocated;
-    }
-
-    else {
-        throwException(99,0,0);
-        return NULL;
-    }
-
-
-
+    // Vrať ukazatel na nově alokovanou paměť
+    return newItem;
 }
 
-void * plusRealloc(void * destPtr, int length) {
+void * plusRealloc(void * destPtr,unsigned int length) {
 
-    void *tmp = NULL;
+    // Pomocná proměnná
+    struct GarbageList * tmp = global.wholeList;
 
-     if (destPtr == NULL) {                                      //paměť není alokovánam, ukazatel je roven null
-        destPtr = plusMalloc(length);                           //volání funkce plusMalloc nad danou velikostí
-        return destPtr;                                         //vrací ukazatel na alokovanou paměť
-    }   
-    
-    else {                                      //paměť není alokována
-        tmp = realloc(destPtr, length);                         //rozšíření paměti pomocí realloc
-
-                if (tmp != destPtr) {
-                    plusAddReallocMem(tmp, length, destPtr);    //alokace další položky v seznamu
-                    return tmp;
-                }
-        
-        return tmp;
-        
-    }
-    
-
-}
-
-void plusAddReallocMem(void * tmpVar, int length, void * target) {
-
-    nullData(target);
-
-    tGarbageListPtr tmp;
-    tmp = NULL;
-    tmp = malloc(sizeof(struct tGarbageListPtr *));   //alokace pameti
-
-    if (tmp != NULL) {
-        tmp->nextPtr = NULL;        //inicializace další položky na null
-        tmp->data = tmpVar;         //inicializace dat na tmpVar
-        tmp->length = length;       //inicializace velikosti seznamu na velikost
-    }
-
-    if (listFirst == NULL) {    //pokud je seznam prázdný, vkládame první prvek
-        listFirst = tmp;
-    }
-
-    else {
-        listFirst->nextPtr = tmp;
-        listFirst = tmp;
-    }
-
-    if (listLast == NULL) {     //seznam je prazdný, vkládame první prvek
-        listLast = tmp;
-    }
-
-    else {
-        listLast->nextPtr = tmp;    //uložíme si předposlední prvek
-        listLast = tmp;             //posuneme poslední prvek
-    }
-}
-
-void plusFree() {
-
-    tGarbageListPtr tmp;
-    tmp = NULL;
-
-    while (listFirst != NULL){      //procházíme list, kdokud není první položka nulová
-        tmp = listFirst;
-        listFirst = tmp->nextPtr;
-        free(tmp->data);            //uvolění dat programu
-        free(tmp);                  //uvolnění listu
-    }
-    
-    listLast = NULL;                //vynulování posledního prvku
-
-}
-
-void nullData(void * target){
-
-    tGarbageListPtr tmp;
-
-    if (listFirst != NULL) {            //pokud není seznam prazdný, prochazíme seznam
-
-        while (listFirst != NULL) {
-            tmp = listFirst;
-            if (tmp->data == target) {
-                tmp->data = NULL;           //nastavení položky na null
-                tmp = tmp->nextPtr;
-            }
+    // Pokud je v listu ještě nějaký prvek
+    while(tmp != NULL) {
+        // Pokud se nejedná o daný prvek, vezmi následující prvek a opakuj cyklus
+        if(tmp->dataPointer != destPtr) {
+            tmp = tmp->nextPtr;
+            continue;
         }
+        // Pokud je prvek nalezen, reallocuj paměť a vrať pointer na novou paměť
+        tmp->dataPointer = realloc(tmp->dataPointer, length);
+        return tmp->dataPointer;
     }
-
-    listLast = NULL;
-    
-    if (listFirst == NULL) {    //seznam je prázdý, nic se nestane
-        return;
-    }
+    // Pokud prvek v listu není, vrať NULL
+    return NULL;
 }
 
-// Zkuste se inspirovat zde http://matejmarecek.blogspot.cz/2012/01/ifj-projekt-formalni-jazyky-prekladace.html
-// Případně https://github.com/nechutny/IFJ/blob/master/src/garbage.c
+void globalInit() {
+    global.wholeList = malloc(sizeof(struct GarbageList));
+    if(global.wholeList == NULL)
+        throwException(99,0,0);
+
+    global.listLast = global.wholeList;
+    global.wholeList->dataPointer = NULL;
+}
+
+void plusFree(void * memoryPtr) {
+        // Pomocné proměnné
+        struct GarbageList* tmp = global.wholeList;
+        struct GarbageList* previous = tmp;
+
+        // Dokud se nedostanu na konec seznamu
+        while(tmp != NULL) {
+            // Pokud naleznu daný prvek, vymažu ho
+            if(tmp->dataPointer == memoryPtr) {
+                // Pokud se nejedná o poslední prvek
+                if(tmp->nextPtr != NULL) {
+                    if(previous == tmp)
+                        global.wholeList = tmp->nextPtr;
+                    else
+                        previous->nextPtr = tmp->nextPtr;
+                }
+                //Pokud se jedná o poslední prvek
+                else {
+                    global.listLast = previous;
+                    previous->nextPtr = NULL;
+
+                    if(previous == tmp)
+                        tmp->dataPointer = NULL;
+                    else
+                        free(tmp);
+                }
+                    break;
+            }
+            // Jinak pokračuju
+            previous = tmp;
+            tmp= tmp->nextPtr;
+        }
+
+        if (memoryPtr != NULL) {
+            free(memoryPtr);
+            memoryPtr = NULL;
+        }
+}
+
+void finalFree() {
+    // Pomocné proměnné
+    struct GarbageList * tmp;
+    struct GarbageList * tmp2 = global.wholeList;
+
+    // Dokud neprojdu celý seznam
+    while(tmp2 != NULL) {
+        // Pokud jsou navázána data, uvolni prvek
+        if(tmp2->dataPointer != NULL)
+            free(tmp2->dataPointer);
+        // Posun na další prvek
+        tmp = tmp2;
+        tmp2 = tmp2->nextPtr;
+        //A uvolnění prvku
+        free(tmp);
+    }
+    //Zavření souboru
+    if(global.file != NULL)
+        fclose(global.file);
+
+}
+
