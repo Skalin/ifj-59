@@ -27,6 +27,18 @@ typedef struct GarbageList
 
 
 /*
+ * Struktura globálních proměnných
+ */
+
+typedef struct tGlobal{
+	FILE *file; // FILE
+	char *fileName; // globalni nazev souboru
+} tGlobal;
+
+struct tGlobal global;
+
+
+/*
  * Funkce alokuje potřebnou paměť a zařadí nově alokovanou položku do listu.
  * @param length    místo potřebné k alokaci
  * @return          pointer na alokované místo
