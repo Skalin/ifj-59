@@ -15,8 +15,6 @@
 #ifndef GARBAGE_COLLECTOR
 #define GARBAGE_COLLECTOR
 
-#include <stdlib.h>
-#include <stdio.h>
 
 
 
@@ -57,10 +55,10 @@ void * plusMalloc(unsigned int length);
 /*
  * Funkce realokuje potřebnou paměť. Pokud není paměť alokovaná, volá funkci plusMalloc nad danou velikosti a vrací
  * pointer na alokovanou paměť.
- * @param length    místo potřebné k alokace
  * @param *destPtr  ukazatel koncovou adresu
+ * @param length    místo potřebné k alokace
  */
-void * plusRealloc(void * destPtr,unsigned int length);
+void * plusRealloc(void * destPtr, unsigned int length);
 
 /*
  * Funkce inicializuje global proměnnou

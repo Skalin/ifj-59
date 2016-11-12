@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "garbage_collector.h"
 #include "typedef.h"
 
 /*
