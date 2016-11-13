@@ -75,7 +75,8 @@ void pCommands(){
     }
     destroyToken(token);
 
-    //commands TODO TODO TODO
+    //commands TODO TODO TODO 
+    // tady asi bude velky switch a rekurzivni volani 
 
     token = getToken();
     if (token->type != LA_BRACE_R){   // right curly brace, end of block
