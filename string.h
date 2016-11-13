@@ -22,10 +22,9 @@ typedef struct SStr{
   int allocatedSize;	  // alokovaná paměť
 } SString;
 
-SString * initString ();
-
 //FUNKCE VIZ ZADÁNÍ STR 9!!!!!!!!!!!!!!!!!!!!
 
+int inintString (SStr *str)
 int addCharacter (SStr *str, char c);
 int writeString (SStr *str, char *str2);
 int compareString(SSt *str1, SString *str2);
