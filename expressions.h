@@ -18,6 +18,20 @@
 #include "table.h"
 #include "lexical_analyzer.h"
 #include "typedef.h"
+#include "ial.h"
+#include "garbage_collector.h"
 
+/* PRIORITY PRO PRECEDENCE TABLE  */
+typedef enum {
+  
+  } tPriority;
+
+/* TERMINÁLY A NONTERMINÁLY  */
+typedef enum {
+  
+  } tInputs;
+
+int precedence();
+int getRule(tStack *stack, )
 
 #endif
