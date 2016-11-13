@@ -154,6 +154,13 @@ tToken * getToken(){
                     token = updateToken(token, buffer);
 					return token;
 				// konec oddelovacu
+                } else if (c == 44) { // ,
+					token->type = t_comma;
+                    buffer[i] = c;
+					i++;
+                    token = updateToken(token, buffer);
+					return token;
+				// konec oddelovacu
 				// zavorky
 				} else if (c == 91) { // [
 					token->type = t_sq_bracket_l;

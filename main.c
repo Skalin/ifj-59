@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 static const char *tokenTypeString[] = {
-    "t_error","t_int","t_double","t_double_e","t_string","t_simple_ident","t_complete_ident","t_div","t_multi","t_plus","t_minus","t_greater","t_greater_eq","t_less","t_less_eq","t_assignment","t_comparasion","t_excl_mark","t_comparasion_ne","t_sq_bracket_l","t_sq_bracket_r","t_bracket_l","t_bracket_r","t_brace_l","t_brace_r","t_simple_comment","t_block_comment_start","t_block_comment_end","t_semicolon","t_eof","t_kw_class","t_kw_static","t_kw_boolean","t_kw_double","t_kw_int","t_kw_string","t_kw_void","t_kw_while","t_kw_for","t_kw_break","t_kw_return","t_kw_continue","t_kw_do","t_kw_if","t_kw_else","t_kw_true","t_kw_false"
+    "t_error","t_int","t_double","t_double_e","t_string","t_simple_ident","t_complete_ident","t_div","t_multi","t_plus","t_minus","t_greater","t_greater_eq","t_less","t_less_eq","t_assignment","t_comparasion","t_excl_mark","t_comparasion_ne","t_sq_bracket_l","t_sq_bracket_r","t_bracket_l","t_bracket_r","t_brace_l","t_brace_r","t_simple_comment","t_block_comment_start","t_block_comment_end","t_semicolon","t_comma","t_eof","t_kw_class","t_kw_static","t_kw_boolean","t_kw_double","t_kw_int","t_kw_string","t_kw_void","t_kw_while","t_kw_for","t_kw_break","t_kw_return","t_kw_continue","t_kw_do","t_kw_if","t_kw_else","t_kw_true","t_kw_false"
 };
 
 void printToken(tToken *token) {
@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
         //throwException(99, 0, 0);
     //else {
         globalInit();
-        global.file = fopen(argv[1], "r");
+        global.file = fopen("testing/test1.ifj", "r");
         if ( global.file == NULL)
         //    throwException(99, 0, 0);
         global.fileName = argv[1];
@@ -26,13 +26,11 @@ int main(int argc, char* argv[]) {
 
     tToken *pToken = NULL;
 
-    for (int j = 0; j <= 121; j++){
+    for (int j = 0; j <= 150; j++){
 
         pToken = getToken(); 
         printToken(pToken);    
     }
-    char pole[3] = "101";
-    printf("oct=%s ascii=%d\n",pole,octToAscii(pole));
 
     return 0;
 }

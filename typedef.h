@@ -60,6 +60,7 @@ typedef enum {
 
 	// Other
 	t_semicolon,
+    t_comma,
 	t_eof,
     
     // Keywords
