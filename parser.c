@@ -132,4 +132,29 @@ void pWhile(){
  */
 }
 
-int isVar(int type){}
+int isVar(int type){
+ 
+  tToken * token;
+  *token = getToken();
+  
+  if (token->type == LA_KEYWORD) {
+   
+    if (!strcmp(token->data, "int\0")) {
+        return type == t_kw_int;
+      } 
+    
+    if (!strcmp(token->data, "boolean\0")) {
+        return type == t_kw_boolean;
+      } 
+
+    if (!strcmp(token->data, "double\0")) {
+        return type == t_kw_doble;
+      } 
+    
+    if (!strcmp(token->data, "String\0")) {
+        return type == t_kw_string;
+      } 
+    
+  } 
+
+}
