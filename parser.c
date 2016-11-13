@@ -148,7 +148,7 @@ int isVar(int type){
       } 
 
     if (!strcmp(token->data, "double\0")) {
-        return type == t_kw_doble;
+        return type == t_kw_double;
       } 
     
     if (!strcmp(token->data, "String\0")) {
