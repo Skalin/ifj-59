@@ -10,6 +10,8 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include "expressions.h"
+
 int precTable[][] = {
 
   
