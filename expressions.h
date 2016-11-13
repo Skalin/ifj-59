@@ -9,3 +9,15 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+
+
+#ifndef EXPRESSIONS
+#define EXPRESSIONS
+
+#include "stack.h"
+#include "table.h"
+#include "lexical_analyzer.h"
+#include "typedef.h"
+
+
+#endif
