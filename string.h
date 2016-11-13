@@ -28,8 +28,8 @@ SString * initString ();
 
 int addCharacter (SStr *str, char c);
 int writeString (SStr *str, char *str2);
-int strCmpString(SSt *str1, SString *str2);
-int strAddStr(string *str1, string *str2);
+int compareString(SSt *str1, SString *str2);
+int addStr(string *str1, string *str2);
 void destroyString (SString *str);
 
 #endif
