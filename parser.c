@@ -79,6 +79,37 @@ void pIf(){
 /***
  * if ( <expr> ) <commands> else <commands>
  */
+
+    // tato funkce je volana kdyz parser obdrzi token 'if'
+    // uvolneni tokenu by se melo provest uz v hlavni funkci parseru
+
+    tToken * token = getToken();
+
+    if (token->type != LA_BRACKET_L){   // left brace
+        throwException(2, NULL, NULL);
+    }
+    destroyToken(token);
+
+    // here should be expression         // pokud budem mit gramatiku tak ze expression muze byt i v zavorkach je tahle cast zbytecna
+
+    token = getToken();
+    if (token->type != LA_BRACKET_R){   // right brace
+        throwException(2, NULL, NULL);
+    }
+    destroyToken(token);
+
+    // block of code
+    pCommands();
+
+    token = getToken();
+    if (token->type != LA_KW_ELSE){   // else
+        throwException(2, NULL, NULL);
+    }
+    destroyToken(token);
+
+    // block of code for else
+    pCommands();
+
 }
 void pWhile(){
 /**
