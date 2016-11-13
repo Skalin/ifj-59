@@ -9,7 +9,7 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-#include "table.h"
+#include "ial.h"
 #include "garbage_collector.h"
 #include <string.h>
 //Uzel BT
