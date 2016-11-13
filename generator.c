@@ -1,7 +1,7 @@
 /**
  * IFJ/IAL - Lexikální analyzátor
  * Varianta:    b/2/I
- * Soubor:      parser.h
+ * Soubor:      generator.c
  * Tým:         59
  * Autoři:      Jan Hrbotický, xhrbot01@stud.fit.vutbr.cz
  *              Dominik Skála, xskala11@stud.fit.vutbr.cz
@@ -9,25 +9,3 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-
-#ifndef IFJ_59_PARSER_H
-#define IFJ_59_PARSER_H
-
-
-/**
-HLAVIČKY FUNKCÍ
-*/
-void pParse();  
-void pMain();  
-void pClass();
-void pVars();
-void pVar();
-void pFunction();
-void pArgs();
-void pCommands();
-void pIf();
-void pWhile();
-
-int isVar(int type);
-  
-#endif //IFJ_59_PARSER_H

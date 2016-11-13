@@ -11,8 +11,6 @@
  */
 #include "garbage_collector.h"
 #include "error_handler.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 // Globální proměnná
 struct tGlobal global;
