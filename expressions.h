@@ -1,5 +1,5 @@
 /**
- * IFJ/IAL - Lexikální analyzátor
+ * IFJ/IAL - Precedenční analýza
  * Varianta:    b/2/I
  * Soubor:      expressions.h
  * Tým:         59
@@ -23,13 +23,32 @@
 
 /* PRIORITY PRO PRECEDENCE TABLE  */
 typedef enum {
-  
+    P_GREATER = L, // >
+    P_LESSER = S, // <
+    P_EQUAL = E, // =
+    P_FAIL = F, //0
   } tPriority;
 
 /* TERMINÁLY A NONTERMINÁLY  */
 typedef enum {
+    P_MUL,            // *
+    P_DIV,            // /
+    P_ADD,            // +
+    P_SUB,            // -
+    P_LESS,           // <
+    P_LESS_EQUAL,     // <=  
+    P_GREAT,          // >  
+    P_GREAT_EQUAL,    // >=  
+    P_EQUAL,          // ==
+    P_NOT_EQUAL,      // !=
+    P_ID,             // ID
+    P_DOLLAR,         //
+    P_COMMA,          // ,
+    P_BRACKET_L,      // (
+    P_BRACKER_R,      // )
   
-  } tInputs;
+  //DOPLNIT
+  } tInputs,
 
 int precedence();
 int getRule(tStack *stack, )
