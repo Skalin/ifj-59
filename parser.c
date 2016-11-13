@@ -64,7 +64,8 @@ void pParams(){
 /**
  * <type> ID
  */
-}
+}   
+      
 void pCommands(){
 /**
  * <L curly brace> <commands> <R curly brace>
@@ -130,12 +131,27 @@ void pWhile(){
 /**
  * while ( <expr> ) { <commands> }
  */
+  
+    tToken * token;
+    *token = getToken();
+  
+    if (token->type != LA_BRACKET_L) {   //pokud neexistuje levá závorka, jde o syntaktickou chybu
+       throwException(2, NULL, NULL);
+      }
+    destroyToken(token);
+  
+    token = getToken();
+    if (token->type != LA_BRACKET_R) {   //pokud neexistuje pravá závorka, jde o syntaktickou chybu
+       throwException(2, NULL, NULL);
+      }
+    destroyToken(token);
+  
+    pCommands();
 }
 
 int isVar(int type){
  
-  tToken * token;
-  *token = getToken();
+  tToken * token = getToken();
   
   if (token->type == LA_KEYWORD) {
    
