@@ -67,8 +67,22 @@ void pParams(){
 }
 void pCommands(){
 /**
- *
+ * <L curly brace> <commands> <R curly brace>
  */
+    tToken * token = getToken();
+    if (token->type != LA_BRACE_L){   // left curly brace, start of block
+        throwException(2, NULL, NULL);
+    }
+    destroyToken(token);
+
+    //commands TODO TODO TODO
+
+    token = getToken();
+    if (token->type != LA_BRACE_R){   // right curly brace, end of block
+        throwException(2, NULL, NULL);
+    }
+    destroyToken(token);
+
 }
 void pSingleCommand(){
 /**
