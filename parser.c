@@ -24,7 +24,7 @@
 void pParse(){
   tToken * token;
   
-  if ((token = malloc(sizeof(tToken))) == NULL) //
+  if ((token = plusMalloc() == NULL) //
     {
     throwException(10,0,0);
     return NULL;
