@@ -17,6 +17,9 @@
 #include "error_handler.h"
 #include "lexical_analyzer.h"
 
+/*
+ *
+ */
 void pClass(){
 /**
  * class Main {
@@ -24,6 +27,14 @@ void pClass(){
  * }
  *
  */
+
+	tToken * token = getToken();
+
+	while (token->type != t_brace_r) {
+		tokenReturnToken(token);
+		pParse();
+		token = getToken();
+	}
 }
 void pFunction(){
 /**

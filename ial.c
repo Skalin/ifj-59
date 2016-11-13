@@ -9,7 +9,7 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-#include "table.h"
+#include "ial.h"
 #include "garbage_collector.h"
 #include <string.h>
 //Uzel BT
@@ -145,7 +145,7 @@ static tBTSNodePtr BTSInsert(tBTSNodePtr *root, tableName key, tabSymbol symbol)
         // Pokud je klíč nalezen
         if (strcmp((*root)->key, key) == 0) {
             // Přepíšeme data v nalezeném uzlu a kořen navrátíme
-            (*koren)->data = symbol;
+            (*root)->data = symbol;
             return *root;
         // Pokud je klíč více vpravo, voláme rekurzivně funkci nad pravým podstromem
         } else if (strcmp((*root)->key, key) > 0)
