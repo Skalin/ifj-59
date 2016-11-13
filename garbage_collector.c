@@ -17,9 +17,8 @@ struct tGlobal global;
 
 //Funkce alokuje paměť a zařadí nově alokovanou položku do listu
 void * plusMalloc(unsigned int length) {
-
     // Pokud existuje nějaký prvek
-    if (global.wholeList->nextPtr != NULL || global.listLast != global.wholeList) {
+    if (global.wholeList->dataPointer != NULL || global.wholeList != global.listLast ) {
         global.listLast->nextPtr = malloc(sizeof(struct GarbageList));
         //Pokud došlo k chybě při alokaci, vyhoď vyjímku
         if(global.listLast->nextPtr == NULL)

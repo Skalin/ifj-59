@@ -21,7 +21,7 @@
 
 struct GarbageList
 {
-    void * dataPointer;
+    void* dataPointer;
     struct GarbageList * nextPtr; // Pointer on a new item
 };
 
@@ -33,8 +33,8 @@ struct GarbageList
 struct tGlobal{
 
     // Listový seznam obsahující alokované položky
-    struct GarbageList * wholeList;
-    struct GarbageList * listLast;
+    struct GarbageList* wholeList;
+    struct GarbageList* listLast;
 
     // Globální práce se vstupním souborem
     FILE *file; // FILE

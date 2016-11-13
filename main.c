@@ -12,17 +12,17 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
-    if(argc != 2)
-        printf("");
+    //if(argc != 2)
+    //    printf("");
         //throwException(99, 0, 0);
-    else {
+    //else {
+        globalInit();
         global.file = fopen(argv[1], "r");
         if ( global.file == NULL)
         //    throwException(99, 0, 0);
         global.fileName = argv[1];
-    }
+    //}
 
-    /*
 
     tToken *pToken = NULL;
 
@@ -34,7 +34,6 @@ int main(int argc, char* argv[]) {
     char pole[3] = "101";
     printf("oct=%s ascii=%d\n",pole,octToAscii(pole));
 
-     */
     return 0;
 }
  
