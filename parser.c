@@ -32,6 +32,7 @@ void pClass(){
 
 	while (token->type != t_brace_r) {
 		tokenReturnToken(token);
+		pParse();
 		token = getToken();
 	}
 }
