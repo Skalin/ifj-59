@@ -19,6 +19,12 @@ void throwException(int errorNumber, int row, int column) {
     fprintf(stderr, "FILE: %s | Error on line %d, in column %d\n", global.fileName, row, column);
 
     switch(errorNumber) {
+            
+        case interpretOK:
+            fprintf(stderr, "Execution stops without any exception\n");
+            exit_code = 0;
+            break;    
+            
         case 1:
             fprintf(stderr, "Lex mistake (Invalid token)\n");
             exit_code = 1;
