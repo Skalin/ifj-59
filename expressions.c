@@ -1,5 +1,5 @@
 /**
- * IFJ/IAL - Lexikální analyzátor
+ * IFJ/IAL - Precedenční analýza
  * Varianta:    b/2/I
  * Soubor:      expressions.c
  * Tým:         59
@@ -9,3 +9,27 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+
+int precTable[][] = {
+
+  
+   };
+
+int getRule (tStack *stack, ) {
+  /*
+  * FUNKCE KONTROLUJÍCÍ PRAVIDLA.
+  * stack - zásobník terminálů a nonterminálů
+  * dalším parametrem funkce by mělo by to, které pravidlo je teďka na řadě
+  */
+  
+  };
+
+
+int precedence (FILE *filename) {
+  /*
+  * FUNKCE PROVÁDĚJÍCÍ SYTAKTICKOU ANALÝZU VÝRAZU
+  */
+  
+  
+  };
+  
