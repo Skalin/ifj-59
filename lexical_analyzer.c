@@ -525,7 +525,7 @@ tToken * getToken(){
 					while (TRUE) {
 						c = fgetc(global.file);
 						if (c == EOF) {
-							throwException(1, GlobalRow, GlobalColumn);
+							throwException(2, GlobalRow, GlobalColumn);
 						} else if (c == '\n') {
 							break;
 						}
@@ -533,26 +533,31 @@ tToken * getToken(){
 					GlobalRow++;
 					status = LA_START;
 				} else if (c == 42) {
-					do {
+					while (TRUE) {
+						c = fgetc(global.file);
 						if (c == '\n') {
 							GlobalRow++;
-						} else if (c == EOF) {
-							throwException(1, GlobalRow, GlobalColumn);
-						}
-						if (c == 42) {
-							do {
+						} else if (c == EOF){
+							throwException(2, GlobalRow, GlobalColumn);
+						} else if (c == 42) {
+							while (TRUE) {
+								c = fgetc(global.file);
 								if (c == 47) {
-									return token; // opet vracim prazdny token
-								} else if (c == EOF) {
-									throwException(1, GlobalRow, GlobalColumn);
-								} else {
+									status = LA_START;
 									break;
+								} else if (c == EOF) {
+									throwException(2, GlobalRow, GlobalColumn);
+								} else {
+									if (c == '\n')
+										GlobalRow++;
+									continue;
 								}
-							} while (c != 47);
+							}
+							break;
+						} else {
+							continue;
 						}
-						continue;
-					} while (c != 42);
-					status = LA_START;
+					}
 				} else {
 					buffer[i] = 47;
 					ungetc(c, global.file);
