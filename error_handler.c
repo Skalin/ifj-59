@@ -23,11 +23,15 @@ void throwException(int errorNumber, int row, int column) {
             fprintf(stderr, "Lex mistake (Invalid token)\n");
             exit_code = 1;
             break;
+        case 2:
+            fprintf(stderr, "Syntax error (Invalid token)\n");
+            exit_code = 2;
+            break;
+            //Sem doplňujte případné další chyby
         case 99:
             fprintf(stderr, "Internal error ");
             exit_code = 99;
             break;
-            //Sem doplňujte případné další chyby
         default:
             fprintf(stderr, "Unknown error\n");
             exit_code = 10;
