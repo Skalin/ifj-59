@@ -24,19 +24,20 @@
 void pParse(){
   
   tToken * token;
+  token = getToken();
   
   if(token->type != t_kw_class)
     {
     throwException(2,0,0);
     }
-  tokenReturnToken(token);
+  destroyToken();
   
   pClass();
   
   token = getToken();            //if it works it ain't stupid hehe xd
   
   while (token->type == t_kw_class){
-    tokenReturnToken(token);
+    destroyToken();
     pClass();
     token = getToken();
   }
@@ -56,11 +57,21 @@ void pClass(){
  * }
  *
  */
+  tToken * token;
+  token = getToken();
+  
+  if (token->type != IDENTIFIKATOR TODO TODO TODO){
+  }
+  
+  
+  
 }
 void pFunction(){
 /**
  * <type> ID(<params>){<commands>}
  */
+  
+  
 }
 void pVar(){
 /**
