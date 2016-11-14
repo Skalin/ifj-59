@@ -83,11 +83,17 @@ typedef enum {
 	t_kw_false,
 	
      // Integrated functions for strings
-	t_find;
-	t_sort;
-	t_length;
-	t_substring;
-	t_compare;
+	t_find,
+	t_sort,
+	t_length,
+	t_substring,
+	t_compare,
+	
+     // Integrated functions for input and output
+	t_read_int,
+	t_read_double,
+	t_read_string,
+	t_print,
 } tokenType;
 
 
