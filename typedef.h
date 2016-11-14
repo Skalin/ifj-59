@@ -81,6 +81,13 @@ typedef enum {
 	t_kw_else,
 	t_kw_true,
 	t_kw_false,
+	
+     // Integrated functions for strings
+	t_find;
+	t_sort;
+	t_length;
+	t_substring;
+	t_compare;
 } tokenType;
 
 
