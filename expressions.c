@@ -27,7 +27,7 @@ int getRule (tStack *stack, ) {
   };
 
 
-int precedence (FILE *filename) {
+int precedAnalysis (FILE *filename) {
   /*
   * FUNKCE PROVÁDĚJÍCÍ SYTAKTICKOU ANALÝZU VÝRAZU
   */
