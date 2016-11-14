@@ -151,28 +151,29 @@ void pWhile(){
     pCommands();
 }
 
-int isVar(int type){
+int isVar(tToken token){
  
-  tToken * token = getToken();
+  tToken * token = token;
   
-  if (token->type == LA_KEYWORD) {
-   
-    if (!strcmp(token->data, "int\0")) {
-        return type == t_kw_int;
-      } 
-    
-    if (!strcmp(token->data, "boolean\0")) {
-        return type == t_kw_boolean;
-      } 
-
-    if (!strcmp(token->data, "double\0")) {
-        return type == t_kw_double;
-      } 
-    
-    if (!strcmp(token->data, "String\0")) {
-        return type == t_kw_string;
-      } 
-    
+  if (token->type == LA_INT) {
+    return TRUE;    
+  }
+  if (token->type == LA_DOUBLE) {
+  return TRUE;    
   } 
+  if (token->type == LA_DOUBLE_pE) {
+  return TRUE;    
+  } 
+  if (token->type == LA_DOUBLE_E_SIGN) {
+  return TRUE;    
+  } 
+  if (token->type == LA_DOUBLE_E) {
+  return TRUE;    
+  } 
+   if (token->type == LA_STRING) {
+  return TRUE;    
+  } 
+    
+   return FALSE;
 
 }
