@@ -25,7 +25,7 @@ void pParse(){
   
   tToken * token;
   
-  if(token->type != LA_KW_CLASS)
+  if(token->type != t_kw_class)
     {
     throwException(2,0,0);
     }
@@ -33,9 +33,9 @@ void pParse(){
   
   pClass();
   
-  token = getToken();
+  token = getToken();            //if it works it ain't stupid hehe xd
   
-  while (token->type == LA_KW_CLASS){
+  while (token->type == t_kw_class){
     tokenReturnToken(token);
     pClass();
     token = getToken();
@@ -81,7 +81,7 @@ void pCommands(){
  * <L curly brace> <commands> <R curly brace>
  */
     tToken * token = getToken();
-    if (token->type != LA_BRACE_L){   // left curly brace, start of block
+    if (token->type != t_brace_l){   // left curly brace, start of block
         throwException(2, NULL, NULL);
     }
     destroyToken(token);
@@ -90,7 +90,7 @@ void pCommands(){
     // tady asi bude velky switch a rekurzivni volani 
 
     token = getToken();
-    if (token->type != LA_BRACE_R){   // right curly brace, end of block
+    if (token->type != t_brace_r){   // right curly brace, end of block
         throwException(2, NULL, NULL);
     }
     destroyToken(token);
@@ -128,7 +128,7 @@ void pIf(){
     pCommands();
 
     tToken * token = getToken();
-    if (token->type != LA_KW_ELSE){   // else
+    if (token->type != t_kw_else){   // else
         throwException(2, NULL, NULL);
     }
     destroyToken(token);
