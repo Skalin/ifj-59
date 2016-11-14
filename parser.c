@@ -138,12 +138,7 @@ void pSingleCommand(){
   
   switch (token->type)
     {
-      case t_kw_class {
-         destroyToken(token);
-         pClass();
-         break;
-        }
-    
+        
       case t_kw_while {
          destroyToken(token);
          pWhile();
@@ -155,6 +150,51 @@ void pSingleCommand(){
          pIf();
          break;
         }
+        
+      case t_find {
+         precedence();   //TODO
+         break;
+        }  
+        
+      case t_sort {
+         precedence();   //TODO
+         break;
+        }  
+        
+      case t_length {
+         precedence();   //TODO
+         break;
+        }  
+        
+      case t_substring {
+         precedence();   //TODO
+         break;
+        }  
+        
+      case t_compare {
+         precedence();   //TODO
+         break;
+        }  
+        
+      case t_read_int {
+         precedence();   //TODO
+         break;
+        }  
+        
+      case t_read_double {
+         precedence();   //TODO
+         break;
+        }  
+        
+      case t_read_substring {
+         precedence();   //TODO
+         break;
+        } 
+        
+      case t_print {
+         precedence();   //TODO
+         break;
+        }  
         
       case t_semicolon {
          throwException(2,0,0);
