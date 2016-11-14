@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.c" afterPath="$PROJECT_DIR$/lexical_analyzer.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.c" afterPath="$PROJECT_DIR$/garbage_collector.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="547" column="38" selection-start-line="547" selection-start-column="38" selection-end-line="547" selection-end-column="38" />
+            <state relative-caret-position="277">
+              <caret line="535" column="40" selection-start-line="535" selection-start-column="40" selection-end-line="535" selection-end-column="40" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
@@ -69,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/garbage_collector.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+            <state relative-caret-position="279">
+              <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -167,8 +167,8 @@
         <option value="$PROJECT_DIR$/garbage_collector.h" />
         <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/parser.c" />
-        <option value="$PROJECT_DIR$/garbage_collector.c" />
         <option value="$PROJECT_DIR$/lexical_analyzer.c" />
+        <option value="$PROJECT_DIR$/garbage_collector.c" />
       </list>
     </option>
   </component>
@@ -371,14 +371,7 @@
       <workItem from="1478946756236" duration="1729000" />
       <workItem from="1478978439172" duration="511000" />
       <workItem from="1479041646046" duration="8363000" />
-      <workItem from="1479149908056" duration="4980000" />
-    </task>
-    <task id="LOCAL-00032" summary="[MODIFY] 0.2 - úprava makefile">
-      <created>1477770159917</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1477770159917</updated>
+      <workItem from="1479149908056" duration="5342000" />
     </task>
     <task id="LOCAL-00033" summary="[MODIFY] 0.2 - úprava makefile">
       <created>1477770336986</created>
@@ -716,11 +709,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479046240292</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="[MODIFY] 0.3 - uprava lexu pro komentare">
+      <created>1479157632818</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1479157632819</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82118000" />
+    <option name="totallyTimeSpent" value="82480000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -737,9 +737,10 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32740587" sideWeight="0.73541665" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32740587" sideWeight="0.73541665" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.124476984" sideWeight="0.49583334" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32740587" sideWeight="0.26458332" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.47083333" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -751,7 +752,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -785,7 +785,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.2 - zruseni octalovych cisel, dokud nebude vic casu, priprava na dokonceni getToken" />
     <MESSAGE value="[MODIFY] 0.2 - dodelani chybovych stavu, dokonceni vsech stavu az na oktaly, kontrola keywordu" />
     <MESSAGE value="[MODIFY] 0.2 - merge getToken" />
     <MESSAGE value="[MODIFY] 0.2 - some minor changes" />
@@ -810,7 +809,8 @@
     <MESSAGE value="[MODIFY] 0.3 - parser class" />
     <MESSAGE value="[MODIFY] 0.3 - přejmenování table na ial" />
     <MESSAGE value="[MODIFY] 0.3 - class parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.3 - class parser" />
+    <MESSAGE value="[MODIFY] 0.3 - uprava lexu pro komentare" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.3 - uprava lexu pro komentare" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1160,14 +1160,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parser.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1216,11 +1208,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="547" column="38" selection-start-line="547" selection-start-column="38" selection-end-line="547" selection-end-column="38" />
+        <state relative-caret-position="277">
+          <caret line="535" column="40" selection-start-line="535" selection-start-column="40" selection-end-line="535" selection-end-column="40" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>

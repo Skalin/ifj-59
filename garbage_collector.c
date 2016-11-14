@@ -60,6 +60,8 @@ void globalInit() {
     if(global.wholeList == NULL)
         throwException(99,0,0);
 
+	global.wholeList->nextPtr = NULL;
+
     global.listLast = global.wholeList;
     global.wholeList->dataPointer = NULL;
 }
@@ -94,7 +96,7 @@ void plusFree(void * memoryPtr) {
             }
             // Jinak pokračuju
             previous = tmp;
-            tmp= tmp->nextPtr;
+            tmp = tmp->nextPtr;
         }
 
         if (memoryPtr != NULL) {
