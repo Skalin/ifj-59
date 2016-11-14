@@ -534,11 +534,15 @@ tToken * getToken(){
 					do {
 						if (c == '\n') {
 							GlobalRow++;
+						} else if (c == EOF) {
+							throwException(1, GlobalRow, GlobalColumn);
 						}
 						if (c == 42) {
 							do {
 								if (c == 47) {
 									return token; // opet vracim prazdny token
+								} else if (c == EOF) {
+									throwException(1, GlobalRow, GlobalColumn);
 								} else {
 									break;
 								}

@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.c" afterPath="$PROJECT_DIR$/garbage_collector.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.c" afterPath="$PROJECT_DIR$/lexical_analyzer.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="535" column="40" selection-start-line="535" selection-start-column="40" selection-end-line="535" selection-end-column="40" />
+            <state relative-caret-position="362">
+              <caret line="540" column="32" selection-start-line="540" selection-start-column="32" selection-end-line="540" selection-end-column="32" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
@@ -69,11 +69,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/garbage_collector.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+            <state relative-caret-position="7">
+              <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="error_handler.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/error_handler.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -167,8 +177,8 @@
         <option value="$PROJECT_DIR$/garbage_collector.h" />
         <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/parser.c" />
-        <option value="$PROJECT_DIR$/lexical_analyzer.c" />
         <option value="$PROJECT_DIR$/garbage_collector.c" />
+        <option value="$PROJECT_DIR$/lexical_analyzer.c" />
       </list>
     </option>
   </component>
@@ -371,14 +381,7 @@
       <workItem from="1478946756236" duration="1729000" />
       <workItem from="1478978439172" duration="511000" />
       <workItem from="1479041646046" duration="8363000" />
-      <workItem from="1479149908056" duration="5342000" />
-    </task>
-    <task id="LOCAL-00033" summary="[MODIFY] 0.2 - úprava makefile">
-      <created>1477770336986</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1477770336986</updated>
+      <workItem from="1479149908056" duration="5676000" />
     </task>
     <task id="LOCAL-00034" summary="[MODIFY] 0.2 - úprava testu">
       <created>1477867680152</created>
@@ -716,11 +719,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479157632819</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="[MODIFY] 0.3 - uprava garbage">
+      <created>1479157993226</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1479157993227</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82480000" />
+    <option name="totallyTimeSpent" value="82814000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -785,7 +795,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.2 - dodelani chybovych stavu, dokonceni vsech stavu az na oktaly, kontrola keywordu" />
     <MESSAGE value="[MODIFY] 0.2 - merge getToken" />
     <MESSAGE value="[MODIFY] 0.2 - some minor changes" />
     <MESSAGE value="[MODIFY] 0.2 - includy pouze v .c, v .h definice, deklarace" />
@@ -810,7 +819,8 @@
     <MESSAGE value="[MODIFY] 0.3 - přejmenování table na ial" />
     <MESSAGE value="[MODIFY] 0.3 - class parser" />
     <MESSAGE value="[MODIFY] 0.3 - uprava lexu pro komentare" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.3 - uprava lexu pro komentare" />
+    <MESSAGE value="[MODIFY] 0.3 - uprava garbage" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.3 - uprava garbage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1083,13 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/error_handler.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testing/test1.ifj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1186,6 +1189,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/garbage_collector.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1193,6 +1204,14 @@
           <folding>
             <element signature="e#459#477#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/error_handler.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,19 +1227,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="535" column="40" selection-start-line="535" selection-start-column="40" selection-end-line="535" selection-end-column="40" />
+        <state relative-caret-position="362">
+          <caret line="540" column="32" selection-start-line="540" selection-start-column="32" selection-end-line="540" selection-end-column="32" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
