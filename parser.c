@@ -1,5 +1,5 @@
 /**
- * IFJ/IAL - Lexikální analyzátor
+ * IFJ/IAL - Syntaktická analýza
  * Varianta:    b/2/I
  * Soubor:      parser.c
  * Tým:         59
@@ -127,12 +127,44 @@ void pCommands(){
     }
     destroyToken(token);
 
-}
 void pSingleCommand(){
-/**
- *
- */
+
+   tToken * token = getToken();
+   /*tToken */
+  
+  switch (token->type)
+    {
+      case t_kw_class {
+         destroyToken(token);
+         pClass();
+         break;
+        }
+    
+      case t_kw_while {
+         destroyToken(token);
+         pWhile();
+         break;
+        }
+
+      case t_kw_if {
+         destroyToken(token);
+         pIf();
+         break;
+        }
+        
+      case t_semicolon {
+         throwException(2,0,0);
+         break;
+        }
+    
+      case t_simple_ident {
+        
+        
+        }
+    }
+  
 }
+  
 void pIf(){
 /***
  * if ( <expr> ) <commands> else <commands>
