@@ -46,9 +46,13 @@ int addCharacter (SStr *str, char c) {
             else {
                     throwException(99,0,0); //chyba alokace paměti 
                 }
-            
-            //todo
-          }
+         }
+    
+    else {
+             str->data[str->length] = c;
+             str->length++;
+             str->data[str->length] = '\0';
+         }
 }
 
 int compareString(SStr *str1, SStr *str2) {
