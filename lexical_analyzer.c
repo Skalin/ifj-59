@@ -523,6 +523,7 @@ tToken * getToken(){
 			case LA_DIV:
 				if (c == 47) { // komentare
 					while (TRUE) {
+						c = fgetc(global.file);
 						if (c == EOF) {
 							throwException(1, GlobalRow, GlobalColumn);
 						} else if (c == '\n') {

@@ -48,11 +48,21 @@
       <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="532" column="38" selection-start-line="532" selection-start-column="38" selection-end-line="532" selection-end-column="38" />
+            <state relative-caret-position="267">
+              <caret line="525" column="47" selection-start-line="525" selection-start-column="47" selection-end-line="525" selection-end-column="47" />
               <folding>
                 <element signature="e#435#455#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="string.ifj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testing/string.ifj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-152">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,18 +137,6 @@
             <state relative-caret-position="2516">
               <caret line="148" column="24" selection-start-line="148" selection-start-column="24" selection-end-line="148" selection-end-column="24" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="error_handler.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/error_handler.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-              <folding>
-                <element signature="e#437#455#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -381,14 +379,7 @@
       <workItem from="1478946756236" duration="1729000" />
       <workItem from="1478978439172" duration="511000" />
       <workItem from="1479041646046" duration="8363000" />
-      <workItem from="1479149908056" duration="7215000" />
-    </task>
-    <task id="LOCAL-00035" summary="[MODIFY] 0.2 - chybějící include pro error_handler.h a úprava pozice glob. promenných Rows a Columns">
-      <created>1477909879264</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1477909879264</updated>
+      <workItem from="1479149908056" duration="7567000" />
     </task>
     <task id="LOCAL-00036" summary="[MODIFY] 0.2 - global file">
       <created>1477942532606</created>
@@ -726,11 +717,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479158323294</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="[MODIFY] 0.3 - uprava komentu v lexu">
+      <created>1479159998574</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1479159998574</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84353000" />
+    <option name="totallyTimeSpent" value="84705000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1100,13 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing/string.ifj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1225,10 +1216,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testing/string.ifj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="532" column="38" selection-start-line="532" selection-start-column="38" selection-end-line="532" selection-end-column="38" />
+        <state relative-caret-position="267">
+          <caret line="525" column="47" selection-start-line="525" selection-start-column="47" selection-end-line="525" selection-end-column="47" />
           <folding>
             <element signature="e#435#455#0" expanded="true" />
           </folding>
