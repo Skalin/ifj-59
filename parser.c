@@ -165,23 +165,23 @@ int isVar(tToken token){
  
   tToken * token = token;
   
-  if (token->type == LA_INT) {
+  if (token->type == t_int) {
     return TRUE;    
   }
-  if (token->type == LA_DOUBLE) {
-  return TRUE;    
+  if (token->type == t_double) {
+    return TRUE;    
   } 
-  if (token->type == LA_DOUBLE_pE) {
-  return TRUE;    
+  if (token->type == t_double_e) {
+    return TRUE;    
   } 
-  if (token->type == LA_DOUBLE_E_SIGN) {
-  return TRUE;    
+  if (token->type == t_string) {
+    return TRUE;    
   } 
-  if (token->type == LA_DOUBLE_E) {
-  return TRUE;    
+  if (token->type == t_simple_ident) {
+    return TRUE;    
   } 
-   if (token->type == LA_STRING) {
-  return TRUE;    
+   if (token->type == t_complete_ident) {
+    return TRUE;    
   } 
     
    return FALSE;
