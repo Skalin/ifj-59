@@ -522,14 +522,15 @@ tToken * getToken(){
 			// komentare
 			case LA_DIV:
 				if (c == 47) { // komentare
-
-					while (c != '\n') {
+					while (TRUE) {
 						if (c == EOF) {
 							throwException(1, GlobalRow, GlobalColumn);
+						} else if (c == '\n') {
+							break;
 						}
 					}
 					GlobalRow++;
-					return token; // vratim prazdny token u komentare
+					status = LA_START;
 				} else if (c == 42) {
 					do {
 						if (c == '\n') {
@@ -550,6 +551,7 @@ tToken * getToken(){
 						}
 						continue;
 					} while (c != 42);
+					status = LA_START;
 				} else {
 					buffer[i] = 47;
 					ungetc(c, global.file);
@@ -558,10 +560,6 @@ tToken * getToken(){
 					return token;
 				}
 				break;
-
-			case LA_SIMPLE_COMMENT:
-
-
 			case LA_MULTI:
 				if (c == 47) {
 					buffer[i] = c;
