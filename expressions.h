@@ -23,8 +23,8 @@
 
 /* PRIORITY PRO PRECEDENCE TABLE  */
 typedef enum {
-    P_GREATER = L, // >
-    P_LESSER = S, // <
+    P_GREATER = G, // >
+    P_LESSER = L, // <
     P_EQUAL = E, // =
     P_FAIL = F, //0
   } tPriority;
