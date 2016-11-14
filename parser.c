@@ -30,14 +30,14 @@ void pParse(){
     {
     throwException(2,0,0);
     }
-  destroyToken();
+  destroyToken(token);
   
   pClass();
   
   token = getToken();            //if it works it ain't stupid hehe xd
   
   while (token->type == t_kw_class){
-    destroyToken();
+    destroyToken(token);
     pClass();
     token = getToken();
   }
@@ -46,7 +46,7 @@ void pParse(){
     {
     throwException(2,0,0);    // TODO TODO TODO syntax error right?
     } 
-  destroyToken();
+  destroyToken(token);
   
 }  
 
@@ -63,6 +63,17 @@ void pClass(){
   if (token->type != t_simple_ident){
     throwException(2,0,0)
   }
+  // zkontrolovat jestli identifikator tridy uz neexistuje
+  
+  // vytvorit tridu v tabulce symbolu
+  
+  // nejak se asi bude specialne resit trida main neco jako if (strcmp(token->data, "Main")
+  
+  destroyToken(token);  //kill token with identifier
+  
+  token = getToken();    // and get a new one, should be left curly brace
+  
+  
   
   
   
