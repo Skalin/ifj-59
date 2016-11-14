@@ -25,18 +25,27 @@ void pParse(){
   
   tToken * token;
   
+  if(token->type != LA_KW_CLASS)
+    {
+    throwException(2,0,0);
+    }
+  destroyToken();
+  
   pClass();
   
   token = getToken();
   
   while (token->type == LA_KW_CLASS){
+    tokenReturnToken(token);
     pClass();
+    token = getToken();
   }
-  
+ 
  if(token->type != t_eof)
     {
     throwException(12,0,0);
     } 
+  destroyToken();
   
 }  
 
