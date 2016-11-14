@@ -609,9 +609,3 @@ tToken * getToken(){
 char octToAscii(char *octalArray) {
 	return (octalArray[0]-48)*8*8 + (octalArray[1]-48)*8 + (octalArray[2]-48);
 }
-
-
-/*
- * TODO:
- * prevod oktalovych cisel na decimalni a nasledny prevod na ASCII
- */
