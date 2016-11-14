@@ -59,26 +59,29 @@ int addCharacter (SStr *str, char c) {
 }
 
 int compareString(SStr *str1, SStr *str2) {
-  
-  
+   //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
+   int result;
+   result = strcmp(str1->data, str2->data);
+   return result;
+    
 }
 
+int strLength(SStr *str) {
+   //vrátí délku řetězce (počet znaků) zadaného jedním parametrem str 
+   int len = str->data;
+   return len;
 
-int addStr(SStr *str1, SStr *str2) {
-  
-  
 }
 
-void strClear(SStr *str)
-// funkce sloužící k vymazání řetězce
-{
+void strClear(SStr *str) {
+   // funkce sloužící k vymazání řetězce 
    str->length = 0;
    str->data[0] = '\0';
 }
 
 void destroyString (SString *str) {
-// funkce k uvolnění z paměti   
-    if (str != NULL){
+   // funkce k uvolnění z paměti   
+   if (str != NULL){
       plusFree(str->data);
-    }
+   }
 }
