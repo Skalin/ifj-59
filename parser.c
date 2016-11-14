@@ -44,7 +44,7 @@ void pParse(){
  
  if(token->type != t_eof)
     {
-    throwException(12,0,0);
+    throwException(2,0,0);    // TODO TODO TODO syntax error right?
     } 
   destroyToken();
   
@@ -60,7 +60,8 @@ void pClass(){
   tToken * token;
   token = getToken();
   
-  if (token->type != IDENTIFIKATOR TODO TODO TODO){
+  if (token->type != t_simple_ident){
+    throwException(2,0,0)
   }
   
   
