@@ -23,7 +23,7 @@
 
 int inintString (SStr *str) {
     
-    if ((str->data = (char*) malloc(STR_ALLOCATION_SIZE)) != NULL) {
+    if (plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
       str->data[0] = '\0';
       str->length = 0;
       str->allocatedSize = STR_ALLOCATION_SIZE;
@@ -44,14 +44,17 @@ int addCharacter (SStr *str, char c) {
                 }
             
             else {
-                    throwException(99,0,0); //chyba alokace paměti 
-                }
+                    throwException(99,0,0); //chyba alokace paměti
+                    return STR_ERROR;
+                 }
          }
     
     else {
              str->data[str->length] = c;
              str->length++;
              str->data[str->length] = '\0';
+        
+             return STR_SUCCESS;
          }
 }
 
@@ -76,6 +79,6 @@ void strClear(SStr *str)
 void destroyString (SString *str) {
 // funkce k uvolnění z paměti   
     if (str != NULL){
-      free(str->data);
+      plusFree(str->data);
     }
 }
