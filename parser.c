@@ -81,6 +81,12 @@ void pClass(){
   
   
 }
+
+void pClassBody(){
+/**
+** body of class. definice statickych promenych, funkci
+**/
+}
 void pFunction(){
 /**
  * <type> ID(<params>){<commands>}
