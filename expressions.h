@@ -50,7 +50,7 @@ typedef enum {
   //DOPLNIT
   } tInputs,
 
-int precedence();
+int precedAnalysis();
 int getRule(tStack *stack, )
 
 #endif
