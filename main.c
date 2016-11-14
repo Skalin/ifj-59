@@ -12,12 +12,13 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
+    /*****TESTOVÁNÍ LEXU******************
     //if(argc != 2)
     //    printf("");
         //throwException(99, 0, 0);
     //else {
         globalInit();
-        global.file = fopen("testing/test1.ifj", "r");
+        global.file = fopen("testing/fac_iter.ifj", "r");
         if ( global.file == NULL)
         //    throwException(99, 0, 0);
         global.fileName = argv[1];
@@ -26,12 +27,51 @@ int main(int argc, char* argv[]) {
 
     tToken *pToken = NULL;
 
-    for (int j = 0; j <= 150; j++){
+    for (int j = 0; j <= 100; j++){
 
         pToken = getToken(); 
         printToken(pToken);    
     }
-
+    /*************************************/
+    
+    /*****TESTOVÁNÍ GARBAGE***************/
+    global.fileName = "testing/test1.ifj";
+    global.file = fopen(global.fileName, "r");
+    globalInit();
+    
+    int alloc[5] =   {16,1,0,6000,20};
+    int realloc[5] = {2,1,5,4,0};
+    tToken *pToken1 = NULL;
+    tToken *pToken2 = NULL;
+    tToken *pToken3 = NULL;
+    tToken *pToken4 = NULL;
+    tToken *pToken5 = NULL;
+    
+    pToken1 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[0]);
+    pToken2 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[1]);
+    pToken3 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[2]);
+    pToken1 -> length = alloc[0];
+    pToken2 -> length = alloc[1];
+    pToken3 -> length = alloc[2];
+    
+    pToken3 = plusRealloc(pToken3, sizeof(tToken) + sizeof(char)*(realloc[2]+pToken3->length));
+    pToken1 = plusRealloc(pToken1, sizeof(tToken) + sizeof(char)*(realloc[0]+pToken1->length));
+    pToken2 = plusRealloc(pToken2, sizeof(tToken) + sizeof(char)*(realloc[1]+pToken2->length));
+    
+    plusFree(pToken2);
+    
+    pToken4 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[3]);
+    pToken5 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[4]);
+    pToken4 -> length = alloc[3];
+    pToken5 -> length = alloc[4];
+    
+    pToken4 = plusRealloc(pToken4, sizeof(tToken) + sizeof(char)*(realloc[3]+pToken4->length));
+    pToken5 = plusRealloc(pToken5, sizeof(tToken) + sizeof(char)*(realloc[4]+pToken5->length));
+    
+    
+    finalFree();
+    
+    /*************************************/
     return 0;
 }
  

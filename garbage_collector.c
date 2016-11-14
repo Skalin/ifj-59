@@ -77,7 +77,8 @@ void plusFree(void * memoryPtr) {
             if(tmp->dataPointer == memoryPtr) {
                 // Pokud se nejedná o poslední prvek
                 if(tmp->nextPtr != NULL) {
-                    if(previous == tmp)
+                    // Pokud se jedná o první prvek
+                    if(previous == tmp) 
                         global.wholeList = tmp->nextPtr;
                     else
                         previous->nextPtr = tmp->nextPtr;
@@ -86,12 +87,14 @@ void plusFree(void * memoryPtr) {
                 else {
                     global.listLast = previous;
                     previous->nextPtr = NULL;
-
+                    /*
                     if(previous == tmp)
                         tmp->dataPointer = NULL;
                     else
                         free(tmp);
+                    */
                 }
+                    free(tmp);
                     break;
             }
             // Jinak pokračuju
