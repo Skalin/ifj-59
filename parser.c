@@ -29,7 +29,7 @@ void pParse(){
     {
     throwException(2,0,0);
     }
-  destroyToken();
+  tokenReturnToken(token);
   
   pClass();
   
