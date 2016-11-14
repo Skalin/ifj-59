@@ -152,47 +152,47 @@ void pSingleCommand(){
         }
         
       case t_find {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
       case t_sort {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
       case t_length {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
       case t_substring {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
       case t_compare {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
       case t_read_int {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
       case t_read_double {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
       case t_read_substring {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         } 
         
       case t_print {
-         precedence();   //TODO
+         precedAnalysis();   //TODO
          break;
         }  
         
