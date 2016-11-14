@@ -202,8 +202,6 @@ tToken * getToken(){
 				// matematicke operace
 				} else if (c == 47) { // /
 					status = LA_DIV;
-                    buffer[i] = c;
-					i++;
 					break;
 				} else if (c == 42) { // *
 					status = LA_MULTI;
@@ -273,7 +271,7 @@ tToken * getToken(){
 				if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || c == 36) { // a..z,A..Z,_,$
 					buffer[i] = c;
 					i++;
-				} else if (c == 46) { // .
+				} else if (c == 46) { // something.
 					status = LA_COMPLETE_IDENT;
 					buffer[i] = c;
 					i++;
@@ -523,25 +521,42 @@ tToken * getToken(){
 				break;
 			// komentare
 			case LA_DIV:
-				if (c == 47) {
-					buffer[i] = c;
-					i++;
-					token = updateToken(token, buffer);
-					token->type = t_simple_comment;
-					return token;
+				if (c == 47) { // komentare
+
+					while (c != '\n') {
+						if (c == EOF) {
+							throwException(1, GlobalRow, GlobalColumn);
+						}
+					}
+					GlobalRow++;
+					return token; // vratim prazdny token u komentare
 				} else if (c == 42) {
-					buffer[i] = c;
-					i++;
-					token = updateToken(token, buffer);
-					token->type = t_block_comment_start;
-					return token;
+					do {
+						if (c == '\n') {
+							GlobalRow++;
+						}
+						if (c == 42) {
+							do {
+								if (c == 47) {
+									return token; // opet vracim prazdny token
+								} else {
+									break;
+								}
+							} while (c != 47);
+						}
+						continue;
+					} while (c != 42);
 				} else {
+					buffer[i] = 47;
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
 					token->type = t_div;
 					return token;
 				}
 				break;
+
+			case LA_SIMPLE_COMMENT:
+
 
 			case LA_MULTI:
 				if (c == 47) {
