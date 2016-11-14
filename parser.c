@@ -99,25 +99,25 @@ void pIf(){
     // tato funkce je volana kdyz parser obdrzi token 'if'
     // uvolneni tokenu by se melo provest uz v hlavni funkci parseru
 
-    tToken * token = getToken();
+   
 
-    if (token->type != LA_BRACKET_L){   // left brace
+   /* if (token->type != LA_BRACKET_L){   // left brace
         throwException(2, NULL, NULL);
     }
-    destroyToken(token);
+    destroyToken(token);*/
 
     // here should be expression         // pokud budem mit gramatiku tak ze expression muze byt i v zavorkach je tahle cast zbytecna
 
-    token = getToken();
+   /* token = getToken();
     if (token->type != LA_BRACKET_R){   // right brace
         throwException(2, NULL, NULL);
     }
-    destroyToken(token);
+    destroyToken(token); */
 
     // block of code
     pCommands();
 
-    token = getToken();
+    tToken * token = getToken();
     if (token->type != LA_KW_ELSE){   // else
         throwException(2, NULL, NULL);
     }
@@ -132,7 +132,7 @@ void pWhile(){
  * while ( <expr> ) { <commands> }
  */
   
-    tToken * token;
+   /* tToken * token;
     *token = getToken();
   
     if (token->type != LA_BRACKET_L) {   //pokud neexistuje levá závorka, jde o syntaktickou chybu
@@ -144,7 +144,9 @@ void pWhile(){
     if (token->type != LA_BRACKET_R) {   //pokud neexistuje pravá závorka, jde o syntaktickou chybu
        throwException(2, NULL, NULL);
       }
-    destroyToken(token);
+    destroyToken(token);*/
+    
+    //expression
   
     pCommands();
 }
