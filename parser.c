@@ -86,6 +86,10 @@ void pClassBody(){
 /**
 ** body of class. definice statickych promenych, funkci
 **/
+  
+  tToken * token;
+  token = getToken();
+  
 }
 void pFunction(){
 /**
