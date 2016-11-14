@@ -26,8 +26,7 @@ void pParse(){
   tToken * token;
   token = getToken();
   
-  if(token->type != t_kw_class)
-    {
+  if(token->type != t_kw_class){
     throwException(2,0,0);
     }
   destroyToken(token);
@@ -73,8 +72,12 @@ void pClass(){
   
   token = getToken();    // and get a new one, should be left curly brace
   
+  if(token->type != t_brace_l){
+     throwException(2,0,0);
+  }
+  destroyToken(token);  // kill curly brace token and start parsing body of class;
   
-  
+  pClassBody();
   
   
 }
