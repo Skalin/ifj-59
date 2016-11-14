@@ -58,7 +58,12 @@ void throwException(int errorNumber, int row, int column) {
         case eEOF:
             fprintf(stderr, "End of file\n");
             exit_code = 12;
-            break;       
+            break;   
+            
+        case eSemicolon:
+            fprintf(stderr, "Unexpected semicolon\n");
+            exit_code = 13;
+            break;    
             
             //Sem doplňujte případné další chyby
         default:
