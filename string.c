@@ -14,6 +14,7 @@
 #include <string.h>
 #include "string.h"
 #include "error_handler.h"
+#include "garbage_collector.h"
 
 #define STR_ERROR   1
 #define STR_SUCCESS 0
@@ -22,37 +23,54 @@
 
 int inintString (SStr *str) {
     
-    if ((str->data = (char*) malloc(STR_ALLOCATION_SIZE)) == NULL) {
-      throwException(11,0,0); //chyba alokace paměti
+    if ((str->data = (char*) malloc(STR_ALLOCATION_SIZE)) != NULL) {
+      str->data[0] = '\0';
+      str->length = 0;
+      str->allocatedSize = STR_ALLOCATION_SIZE;
     }
   
     else {
-      str->data[0] = '\0';
-      str->length = 0;
-      str->allocatedSize = ALLOC_SIZE;
+      throwException(99,0,0); //chyba alokace paměti
      } 
   
 }
 
 int addCharacter (SStr *str, char c) {
   
+    if ((str->allocatedSize) <= (str->length + 1))
+        {
+            if (plusRealloc(string, sizeof(SString) + (sizeof(char)*(str->allocatedSize))) != NULL) {
+                   str->allocatedSize = str->length + STR_ALLOCATION_SIZE;
+                }
+            
+            else {
+                    throwException(99,0,0); //chyba alokace paměti 
+                }
+            
+            //todo
+          }
+}
+
+int compareString(SStr *str1, SStr *str2) {
+  
   
 }
 
-int compareString(SSt *str1, SString *str2) {
+
+int addStr(SStr *str1, SStr *str2) {
   
   
 }
 
-
-int addStr(string *str1, string *str2) {
-  
-  
+void strClear(SStr *str)
+// funkce sloužící k vymazání řetězce
+{
+   str->length = 0;
+   str->data[0] = '\0';
 }
-
 
 void destroyString (SString *str) {
-    
+// funkce k uvolnění z paměti   
     if (str != NULL){
       free(str->data);
     }
