@@ -22,17 +22,18 @@
 #include "stack.h"
 
 void pParse(){
+  
   tToken * token;
   
-  if ((token = plusMalloc() == NULL) //
-    {
-    throwException(10,0,0);
-    return NULL;
-    }
+  pClass();
   
+  token = getToken();
   
-  token = token_get();
-  if(token->type != t_eof)
+  while (token->type == LA_KW_CLASS){
+    pClass();
+  }
+  
+ if(token->type != t_eof)
     {
     throwException(12,0,0);
     } 
