@@ -1,7 +1,7 @@
 /**
  * IFJ/IAL - Tabulka symbolů
  * Varianta:    b/2/I
- * Soubor:      table.h
+ * Soubor:      ial.h
  * Tým:         59
  * Autoři:      Jan Hrbotický, xhrbot01@stud.fit.vutbr.cz
  *              Dominik Skála, xskala11@stud.fit.vutbr.cz
