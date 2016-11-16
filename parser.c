@@ -21,7 +21,7 @@
 #include "generator.h"
 #include "stack.h"
 
-// TODO TODO TODO main run flags, help structure
+// TODO TODO TODO main run flags, help structure   , jestli neni trida run v main chyba 3
 void pParse(){
   
   tToken * token;
