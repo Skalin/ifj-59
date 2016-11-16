@@ -1,7 +1,7 @@
 /**
  * IFJ/IAL - Lexikální analyzátor
  * Varianta:    b/2/I
- * Soubor:      table.c
+ * Soubor:      ial.c
  * Tým:         59
  * Autoři:      Jan Hrbotický, xhrbot01@stud.fit.vutbr.cz
  *              Dominik Skála, xskala11@stud.fit.vutbr.cz
