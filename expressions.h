@@ -21,6 +21,8 @@
 #include "ial.h"
 #include "garbage_collector.h"
 
+typedef char *String;
+
 /* PRIORITY PRO PRECEDENCE TABLE  */
 typedef enum {
     P_GREATER = G, // >
@@ -45,12 +47,21 @@ typedef enum {
     P_DOLLAR,         //
     P_COMMA,          // ,
     P_BRACKET_L,      // (
-    P_BRACKER_R,      // )
+    P_BRACKET_R,      // )
   
-  //DOPLNIT
-  } tInputs,
+  // DOPLNIT
+  } tInputs;
 
 int precedAnalysis();
-int getRule(tStack *stack, )
+int getRule(tStack *stack, int something); // tady jste meli volno a asi cekate dalsi parametr, doplnil jsem "int something", je třeba refactor a překontrola jestli to je dobře
+
+int readInt();
+
+double readDouble;
+
+void print();
+
+int length(String s);
+
 
 #endif

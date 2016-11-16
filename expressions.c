@@ -17,7 +17,7 @@ int precTable[][] = {
   
    };
 
-int getRule (tStack *stack, ) {
+int getRule (tStack *stack, int something) {
   /*
   * FUNKCE KONTROLUJÍCÍ PRAVIDLA.
   * stack - zásobník terminálů a nonterminálů

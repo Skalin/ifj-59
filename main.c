@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
         pToken = getToken(); 
         printToken(pToken);    
     }
-    /*************************************/
+                                      */
     
     /*****TESTOVÁNÍ GARBAGE***************/
     global.fileName = "testing/test1.ifj";
