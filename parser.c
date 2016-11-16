@@ -90,6 +90,10 @@ void pClassBody(){
   tToken * token;
   token = getToken();
   
+  if (token->type == t_kw_static){ received 'static' keyword - defining global function or variable
+  
+  }
+  
 }
 void pFunction(){
 /**
