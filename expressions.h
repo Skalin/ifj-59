@@ -63,5 +63,19 @@ void print();
 
 int length(String s);
 
+String substr(String s, int i, int n);
+
+int compare(String s1, string s2);
+
+/*
+ * IAL FUNKCE!
+ */
+int find(String s, String search);
+
+/*
+ * IAL FUNKCE!
+ */
+String sort(String s);
+
 
 #endif
