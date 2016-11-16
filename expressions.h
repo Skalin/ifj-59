@@ -65,8 +65,6 @@ int length(String s);
 
 String substr(String s, int i, int n);
 
-int compare(String s1, string s2);
-
 /*
  * IAL FUNKCE!
  */
@@ -77,5 +75,20 @@ int find(String s, String search);
  */
 String sort(String s);
 
+
+
+typedef struct SStr{
+  char *data;		   
+  int length;		        // délka řetězce
+  int allocatedSize;	  // alokovaná paměť
+} SString;
+
+
+int inintString (SStr *str);
+int addCharacter (SStr *str, char c);
+int compareString (SStr *str1, SStr *str2);
+int strLength(SStr *str);
+void strClear(SStr *str)
+void destroyString (SString *str);
 
 #endif
