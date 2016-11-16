@@ -146,6 +146,7 @@ void pClassBody(){
     
   }
   else if (token->type == t_brace_r) {
+     destroyToken(token);
     // dalsi token je prava curly zavorka, konec tela  tridy vracime se do funkce pClass(); ( a z ni hned zpatku do funkce pParse();
     
   }
