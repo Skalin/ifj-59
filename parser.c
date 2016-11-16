@@ -90,11 +90,71 @@ void pClassBody(){
   tToken * token;
   token = getToken();
   
-  if (token->type == t_kw_static){ received 'static' keyword - defining global function or variable
-  
+  if (token->type == t_kw_static){       //received 'static' keyword - defining global function or variable
+    destroyToken(token); //static
+    
+    token = getToken();
+    
+    // pokud je dalsi token datovy typ ( boolean jsem tam nedal, kdyztak doplnit jestli budem delat rozsireni (Kappa)) 
+    if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double || token->type == t_kw_void ){ 
+      
+      detroyToken(token); // zruseni tokenu s datatype
+      // static dataType - musi nasledovat identifikator
+      token = getToken();
+      
+      if (token->type != t_simple_ident){
+         throwException(2, NULL, NULL);
+      }
+      destroyToken(token); // identifikator
+      
+      token = getToken(); // nacist dalsi token, bud zavorka - funkce, jinak promena
+      
+      if (token->type == t_bracket_l) {
+        destroyToken();
+        pFunction();
+      }
+      else {
+        destroyToken(); // ten token se musi nejak zachovat a poslat te funkci
+        pVar();
+      }
+      
+      pCLassBody(); // pokravujeme ve zpracovani zbytku tela tridy
+      
+      
+    } 
+    else {
+      // syntax error za keyword 'static' musi nasledovat datatype
+      throwException(2, NULL, NULL);
+    }
+    
+  } // end  if (token->type == t_kw_static)
+  else if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
+    // data type - promena (neni globalni)
+    destroyToken(token); //datatype
+    
+    token = getToken();
+     
+    //musi nasledovat identifikator
+    if (token->type != t_simple_ident){
+         throwException(2, NULL, NULL);
+    }
+    destroyToken(token); // identifikator
+    
+    pVar(); //volame funkci pro parsovani promene
+    
+    pCLassBody(); // pokravujeme ve zpracovani zbytku tela tridy
+    
+  }
+  else if (token->type == t_brace_r) {
+    // dalsi token je prava curly zavorka, konec tela  tridy vracime se do funkce pClass(); ( a z ni hned zpatku do funkce pParse();
+    
+  }
+  else {
+    // token neni ani kw 'static', ani datatype, ani zavorka na konec funkce - syntax error
+    throwException(2, NULL, NULL);
   }
   
-}
+} // end function 
 void pFunction(){
 /**
  * <type> ID(<params>){<commands>}
@@ -104,6 +164,7 @@ void pFunction(){
 }
 void pVar(){
 /**
+ * variable assign
  * <type> ID = <expr>;
  * <type> ID;
  *
