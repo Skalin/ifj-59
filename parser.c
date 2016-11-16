@@ -161,6 +161,14 @@ void pFunction(){
  * <type> ID(<params>){<commands>}
  */
   
+  // funkci to zavola po obdrzeni <static> <dataType> (  ---- nasleduji parametry
+  // hned volame funkci na zpracovani parametru
+  
+  tToken * token;
+  
+  pParams();  // parse parametru
+  
+  pCommands(); // parse tela funkce
   
 }
 void pVar(){
@@ -172,10 +180,21 @@ void pVar(){
  */
 }
 
-void pParams(){
+void pParams(){ //TODO TODO
 /**
  * <type> ID
  */
+  
+  tToken * token;
+  token = getToken();
+  
+  // dokud neni nactena prava zavorka 
+  while (token->type == t_bracket_r) {
+    
+    
+    
+  }
+  
 }   
       
 void pCommands(){
