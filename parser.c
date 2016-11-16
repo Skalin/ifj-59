@@ -22,6 +22,7 @@
 #include "stack.h"
 
 // TODO TODO TODO main run flags, help structure   , jestli neni trida run v main chyba 3, pomocna funkce pro naplneni help struktury
+// kontrola jestli neni vestavena funkce ( pole s vestavenymi funkcemi)
 void pParse(){
   
   tToken * token;
