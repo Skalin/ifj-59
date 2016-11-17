@@ -100,7 +100,13 @@ int compareString(SStr *str1, SStr *str2) {
    //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
    int result;
    result = strcmp(str1->data, str2->data);
-   return result;
+   if (result == 0) {
+      return result;
+   } else if (result < 0) {
+      return (result = -1);
+   } else {
+      return (result = 1);
+   }
     
 }
 
