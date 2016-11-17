@@ -91,6 +91,8 @@ tabSymbol *TSInsertDouble(tableName name, double data);
 tabSymbol *TSInsertString(tableName name, char *data);
 tabSymbol *TSInsertSimpleIdent(tableName name, char *data);
 tabSymbol *TSInsertCompleteIdent(tableName name, char *data);
+tabSymbol TSInsertFunction(tableName name, char *data);
+tabSymbol TSInsertClass(tableName name, char *data);
 
 /*
  * Funkce inicializuje symbol
