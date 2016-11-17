@@ -103,6 +103,7 @@ typedef enum {
 
 typedef struct {
     tokenType type;  // Typ tokenu
+    SString attribute;	
     unsigned int length; // Délka, počet charů
     unsigned int allocated; // Status, jestli byl alokován
 	char data[]; // Data, která obshahuje
