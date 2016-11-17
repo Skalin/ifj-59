@@ -15,8 +15,8 @@
 #include "garbage_collector.h"
 #include "stack.h"
 
-#define STR_ERROR   1
-#define STR_SUCCESS 0
+#define STR_ERROR   0
+#define STR_SUCCESS 1
 #define STR_ALLOCATION_SIZE 8  // Udává, kolik bude alokováno na začátku paměti. Pokud načítáme po jednom znaku, dojde k alokaci na násobky tohoto čísla
 
 int precTable[][] = {
@@ -65,11 +65,13 @@ int inintString (SStr *str) {
       str->data[0] = '\0';
       str->length = 0;
       str->allocatedSize = STR_ALLOCATION_SIZE;
+      return 1;
     }
   
     else {
       throwException(99,0,0); //chyba alokace paměti
      } 
+  
   
 }
 
