@@ -34,6 +34,7 @@ int isVar(int type);
 // struktura pro ukladani doceasnych informaci o tokenu
 typedef struct {
 	tokenType type;   // typ tokenu
+	bool static;     // je static
 	char data[];      // data tokenu
 } tTemp;
 
