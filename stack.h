@@ -10,21 +10,25 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include "typedef.h"
+
 #ifndef IFJ_59_STACK_H
 #define IFJ_59_STACK_H
 
-//Struktura zásobníku
-typedef struct {
-    tStackIt ** data;
-    int counter;
-    int allocated;
-} tStack;
 
 //Struktura položky
 typedef struct {
-    tToken * dataIt;
-    int typeIt;
+	tToken * dataIt;
+	int typeIt;
 } tStackIt;
+
+
+//Struktura zásobníku
+typedef struct {
+    tStackIt * data;
+    int counter;
+    int allocated;
+} tStack;
 
 /*
  * Inicializuje zásobník

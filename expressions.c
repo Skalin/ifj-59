@@ -64,7 +64,7 @@ int precedAnalysis (FILE *filename) {
 
 int initString(SStr *str) {
     
-    if (plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
+    if (plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE) != NULL) {
 		str->data[0] = '\0';
 		str->length = 0;
 		str->allocatedSize = STR_ALLOCATION_SIZE;
@@ -185,7 +185,7 @@ int addCharacter(SStr *str, char c) {
 			return STR_ERROR;
 		}
 	str->data[str->length] = c;
-		str->length++;
+	str->length++;
 	str->data[str->length] = '\0';
 
 	return STR_SUCCESS;

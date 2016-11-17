@@ -10,6 +10,8 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include "expressions.h"
+
 #ifndef IFJ_59_TABLE_H_
 #define IFJ_59_TABLE_H_
 
@@ -29,7 +31,7 @@ typedef enum{
     var,
     function,
     class,
-}NodeType;
+} NodeType;
 
 //Vycet moznych typu
 typedef enum {
@@ -43,14 +45,14 @@ union {
     int intValue;
     double doubleValue;
     char *stringValue;
-}varValue;
+} varValue;
 
 //Struktura tabulky symbolu
 typedef struct tableSymbolVariable {
     varType type; // Promenna= typ promenne, Funkce= Typ navratove hodnoty, Class=nic
     varValue value; // Promenna= hodnota promenne, Funkce= vyuzijeme int hodnotu a do ni vlozime pocet argumentu, class= nic
 
-}tabSymbol, *tabSymbolPtr;
+} tabSymbol, *tabSymbolPtr;
 
 
 //Struktura uzlu binarniho stromu
@@ -62,7 +64,7 @@ typedef struct tBTSNode {
     union {
         struct tBTSNode *functions; // Odkaz na funkce třídy
         int argNo; // Číslo argumentu funkce
-    };
+} tBTSNode;
 
     tabSymbol data; // Data
 
@@ -70,14 +72,14 @@ typedef struct tBTSNode {
 
     struct tBTSNode *lptr; // Pointer na levý podstrom
     struct tBTSNode *rptr; // Pointer na pravý podstrom
-}BTSNode, *tBTSNodePtr;
+} BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
 typedef struct {
     BTSNode *root;
     BTSNode *actClass;
     BTSNode *actFunction;
-}mainTree;
+} mainTree;
 
 /*
  * PROTOTYPES
@@ -86,12 +88,12 @@ typedef struct {
 /*
  * IAL FUNKCE!
  */
-int find(SStr *str, SStr *search);
+int find(SString *str, SString *search);
 
 /*
  * IAL FUNKCE!
  */
-String sort(SStr *str);
+SString sort(SString *str);
 
 /*
  * Obě funkce volají příslušné fce binárního stromu na inicializaci, případně odstranění ze stromu

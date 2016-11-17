@@ -15,7 +15,6 @@
 #define EXPRESSIONS
 
 #include "stack.h"
-#include "table.h"
 #include "lexical_analyzer.h"
 #include "typedef.h"
 #include "ial.h"
@@ -31,10 +30,10 @@ typedef struct SStr{
 
 /* PRIORITY PRO PRECEDENCE TABLE  */
 typedef enum {
-    P_GREATER = G, // >
-    P_LESSER = L, // <
-    P_EQUAL = E, // =
-    P_FAIL = F, //0
+    P_GREATER = 3, // >        G
+    P_LESSER = 2, // <         L
+    P_EQUAL = 1, // =          E
+    P_FAIL = 0, //0            F
   } tPriority;
 
 /* TERMINÁLY A NONTERMINÁLY  */
@@ -47,7 +46,7 @@ typedef enum {
     P_LESS_EQUAL,     // <=  
     P_GREAT,          // >  
     P_GREAT_EQUAL,    // >=  
-    P_EQUAL,          // ==
+	P_IS_EQUAL,       // ==
     P_NOT_EQUAL,      // !=
     P_ID,             // ID
     P_DOLLAR,         // $
@@ -87,33 +86,35 @@ void print();
 /*
  *
  */
-SStr substr(SStr *str, int i, int n);
+SString substr(SString *str, int i, int n);
 
 /*
  *
  */
-int initString(SStr *str);
+int initString(SString *str);
 
 /*
  *
  */
-int addCharacter(SStr *str, char c);
+int addCharacter(SString *str, char c);
+
+char *copyString(SString *str1, SString *str2);
 
 /*
  *
  */
-int compareString(SStr *str1, SStr *str2);
+int compareString(SString *str1, SString *str2);
 
 /*
  *
  */
 
-int strLength(SStr *str);
+int strLength(SString *str);
 
 /*
  *
  */
-void strClear(SStr *str);
+void strClear(SString *str);
 
 /*
  *
