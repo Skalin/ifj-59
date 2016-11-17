@@ -396,6 +396,8 @@ tToken * getToken(){
 					token = updateToken(token, buffer);
 					token->type = t_string;
 					return token;
+				} else if (c == EOF) {
+					throwException(1, GlobalRow, GlobalColumn);
 				} else { // "xxxxxx
 					buffer[i] = c;
 					i++;
