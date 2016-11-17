@@ -30,3 +30,11 @@ void pWhile();
 int isVar(int type);
   
 #endif //IFJ_59_PARSER_H
+
+// struktura pro ukladani doceasnych informaci o tokenu
+typedef struct {
+	tokenType type;   // typ tokenu
+	char data[];      // data tokenu
+} tTemp;
+
+struct tTemp temp;
