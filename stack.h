@@ -15,14 +15,14 @@
 
 //Struktura zásobníku
 typedef struct {
-    void ** data;
+    tStackIt ** data;
     int counter;
     int allocated;
 } tStack;
 
 //Struktura položky
 typedef struct {
-    void * dataIt;
+    tToken * dataIt;
     int typeIt;
 } tStackIt;
 
