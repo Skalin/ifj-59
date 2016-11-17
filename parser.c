@@ -214,7 +214,7 @@ void pVar(){
  */
 }
 
-void pParams(){ //TODO TODO
+void pParams(){ 
 /**
  * <type> ID
  */
@@ -222,14 +222,80 @@ void pParams(){ //TODO TODO
   tToken * token;
   token = getToken();
   
-  // dokud neni nactena prava zavorka 
-  while (token->type == t_bracket_r) {
+  // leva zavorka uz nactena v pClass
+  
+  // 
+  if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
+    fillTemp(token->type, FALSE, NULL);
+    destroyToken(token);
     
+    //nacist identifikator
+    token = getToken();
+    if (token->type != t_simple_ident) {
+      throwException(2, NULL, NULL);
+    }
+    fillTemp(NULL, FALSE, token->data);
+    destroyToken(token);
     
+    // zpracovat parametr TODO
     
+    pParamsNext(); // zpracovani dalsi parametru
+    
+  }
+  else if (token->type == t_bracket_r) {
+    //prava zavorka , funkce nema parametry
+    destroyToken(token);
+  }
+  else {
+    throwException(2, NULL, NULL);
   }
   
 }   
+
+void pParamsNext(){
+  /*
+  *  , <dataType> <identifikator>
+  */
+  tToken * token;
+  
+  token = getToken();
+  
+  if (token->type == t_bracket_r) {
+    // uzaviraci zavorka, zadny dalsi parametr
+    destroyToken(token);
+  }
+  else if (token->type == t_comma) {
+    // carka, nasleduje dalsi parametr
+    destroyToken(token);
+    token = getToken();
+    
+    if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
+      fillTemp(token->type, FALSE, NULL);
+      destroyToken(token);
+      
+      //nacist identifikator
+      token = getToken();
+      if (token->type != t_simple_ident) {
+         throwException(2, NULL, NULL);
+       }
+       fillTemp(NULL, FALSE, token->data);
+       destroyToken(token);
+      
+      // zpracovat parametr TODO
+      
+      pParamsNext(); // zpracovani dalsi parametru
+    }
+    else {
+    // carka a pak neco jineho nez datatype
+      throwException(2, NULL, NULL);
+    }
+  }
+  else {
+   // ani carka ani zavorka
+    throwException(2, NULL, NULL);
+  }
+
+}
       
 void pCommands(){
 /**
