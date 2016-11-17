@@ -13,6 +13,7 @@
 #include "expressions.h"
 #include "error_handler.h"
 #include "garbage_collector.h"
+#include "stack.h"
 
 #define STR_ERROR   1
 #define STR_SUCCESS 0
