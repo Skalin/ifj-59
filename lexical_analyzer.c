@@ -396,6 +396,8 @@ tToken * getToken(){
 					token = updateToken(token, buffer);
 					token->type = t_string;
 					return token;
+				} else if (c == EOF) {
+					throwException(1, GlobalRow, GlobalColumn);
 				} else { // "xxxxxx
 					buffer[i] = c;
 					i++;
@@ -525,20 +527,29 @@ tToken * getToken(){
 					while (TRUE) {
 						c = fgetc(global.file);
 						if (c == EOF) {
-							throwException(2, GlobalRow, GlobalColumn);
+							throwException(1, GlobalRow, GlobalColumn);
 						} else if (c == '\n') {
 							break;
 						}
 					}
 					GlobalRow++;
 					status = LA_START;
-				} else if (c == 42) {
+				} else if (c == 42) { /* komentare tohoto typu */
 					while (TRUE) {
 						c = fgetc(global.file);
 						if (c == '\n') {
 							GlobalRow++;
 						} else if (c == EOF){
-							throwException(2, GlobalRow, GlobalColumn);
+							throwException(1, GlobalRow, GlobalColumn);
+						} else if (c == 47) {
+							while (TRUE) {
+								c = fgetc(global.file);
+								if (c == 42) {
+									throwException(1, GlobalRow, GlobalColumn);
+								} else {
+									break;
+								}
+							}
 						} else if (c == 42) {
 							while (TRUE) {
 								c = fgetc(global.file);
@@ -546,7 +557,7 @@ tToken * getToken(){
 									status = LA_START;
 									break;
 								} else if (c == EOF) {
-									throwException(2, GlobalRow, GlobalColumn);
+									throwException(1, GlobalRow, GlobalColumn);
 								} else {
 									if (c == '\n')
 										GlobalRow++;

@@ -15,13 +15,29 @@
 #include "expressions.h"
 #include "error_handler.h"
 #include "garbage_collector.h"
+#include "stack.h"
 
-#define STR_ERROR   1
-#define STR_SUCCESS 0
+#define STR_ERROR   0
+#define STR_SUCCESS 1
 #define STR_ALLOCATION_SIZE 8  // Udává, kolik bude alokováno na začátku paměti. Pokud načítáme po jednom znaku, dojde k alokaci na násobky tohoto čísla
 
 int precTable[][] = {
 
+//         +    -    *    /    (    )    ID   <    >    <=   >=   ==  !=    !
+/* + */  {'G', 'G', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* - */  {'G', 'G', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* * */  {'G', 'G', 'G', 'G', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* / */  {'G', 'G', 'G', 'G', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* ( */  {'L', 'L', 'L', 'L', 'L', 'E', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'},
+/* ) */  {'G', 'G', 'G', 'G', 'F', 'G', 'F', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* ID */ {'G', 'G', 'G', 'G', 'F', 'G', 'F', 'G', 'G', 'G', 'G', 'G', 'G', 'F'},
+/* < */  {'L', 'L', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* > */  {'L', 'L', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* <= */ {'L', 'L', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* >= */ {'L', 'L', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* == */ {'L', 'L', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* != */ {'L', 'L', 'L', 'L', 'L', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
+/* ! */  {'G', 'G', 'G', 'G', 'E', 'G', 'L', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
   
    };
 
@@ -30,7 +46,7 @@ int getRule (tStack *stack, int next) {
   * FUNKCE KONTROLUJÍCÍ PRAVIDLA.
   * stack - zásobník terminálů a nonterminálů
   * dalším parametrem funkce by mělo by to, které pravidlo je teďka na řadě
-   * Prepisuji teda arg.2 na "next", typ arg. je treba domyslet, ale int to asi nebude, i kdyz by teoreticky mohl byt (int next by rikal o kolik poli dal se posunout)
+  * Prepisuji teda arg.2 na "next", typ arg. je treba domyslet, ale int to asi nebude, i kdyz by teoreticky mohl byt (int next by rikal o kolik poli dal se posunout)
   */
   
   };
@@ -43,6 +59,19 @@ int precedAnalysis (FILE *filename) {
   
   
   };
+  
+
+
+int initString (SStr *str) {
+    
+    if (plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
+		str->data[0] = '\0';
+		str->length = 0;
+		str->allocatedSize = STR_ALLOCATION_SIZE;
+		return 1;
+    } else {
+		throwException(99,0,0); //chyba alokace paměti
+ 	}
 
 int readInt() {
 	char *c;
@@ -133,7 +162,7 @@ SStr substr(SStr *str, int i, int n) {
 
 
 int initString(SStr *str) {
-    
+
 	if ((plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
 		str->data[0] = '\0';
 		str->length = 0;
@@ -141,7 +170,8 @@ int initString(SStr *str) {
 	} else {
 		throwException(99,0,0); //chyba alokace paměti
 	}
-  
+
+
 }
 
 int addCharacter(SStr *str, char c) {
@@ -153,12 +183,11 @@ int addCharacter(SStr *str, char c) {
 			throwException(99,0,0); //chyba alokace paměti
 			return STR_ERROR;
 		}
-	} else {
-			str->data[str->length] = c;
-			str->length++;
-			str->data[str->length] = '\0';
-        
-			return STR_SUCCESS;
+	str->data[str->length] = c;
+		str->length++;
+	str->data[str->length] = '\0';
+
+	return STR_SUCCESS;
 	}
 }
 
@@ -180,10 +209,15 @@ char *copyString(SStr *str1, SStr *str2) {
 }
 
 int compareString(SStr *str1, SStr *str2) {
-	//porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
-	int result;
-	result = strcmp(str1->data, str2->data);
-	return result;
+   //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
+   int result = strcmp(str1->data, str2->data);
+   if (result == 0) {
+      return result;
+   } else if (result < 0) {
+      return (result = -1);
+   } else {
+      return (result = 1);
+   }
     
 }
 
@@ -192,6 +226,11 @@ int strLength(SStr *str) {
 	int len = str->data;
 	return len;
 
+}
+
+bool strEqual(char *str1, char *str2) {
+	int equal = !strcmp(str1, str2);
+	return equal;
 }
 
 void strClear(SStr *str) {
@@ -203,6 +242,6 @@ void strClear(SStr *str) {
 void destroyString (SString *str) {
 	// funkce k uvolnění z paměti
 	if (str != NULL) {
-	  plusFree(str->data);
+		plusFree(str->data);
 	}
 }
