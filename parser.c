@@ -43,7 +43,7 @@ void pParse(){
   
   pClass();
   
-  token = getToken();            //if it works it ain't stupid hehe xd
+  token = getToken();           
   
   while (token->type == t_kw_class){
     destroyToken(token);
@@ -57,10 +57,10 @@ void pParse(){
     } 
   destroyToken(token);
   
-  if ((hasMain && hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - sematicka chyba
+  if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - sematicka chyba
     throwException(3, NULL, NULL);
   }
-  
+  //uspesny konec
 }  
 
 void pClass(){
@@ -78,7 +78,7 @@ void pClass(){
   }
   
   if (strcmp(token->data, "Main") == 0){   // nasli jsme tridu main
-    hasMain = TRUE;
+    global.hasMain = TRUE;
     isInMain = TRUE;
   }
   // zkontrolovat jestli identifikator tridy uz neexistuje
@@ -399,3 +399,7 @@ int isVar(tToken token){
    return FALSE;
 
 }
+  
+ void fillTemp(tokenType type, bool static, char data){
+ 
+ }
