@@ -49,29 +49,30 @@ int getRule (tStack *stack, int next) {
   * Prepisuji teda arg.2 na "next", typ arg. je treba domyslet, ale int to asi nebude, i kdyz by teoreticky mohl byt (int next by rikal o kolik poli dal se posunout)
   */
   
-  };
+};
 
 
 int precedAnalysis (FILE *filename) {
   /*
-  * FUNKCE PROVÁDĚJÍCÍ SYTAKTICKOU ANALÝZU VÝRAZU
+  * FUNKCE PROVÁDĚJÍCÍ SYNTAKTICKOU ANALÝZU VÝRAZU
   */
   
   
-  };
+};
   
 
 
-int initString (SStr *str) {
+int initString(SStr *str) {
     
     if (plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
 		str->data[0] = '\0';
 		str->length = 0;
 		str->allocatedSize = STR_ALLOCATION_SIZE;
 		return 1;
-    } else {
+	} else {
 		throwException(99,0,0); //chyba alokace paměti
  	}
+}
 
 int readInt() {
 	char *c;
