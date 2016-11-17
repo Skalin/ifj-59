@@ -404,8 +404,8 @@ int isVar(tToken token){
    if (type != NULL)
      temp->type = type;
    
-   if (isStatic != NULL)
-     temp->isStatic = isStatic;
+  /* if (isStatic != NULL)
+     temp->isStatic = isStatic; */
    
    if (data != NULL)
      temp->data = data;
