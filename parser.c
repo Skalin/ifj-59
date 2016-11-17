@@ -23,7 +23,7 @@
 
 
 global.hasMain = FALSE;
-global hasRun = FALSE;
+global.hasRun = FALSE;
 
 // nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
 bool isInMain = FALSE;
@@ -117,6 +117,8 @@ void pClassBody(){
     // pokud je dalsi token datovy typ ( boolean jsem tam nedal, kdyztak doplnit jestli budem delat rozsireni (Kappa)) 
     if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double || token->type == t_kw_void ){ 
       
+      fillTemp(token->type, TRUE, NULL); // ulozime si typ tokenu
+      
       detroyToken(token); // zruseni tokenu s datatype
       // static dataType - musi nasledovat identifikator
       token = getToken();
@@ -124,16 +126,28 @@ void pClassBody(){
       if (token->type != t_simple_ident){
          throwException(2, NULL, NULL);
       }
+      
+      fillTemp(NULL, TRUE, token->data); // ulozime si identifikator
+      
       destroyToken(token); // identifikator
       
       token = getToken(); // nacist dalsi token, bud zavorka - funkce, jinak promena
       
       if (token->type == t_bracket_l) {
         destroyToken();
+        if (strcmp(temp->data,"run") == 0) { // funkce 'run'
+          if (isInMain) {               // a jsme v class Main
+            global.hasRun = TRUE;
+          }
+          else {
+            // sematicka chyba, nemuze byt funkce run jinde nez v class Main
+            throwException(3, NULL, NULL);
+          }
+        }
         pFunction();
       }
       else {
-        destroyToken(); // ten token se musi nejak zachovat a poslat te funkci
+        destroyToken();
         pVar();
       }
       
@@ -166,6 +180,7 @@ void pClassBody(){
   }
   else if (token->type == t_brace_r) {
      destroyToken(token);
+     isInMain = FALSE;
     // dalsi token je prava curly zavorka, konec tela  tridy vracime se do funkce pClass(); ( a z ni hned zpatku do funkce pParse();
     
   }
@@ -404,8 +419,8 @@ int isVar(tToken token){
    if (type != NULL)
      temp->type = type;
    
-  /* if (isStatic != NULL)
-     temp->isStatic = isStatic; */
+   if (isStatic != NULL)
+     temp->isStatic = isStatic;
    
    if (data != NULL)
      temp->data = data;
