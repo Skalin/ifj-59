@@ -21,6 +21,15 @@
 #include "generator.h"
 #include "stack.h"
 
+// kontrola jestli se v programu nachazi class Main
+bool hasMain = FALSE;
+
+// kontrola jestli se v programu nachazi methoda run
+bool hasRun = FALSE;
+
+// nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
+bool isInMain = FALSE;
+
 // TODO TODO TODO main run flags, help structure   , jestli neni trida run v main chyba 3, pomocna funkce pro naplneni help struktury
 // kontrola jestli neni vestavena funkce ( pole s vestavenymi funkcemi)
 void pParse(){
@@ -31,6 +40,7 @@ void pParse(){
   if(token->type != t_kw_class){
     throwException(2,0,0);
     }
+ 
   destroyToken(token);
   
   pClass();
@@ -49,6 +59,10 @@ void pParse(){
     } 
   destroyToken(token);
   
+  if ((hasMain && hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - sematicka chyba
+    throwException(3, NULL, NULL);
+  }
+  
 }  
 
 void pClass(){
@@ -64,11 +78,16 @@ void pClass(){
   if (token->type != t_simple_ident){
     throwException(2,0,0)
   }
+  
+  if (strcmp(token->data, "Main") == 0){   // nasli jsme tridu main
+    hasMain = TRUE;
+    isInMain = TRUE;
+  }
   // zkontrolovat jestli identifikator tridy uz neexistuje
   
   // vytvorit tridu v tabulce symbolu
   
-  // nejak se asi bude specialne resit trida main neco jako if (strcmp(token->data, "Main")
+  
   
   destroyToken(token);  //kill token with identifier
   
