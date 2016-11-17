@@ -10,6 +10,8 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "stack.h"
+#include "typedef.h"
+#include "garbage_collector.h"
 
 tStack * stackInit ( tStack *stack ) {
     //Inicializace polozek stacku
@@ -21,15 +23,62 @@ tStack * stackInit ( tStack *stack ) {
     return stack;
 }
 
-int stackEmpty ( const tStack* s ) {
+tStackIt *itemInit () {
+    
+    tStackIt * itemNew;
+    itemNew = plusMalloc(sizeof(tStackIt));
+    
+    if (itemNew != NULL) {
+        return;
+    }
+    
+    else {
+        throwException(99,0,0); //chyba alokace paměti
+        }
+    
+    tToken * tokenNew; 
+    tokenNew = plusMalloc(sizeof(tToken));
+    
+    if (tokenNew != NULL) {
+        return;
+    }
+    
+    else {
+        throwException(99,0,0); //chyba alokace paměti
+        }
+    
+    inintString(&tokenNew->attribute);
+    itemNew->dataIt = tokenNew;
+    return itemNew;
+    
+}
+
+void moveToAnotherStack(tStack *stc1, tStack *stc2)
+{
+	tStackIt * tmp;
+    tmp = stackPop(stc1);
+	
+    while (!stackEmpty(stc1))
+    {
+		if (tmp != NULL) {
+            stackPush(stc2, tmp);  //pushnutí na druhý zásobník
+			}
+        
+        else {   
+            throwException(2,0,0); //sytaktická chyba
+		}
+	}
+}
+
+int stackEmpty (const tStack* s) {
     return(s->counter == 0 ? 1 : 0); // Pokud je vrchol zasobniku mensi jak nula
 }
 
-int stackFull ( const tStack* s ) {
+int stackFull (const tStack* s) {
     return(s->allocated < (s->counter+1) ? 1 : 0); // Pokud se stav zasobniku rovna max kapacite, vrati se 1
 }
 
-void stackPush ( tStack *stack, void *data ) {
+void stackPush (tStack *stack, void *data) {
     // Pokud uz neni dostatek alokovane pameti, provede se realloc
     if(stackFull(stack)) {
         stack->data = plusRealloc(stack->data, (sizeof(void *) * (stack->allocated+30)));
@@ -49,7 +98,7 @@ void * stackTop (tStack *stack) {
         return NULL;
 }
 
-void stackPop ( tStack *stack ) {
+void stackPop (tStack *stack) {
     if (!stackEmpty(stack))
         stack->counter--;
 }
@@ -57,3 +106,4 @@ void stackPop ( tStack *stack ) {
 int stackSize (tStack *stack) {
     return stack->counter;
 }
+
