@@ -16,9 +16,9 @@
 #include <stdlib.h>
 /*
  * Ukonci program a jako navratovou chybu pouzije prvni parametr
- * @param errorNumber hodnota erroru
- * @param row cislo sloupce kterem se chyba vyskytla
- * @param line cislo radku na kterem se chyba vyskytla
+ * @param errorNumber cislo chyboveho stavu
+ * @param row cislo radku na kterem se chyba vyskytla
+ * @param column cislo sloupce (znaku) na kterem se chyba vyskytla
  * @return
  */
 void throwException(int errorNumber, int row, int column);

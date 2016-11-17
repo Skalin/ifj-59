@@ -21,7 +21,13 @@
 #include "ial.h"
 #include "garbage_collector.h"
 
-typedef char *String;
+// definice struktury stringu
+typedef struct SStr{
+	char *data;
+	int length;		        // délka řetězce
+	int allocatedSize;	  // alokovaná paměť
+} SString;
+
 
 /* PRIORITY PRO PRECEDENCE TABLE  */
 typedef enum {
@@ -44,7 +50,7 @@ typedef enum {
     P_EQUAL,          // ==
     P_NOT_EQUAL,      // !=
     P_ID,             // ID
-    P_DOLLAR,         //
+    P_DOLLAR,         // $
     P_COMMA,          // ,
     P_BRACKET_L,      // (
     P_BRACKET_R,      // )
@@ -52,43 +58,66 @@ typedef enum {
   // DOPLNIT
   } tInputs;
 
+
+/*
+ *
+ */
 int precedAnalysis();
+
+/*
+ *
+ */
 int getRule(tStack *stack, int something); // tady jste meli volno a asi cekate dalsi parametr, doplnil jsem "int something", je třeba refactor a překontrola jestli to je dobře
 
+/*
+ *
+ */
 int readInt();
 
+/*
+ *
+ */
 double readDouble;
 
+/*
+ *
+ */
 void print();
 
-int length(String s);
-
-String substr(String s, int i, int n);
+/*
+ *
+ */
+SStr substr(SStr *str, int i, int n);
 
 /*
- * IAL FUNKCE!
+ *
  */
-int find(String s, String search);
+int initString(SStr *str);
 
 /*
- * IAL FUNKCE!
+ *
  */
-String sort(String s);
+int addCharacter(SStr *str, char c);
 
+/*
+ *
+ */
+int compareString(SStr *str1, SStr *str2);
 
+/*
+ *
+ */
 
-typedef struct SStr{
-  char *data;		   
-  int length;		        // délka řetězce
-  int allocatedSize;	  // alokovaná paměť
-} SString;
-
-
-int inintString (SStr *str);
-int addCharacter (SStr *str, char c);
-int compareString (SStr *str1, SStr *str2);
 int strLength(SStr *str);
-void strClear(SStr *str)
-void destroyString (SString *str);
+
+/*
+ *
+ */
+void strClear(SStr *str);
+
+/*
+ *
+ */
+void destroyString(SString *str);
 
 #endif

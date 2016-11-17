@@ -12,6 +12,15 @@
 #include "ial.h"
 #include "garbage_collector.h"
 #include <string.h>
+
+// find a sort dle zadani
+
+int find(SStr *str, SStr *search) {
+
+}
+
+
+
 //Uzel BT
 tBTSNodePtr symbolTable;
 

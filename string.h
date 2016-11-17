@@ -24,11 +24,11 @@ typedef struct SStr{
 
 //FUNKCE VIZ ZADÁNÍ STR 9!!!!!!!!!!!!!!!!!!!!
 
-int inintString (SStr *str);
-int addCharacter (SStr *str, char c);
-int compareString (SStr *str1, SStr *str2);
+int initString(SStr *str);
+int addCharacter(SStr *str, char c);
+int compareString(SStr *str1, SStr *str2);
 int strLength(SStr *str);
-void strClear(SStr *str)
-void destroyString (SString *str);
+void strClear(SStr *str);
+void destroyString(SString *str);
 
 #endif

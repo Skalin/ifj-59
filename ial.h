@@ -17,6 +17,11 @@
  * Structures
  */
 
+typedef struct {
+	char c;
+	int shiftValue;
+} mismatchTable;
+
 // Klic binarniho vyhledavani
 typedef char *tableName;
 
@@ -61,6 +66,17 @@ extern tBTSNodePtr symbolTable;
 /*
  * PROTOTYPES
  */
+
+/*
+ * IAL FUNKCE!
+ */
+int find(SStr *str, SStr *search);
+
+/*
+ * IAL FUNKCE!
+ */
+String sort(SStr *str);
+
 /*
  * Obě funkce volají příslušné fce binárního stromu na inicializaci, případně odstranění ze stromu
  */
