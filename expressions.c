@@ -97,8 +97,7 @@ int addCharacter (SStr *str, char c) {
 
 int compareString(SStr *str1, SStr *str2) {
    //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
-   int result;
-   result = strcmp(str1->data, str2->data);
+   int = strcmp(str1->data, str2->data);
    if (result == 0) {
       return result;
    } else if (result < 0) {
