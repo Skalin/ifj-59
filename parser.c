@@ -28,7 +28,7 @@ global.hasRun = FALSE;
 // nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
 bool isInMain = FALSE;
 
-// TODO TODO TODO main run flags, help structure   , jestli neni trida run v main chyba 3, pomocna funkce pro naplneni help struktury
+// TODO TODO TODO naplneni help structure vsude kde je potreba
 // kontrola jestli neni vestavena funkce ( pole s vestavenymi funkcemi)
 void pParse(){
   
