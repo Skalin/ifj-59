@@ -21,11 +21,9 @@
 #include "generator.h"
 #include "stack.h"
 
-// kontrola jestli se v programu nachazi class Main
-bool hasMain = FALSE;
 
-// kontrola jestli se v programu nachazi methoda run
-bool hasRun = FALSE;
+global.hasMain = FALSE;
+global hasRun = FALSE;
 
 // nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
 bool isInMain = FALSE;
