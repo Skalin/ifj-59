@@ -12,6 +12,7 @@
 #include "stack.h"
 #include "typedef.h"
 #include "garbage_collector.h"
+#include "expressions.h"
 
 tStack * stackInit ( tStack *stack ) {
     //Inicializace polozek stacku
@@ -71,7 +72,7 @@ void moveToAnotherStack(tStack *stc1, tStack *stc2)
 }
 
 int isTerm (int typeIt) {
-    return (typeIt < TOKEN_MAX);
+    return (typeIt < /**/); ///TODO - DOPLNIT TERMINÁL
 }
 
 int topTerm (tStack *stc) {
