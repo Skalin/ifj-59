@@ -25,43 +25,59 @@ typedef struct {
 // Klic binarniho vyhledavani
 typedef char *tableName;
 
+typedef enum{
+    var,
+    function,
+    class,
+}NodeType;
+
 //Vycet moznych typu
 typedef enum {
     var_int,
     var_double,
     var_string,
-    var_simpleident,
-    var_completeident,
 } varType;
 
 // Hodnota promenne
-typedef union {
+union {
     int intValue;
     double doubleValue;
     char *stringValue;
-    char *simpleIdentValue;
-    char *completeIdentValue;
 }varValue;
 
 //Struktura tabulky symbolu
 typedef struct tableSymbolVariable {
-    int inc; //Byl inicializovan
-    tableName name; //Nazev symbolu
-    varType type; // Typ promenne
-    varValue value; // Hodnota promenne
+    varType type; // Promenna= typ promenne, Funkce= Typ navratove hodnoty, Class=nic
+    varValue value; // Promenna= hodnota promenne, Funkce= vyuzijeme int hodnotu a do ni vlozime pocet argumentu, class= nic
+
 }tabSymbol, *tabSymbolPtr;
 
 
 //Struktura uzlu binarniho stromu
 typedef struct tBTSNode {
-    tableName key; // Klíč
+    tableName key; // Klíč (název proměnné, třídy, funkce)
+    NodeType nodeType; // Typ uzlu (proměnná, funkce, třída)
+
+    //Struktura, kde se využívá vždy jen jeden prvek
+    union {
+        struct tBTSNode *functions; // Odkaz na funkce třídy
+        int argNo; // Číslo argumentu funkce
+    };
+
     tabSymbol data; // Data
+
+    struct tBTSNode *variables; // Odkaz na proměnné třídy nebo funkce
+
     struct tBTSNode *lptr; // Pointer na levý podstrom
     struct tBTSNode *rptr; // Pointer na pravý podstrom
-}*tBTSNodePtr;
+}BTSNode, *tBTSNodePtr;
 
-//Externi promenna tabulky symbolu
-extern tBTSNodePtr symbolTable;
+// Struktura stromu
+typedef struct {
+    BTSNode *root;
+    BTSNode *actClass;
+    BTSNode *actFunction;
+}mainTree;
 
 /*
  * PROTOTYPES
@@ -99,6 +115,8 @@ tabSymbol *TSInsertDouble(tableName name, double data);
 tabSymbol *TSInsertString(tableName name, char *data);
 tabSymbol *TSInsertSimpleIdent(tableName name, char *data);
 tabSymbol *TSInsertCompleteIdent(tableName name, char *data);
+tabSymbol TSInsertFunction(tableName name, char *data);
+tabSymbol TSInsertClass(tableName name, char *data);
 
 /*
  * Funkce inicializuje symbol

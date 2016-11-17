@@ -40,7 +40,9 @@ struct tGlobal{
     FILE *file; // FILE
 	char *fileName; // globalni nazev souboru
 
-    //Ostatní
+    //promene pro parsing - kontrola zda program ma class Main a method run
+     bool hasMain; 
+     bool hasRun; 
 };
 
 extern struct tGlobal global;

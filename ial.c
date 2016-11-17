@@ -12,6 +12,7 @@
 #include "ial.h"
 #include "garbage_collector.h"
 #include <string.h>
+#include "error_handler.h"
 
 // find a sort dle zadani
 
@@ -23,6 +24,189 @@ int find(SStr *str, SStr *search) {
 
 //Uzel BT
 tBTSNodePtr symbolTable;
+
+// Hlavní strom
+mainTree *mTree;
+
+int argNo = 0;
+
+
+void initTree(mainTree *tree) {
+    mTree = tree;
+    mTree->root= NULL;
+    mTree->actClass= NULL;
+    mTree->actFunction = NULL;
+}
+
+BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
+    if(mTree->root != NULL) {
+
+    } else {
+        if (start == NULL)
+            start= mTree->root;
+        else {
+            // Pokud nalezneme klic
+            if(strcmp(key, &start->key) == 0) {
+                // Pokud je to typ ktery jsme hledali, vratime ho
+                if (start->nodeType == nodeType)
+                    return start;
+            }
+            // Pokud mame hledat v pravem podstromu
+            else if(strcmp(key, &start->key) > 0) {
+                return start->rptr == NULL ?  NULL : searchForNode(key, nodeType, start->rptr);
+            }
+            // Pokud mame hledat v levem podstromu
+            else if (strcmp(key, &start->key) < 0)
+                return start->lptr == NULL ?  NULL : searchForNode(key, nodeType, start->lptr);
+            // V ostatnich pripadech (Chuck norris on STDin?) se jedna o chybu
+            else
+                throwException(99,0,0);
+        }
+    }
+    return NULL;
+}
+
+void addNode(BTSNode *newItem, BTSNode *start) {
+    if(begin != NULL) {
+        if(strcmp(&newItem->key, &start->key) > 0) {
+            // Pokud nemame uzel kam vlozit
+            if(start->rptr != NULL) {
+                addNode(newItem, start->rptr);
+            }
+            // Pokud ho mame kam vlozit
+            else
+                start->rptr = newItem;
+                if(newItem->nodeType == function)
+                    mTree->actFunction = newItem;
+                if(newItem->nodeType == class)
+                    mTree->actClass == newItem;
+
+        } else if(strcmp(&newItem->key, &start->key) < 0) {
+            // Pokud nemame uzel kam vlozit
+            if(start->lptr != NULL) {
+                addNode(newItem, start->lptr);
+            }
+                // Pokud ho mame kam vlozit
+            else
+                start->lptr = newItem;
+            if(newItem->nodeType == function)
+                mTree->actFunction = newItem;
+            if(newItem->nodeType == class)
+                mTree->actClass == newItem;
+
+        // If there is anything else throw error
+        } else
+            throwException(99,0,0);
+    }   else
+        throwException(99,0,0);
+}
+
+void createNewNode(char *id, NodeType nodeType, varType variableType, int status) {
+    if(argNo != 0)
+        argNo = 0;
+
+    // Inicializace noveho uzlu
+    BTSNode *newNode = plusMalloc(sizeof(BTSNode));
+    &newNode->key = id;
+    newNode->nodeType = nodeType;
+    newNode->lptr = NULL;
+    newNode->rptr = NULL;
+
+    // Urceni zacatku podle typu uzlu
+    BTSNode *start;
+
+    if (newNode->nodeType == var) {
+        newNode->data.type = variableType;
+        newNode->variables = NULL; // Neni potrebne u promenne
+
+        if (status == 1)
+            start = mTree->actClass->variables;
+        else
+            start = mTree->actFunction->variables;
+    }
+    else if (newNode->nodeType == function) {
+        newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
+        newNode->variables = NULL;
+        start= mTree->actClass->functions;
+    }
+    else if (newNode->nodeType == class) {
+        newNode->functions = NULL;
+        newNode->variables = NULL;
+        start= mTree->root;
+    }
+
+    // Pokud neexistuje korenovy uzel a jedna se o classu
+    if (newNode ->nodeType == class) {
+        if (mTree->root == NULL) {
+            mTree->root = newNode;
+            mTree->actClass = newNode;
+        }
+    }
+    // Pokud se jedna o funkci a v aktivni classe nemame aktivni funkci
+    else if (newNode ->nodeType == function) {
+        if(mTree->actClass->functions == NULL) {
+            mTree->actClass->functions = newNode;
+            mTree->actFunction = newNode;
+        }
+    }
+    // Pokud se jedna o promennou
+    else if (newNode ->nodeType == var) {
+        if(status) {
+            if(mTree->actClass->variables == NULL)
+                mTree->actClass->variables = newNode;
+        }
+        else if (mTree->actFunction->variables == NULL) {
+            if(mTree->actFunction != NULL)
+                mTree->actFunction->variables = newNode;
+        }
+    }
+    else
+        addNode(newNode, start);
+}
+
+void addArgument(char *id, int type) {
+    BTSNode *argument = plusMalloc(sizeof(BTSNode));
+    &argument->key = id;
+    argument->nodeType = var;
+    argument->data.type = type;
+    argument->lptr = NULL;
+    argument->rptr = NULL;
+
+    argNo++;
+    argument->argNo = argNo;
+    mTree->actFunction->data.value.intValue = argNo;
+
+    if (mTree->actFunction->variables != NULL)
+        addNode(argument, mTree->actFunction->variables);
+    else
+        mTree->actFunction->variables = argument;
+}
+
+tNode *findArgument(BTSNode *start, int argNo) {
+    if (begin != NULL) {
+        if(start->nodeType == var) {
+            if(start->argNo == argNo)
+                return start;
+        }
+
+        BTSNode *result;
+        result= findArgument(start->lptr, argNo);
+        if (result == NULL)
+            result = findArgument(start->rptr, argNo);
+
+        return found;
+
+    } else
+        return NULL;
+}
+
+
+
+
+
+
+
+// OLD
 
 
 void TSInit(void) {
@@ -111,6 +295,34 @@ tabSymbol TSInsertCompleteIdent(tableName name, char *data) {
     return TSInsert(symbol);
 }
 
+tabSymbol TSInsertFunction(tableName name, char *data) {
+    // Vytvoreni promenne
+    tabSymbol symbol;
+
+    // Inicializace dat
+    symbol.inc = 1;
+    symbol.name = name;
+    symbol.type = var_function;
+    symbol.isFunction = 1;
+    symbol.argument = NULL;
+
+    // Navraceni symbolu do binarniho stromu
+    return TSInsert(symbol);
+}
+tabSymbol TSInsertClass(tableName name, char *data) {
+    // Vytvoreni promenne
+    tabSymbol symbol;
+
+    // Inicializace dat
+    symbol.inc = 1;
+    symbol.name = name;
+    symbol.type = var_class;
+    symbol.isClass = 1;
+
+    // Navraceni symbolu do binarniho stromu
+    return TSInsert(symbol);
+}
+
 void TSInitSymbol (tabSymbol symbol) {
     //Pokud máme co inicializovat
     if (symbol != NULL) {
@@ -118,6 +330,9 @@ void TSInitSymbol (tabSymbol symbol) {
         symbol.name= NULL;
         symbol.type= NULL;
         symbol.inc= 1;
+        symbol.isFunction= 0;
+        symbol.isArgument= 0;
+        symbol.argument= NULL;
     }
 }
 
