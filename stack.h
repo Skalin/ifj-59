@@ -20,6 +20,12 @@ typedef struct {
     int allocated;
 } tStack;
 
+//Struktura položky
+typedef struct {
+    void * dataIt;
+    int typeIt;
+} tStackIt;
+
 /*
  * Inicializuje zásobník
  * @param zásobník
