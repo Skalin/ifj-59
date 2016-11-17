@@ -70,6 +70,28 @@ void moveToAnotherStack(tStack *stc1, tStack *stc2)
 	}
 }
 
+int isTerm (int typeIt) {
+    return (typeIt < TOKEN_MAX);
+}
+
+int topTerm (tStack *stc) {
+	
+    tStackIt *item; 
+    item = stc->data;
+
+    while (item != NULL) {
+	    
+        if (isTerm(item->typeIt)) {
+            return item->typeIt;
+        }
+	    
+        item = item->typeIt;
+        }
+    }
+}
+	
+}
+
 int stackEmpty (const tStack* s) {
     return(s->counter == 0 ? 1 : 0); // Pokud je vrchol zasobniku mensi jak nula
 }
