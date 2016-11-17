@@ -116,6 +116,12 @@ int strLength(SStr *str) {
 
 }
 
+bool strEqual(char *str1, char *str2)
+{
+    int equal = !strcmp(str1, str2);
+    return equal;
+}
+
 void strClear(SStr *str) {
    // funkce sloužící k vymazání řetězce 
    str->length = 0;
