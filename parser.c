@@ -399,7 +399,15 @@ int isVar(tToken token){
    return FALSE;
 
 }
-  
- void fillTemp(tokenType type, bool static, char data){
+  // vlozi informace do pomocneho tokenu
+ void fillTemp(tokenType type, bool isStatic, char data){
+   if (type != NULL)
+     temp->type = type;
+   
+   if (isStatic != NULL)
+     temp->isStatic = isStatic;
+   
+   if (data != NULL)
+     temp->data = data;
  
  }
