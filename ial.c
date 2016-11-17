@@ -102,6 +102,34 @@ tabSymbol TSInsertCompleteIdent(tableName name, char *data) {
     return TSInsert(symbol);
 }
 
+tabSymbol TSInsertFunction(tableName name, char *data) {
+    // Vytvoreni promenne
+    tabSymbol symbol;
+
+    // Inicializace dat
+    symbol.inc = 1;
+    symbol.name = name;
+    symbol.type = var_function;
+    symbol.isFunction = 1;
+    symbol.argument = NULL;
+
+    // Navraceni symbolu do binarniho stromu
+    return TSInsert(symbol);
+}
+tabSymbol TSInsertClass(tableName name, char *data) {
+    // Vytvoreni promenne
+    tabSymbol symbol;
+
+    // Inicializace dat
+    symbol.inc = 1;
+    symbol.name = name;
+    symbol.type = var_class;
+    symbol.isClass = 1;
+
+    // Navraceni symbolu do binarniho stromu
+    return TSInsert(symbol);
+}
+
 void TSInitSymbol (tabSymbol symbol) {
     //Pokud máme co inicializovat
     if (symbol != NULL) {
@@ -109,6 +137,9 @@ void TSInitSymbol (tabSymbol symbol) {
         symbol.name= NULL;
         symbol.type= NULL;
         symbol.inc= 1;
+        symbol.isFunction= 0;
+        symbol.isArgument= 0;
+        symbol.argument= NULL;
     }
 }
 

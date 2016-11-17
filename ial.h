@@ -27,6 +27,8 @@ typedef enum {
     var_string,
     var_simpleident,
     var_completeident,
+    var_function,
+    var_class,
 } varType;
 
 // Hodnota promenne
@@ -44,6 +46,12 @@ typedef struct tableSymbolVariable {
     tableName name; //Nazev symbolu
     varType type; // Typ promenne
     varValue value; // Hodnota promenne
+
+    //Čast struktury pouze pro funkce
+    int isFunction; //Jedná se o funkci? 1 ano, 0 ne
+    int isArgument; // Pokud se jedná o argument funkce. 1 ano, 0 ne
+    int argCounter; // Počítá argumenty funkce
+    void * argument;
 }tabSymbol, *tabSymbolPtr;
 
 
