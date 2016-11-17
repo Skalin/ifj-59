@@ -19,15 +19,18 @@ HLAVIČKY FUNKCÍ
 */
 void pParse();  
 void pClass();
-void pVars();
+void pClassBody();
 void pVar();
 void pFunction();
-void pArgs();
+void pParams();
+void pParamsNext();
 void pCommands();
+void pSingleCommand();
 void pIf();
 void pWhile();
 
 int isVar(int type);
+void fillTemp(tokenType type, bool isStatic, char data);
   
 #endif //IFJ_59_PARSER_H
 
