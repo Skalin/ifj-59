@@ -71,10 +71,13 @@ SString sort(SString *str) {
     copyString(str, helpString);
 
 
-	repairHeap(helpString);
 
     int biggestNumber = 0;
     while (helpString->length) {
+
+		repairHeap(helpString);
+
+
         for (int i = 0; i < helpString->length; i++) {
             if ((i+1) == helpString->length) {
                 break;
