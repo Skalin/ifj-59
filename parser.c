@@ -342,7 +342,13 @@ void pCommands(){
     }
     destroyToken(token);
   
-    token = getToken();
+    pSingleCommand(); //parse prikazu
+  
+} 
+
+void pSingleCommand(){
+  
+  token = getToken();
     
     switch(token->type){
         
@@ -350,18 +356,28 @@ void pCommands(){
         // prava curly zavorka, konec bloku prikazu
         return;
         break;
+        
+      case t_kw_if : 
+        // IF STATEMENT
+        pIf();
+        break;
+        
+      case t_kw_while : 
+        // WHILE LOOP
+        pWhile();
+        break;
        
       default:
         // neocekavany vstup
         throwException(2, NULL, NULL);
     
     } //end switch 
+  
+  // rekurzivni volani na dalsi prikaz
+  pSingleCommand();
+ 
 
-void pSingleCommand(){
-  // TODO tato funkce je asi docela nakokos lepsi udelat vse v pCommands();
-
-   tToken * token = getToken();
-   /*tToken */
+  /* 
   
   switch (token->type)
     {
@@ -432,7 +448,7 @@ void pSingleCommand(){
         
         
         }
-    }
+    } */
   
 }
   
@@ -459,6 +475,7 @@ void pIf(){
     }
     destroyToken(token); */
 
+  // expression
     // block of code
     pCommands();
 
