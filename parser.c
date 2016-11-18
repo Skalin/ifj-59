@@ -347,6 +347,7 @@ void pCommands(){
 } 
 
 void pSingleCommand(){
+
   
   token = getToken();
     
@@ -366,6 +367,31 @@ void pSingleCommand(){
         // WHILE LOOP
         pWhile();
         break;
+        
+      case t_kw_return :
+        // RETURN statement
+        // asi rovnou volam precedencni TODO
+        break;
+        
+      case t_kw_static :
+        // static keyword 
+        // TODO laterz
+        break;
+        
+      case t_simple_ident :
+        // jednoduchy identifikator, 
+        break;
+       
+      case t_complete_ident :
+        //komplet identifikator
+        break;
+        
+      case t_kw_int :
+      case t_kw_string:
+      case t_kw_double:
+        // prijde data type
+        break;
+        
        
       default:
         // neocekavany vstup
