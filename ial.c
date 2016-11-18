@@ -20,6 +20,42 @@ int find(SStr *str, SStr *search) {
 
 }
 
+char swap(char *a, char *b) {
+    char c = '\0';
+    
+    c = a;
+    *a = b;
+    *b = c;
+}
+
+void repairHeap(SString *str);
+
+SString sort(SString *str) {
+    SString *helpString = initString(helpString);
+    copyString(str, helpString);
+    
+    int biggestNumber = 0;
+    char c = '\0';
+    while (helpString->length) {
+        for (int i = 0; i < helpString->length; i++) {
+            if ((i+1) == helpString->length) {
+                break;
+            }
+            biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
+        }
+        
+        swap(helpString->data[biggestNumber], helpString->data[length-1]);
+        
+        repairHeap(helpString);
+        
+        helpString->length--;
+    }
+    
+    helpString->length = str->length;
+
+    return helpString;
+}
+
 
 
 //Uzel BT
