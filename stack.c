@@ -71,6 +71,7 @@ void stackDestroy (tStack *stc) {
 void itemDestroy (tItem *data) {
 		
 	plusFree(data->dataIt);	
+	plusFree(data);	
 	
 }
 
