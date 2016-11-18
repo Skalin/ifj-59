@@ -56,11 +56,27 @@ tStackIt *itemInit () {
 
 tStackIt *anotherToken (tToken *token) {
 	
-}	
+}
+
+void stackDestroy (tStack *stc) {
+		
+	while (stackSize(stc) > 0) {
+		tStack *tmp = stc;
+		stc = tmp->dataIt;
+		plusFree(tmp);
+	}	
+	
+}
+
+void itemDestroy (tItem *data) {
+		
+	plusFree(data->dataIt);	
+	
+}
 
 void moveToAnotherStack(tStack *stc1, tStack *stc2)
 {
-	tStackIt * tmp;
+    tStackIt * tmp;
     tmp = stackPop(stc1);
 	
     while (!stackEmpty(stc1))
