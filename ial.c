@@ -11,6 +11,7 @@
  */
 #include "ial.h"
 #include "garbage_collector.h"
+#include <stdlib.h>
 #include <string.h>
 #include "error_handler.h"
 
@@ -28,14 +29,51 @@ char swap(char *a, char *b) {
     *b = c;
 }
 
-void repairHeap(SString *str);
+makeEven(int *i) {
+	if ((i % 2) != 0) {
+		*i += 1;
+	}
+	return i;
+}
+
+SString repairHeap(SString *str) {
+
+	int i = 0, j = 0;
+	for (i = str->length-1; i > 0; --i) {
+		j = 0;
+		if ((i % 2) == 0) {
+			j = 1;
+			if ((str->data[i] > str->data[(makeEven(i)/2)-1]) && (str->data[i-1] > str->data[(makeEven(i)/2)-1])) {
+				if (str->data[i] >= str->data[i-1]) {
+					swap(str->data[i], str->data[(makeEven(i)/2)-1]);
+				} else {
+					swap(str->data[i-1], str->data[(makeEven(i)/2)-1]);
+				}
+			}
+			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
+				swap(str->data[i], str->data[(makeEven(i)/2)-1]);
+			}
+		} else {
+			j = 1;
+			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
+				swap(str->data[i], str->data[(makeEven(i)/2)-1]);
+			}
+		}
+	}
+	if (j == 1)
+		repairHeap(str);
+
+	return str;
+}
 
 SString sort(SString *str) {
     SString *helpString = initString(helpString);
     copyString(str, helpString);
-    
+
+
+	repairHeap(helpString);
+
     int biggestNumber = 0;
-    char c = '\0';
     while (helpString->length) {
         for (int i = 0; i < helpString->length; i++) {
             if ((i+1) == helpString->length) {
@@ -45,8 +83,6 @@ SString sort(SString *str) {
         }
         
         swap(helpString->data[biggestNumber], helpString->data[length-1]);
-        
-        repairHeap(helpString);
         
         helpString->length--;
     }

@@ -11,6 +11,7 @@
  */
 
 #include "expressions.h"
+#include <stdlib.h>
 
 #ifndef IFJ_59_TABLE_H_
 #define IFJ_59_TABLE_H_
