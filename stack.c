@@ -54,6 +54,10 @@ tStackIt *itemInit () {
     
 }
 
+tStackIt *anotherToken (tToken *token) {
+	
+}	
+
 void moveToAnotherStack(tStack *stc1, tStack *stc2)
 {
 	tStackIt * tmp;
@@ -89,8 +93,6 @@ int topTerm (tStack *stc) {
         item = item->typeIt;
         }
     }
-}
-	
 }
 
 int stackEmpty (const tStack* s) {
