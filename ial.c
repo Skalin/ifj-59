@@ -17,10 +17,97 @@
 
 // find a sort dle zadani
 
-int find(SStr *str, SStr *search) {
+// pomocne fce pro find
+
+void initMismatchTable(mismatchTable Table) {
+	Table->First = NULL;
+	Table->Act = Table->First;
+}
+
+void disposeMismatchTable(mismatchTable Table) {
+	mismatchtable pom = NULL;
+
+	while (Table->First != NULL) {
+		pom = Table->First;
+		Table->First = Table->First->next;
+		free(pom);
+	}
+}
+
+void insertNext(mismatchTable Table, char c, int shiftValue) {
+
+	mismatchTableItem pom = malloc(sizeof(struct mmtItem));
+
+	if (pom != NULL) {
+		if (Table == NULL) {
+			pom->c = c;
+			pom->shiftValue = shiftValue;
+			pom->next = NULL;
+			Table->First = pom;
+		} else {
+			pom = Table->First;
+			Table->First->next = pom;
+			Table->First->c = c;
+			Table->First->shiftValue = shiftValue;
+		}
+	} else {
+		throwException(99,0,0);
+	}
+}
+
+int findChar(mismatchTable Table, char c) {
+	int i = 0;
+	Table->Act = Table->First;
+	while (Table->Act != NULL) {
+		if (c == Table->Act->c) {
+			i++;
+			break;
+		} else {
+			i = 0;
+		}
+		Table->Act = Table->Act->next;
+	}
+
+	return (i);
+}
+
+void updateShift(mismatchTable Table, char c, int shiftValue) {
+	int i = 0;
+	int position = findChar(Table, c);
+	Table->Act = Table->First;
+	while (i < position) {
+		Table->Act = Table->Act->next;
+		i++;
+	}
+
+	Table->Act->shiftValue = shiftValue;
 
 }
 
+// samotny find
+int find(SStr *str, SStr *search) {
+
+	int i = 0;
+	mismatchTable Table = initMismatchTable(Table);
+	while (search->data[i] != '\0') {
+			if (findChar(Table, search[i]) == 0) {
+				if (search->data[i+1] != '\0') {
+					insertNext(Table, search[i], strLength(search) - i - 1);
+				} else {
+					insertNext(Table, search[i], strLength(search));
+				}
+			} else {
+				updateShift(Table, str(Length(search)-i-1));
+			}
+			i++;
+
+
+	}
+	int others = strLength(search);
+
+}
+
+// swap pro heapsort
 char swap(char *a, char *b) {
     char c = '\0';
     
@@ -29,13 +116,15 @@ char swap(char *a, char *b) {
     *b = c;
 }
 
-makeEven(int *i) {
+// pomocna funkce makeEven pro zjednoduseni vypoctu pozice prvku
+int makeEven(int i) {
 	if ((i % 2) != 0) {
 		*i += 1;
 	}
 	return i;
 }
 
+// fce pro korektni nastaveni pozice nejvetsiho prvku na zacatek haldy
 SString repairHeap(SString *str) {
 
 	int i = 0, j = 0;
@@ -66,6 +155,8 @@ SString repairHeap(SString *str) {
 	return str;
 }
 
+
+// samotny heapsort
 SString sort(SString *str) {
     SString *helpString = initString(helpString);
     copyString(str, helpString);
@@ -77,14 +168,17 @@ SString sort(SString *str) {
 
 		repairHeap(helpString);
 
+		biggestNumber = helpString[0];
 
+/*
+ * zbytecne, protoze biggest number bude prvni
         for (int i = 0; i < helpString->length; i++) {
             if ((i+1) == helpString->length) {
                 break;
             }
             biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
         }
-        
+  */
         swap(helpString->data[biggestNumber], helpString->data[length-1]);
         
         helpString->length--;

@@ -20,10 +20,24 @@
  * Structures
  */
 
-typedef struct {
+typedef struct mmtItem{
 	char c;
 	int shiftValue;
+	struct mmtItem *next;
+} *mismatchTableItem;
+
+typedef struct {
+	mismatchTableItem First;
+	mismatchTableItem Act;
 } mismatchTable;
+
+void initMismatchTable(mismatchTable *);
+void disposeMismatchTable(mismatchTable *);
+void insertFirstMismatch(mismatchTable *, char c, int shiftValue);
+int findChar(mismatchTable *, char c);
+void updateShift(mismatchTable *, char c, int shiftValue);
+void insertNext(mismatchTable *, char c, int shiftValue);
+
 
 // Klic binarniho vyhledavani
 typedef char *tableName;
@@ -92,9 +106,34 @@ typedef struct {
 int find(SString *str, SString *search);
 
 /*
- * IAL FUNKCE!
+ * heapsort
+ * @param str string (pole charu), kazdy znak stringu je razen dle ordinalni hodnoty vzestupne
  */
 SString sort(SString *str);
+
+/*
+ * pomocne fce pro sort
+ */
+
+/*
+ * Funkce kontroluje delitelnost dvema, pokud prvek neni delitelny dvema, pricte mu jednicku.
+ * Funkce slouzi k zjednoduseni vypoctu pozice prvku v repairHeap fci
+ * @param i vstupni parametr
+ */
+int makeEven(int i);
+
+/*
+ * Funkce provadi vymenu hodnot a a b
+ * @param *a prvek a, pres ktery vratime hodnotu b
+ * @param *b prvek b, pres ktery vratime hodnotu a
+ */
+char swap(char *a, char *b);
+
+/*
+ * Funkce ziska z argumentu str string, ktery pote zpracuje za ucelem upravy haldy na spravny format
+ * @param str string se kterym se pracuje
+ */
+SString repairHeap(SString *str);
 
 /*
  * Obě funkce volají příslušné fce binárního stromu na inicializaci, případně odstranění ze stromu
