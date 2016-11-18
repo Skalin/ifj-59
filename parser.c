@@ -140,7 +140,11 @@ void pClassBody(){
             global.hasRun = TRUE;
           }
           else {
-            // sematicka chyba, nemuze byt funkce run jinde nez v class Main
+            // semanticka chyba, nemuze byt funkce run jinde nez v class Main
+            throwException(3, NULL, NULL);
+          }
+          if (temp->type != t_kw_void) {
+            // navratovy typ run musi byt void
             throwException(3, NULL, NULL);
           }
         }
