@@ -334,22 +334,31 @@ void pCommands(){
 /**
  * <L curly brace> <commands> <R curly brace>
  */
-    tToken * token = getToken();
+    tToken * token;
+    token = getToken();
+  
     if (token->type != t_brace_l){   // left curly brace, start of block
         throwException(2, NULL, NULL);
     }
     destroyToken(token);
-
-    //commands TODO TODO TODO 
-    // tady asi bude velky switch a rekurzivni volani 
-
+  
     token = getToken();
-    if (token->type != t_brace_r){   // right curly brace, end of block
+    
+    switch(token->type){
+        
+      case t_brace_r: 
+        // prava curly zavorka, konec bloku prikazu
+        return;
+        break;
+       
+      default:
+        // neocekavany vstup
         throwException(2, NULL, NULL);
-    }
-    destroyToken(token);
+    
+    } //end switch 
 
 void pSingleCommand(){
+  // TODO tato funkce je asi docela nakokos lepsi udelat vse v pCommands();
 
    tToken * token = getToken();
    /*tToken */
