@@ -30,6 +30,8 @@ bool isInMain = FALSE;
 
 // TODO TODO TODO naplneni help structure vsude kde je potreba
 // kontrola jestli neni vestavena funkce ( pole s vestavenymi funkcemi)
+// kontrola semanticke chyby 8, natavit na 1 pri inicializaci rpomene
+
 void pParse(){
   
   tToken * token;
