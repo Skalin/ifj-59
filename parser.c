@@ -121,7 +121,7 @@ void pClassBody(){
       
       fillTemp(token->type, TRUE, NULL); // ulozime si typ tokenu
       
-      detroyToken(token); // zruseni tokenu s datatype
+      destroyToken(token); // zruseni tokenu s datatype
       // static dataType - musi nasledovat identifikator
       token = getToken();
       
