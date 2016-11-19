@@ -21,6 +21,10 @@
 #include "generator.h"
 #include "stack.h"
 
+//pomocne info o tokenu
+tokenType tempType;
+bool tempStatic;
+char *tempData;
 
 global.hasMain = FALSE;
 global.hasRun = FALSE;
@@ -137,7 +141,7 @@ void pClassBody(){
       
       if (token->type == t_bracket_l) {
         destroyToken();
-        if (strcmp(temp.data,"run") == 0) { // funkce 'run'
+        if (strcmp(tempData,"run") == 0) { // funkce 'run'
           if (isInMain) {               // a jsme v class Main
             global.hasRun = TRUE;
           }
@@ -145,7 +149,7 @@ void pClassBody(){
             // semanticka chyba, nemuze byt funkce run jinde nez v class Main
             throwException(3, NULL, NULL);
           }
-          if (temp.type != t_kw_void) {
+          if (tempType != t_kw_void) {
             // navratovy typ run musi byt void
             throwException(3, NULL, NULL);
           }
@@ -403,7 +407,7 @@ void pSingleCommand(){
         else if (token->type == t_bracket_l) {
           // volani funkce
           
-           if (strcmp(temp.data,"ifj16.print") == 0) {
+           if (strcmp(tempData,"ifj16.print") == 0) {
              //vyresit ifj16.print TODO
              //DELETE THIS
               token = getToken();
@@ -547,15 +551,15 @@ void pWhile(){
 }
 
 
+
   // vlozi informace do pomocneho tokenu
  void fillTemp(tokenType type, bool isStatic, char data){
    if (type != NULL)
-     temp.type = type;
+    tempType = type;
    
    /*if (isStatic != NULL)
      temp->isStatic = isStatic;*/
    
    if (data != NULL)
-     temp.data = data;
- 
+     tempData = data; 
  }
