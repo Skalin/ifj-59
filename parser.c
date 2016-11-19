@@ -380,10 +380,46 @@ void pSingleCommand(){
         
       case t_simple_ident :
         // jednoduchy identifikator, 
+        // prirazeni hodnoty promene, volam funkci, 
+        fillTemp(NULL, FALSE, token->data);
+        destroyToken(token);
+        token = getToken();
+        
+        if (token->type == t_assignment) {
+          // a =
+          pVar(token);
+        }
+        else if (token->type == t_bracket_l) {
+          // a(
+          // volani funkce
+          
+          // ZDE ZPRACOvANI PARAMETRU
+          
+          token = getToken();
+          if (token->type != t_semicolon) {
+            // missing semicolon
+            throwException(2, NULL, NULL);
+          }
+        }
         break;
        
       case t_complete_ident :
         //komplet identifikator
+        // volani funkce
+        fillTemp(NULL, FALSE, token->data);
+        destroyToken(token);
+        token = getToken();
+        
+        if (token->type != t_bracket_l) {
+          throwException();
+        }
+        // nacist argumenty funkce
+        
+         token = getToken();
+          if (token->type != t_semicolon) {
+            // missing semicolon
+            throwException(2, NULL, NULL);
+          }
         break;
         
       case t_kw_int :
