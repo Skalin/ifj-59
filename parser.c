@@ -348,7 +348,7 @@ void pCommands(){
 
 void pSingleCommand(){
 
-  
+  tToken * token;
   token = getToken();
     
     switch(token->type){
@@ -390,6 +390,21 @@ void pSingleCommand(){
       case t_kw_string:
       case t_kw_double:
         // prijde data type
+        // deklarujeme lokalni promenou
+        fillTemp(token->type, FALSE, NULL);
+        destroyToken(token);
+        
+        
+        token = getToken();
+        if (token->type != t_simple_ident) {
+          throwException(2, NULL, NULL);
+        }
+        
+        fillTemp(NULL, FALSE, token->data);
+        destroyToken(token);
+        
+        pVar(NULL);
+        
         break;
         
        
