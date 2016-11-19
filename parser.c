@@ -76,7 +76,7 @@ void pClass(){
   token = getToken();
   
   if (token->type != t_simple_ident){
-    throwException(2,0,0)
+    throwException(2,0,0);
   }
   
   if (strcmp(token->data, "Main") == 0){   // nasli jsme tridu main
