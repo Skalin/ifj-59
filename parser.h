@@ -35,7 +35,7 @@ void fillTemp(tokenType type, bool isStatic, char data);
 #endif //IFJ_59_PARSER_H
 
 // struktura pro ukladani doceasnych informaci o tokenu
-typedef struct {
+typedef struct tTemp{
 	tokenType type;   // typ tokenu
 	bool isStatic;     // je static
 	char data[];      // data tokenu
