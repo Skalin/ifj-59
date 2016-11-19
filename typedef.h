@@ -82,7 +82,12 @@ typedef enum {
 	t_kw_false,
 } tokenType;
 
-
+/*
+* Definice bool hodnot
+*/
+typedef int bool;
+#define TRUE 1
+#define FALSE 0
 /*
  * Struktura tokenu
  */
