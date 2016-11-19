@@ -240,6 +240,13 @@ void pVar(tToken *token){
   
   if (token->type == t_assignment) {
     // tady doplnit neco z precedencni
+    //DELETE THIS
+          token = getToken();
+          while (token->type != t_semicolon) {
+            destroyToken(token);
+            token = getToken();
+          }
+          // END OF DELETE BLOCK
   }
   else {
     throwException(2, NULL, NULL);
@@ -417,7 +424,7 @@ void pSingleCommand(){
         
         if (strcmp(temp->data,"ifj16.print") == 0) {
           //vyresit ifj16.print TODO
-          //DELELTE THIS
+          //DELETE THIS
           token = getToken();
           while (token->type != t_bracket_r) {
             destroyToken(token);
@@ -499,6 +506,9 @@ void pExprParamsNext(){
   }  
   else if (token->type == t_comma) {
    // zpracovani jednoho parametru, nevim jeste jak TODO
+    //DELETE THIS
+    token = getToken();
+    //END OF DELETE BLOCK
    pExprParamsNext();
   }
   else {
@@ -511,26 +521,16 @@ void pIf(){
  * if ( <expr> ) <commands> else <commands>
  */
 
-    // tato funkce je volana kdyz parser obdrzi token 'if'
-    // uvolneni tokenu by se melo provest uz v hlavni funkci parseru
-
-   
-
-   /* if (token->type != LA_BRACKET_L){   // left brace
-        throwException(2, NULL, NULL);
-    }
-    destroyToken(token);*/
-
-    // here should be expression         // pokud budem mit gramatiku tak ze expression muze byt i v zavorkach je tahle cast zbytecna
-
-   /* token = getToken();
-    if (token->type != LA_BRACKET_R){   // right brace
-        throwException(2, NULL, NULL);
-    }
-    destroyToken(token); */
-
-  // expression
-    // block of code
+    tToken * token;
+  
+     //DELETE THIS
+          token = getToken();
+          while (token->type != t_bracket_r) {
+            destroyToken(token);
+            token = getToken();
+          }
+      // END OF DELETE BLOCK
+  
     pCommands();
 
     tToken * token = getToken();
@@ -548,21 +548,16 @@ void pWhile(){
  * while ( <expr> ) { <commands> }
  */
   
-   /* tToken * token;
-    *token = getToken();
+   tToken * token;
   
-    if (token->type != LA_BRACKET_L) {   //pokud neexistuje levá závorka, jde o syntaktickou chybu
-       throwException(2, NULL, NULL);
-      }
-    destroyToken(token);
-  
-    token = getToken();
-    if (token->type != LA_BRACKET_R) {   //pokud neexistuje pravá závorka, jde o syntaktickou chybu
-       throwException(2, NULL, NULL);
-      }
-    destroyToken(token);*/
-    
-    //expression
+  //DELETE THIS
+          token = getToken();
+          while (token->type != t_bracket_r) {
+            destroyToken(token);
+            token = getToken();
+          }
+   // END OF DELETE BLOCK
+   
   
     pCommands();
 }
