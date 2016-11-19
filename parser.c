@@ -414,7 +414,21 @@ void pSingleCommand(){
         if (token->type != t_bracket_l) {
           throwException();
         }
+        
+        if (strcmp(temp->data,"ifj16.print") == 0) {
+          //vyresit ifj16.print TODO
+          //DELELTE THIS
+          token = getToken();
+          while (token->type != t_bracket_r) {
+            destroyToken(token);
+            token = getToken();
+          }
+          // END OF DELETE BLOCK
+        }
+        else {
         // nacist argumenty funkce
+          pExprParams();
+        }
         
          token = getToken();
           if (token->type != t_semicolon) {
