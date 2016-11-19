@@ -137,7 +137,7 @@ void pClassBody(){
       
       if (token->type == t_bracket_l) {
         destroyToken();
-        if (strcmp(temp->data,"run") == 0) { // funkce 'run'
+        if (strcmp(temp.data,"run") == 0) { // funkce 'run'
           if (isInMain) {               // a jsme v class Main
             global.hasRun = TRUE;
           }
@@ -403,7 +403,7 @@ void pSingleCommand(){
         else if (token->type == t_bracket_l) {
           // volani funkce
           
-           if (strcmp(temp->data,"ifj16.print") == 0) {
+           if (strcmp(temp.data,"ifj16.print") == 0) {
              //vyresit ifj16.print TODO
              //DELETE THIS
               token = getToken();
