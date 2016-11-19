@@ -517,7 +517,7 @@ void pIf(){
   
     pCommands();
 
-    tToken * token = getToken();
+    token = getToken();
     if (token->type != t_kw_else){   // else
         throwException(2, NULL, NULL);
     }
