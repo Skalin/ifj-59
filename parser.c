@@ -26,8 +26,7 @@ tokenType tempType;
 bool tempStatic;
 char *tempData;
 
-global.hasMain = FALSE;
-global.hasRun = FALSE;
+
 
 // nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
 bool isInMain = FALSE;
@@ -37,6 +36,8 @@ bool isInMain = FALSE;
 // kontrola semanticke chyby 8, natavit na 1 pri inicializaci rpomene
 
 void pParse(){
+  global.hasMain = FALSE;
+  global.hasRun = FALSE;
   
   tToken * token;
   token = getToken();
