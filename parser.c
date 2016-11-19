@@ -562,32 +562,7 @@ void pWhile(){
     pCommands();
 }
 
-int isVar(tToken token){
- 
-  tToken * token = token;
-  
-  if (token->type == t_int) {
-    return TRUE;    
-  }
-  if (token->type == t_double) {
-    return TRUE;    
-  } 
-  if (token->type == t_double_e) {
-    return TRUE;    
-  } 
-  if (token->type == t_string) {
-    return TRUE;    
-  } 
-  if (token->type == t_simple_ident) {
-    return TRUE;    
-  } 
-   if (token->type == t_complete_ident) {
-    return TRUE;    
-  } 
-    
-   return FALSE;
 
-}
   // vlozi informace do pomocneho tokenu
  void fillTemp(tokenType type, bool isStatic, char data){
    if (type != NULL)
