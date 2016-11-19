@@ -394,6 +394,7 @@ void pSingleCommand(){
           // volani funkce
           
           // ZDE ZPRACOvANI PARAMETRU
+          pExprParams();
           
           token = getToken();
           if (token->type != t_semicolon) {
@@ -452,81 +453,43 @@ void pSingleCommand(){
   
   // rekurzivni volani na dalsi prikaz
   pSingleCommand();
- 
-
-  /* 
+   
+}
+void pExprParams(){
+/*
+* parametry pri volani funkce - prvni parametr
+*/
+  tToken * token;
+  token = getToken();
   
-  switch (token->type)
-    {
-        
-      case t_kw_while {
-         destroyToken(token);
-         pWhile();
-         break;
-        }
-
-      case t_kw_if {
-         destroyToken(token);
-         pIf();
-         break;
-        }
-        
-      case t_find {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_sort {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_length {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_substring {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_compare {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_read_int {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_read_double {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_read_substring {
-         precedAnalysis();   //TODO
-         break;
-        } 
-        
-      case t_print {
-         precedAnalysis();   //TODO
-         break;
-        }  
-        
-      case t_semicolon {
-         throwException(2,0,0);
-         break;
-        }
-    
-      case t_simple_ident {
-        
-        
-        }
-    } */
+  if (token->type == t_bracket_r) {
+    //zadne parametry;
+    return;
+  }
+  else {
+    // zpracovani jednoho parametru, nevim jeste jak TODO
+    pExprParamsNext();
+  }
   
+}
+void pExprParamsNext(){
+/*
+* zpracovani dalsiho parametru pri volani funkce
+*/
+  tToken * token;
+  token = getToken();
+
+  if (token->type == t_bracket_r) {
+    //zadne dalsi parametry;
+    return;
+  }  
+  else if (token->type == t_comma) {
+   // zpracovani jednoho parametru, nevim jeste jak TODO
+   pExprParamsNext();
+  }
+  else {
+  throwException(2, NULL, NULL);
+  }
 }
   
 void pIf(){
