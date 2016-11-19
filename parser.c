@@ -386,7 +386,8 @@ void pSingleCommand(){
         break;
         
       case t_simple_ident :
-        // jednoduchy identifikator, 
+      case t_complete_ident :
+        //  identifikator, 
         // prirazeni hodnoty promene, volam funkci, 
         fillTemp(NULL, FALSE, token->data);
         destroyToken(token);
@@ -395,14 +396,27 @@ void pSingleCommand(){
         if (token->type == t_assignment) {
           // a =
           pVar(token);
+          break;     // toto mozna pujde pryc
         }
         else if (token->type == t_bracket_l) {
-          // a(
           // volani funkce
           
-          // ZDE ZPRACOvANI PARAMETRU
-          pExprParams();
+           if (strcmp(temp->data,"ifj16.print") == 0) {
+             //vyresit ifj16.print TODO
+             //DELETE THIS
+              token = getToken();
+               while (token->type != t_bracket_r) {
+                  destroyToken(token);
+                  token = getToken();
+                }
+             // END OF DELETE BLOCK
+           }
+           else {
+            // nacist argumenty funkce
+           pExprParams();
+           }
           
+          // mozna si ho precedencni uz vyresi, takze za pvar() v assigment musim dat break;
           token = getToken();
           if (token->type != t_semicolon) {
             // missing semicolon
@@ -410,39 +424,7 @@ void pSingleCommand(){
           }
         }
         break;
-       
-      case t_complete_ident :
-        //komplet identifikator
-        // volani funkce
-        fillTemp(NULL, FALSE, token->data);
-        destroyToken(token);
-        token = getToken();
-        
-        if (token->type != t_bracket_l) {
-          throwException();
-        }
-        
-        if (strcmp(temp->data,"ifj16.print") == 0) {
-          //vyresit ifj16.print TODO
-          //DELETE THIS
-          token = getToken();
-          while (token->type != t_bracket_r) {
-            destroyToken(token);
-            token = getToken();
-          }
-          // END OF DELETE BLOCK
-        }
-        else {
-        // nacist argumenty funkce
-          pExprParams();
-        }
-        
-         token = getToken();
-          if (token->type != t_semicolon) {
-            // missing semicolon
-            throwException(2, NULL, NULL);
-          }
-        break;
+     
         
       case t_kw_int :
       case t_kw_string:
