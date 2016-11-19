@@ -73,5 +73,63 @@ void stackPop ( tStack *stack );
  * @return velikost zásobníku
  */
 int stackSize (tStack *stack);
+/*
+ * 
+ * @param 
+ * @return 
+ */
+tStack * stackInit (tStack *stack);
+/*
+ * 
+ * @param 
+ * @return 
+ */
+tStackIt *itemInit ();
+/*
+ * 
+ * @param 
+ * @return 
+ */
+void stackDestroy (tStack *stc);
+/*
+ * 
+ * @param 
+ * @return 
+ */
+void itemDestroy (tItem *data);
+/*
+ * 
+ * @param 
+ * @return 
+ */
+void moveToAnotherStack (tStack *stc1, tStack *stc2);
+/*
+ * 
+ * @param 
+ * @return 
+ */	
+void moveItemToTerm (tStack *stc1, tStack *stc2);	
+/*
+ * 
+ * @param 
+ * @return 
+ */	
+tStackIt *anotherToken (tToken *token);	
+/*
+ * 
+ * @param 
+ * @return 
+ */
+int isTerm (int typeIt);
+/*
+ * 
+ * @param 
+ * @return 
+ */
+int topTerm (tStack *stc)
+
+
+	
+
 
 #endif
