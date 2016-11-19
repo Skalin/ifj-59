@@ -145,7 +145,7 @@ void pClassBody(){
             // semanticka chyba, nemuze byt funkce run jinde nez v class Main
             throwException(3, NULL, NULL);
           }
-          if (temp->type != t_kw_void) {
+          if (temp.type != t_kw_void) {
             // navratovy typ run musi byt void
             throwException(3, NULL, NULL);
           }
@@ -550,12 +550,12 @@ void pWhile(){
   // vlozi informace do pomocneho tokenu
  void fillTemp(tokenType type, bool isStatic, char data){
    if (type != NULL)
-     temp->type = type;
+     temp.type = type;
    
    /*if (isStatic != NULL)
      temp->isStatic = isStatic;*/
    
    if (data != NULL)
-     temp->data = data;
+     temp.data = data;
  
  }
