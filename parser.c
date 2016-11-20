@@ -124,7 +124,9 @@ void pClassBody(){
 		// pokud je dalsi token datovy typ ( boolean jsem tam nedal, kdyztak doplnit jestli budem delat rozsireni (Kappa))
 		if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double || token->type == t_kw_void ){
 
-			fillTemp(token->type, TRUE, NULL); // ulozime si typ tokenu
+			// ulozime si typ tokenu
+			tempType = token->type;
+			tempStatic = 1;
 
 			 // zruseni tokenu s datatype
 			// static dataType - musi nasledovat identifikator
@@ -134,8 +136,8 @@ void pClassBody(){
 				throwException(2,0,0);
 			}
 
-			fillTemp(NULL, TRUE, token->data); // ulozime si identifikator
-
+			 // ulozime si identifikator
+			 tempData = token->data;
 			 // identifikator
 
 			token = getToken(); // nacist dalsi token, bud zavorka - funkce, jinak promena
@@ -170,8 +172,9 @@ void pClassBody(){
 	} else if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
 		// data type - promena (neni globalni)
 
-		fillTemp(token->type, FALSE, NULL); // ulozime si typ tokenu
-
+		// ulozime si typ tokenu
+		tempType = token->type;
+		tempStatic = 0;
 		 //datatype
 
 		token = getToken();
@@ -180,9 +183,9 @@ void pClassBody(){
 		if (token->type != t_simple_ident){
 			throwException(2,0,0);
 		}
-		fillTemp(NULL, FALSE, token->data); // ulozime si identifikator
-
-		 // identifikator
+		// ulozime si identifikator
+		tempData = token->data;
+		
 
 		pVar(NULL); //volame funkci pro parsovani promene
 
@@ -266,15 +269,16 @@ void pParams(){
 
   //
   if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
-    fillTemp(token->type, FALSE, NULL);
     
+    tempType = token->type;
+    tempStatic = 0;
 
     //nacist identifikator
     token = getToken();
     if (token->type != t_simple_ident) {
       throwException(2,0,0);
     }
-    fillTemp(NULL, FALSE, token->data);
+    tempData = token->data;
     
 
     // zpracovat parametr TODO
@@ -309,7 +313,8 @@ void pParamsNext(){
 		token = getToken();
 
 		if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
-			fillTemp(token->type, FALSE, NULL);
+			tempType = token->type;
+
 			
 
 			//nacist identifikator
@@ -317,7 +322,7 @@ void pParamsNext(){
 			if (token->type != t_simple_ident) {
 				throwException(2,0,0);
 			}
-			fillTemp(NULL, FALSE, token->data);
+			tempData = token->data;
 			
 
 			// zpracovat parametr TODO
@@ -386,7 +391,7 @@ void pSingleCommand(){
 		case t_complete_ident :
 			//  identifikator,
 			// prirazeni hodnoty promene, volam funkci,
-			fillTemp(NULL, FALSE, token->data);
+			tempData = token->data;
 			
 			token = getToken();
 
@@ -426,7 +431,8 @@ void pSingleCommand(){
 		case t_kw_double:
 			// prijde data type
 			// deklarujeme lokalni promenou
-			fillTemp(token->type, FALSE, NULL);
+			tempType = token->type;
+			tempStatic = 0;
 			
 
 
@@ -435,7 +441,7 @@ void pSingleCommand(){
 				throwException(2,0,0);
 			}
 
-			fillTemp(NULL, FALSE, token->data);
+			tempData = token->data;
 			
 
 			pVar(NULL);
@@ -535,16 +541,3 @@ void pWhile(){
 	pCommands();
 }
 
-
-
-// vlozi informace do pomocneho tokenu
-void fillTemp(tokenType type, bool isStatic, char data){
-	if (type != NULL)
-		tempType = type;
-
-	/*if (isStatic != NULL)
-		temp->isStatic = isStatic;*/
-
-	if (data != NULL)
-		tempData = data;
-}
