@@ -13,23 +13,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "typedef.h"
 #include "parser.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
 #include "lexical_analyzer.h"
-#include "table.h"
 #include "generator.h"
 #include "stack.h"
 
 //pomocne info o tokenu
 tokenType tempType;
-bool tempStatic;
+int tempStatic;
 char *tempData;
 
 
 
 // nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
-bool isInMain = FALSE;
+int isInMain = FALSE;
 
 // TODO TODO TODO naplneni help structure vsude kde je potreba
 // kontrola jestli neni vestavena funkce ( pole s vestavenymi funkcemi)
@@ -46,14 +46,14 @@ void pParse(){
 		throwException(2,0,0);
 	}
 
-	destroyToken(token);
+	
 
 	pClass();
 
 	token = getToken();
 
 	while (token->type == t_kw_class){
-		destroyToken(token);
+		
 		pClass();
 		token = getToken();
 	}
@@ -61,7 +61,7 @@ void pParse(){
 	if(token->type != t_eof) {
 		throwException(2,0,0);    // TODO TODO TODO syntax error right?
 	}
-	destroyToken(token);
+	
 
 	if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - sematicka chyba
 		throwException(3,0,0);
@@ -93,14 +93,14 @@ void pClass(){
 
 
 
-	destroyToken(token);  //kill token with identifier
+	  //kill token with identifier
 
 	token = getToken();    // and get a new one, should be left curly brace
 
 	if(token->type != t_brace_l){
 		throwException(2,0,0);
 	}
-	destroyToken(token);  // kill curly brace token and start parsing body of class;
+	  // kill curly brace token and start parsing body of class;
 
 	pClassBody();
 
@@ -116,16 +116,18 @@ void pClassBody(){
 	token = getToken();
 
 	if (token->type == t_kw_static){       //received 'static' keyword - defining global function or variable
-		destroyToken(token); //static
+		 //static
 
 		token = getToken();
 
 		// pokud je dalsi token datovy typ ( boolean jsem tam nedal, kdyztak doplnit jestli budem delat rozsireni (Kappa))
 		if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double || token->type == t_kw_void ){
 
-			fillTemp(token->type, TRUE, NULL); // ulozime si typ tokenu
+			// ulozime si typ tokenu
+			tempType = token->type;
+			tempStatic = 1;
 
-			destroyToken(token); // zruseni tokenu s datatype
+			 // zruseni tokenu s datatype
 			// static dataType - musi nasledovat identifikator
 			token = getToken();
 
@@ -133,14 +135,14 @@ void pClassBody(){
 				throwException(2,0,0);
 			}
 
-			fillTemp(NULL, TRUE, token->data); // ulozime si identifikator
-
-			destroyToken(token); // identifikator
+			 // ulozime si identifikator
+			 tempData = token->data;
+			 // identifikator
 
 			token = getToken(); // nacist dalsi token, bud zavorka - funkce, jinak promena
 
 			if (token->type == t_bracket_l) {
-				destroyToken();
+				
 				if (strcmp(tempData,"run") == 0) { // funkce 'run'
 					if (isInMain) {               // a jsme v class Main
 						global.hasRun = TRUE;
@@ -155,11 +157,11 @@ void pClassBody(){
 				}
 				pFunction();
 			} else {
-				//destroyToken();
+				
 				pVar(token);
 			}
 
-				pCLassBody(); // pokravujeme ve zpracovani zbytku tela tridy
+				pClassBody(); // pokravujeme ve zpracovani zbytku tela tridy
 
 		} else {
 			// syntax error za keyword 'static' musi nasledovat datatype
@@ -169,9 +171,10 @@ void pClassBody(){
 	} else if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
 		// data type - promena (neni globalni)
 
-		fillTemp(token->type, FALSE, NULL); // ulozime si typ tokenu
-
-		destroyToken(token); //datatype
+		// ulozime si typ tokenu
+		tempType = token->type;
+		tempStatic = 0;
+		 //datatype
 
 		token = getToken();
 
@@ -179,16 +182,16 @@ void pClassBody(){
 		if (token->type != t_simple_ident){
 			throwException(2,0,0);
 		}
-		fillTemp(NULL, FALSE, token->data); // ulozime si identifikator
-
-		destroyToken(token); // identifikator
+		// ulozime si identifikator
+		tempData = token->data;
+		
 
 		pVar(NULL); //volame funkci pro parsovani promene
 
-		pCLassBody(); // pokravujeme ve zpracovani zbytku tela tridy
+		pClassBody(); // pokravujeme ve zpracovani zbytku tela tridy
 
 	} else if (token->type == t_brace_r) {
-		destroyToken(token);
+		
 		isInMain = FALSE;
 		// dalsi token je prava curly zavorka, konec tela  tridy vracime se do funkce pClass(); ( a z ni hned zpatku do funkce pParse();
 
@@ -206,7 +209,7 @@ void pFunction(){
 	// funkci to zavola po obdrzeni <static> <dataType> (  ---- nasleduji parametry
 	// hned volame funkci na zpracovani parametru
 
-	tToken * token;
+	
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	// ulozit do tab. symbolu
@@ -242,7 +245,7 @@ void pVar(tToken *token){
     //DELETE THIS
           token = getToken();
           while (token->type != t_semicolon) {
-            destroyToken(token);
+            
             token = getToken();
           }
           // END OF DELETE BLOCK
@@ -265,16 +268,17 @@ void pParams(){
 
   //
   if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
-    fillTemp(token->type, FALSE, NULL);
-    destroyToken(token);
+    
+    tempType = token->type;
+    tempStatic = 0;
 
     //nacist identifikator
     token = getToken();
     if (token->type != t_simple_ident) {
       throwException(2,0,0);
     }
-    fillTemp(NULL, FALSE, token->data);
-    destroyToken(token);
+    tempData = token->data;
+    
 
     // zpracovat parametr TODO
 
@@ -283,7 +287,7 @@ void pParams(){
   }
   else if (token->type == t_bracket_r) {
     //prava zavorka , funkce nema parametry
-    destroyToken(token);
+    
   }
   else {
     throwException(2,0,0);
@@ -301,23 +305,24 @@ void pParamsNext(){
 
 	if (token->type == t_bracket_r) {
 		// uzaviraci zavorka, zadny dalsi parametr
-		destroyToken(token);
+		
 	} else if (token->type == t_comma) {
 		// carka, nasleduje dalsi parametr
-		destroyToken(token);
+		
 		token = getToken();
 
 		if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
-			fillTemp(token->type, FALSE, NULL);
-			destroyToken(token);
+			tempType = token->type;
+
+			
 
 			//nacist identifikator
 			token = getToken();
 			if (token->type != t_simple_ident) {
 				throwException(2,0,0);
 			}
-			fillTemp(NULL, FALSE, token->data);
-			destroyToken(token);
+			tempData = token->data;
+			
 
 			// zpracovat parametr TODO
 
@@ -343,7 +348,7 @@ void pCommands(){
 	if (token->type != t_brace_l){   // left curly brace, start of block
 		throwException(2,0,0);
 	}
-	destroyToken(token);
+	
 
 	pSingleCommand(); //parse prikazu
 
@@ -385,8 +390,8 @@ void pSingleCommand(){
 		case t_complete_ident :
 			//  identifikator,
 			// prirazeni hodnoty promene, volam funkci,
-			fillTemp(NULL, FALSE, token->data);
-			destroyToken(token);
+			tempData = token->data;
+			
 			token = getToken();
 
 			if (token->type == t_assignment) {
@@ -401,7 +406,7 @@ void pSingleCommand(){
 					//DELETE THIS
 					token = getToken();
 					while (token->type != t_bracket_r) {
-						destroyToken(token);
+						
 						token = getToken();
 					}
 					// END OF DELETE BLOCK
@@ -425,8 +430,9 @@ void pSingleCommand(){
 		case t_kw_double:
 			// prijde data type
 			// deklarujeme lokalni promenou
-			fillTemp(token->type, FALSE, NULL);
-			destroyToken(token);
+			tempType = token->type;
+			tempStatic = 0;
+			
 
 
 			token = getToken();
@@ -434,8 +440,8 @@ void pSingleCommand(){
 				throwException(2,0,0);
 			}
 
-			fillTemp(NULL, FALSE, token->data);
-			destroyToken(token);
+			tempData = token->data;
+			
 
 			pVar(NULL);
 
@@ -498,7 +504,7 @@ void pIf(){
 	//DELETE THIS
 	token = getToken();
 	while (token->type != t_bracket_r) {
-		destroyToken(token);
+		
 		token = getToken();
 	}
 	// END OF DELETE BLOCK
@@ -509,7 +515,7 @@ void pIf(){
 	if (token->type != t_kw_else){   // else
 		throwException(2,0,0);
 	}
-	destroyToken(token);
+	
 
 	// block of code for else
 	pCommands();
@@ -525,7 +531,7 @@ void pWhile(){
 	//DELETE THIS
 	token = getToken();
 	while (token->type != t_bracket_r) {
-		destroyToken(token);
+		
 		token = getToken();
 	}
 	// END OF DELETE BLOCK
@@ -534,16 +540,3 @@ void pWhile(){
 	pCommands();
 }
 
-
-
-// vlozi informace do pomocneho tokenu
-void fillTemp(tokenType type, bool isStatic, char data){
-	if (type != NULL)
-		tempType = type;
-
-	/*if (isStatic != NULL)
-		temp->isStatic = isStatic;*/
-
-	if (data != NULL)
-		tempData = data;
-}

@@ -1,5 +1,5 @@
 /**
- * IFJ/IAL - Lexikální analyzátor
+ * IFJ/IAL - Garbage collector
  * Varianta:    b/2/I
  * Soubor:       garbage_collector.c
  * Tým:         59

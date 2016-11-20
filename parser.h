@@ -31,8 +31,7 @@ void pExprParamsNext();
 void pIf();
 void pWhile();
 
-int isVar(int type);
-void fillTemp(tokenType type, bool isStatic, char data);
+
 
 #endif //IFJ_59_PARSER_H
 
