@@ -10,14 +10,21 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include "expressions.h"
-#include <stdlib.h>
+
 
 #ifndef IFJ_59_TABLE_H_
 #define IFJ_59_TABLE_H_
 
+#include "expressions.h"
+#include <stdlib.h>
+
 /*
  * Structures
+ */
+
+
+/*
+ * Struktura polozky mismatch tabulky
  */
 
 typedef struct mmtItem{
@@ -25,6 +32,10 @@ typedef struct mmtItem{
 	int shiftValue;
 	struct mmtItem *next;
 } *mismatchTableItem;
+
+/*
+ * Jednosmerny seznam polozek mmtItem
+ */
 
 typedef struct {
 	mismatchTableItem First;
