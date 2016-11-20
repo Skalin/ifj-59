@@ -31,7 +31,6 @@ void pExprParamsNext();
 void pIf();
 void pWhile();
 
-int isVar(int type);
 
 
 #endif //IFJ_59_PARSER_H
