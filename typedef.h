@@ -10,16 +10,15 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "expressions.h"
-
 /*
  * Struktura typů tokenů
  */
 
 #ifndef TYPEDEF
 #define TYPEDEF
+
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef enum {
 	//Error status
@@ -97,6 +96,16 @@ typedef enum {
 	t_read_string,
 	t_print,
 } tokenType;
+
+/*
+ * Struktura stringu (SString)
+ */
+
+typedef struct SStr{
+	char *data;
+	int length;		        // délka řetězce
+	int allocatedSize;	  // alokovaná paměť
+} SString;
 
 
 /*
