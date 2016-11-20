@@ -65,7 +65,7 @@ void pParse(){
   destroyToken(token);
   
   if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - sematicka chyba
-    throwException(3, NULL, NULL);
+    throwException(3,0,0);
   }
   //uspesny konec
 }  
@@ -131,7 +131,7 @@ void pClassBody(){
       token = getToken();
       
       if (token->type != t_simple_ident){
-         throwException(2, NULL, NULL);
+         throwException(2,0,0);
       }
       
       fillTemp(NULL, TRUE, token->data); // ulozime si identifikator
@@ -148,11 +148,11 @@ void pClassBody(){
           }
           else {
             // semanticka chyba, nemuze byt funkce run jinde nez v class Main
-            throwException(3, NULL, NULL);
+            throwException(3,0,0);
           }
           if (tempType != t_kw_void) {
             // navratovy typ run musi byt void
-            throwException(3, NULL, NULL);
+            throwException(3,0,0);
           }
         }
         pFunction();
@@ -168,7 +168,7 @@ void pClassBody(){
     } 
     else {
       // syntax error za keyword 'static' musi nasledovat datatype
-      throwException(2, NULL, NULL);
+      throwException(2,0,0);
     }
     
   } // end  if (token->type == t_kw_static)
@@ -183,7 +183,7 @@ void pClassBody(){
      
     //musi nasledovat identifikator
     if (token->type != t_simple_ident){
-         throwException(2, NULL, NULL);
+         throwException(2,0,0);
     }
     fillTemp(NULL, FALSE, token->data); // ulozime si identifikator
     
@@ -202,7 +202,7 @@ void pClassBody(){
   }
   else {
     // token neni ani kw 'static', ani datatype, ani zavorka na konec funkce - syntax error
-    throwException(2, NULL, NULL);
+    throwException(2,0,0);
   }
   
 } // end function 
@@ -256,7 +256,7 @@ void pVar(tToken *token){
           // END OF DELETE BLOCK
   }
   else {
-    throwException(2, NULL, NULL);
+    throwException(2,0,0);
   }
   
 }
@@ -279,7 +279,7 @@ void pParams(){
     //nacist identifikator
     token = getToken();
     if (token->type != t_simple_ident) {
-      throwException(2, NULL, NULL);
+      throwException(2,0,0);
     }
     fillTemp(NULL, FALSE, token->data);
     destroyToken(token);
@@ -294,7 +294,7 @@ void pParams(){
     destroyToken(token);
   }
   else {
-    throwException(2, NULL, NULL);
+    throwException(2,0,0);
   }
   
 }   
@@ -323,7 +323,7 @@ void pParamsNext(){
       //nacist identifikator
       token = getToken();
       if (token->type != t_simple_ident) {
-         throwException(2, NULL, NULL);
+         throwException(2,0,0);
        }
        fillTemp(NULL, FALSE, token->data);
        destroyToken(token);
@@ -334,12 +334,12 @@ void pParamsNext(){
     }
     else {
     // carka a pak neco jineho nez datatype
-      throwException(2, NULL, NULL);
+      throwException(2,0,0);
     }
   }
   else {
    // ani carka ani zavorka
-    throwException(2, NULL, NULL);
+    throwException(2,0,0);
   }
 
 }
@@ -352,7 +352,7 @@ void pCommands(){
     token = getToken();
   
     if (token->type != t_brace_l){   // left curly brace, start of block
-        throwException(2, NULL, NULL);
+        throwException(2,0,0);
     }
     destroyToken(token);
   
@@ -427,7 +427,7 @@ void pSingleCommand(){
           token = getToken();
           if (token->type != t_semicolon) {
             // missing semicolon
-            throwException(2, NULL, NULL);
+            throwException(2,0,0);
           }
         }
         break;
@@ -444,7 +444,7 @@ void pSingleCommand(){
         
         token = getToken();
         if (token->type != t_simple_ident) {
-          throwException(2, NULL, NULL);
+          throwException(2,0,0);
         }
         
         fillTemp(NULL, FALSE, token->data);
@@ -457,7 +457,7 @@ void pSingleCommand(){
        
       default:
         // neocekavany vstup
-        throwException(2, NULL, NULL);
+        throwException(2,0,0);
     
     } //end switch 
   
@@ -501,7 +501,7 @@ void pExprParamsNext(){
    pExprParamsNext();
   }
   else {
-  throwException(2, NULL, NULL);
+  throwException(2,0,0);
   }
 }
   
@@ -524,7 +524,7 @@ void pIf(){
 
     token = getToken();
     if (token->type != t_kw_else){   // else
-        throwException(2, NULL, NULL);
+        throwException(2,0,0);
     }
     destroyToken(token);
 
