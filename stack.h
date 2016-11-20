@@ -36,18 +36,21 @@ typedef struct {
  * @return inicializovaný zásobník
  */
 tStack * stackInit ( tStack *stack );
+
 /*
  * Vrací 1/0 hodnotu jestli je zásobník prázdný
  * @param zásobník
  * @return true/false
  */
 int stackEmpty (tStack *s );
+
 /*
  * Vrací 1/0 hodnotu jestli je zásobník plný
  * @param zásobník
  * @return true/false
  */
 int stackFull (tStack *s );
+
 /*
  * Push dat na zásobník
  * @param zásobník
@@ -55,79 +58,80 @@ int stackFull (tStack *s );
  * @return
  */
 void stackPush ( tStack *stack, void *data);
+
 /*
  * Funkce navrátí ukazatel na vrchol zásobníku
  * @param zásobník
  * @return ukazatel na vrchol zasobniku
  */
 void * stackTop (tStack *stack);
+
 /*
  * Funkce popne data z vrcholu zásobníku
  * @param zásobník
  * @return
  */
 void stackPop ( tStack *stack );
+
 /*
  * Funkce navrátí hodnotu velikosti zásobníku
  * @param zásobník
  * @return velikost zásobníku
  */
 int stackSize (tStack *stack);
+
 /*
- * 
- * @param 
- * @return 
- */
-tStack * stackInit (tStack *stack);
-/*
- * 
- * @param 
- * @return 
+ * Inicializujeme prvek na zásobníku
+ * @return inicializovaný prvek zásobníku
  */
 tStackIt *itemInit ();
+
 /*
- * 
- * @param 
- * @return 
+ * Uvolnění paměti na zásobníku
+ * @param zásobník
  */
 void stackDestroy (tStack *stc);
+
 /*
- * 
- * @param 
- * @return 
+ * Zničí prvky na zásobníku
+ * @param prvek zásobníku
  */
 void itemDestroy (tItem *data);
+
 /*
- * 
- * @param 
- * @return 
+ * Funkce sloužící k přemístění prvků z jednoho zásobníku na zásobník druhý
+ * @param První zásobník 
+ * @param Druhý zásobník
  */
 void moveToAnotherStack (tStack *stc1, tStack *stc2);
+
 /*
- * 
- * @param 
- * @return 
+ * Přesunutí prvků z jednoho zásobníku na první terminál
+ * @param První zásobník 
+ * @param Druhý zásobník
  */	
-void moveItemToTerm (tStack *stc1, tStack *stc2);	
+void moveItemToTerm (tStack *stc1, tStack *stc2);
+
 /*
- * 
- * @param 
- * @return 
+ * Funkce vytvářející další prvek. Dochází ke čtení dalšího tokenu a uložení dat.
+ * @param token
+ * @return nový prvek zásobníku
  */	
 tStackIt *anotherToken (tToken *token);	
+
 /*
- * 
- * @param 
- * @return 
+ * Zjištění zda je daný prvek terminálem
+ * @param typ
+ * @return typ prvku
  */
 int isTerm (int typeIt);
+
 /*
- * 
- * @param 
- * @return 
+ * Zjištění zda je první prvek terminálem
+ * @param zásobník
+ * @return nejvyšší terminál na zásobníku
  */
 int topTerm (tStack *stc)
-
 
 	
 
