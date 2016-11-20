@@ -14,6 +14,12 @@
 #include "garbage_collector.h"
 #include "expressions.h"
 
+typedef enum {
+	EXPRESSION,
+	NONTERMINAL, 
+	TERMINAL,
+} ExprType;
+
 tStack * stackInit ( tStack *stack ) {
     //Inicializace polozek stacku
     tStack *stack = plusMalloc(sizeof(tStack));
@@ -54,10 +60,6 @@ tStackIt *itemInit () {
     
 }
 
-tStackIt *anotherToken (tToken *token) {
-	
-}
-
 void stackDestroy (tStack *stc) {
 		
 	while (stackSize(stc) > 0) {
@@ -75,39 +77,81 @@ void itemDestroy (tItem *data) {
 	
 }
 
-void moveToAnotherStack(tStack *stc1, tStack *stc2)
-{
-    tStackIt * tmp;
-    tmp = stackPop(stc1);
-	
-    while (!stackEmpty(stc1))
-    {
+void moveToAnotherStack (tStack *stc1, tStack *stc2) {
+   	 
+	 tStackIt * tmp;
+   	 tmp = stackPop(stc1);
+		
+   	 while (!stackEmpty(stc1))
+    	 {
 		if (tmp != NULL) {
-            stackPush(stc2, tmp);  //pushnutí na druhý zásobník
-			}
+            		stackPush(stc2, tmp);  //pushnutí na druhý zásobník
+		}
         
-        else {   
-            throwException(2,0,0); //sytaktická chyba
+        	else {   
+            		throwException(2,0,0); //sytaktická chyba
 		}
 	}
 }
 
+void moveItemToTerm (tStack *stc1, tStack *stc2) {
+	
+	tStackIt * tmp;
+	tStackIt *item; 
+    	item = stc1->data->counter->typeIt;
+	tmp = stackPop(stc1);
+	
+	while (item == EXPRESSION || item == NONTERMINAL) {
+		
+		if (tmp != NULL) {
+            		stackPush(stc2, tmp);  //pushnutí na druhý zásobník
+		}
+        
+        	else {   
+            		throwException(2,0,0); //sytaktická chyba
+		}
+	}
+	
+}
+
+
+tStackIt *anotherToken (tToken *token) {
+	
+	tStackIt *tmp = NULL;
+	tmp = itemInit();
+	
+	if (tmp == NULL) {
+		throwException(99,0,0); //chyba alokace paměti	
+	}
+	
+	else if (tmp != NULL) {
+		
+		getToken(token);
+		copyString();
+		
+		tmp->typeIt = TERMINAL;
+		return tmp;
+	}		
+}
+
+
+
 int isTerm (int typeIt) {
-    return (typeIt < /**/); ///TODO - DOPLNIT TERMINÁL
+    return (typeIt < EXPRESSION);
 }
 
 int topTerm (tStack *stc) {
 	
     tStackIt *item; 
-    item = stc->data;
+    item = stc->data->typeIt;
 
-    while (item != NULL) {
+    while (item == EXPRESSION || item == NONTERMINAL) {
 	    
         if (isTerm(item->typeIt)) {
-            return item->typeIt;
+            return item->type;
         }
 	    
-        item = item->typeIt;
+        item = item->type;
         }
     }
 }
