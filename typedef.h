@@ -10,6 +10,8 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
+#include <stdio.h>
+
 /*
  * Struktura typů tokenů
  */
@@ -82,14 +84,14 @@ typedef enum {
 	t_kw_else,
 	t_kw_true,
 	t_kw_false,
-	
+
      // Integrated functions for strings
 	t_find,
 	t_sort,
 	t_length,
 	t_substring,
 	t_compare,
-	
+
      // Integrated functions for input and output
 	t_read_int,
 	t_read_double,
@@ -108,6 +110,12 @@ typedef struct SStr{
 } SString;
 
 
+/*
+* Definice bool hodnot
+*/
+typedef int bool;
+#define TRUE 1
+#define FALSE 0
 /*
  * Struktura tokenu
  */

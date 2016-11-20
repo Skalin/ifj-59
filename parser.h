@@ -1,5 +1,5 @@
 /**
- * IFJ/IAL - Lexikální analyzátor
+ * IFJ/IAL - Syntaktická analýza
  * Varianta:    b/2/I
  * Soubor:      parser.h
  * Tým:         59
@@ -17,17 +17,29 @@
 /**
 HLAVIČKY FUNKCÍ
 */
-void pParse();  
-void pMain();  
+void pParse();
 void pClass();
-void pVars();
+void pClassBody();
 void pVar();
 void pFunction();
-void pArgs();
+void pParams();
+void pParamsNext();
 void pCommands();
+void pSingleCommand();
 void pIf();
 void pWhile();
 
 int isVar(int type);
-  
+void fillTemp(tokenType type, bool isStatic, char data);
+
 #endif //IFJ_59_PARSER_H
+
+/*// struktura pro ukladani doceasnych informaci o tokenu
+typedef struct tTemp{
+	tokenType type;   // typ tokenu
+	bool isStatic;     // je static
+	char data[];      // data tokenu
+} tTemp;
+
+struct tTemp temp;
+*/
