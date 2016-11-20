@@ -18,7 +18,6 @@
 #include "garbage_collector.h"
 #include "error_handler.h"
 #include "lexical_analyzer.h"
-#include "table.h"
 #include "generator.h"
 #include "stack.h"
 
