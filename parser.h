@@ -26,6 +26,8 @@ void pParams();
 void pParamsNext();
 void pCommands();
 void pSingleCommand();
+void pExprParams();
+void pExprParamsNext();
 void pIf();
 void pWhile();
 
