@@ -69,6 +69,19 @@ int findChar(mismatchTable Table, char c) {
 	return (i);
 }
 
+int getShiftValue(mismatchTable Table, char c) {
+	int shiftValue = 0;
+	int position = findChar(Table, c);
+
+	Table->Act = Table->First;
+	while (i < position) {
+		Table->Act = Table->Act->next;
+		i++;
+	}
+
+	return (shiftValue = Table->Act->shiftValue);
+}
+
 void updateShift(mismatchTable Table, char c, int shiftValue) {
 	int i = 0;
 	int position = findChar(Table, c);
@@ -84,11 +97,13 @@ void updateShift(mismatchTable Table, char c, int shiftValue) {
 
 // samotny find
 int find(SStr *str, SStr *search) {
-/*
+
 	int i = 0;
 	int found = 0;
 	int others = strLength(search);
 	int textLength = strLength(str);
+	int stop = -1; // zarazka
+	int shiftValue = others; // prvotni nastaveni shiftu
 	mismatchTable Table = initMismatchTable(Table);
 
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
@@ -105,13 +120,24 @@ int find(SStr *str, SStr *search) {
 			i++;
 	}
 
+	i = 0; // jen pro jistotu
 
-	while (found == 0 || str->data[i] != '\0' || str->data[i] != EOF) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
-		for (i = others-1; i > 0; i--) {
-
+	while (found == 0 || str->data[stop] != '\0' || str->data[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
+		stop += shiftValue;
+		for (i = others-1, j = 0; i >= 0, j <= others-1; i--, j++) {
+			if (str->data[stop-j] != search->data[i]) { // pokud se nam dva znaky ve stringu neshoduji, vyskocime z jednoho cyklu a posuneme se shiftem
+				break;
+			}
+			if (str->data[stop-others+1] == search->data[0]) {
+				found = stop-others+1;
+				break;
+			}
+			shiftValue = getShiftValue(Table, search->data[i]);
 		}
 	}
-*/
+
+	return found;
+
 }
 
 // swap pro heapsort
@@ -285,6 +311,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
     BTSNode *newNode = plusMalloc(sizeof(BTSNode));
     &newNode->key = id;
     newNode->nodeType = nodeType;
+	newNode->inc = 0;
     newNode->lptr = NULL;
     newNode->rptr = NULL;
 
