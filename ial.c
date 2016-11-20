@@ -59,8 +59,8 @@ int findChar(mismatchTable Table, char c) {
 	int i = 0;
 	Table->Act = Table->First;
 	while (Table->Act != NULL) {
+		i++;
 		if (c == Table->Act->c) {
-			i++;
 			break;
 		} else {
 			i = 0;
@@ -88,9 +88,12 @@ void updateShift(mismatchTable Table, char c, int shiftValue) {
 int find(SStr *str, SStr *search) {
 
 	int i = 0;
+	int found = 0;
 	mismatchTable Table = initMismatchTable(Table);
+
+	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
 	while (search->data[i] != '\0') {
-			if (findChar(Table, search[i]) == 0) {
+			if (findChar(Table, search->data[i]) < 0) {
 				if (search->data[i+1] != '\0') {
 					insertNext(Table, search[i], strLength(search) - i - 1);
 				} else {
@@ -100,10 +103,12 @@ int find(SStr *str, SStr *search) {
 				updateShift(Table, str(Length(search)-i-1));
 			}
 			i++;
-
-
 	}
 	int others = strLength(search);
+
+	while (found == 0) {
+
+	}
 
 }
 
