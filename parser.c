@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "typedef.h"
 #include "parser.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
@@ -23,13 +24,13 @@
 
 //pomocne info o tokenu
 tokenType tempType;
-bool tempStatic;
+int tempStatic;
 char *tempData;
 
 
 
 // nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
-bool isInMain = FALSE;
+int isInMain = FALSE;
 
 // TODO TODO TODO naplneni help structure vsude kde je potreba
 // kontrola jestli neni vestavena funkce ( pole s vestavenymi funkcemi)
@@ -159,7 +160,7 @@ void pClassBody(){
 				pVar(token);
 			}
 
-				pCLassBody(); // pokravujeme ve zpracovani zbytku tela tridy
+				pClassBody(); // pokravujeme ve zpracovani zbytku tela tridy
 
 		} else {
 			// syntax error za keyword 'static' musi nasledovat datatype
@@ -185,7 +186,7 @@ void pClassBody(){
 
 		pVar(NULL); //volame funkci pro parsovani promene
 
-		pCLassBody(); // pokravujeme ve zpracovani zbytku tela tridy
+		pClassBody(); // pokravujeme ve zpracovani zbytku tela tridy
 
 	} else if (token->type == t_brace_r) {
 		destroyToken(token);
@@ -206,7 +207,7 @@ void pFunction(){
 	// funkci to zavola po obdrzeni <static> <dataType> (  ---- nasleduji parametry
 	// hned volame funkci na zpracovani parametru
 
-	tToken * token;
+	
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	// ulozit do tab. symbolu
