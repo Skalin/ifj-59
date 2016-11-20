@@ -20,12 +20,12 @@
 // pomocne fce pro find
 
 void initMismatchTable(mismatchTable Table) {
-	Table->First = NULL;
-	Table->Act = Table->First;
+	Table.First = NULL;
+	Table.Act = Table.First;
 }
 
-void disposeMismatchTable(mismatchTable Table) {
-	mismatchtable pom = NULL;
+void disposeMismatchTable(mismatchTable *Table) {
+	mismatchTableItem pom = NULL;
 
 	while (Table->First != NULL) {
 		pom = Table->First;
@@ -34,7 +34,7 @@ void disposeMismatchTable(mismatchTable Table) {
 	}
 }
 
-void insertNext(mismatchTable Table, char c, int shiftValue) {
+void insertNext(mismatchTable *Table, char c, int shiftValue) {
 
 	mismatchTableItem pom = malloc(sizeof(struct mmtItem));
 
@@ -55,7 +55,7 @@ void insertNext(mismatchTable Table, char c, int shiftValue) {
 	}
 }
 
-int findChar(mismatchTable Table, char c) {
+int findChar(mismatchTable *Table, char c) {
 	int i = -1;
 	Table->Act = Table->First;
 	while (Table->Act != NULL) {
@@ -69,8 +69,8 @@ int findChar(mismatchTable Table, char c) {
 	return (i);
 }
 
-int getShiftValue(mismatchTable Table, char c) {
-	int shiftValue = 0;
+int getShiftValue(mismatchTable *Table, char c) {
+	int i = 0;
 	int position = findChar(Table, c);
 
 	Table->Act = Table->First;
@@ -78,11 +78,10 @@ int getShiftValue(mismatchTable Table, char c) {
 		Table->Act = Table->Act->next;
 		i++;
 	}
-
-	return (shiftValue = Table->Act->shiftValue);
+	return Table->Act->shiftValue;
 }
 
-void updateShift(mismatchTable Table, char c, int shiftValue) {
+void updateShift(mismatchTable *Table, char c, int shiftValue) {
 	int i = 0;
 	int position = findChar(Table, c);
 	Table->Act = Table->First;
@@ -96,26 +95,27 @@ void updateShift(mismatchTable Table, char c, int shiftValue) {
 }
 
 // samotny find
-int find(SStr *str, SStr *search) {
+int find(SString *str, SString *search) {
 
-	int i = 0;
+	int i = 0, j = 0;
 	int found = 0;
 	int others = strLength(search);
 	int textLength = strLength(str);
 	int stop = -1; // zarazka
 	int shiftValue = others; // prvotni nastaveni shiftu
-	mismatchTable Table = initMismatchTable(Table);
+	mismatchTable Table;
+	initMismatchTable(Table);
 
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
 	while (search->data[i] != '\0' || search->data[i] != EOF) {
-			if (findChar(Table, search->data[i]) < 0) {
+			if (findChar(&Table, search->data[i]) < 0) {
 				if (search->data[i+1] != '\0') { // pokud toto neni posledni prvek
-					insertNext(Table, search->data[i], strLength(search) - i - 1);
+					insertNext(&Table, search->data[i], strLength(search) - i - 1);
 				} else { // jinak nastavime shift posledniho prvku dle boyer-moore algoritmu
-					insertNext(Table, search->data[i], others);
+					insertNext(&Table, search->data[i], others);
 				}
 			} else {
-				updateShift(Table, search->data[i], str(Length(search)-i-1));
+				updateShift(&Table, search->data[i], (strLength(search)-i-1));
 			}
 			i++;
 	}
@@ -132,9 +132,11 @@ int find(SStr *str, SStr *search) {
 				found = stop-others+1;
 				break;
 			}
-			shiftValue = getShiftValue(Table, search->data[i]);
+			shiftValue = getShiftValue(&(Table), search->data[i]);
 		}
 	}
+
+	disposeMismatchTable(&Table);
 
 	return found;
 
@@ -144,15 +146,15 @@ int find(SStr *str, SStr *search) {
 char swap(char *a, char *b) {
     char c = '\0';
     
-    c = a;
-    *a = b;
+    c = *a;
+    *a = *b;
     *b = c;
 }
 
 // pomocna funkce makeEven pro zjednoduseni vypoctu pozice prvku
 int makeEven(int i) {
 	if ((i % 2) != 0) {
-		*i += 1;
+		i += 1;
 	}
 	return i;
 }
@@ -167,41 +169,43 @@ SString repairHeap(SString *str) {
 			j = 1;
 			if ((str->data[i] > str->data[(makeEven(i)/2)-1]) && (str->data[i-1] > str->data[(makeEven(i)/2)-1])) {
 				if (str->data[i] >= str->data[i-1]) {
-					swap(str->data[i], str->data[(makeEven(i)/2)-1]);
+					swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
 				} else {
-					swap(str->data[i-1], str->data[(makeEven(i)/2)-1]);
+					swap(&str->data[i-1], &str->data[(makeEven(i)/2)-1]);
 				}
 			}
 			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
-				swap(str->data[i], str->data[(makeEven(i)/2)-1]);
+				swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
 			}
 		} else {
 			j = 1;
 			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
-				swap(str->data[i], str->data[(makeEven(i)/2)-1]);
+				swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
 			}
 		}
 	}
 	if (j == 1)
 		repairHeap(str);
 
-	return str;
+	return *str;
 }
 
 
 // samotny heapsort
 SString sort(SString *str) {
-    SString *helpString = initString(helpString);
-    copyString(str, helpString);
+	SString helpString;
+	initString(&(helpString));
+    copyString(str, &helpString);
 
 
 
     int biggestNumber = 0;
-    while (helpString->length) {
+	int length = strLength(&helpString);
+    while (length) {
 
-		repairHeap(helpString);
+		repairHeap(&helpString);
 
-		biggestNumber = helpString[0];
+		biggestNumber = helpString.data[0];
 
 /*
  * zbytecne, protoze biggest number bude prvni
@@ -212,12 +216,10 @@ SString sort(SString *str) {
             biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
         }
   */
-        swap(helpString->data[biggestNumber], helpString->data[length-1]);
+        swap(&helpString.data[biggestNumber], &helpString.data[length-1]);
         
-        helpString->length--;
+        length--;
     }
-    
-    helpString->length = str->length;
 
     return helpString;
 }
@@ -248,7 +250,7 @@ BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
             start= mTree->root;
         else {
             // Pokud nalezneme klic
-            if(strcmp(key, &start->key) == 0) {
+            if(strcmp(key, start->key) == 0) {
                 // Pokud je to typ ktery jsme hledali, vratime ho
                 if (start->nodeType == nodeType)
                     return start;

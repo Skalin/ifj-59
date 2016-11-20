@@ -9,9 +9,10 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
-#include "stack.h"
+
 #include "typedef.h"
 #include "garbage_collector.h"
+#include "stack.h"
 #include "expressions.h"
 
 typedef enum {

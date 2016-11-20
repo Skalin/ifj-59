@@ -42,7 +42,7 @@ typedef struct {
 	mismatchTableItem Act;
 } mismatchTable;
 
-void initMismatchTable(mismatchTable *);
+mismatchTable initMismatchTable(mismatchTable);
 void disposeMismatchTable(mismatchTable *);
 void insertFirstMismatch(mismatchTable *, char c, int shiftValue);
 int findChar(mismatchTable *, char c);

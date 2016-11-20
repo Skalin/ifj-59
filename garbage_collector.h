@@ -24,7 +24,7 @@ struct GarbageList
 {
     void* dataPointer;
     struct GarbageList * nextPtr; // Pointer on a new item
-};
+} GarbageL;
 
 
 /*
@@ -33,17 +33,17 @@ struct GarbageList
 
 struct tGlobal{
 
-    // Listový seznam obsahující alokované položky
-    struct GarbageList* wholeList;
-    struct GarbageList* listLast;
+	// Listový seznam obsahující alokované položky
+	struct GarbageList* wholeList;
+	struct GarbageList* listLast;
 
-    // Globální práce se vstupním souborem
-    FILE *file; // FILE
+	// Globální práce se vstupním souborem
+	FILE *file; // FILE
 	char *fileName; // globalni nazev souboru
 
-    //promene pro parsing - kontrola zda program ma class Main a method run
-     bool hasMain; 
-     bool hasRun; 
+	//promene pro parsing - kontrola zda program ma class Main a method run
+	bool hasMain;
+	bool hasRun;
 };
 
 extern struct tGlobal global;

@@ -18,6 +18,7 @@
 #include "lexical_analyzer.h"
 #include "ial.h"
 #include "garbage_collector.h"
+#include "stack.h"
 #include <stdlib.h>
 
 /* PRIORITY PRO PRECEDENCE TABLE  */
@@ -72,7 +73,7 @@ int readInt();
  *
  */
 
-double readDouble;
+double readDouble();
 
 /*
  *
