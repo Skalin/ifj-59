@@ -14,19 +14,11 @@
 #ifndef EXPRESSIONS
 #define EXPRESSIONS
 
-#include "stack.h"
-#include "lexical_analyzer.h"
 #include "typedef.h"
+#include "lexical_analyzer.h"
 #include "ial.h"
 #include "garbage_collector.h"
-
-// definice struktury stringu
-typedef struct SStr{
-	char *data;
-	int length;		        // délka řetězce
-	int allocatedSize;	  // alokovaná paměť
-} SString;
-
+#include <stdlib.h>
 
 /* PRIORITY PRO PRECEDENCE TABLE  */
 typedef enum {
@@ -61,48 +53,61 @@ typedef enum {
 /*
  *
  */
+
 int precedAnalysis();
 
 /*
  *
  */
+
 int getRule(tStack *stack, int something); // tady jste meli volno a asi cekate dalsi parametr, doplnil jsem "int something", je třeba refactor a překontrola jestli to je dobře
 
 /*
  *
  */
+
 int readInt();
 
 /*
  *
  */
+
 double readDouble;
 
 /*
  *
  */
+
 void print();
 
 /*
  *
  */
+
 SString substr(SString *str, int i, int n);
 
 /*
  *
  */
+
 int initString(SString *str);
 
 /*
  *
  */
-int addCharacter(SString *str, char c);
 
-char *copyString(SString *str1, SString *str2);
+int addCharacter(SString *str, char c);
 
 /*
  *
  */
+
+SString copyString(SString *str1, SString *str2);
+
+/*
+ *
+ */
+
 int compareString(SString *str1, SString *str2);
 
 /*
