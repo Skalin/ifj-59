@@ -58,11 +58,11 @@ int precedAnalysis (FILE *filename) {
   */
   
   
-};
+}
   
 
 
-int initString(SStr *str) {
+int initString(SString *str) {
     
     if (plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE) != NULL) {
 		str->data[0] = '\0';
@@ -109,7 +109,7 @@ double readDouble() {
 	}
 	int j = 0;
 
-	SStr *str = initString(SStr *str);
+	SString *str = initString(SString *str);
 	while((c[j] != '\0' || c[j] != EOF || c[j] != '\n') && j < size) {
 		addCharacter(*str, c[j]);
 		j++;
@@ -117,7 +117,7 @@ double readDouble() {
 
 }
 
-SStr readString() {
+SString readString() {
 
 	char *c;
 	int size = 30;
@@ -127,7 +127,7 @@ SStr readString() {
 	}
 	int j = 0;
 
-	SStr *str = initString(SStr *str);
+	SString *str = initString(SString *str);
 
 	while((c[j] != '\0' || c[j] != EOF || c[j] != '\n') && j < size) {
 		addCharacter(*str, c[j]);
@@ -146,9 +146,9 @@ void print(/* term nebo konkatenace */) {
 
 }
 
-SStr substr(SStr *str, int i, int n) {
+SString substr(SString *str, int i, int n) {
 
-    SStr helpStr = initString(SStr *helpStr);
+    SString helpStr = initString(SString *helpStr);
 
     while (i <= (i + n)) {
 		if (str->data[i] == EOF || isspace(str->data[i])) {
@@ -162,7 +162,7 @@ SStr substr(SStr *str, int i, int n) {
 }
 
 
-int initString(SStr *str) {
+int initString(SString *str) {
 
 	if ((plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
 		str->data[0] = '\0';
@@ -175,7 +175,7 @@ int initString(SStr *str) {
 
 }
 
-int addCharacter(SStr *str, char c) {
+int addCharacter(SString *str, char c) {
   
     if ((str->allocatedSize) <= (str->length + 1)) {
 		if (plusRealloc(str, sizeof(SString) + (sizeof(char)*(str->allocatedSize))) != NULL) {
@@ -192,7 +192,7 @@ int addCharacter(SStr *str, char c) {
 	}
 }
 
-char *copyString(SStr *str1, SStr *str2) {
+char *copyString(SString *str1, SString *str2) {
 
 	if (str2->allocatedSize < strLength(str1)) {
 		if (plusRealloc(str2, sizeof(SString) + (sizeof(char)*(str2->allocatedSize))) != NULL) {
@@ -209,7 +209,7 @@ char *copyString(SStr *str1, SStr *str2) {
 	return str2;
 }
 
-int compareString(SStr *str1, SStr *str2) {
+int compareString(SString *str1, SString *str2) {
    //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
    int result = strcmp(str1->data, str2->data);
    if (result == 0) {
@@ -222,7 +222,7 @@ int compareString(SStr *str1, SStr *str2) {
     
 }
 
-int strLength(SStr *str) {
+int strLength(SString *str) {
 	//vrátí délku řetězce (počet znaků) zadaného jedním parametrem str
 	int len = str->data;
 	return len;
@@ -234,7 +234,7 @@ bool strEqual(char *str1, char *str2) {
 	return equal;
 }
 
-void strClear(SStr *str) {
+void strClear(SString *str) {
 	// funkce sloužící k vymazání řetězce
 	str->length = 0;
 	str->data[0] = '\0';
