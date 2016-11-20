@@ -47,14 +47,14 @@ void pParse(){
 		throwException(2,0,0);
 	}
 
-	destroyToken(token);
+	
 
 	pClass();
 
 	token = getToken();
 
 	while (token->type == t_kw_class){
-		destroyToken(token);
+		
 		pClass();
 		token = getToken();
 	}
@@ -62,7 +62,7 @@ void pParse(){
 	if(token->type != t_eof) {
 		throwException(2,0,0);    // TODO TODO TODO syntax error right?
 	}
-	destroyToken(token);
+	
 
 	if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - sematicka chyba
 		throwException(3,0,0);
@@ -94,14 +94,14 @@ void pClass(){
 
 
 
-	destroyToken(token);  //kill token with identifier
+	  //kill token with identifier
 
 	token = getToken();    // and get a new one, should be left curly brace
 
 	if(token->type != t_brace_l){
 		throwException(2,0,0);
 	}
-	destroyToken(token);  // kill curly brace token and start parsing body of class;
+	  // kill curly brace token and start parsing body of class;
 
 	pClassBody();
 
@@ -117,7 +117,7 @@ void pClassBody(){
 	token = getToken();
 
 	if (token->type == t_kw_static){       //received 'static' keyword - defining global function or variable
-		destroyToken(token); //static
+		 //static
 
 		token = getToken();
 
@@ -126,7 +126,7 @@ void pClassBody(){
 
 			fillTemp(token->type, TRUE, NULL); // ulozime si typ tokenu
 
-			destroyToken(token); // zruseni tokenu s datatype
+			 // zruseni tokenu s datatype
 			// static dataType - musi nasledovat identifikator
 			token = getToken();
 
@@ -136,12 +136,12 @@ void pClassBody(){
 
 			fillTemp(NULL, TRUE, token->data); // ulozime si identifikator
 
-			destroyToken(token); // identifikator
+			 // identifikator
 
 			token = getToken(); // nacist dalsi token, bud zavorka - funkce, jinak promena
 
 			if (token->type == t_bracket_l) {
-				destroyToken();
+				
 				if (strcmp(tempData,"run") == 0) { // funkce 'run'
 					if (isInMain) {               // a jsme v class Main
 						global.hasRun = TRUE;
@@ -156,7 +156,7 @@ void pClassBody(){
 				}
 				pFunction();
 			} else {
-				//destroyToken();
+				
 				pVar(token);
 			}
 
@@ -172,7 +172,7 @@ void pClassBody(){
 
 		fillTemp(token->type, FALSE, NULL); // ulozime si typ tokenu
 
-		destroyToken(token); //datatype
+		 //datatype
 
 		token = getToken();
 
@@ -182,14 +182,14 @@ void pClassBody(){
 		}
 		fillTemp(NULL, FALSE, token->data); // ulozime si identifikator
 
-		destroyToken(token); // identifikator
+		 // identifikator
 
 		pVar(NULL); //volame funkci pro parsovani promene
 
 		pClassBody(); // pokravujeme ve zpracovani zbytku tela tridy
 
 	} else if (token->type == t_brace_r) {
-		destroyToken(token);
+		
 		isInMain = FALSE;
 		// dalsi token je prava curly zavorka, konec tela  tridy vracime se do funkce pClass(); ( a z ni hned zpatku do funkce pParse();
 
@@ -243,7 +243,7 @@ void pVar(tToken *token){
     //DELETE THIS
           token = getToken();
           while (token->type != t_semicolon) {
-            destroyToken(token);
+            
             token = getToken();
           }
           // END OF DELETE BLOCK
@@ -267,7 +267,7 @@ void pParams(){
   //
   if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
     fillTemp(token->type, FALSE, NULL);
-    destroyToken(token);
+    
 
     //nacist identifikator
     token = getToken();
@@ -275,7 +275,7 @@ void pParams(){
       throwException(2,0,0);
     }
     fillTemp(NULL, FALSE, token->data);
-    destroyToken(token);
+    
 
     // zpracovat parametr TODO
 
@@ -284,7 +284,7 @@ void pParams(){
   }
   else if (token->type == t_bracket_r) {
     //prava zavorka , funkce nema parametry
-    destroyToken(token);
+    
   }
   else {
     throwException(2,0,0);
@@ -302,15 +302,15 @@ void pParamsNext(){
 
 	if (token->type == t_bracket_r) {
 		// uzaviraci zavorka, zadny dalsi parametr
-		destroyToken(token);
+		
 	} else if (token->type == t_comma) {
 		// carka, nasleduje dalsi parametr
-		destroyToken(token);
+		
 		token = getToken();
 
 		if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
 			fillTemp(token->type, FALSE, NULL);
-			destroyToken(token);
+			
 
 			//nacist identifikator
 			token = getToken();
@@ -318,7 +318,7 @@ void pParamsNext(){
 				throwException(2,0,0);
 			}
 			fillTemp(NULL, FALSE, token->data);
-			destroyToken(token);
+			
 
 			// zpracovat parametr TODO
 
@@ -344,7 +344,7 @@ void pCommands(){
 	if (token->type != t_brace_l){   // left curly brace, start of block
 		throwException(2,0,0);
 	}
-	destroyToken(token);
+	
 
 	pSingleCommand(); //parse prikazu
 
@@ -387,7 +387,7 @@ void pSingleCommand(){
 			//  identifikator,
 			// prirazeni hodnoty promene, volam funkci,
 			fillTemp(NULL, FALSE, token->data);
-			destroyToken(token);
+			
 			token = getToken();
 
 			if (token->type == t_assignment) {
@@ -402,7 +402,7 @@ void pSingleCommand(){
 					//DELETE THIS
 					token = getToken();
 					while (token->type != t_bracket_r) {
-						destroyToken(token);
+						
 						token = getToken();
 					}
 					// END OF DELETE BLOCK
@@ -427,7 +427,7 @@ void pSingleCommand(){
 			// prijde data type
 			// deklarujeme lokalni promenou
 			fillTemp(token->type, FALSE, NULL);
-			destroyToken(token);
+			
 
 
 			token = getToken();
@@ -436,7 +436,7 @@ void pSingleCommand(){
 			}
 
 			fillTemp(NULL, FALSE, token->data);
-			destroyToken(token);
+			
 
 			pVar(NULL);
 
@@ -499,7 +499,7 @@ void pIf(){
 	//DELETE THIS
 	token = getToken();
 	while (token->type != t_bracket_r) {
-		destroyToken(token);
+		
 		token = getToken();
 	}
 	// END OF DELETE BLOCK
@@ -510,7 +510,7 @@ void pIf(){
 	if (token->type != t_kw_else){   // else
 		throwException(2,0,0);
 	}
-	destroyToken(token);
+	
 
 	// block of code for else
 	pCommands();
@@ -526,7 +526,7 @@ void pWhile(){
 	//DELETE THIS
 	token = getToken();
 	while (token->type != t_bracket_r) {
-		destroyToken(token);
+		
 		token = getToken();
 	}
 	// END OF DELETE BLOCK
