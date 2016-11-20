@@ -19,9 +19,9 @@
 
 // pomocne fce pro find
 
-void initMismatchTable(mismatchTable Table) {
-	Table.First = NULL;
-	Table.Act = Table.First;
+void initMismatchTable(mismatchTable *Table) {
+	Table->First = NULL;
+	Table->Act = Table->First;
 }
 
 void disposeMismatchTable(mismatchTable *Table) {
@@ -104,7 +104,7 @@ int find(SString *str, SString *search) {
 	int stop = -1; // zarazka
 	int shiftValue = others; // prvotni nastaveni shiftu
 	mismatchTable Table;
-	initMismatchTable(Table);
+	initMismatchTable(&Table);
 
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
 	while (search->data[i] != '\0' || search->data[i] != EOF) {
