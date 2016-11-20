@@ -10,11 +10,11 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include "typedef.h"
 
 #ifndef IFJ_59_STACK_H
 #define IFJ_59_STACK_H
 
+#include "typedef.h"
 
 //Struktura položky
 typedef struct {
