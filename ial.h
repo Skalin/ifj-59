@@ -93,6 +93,7 @@ typedef struct tBTSNode {
 } tBTSNode;
 
     tabSymbol data; // Data
+	int inc;
 
     struct tBTSNode *variables; // Odkaz na proměnné třídy nebo funkce
 
