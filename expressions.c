@@ -10,11 +10,11 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdio.h>
+#include "typedef.h"
 #include <math.h>
+#include "garbage_collector.h"
 #include "expressions.h"
 #include "error_handler.h"
-#include "garbage_collector.h"
 #include "stack.h"
 
 #define STR_ERROR   0
@@ -111,7 +111,7 @@ double readDouble() {
 
 	SString *str = initString(SString *str);
 	while((c[j] != '\0' || c[j] != EOF || c[j] != '\n') && j < size) {
-		addCharacter(*str, c[j]);
+		addCharacter(str, c[j]);
 		j++;
 	}
 
@@ -130,12 +130,12 @@ SString readString() {
 	SString *str = initString(SString *str);
 
 	while((c[j] != '\0' || c[j] != EOF || c[j] != '\n') && j < size) {
-		addCharacter(*str, c[j]);
+		addCharacter(str, c[j]);
 		j++;
 	}
 
 
-	return *str->data;
+	return *str;
 
 
 }
