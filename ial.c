@@ -56,14 +56,12 @@ void insertNext(mismatchTable Table, char c, int shiftValue) {
 }
 
 int findChar(mismatchTable Table, char c) {
-	int i = 0;
+	int i = -1;
 	Table->Act = Table->First;
 	while (Table->Act != NULL) {
 		i++;
 		if (c == Table->Act->c) {
 			break;
-		} else {
-			i = 0;
 		}
 		Table->Act = Table->Act->next;
 	}
@@ -86,30 +84,34 @@ void updateShift(mismatchTable Table, char c, int shiftValue) {
 
 // samotny find
 int find(SStr *str, SStr *search) {
-
+/*
 	int i = 0;
 	int found = 0;
+	int others = strLength(search);
+	int textLength = strLength(str);
 	mismatchTable Table = initMismatchTable(Table);
 
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
-	while (search->data[i] != '\0') {
+	while (search->data[i] != '\0' || search->data[i] != EOF) {
 			if (findChar(Table, search->data[i]) < 0) {
-				if (search->data[i+1] != '\0') {
-					insertNext(Table, search[i], strLength(search) - i - 1);
-				} else {
-					insertNext(Table, search[i], strLength(search));
+				if (search->data[i+1] != '\0') { // pokud toto neni posledni prvek
+					insertNext(Table, search->data[i], strLength(search) - i - 1);
+				} else { // jinak nastavime shift posledniho prvku dle boyer-moore algoritmu
+					insertNext(Table, search->data[i], others);
 				}
 			} else {
-				updateShift(Table, str(Length(search)-i-1));
+				updateShift(Table, search->data[i], str(Length(search)-i-1));
 			}
 			i++;
 	}
-	int others = strLength(search);
 
-	while (found == 0) {
 
+	while (found == 0 || str->data[i] != '\0' || str->data[i] != EOF) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
+		for (i = others-1; i > 0; i--) {
+
+		}
 	}
-
+*/
 }
 
 // swap pro heapsort
