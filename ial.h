@@ -49,23 +49,25 @@ void updateShift(mismatchTable *, char c, int shiftValue);
 void insertNext(mismatchTable *, char c, int shiftValue);
 
 
-// Klic binarniho vyhledavani
+// Klic binarniho vyhledavani (název funkce, třídy nebo proměnné)
 typedef char *tableName;
 
+// Typ uzlu (ve stromu pozname, jestli se jedna o funkci, třídu nebo proměnnou
 typedef enum{
     var,
     function,
     class,
 } NodeType;
 
-//Vycet moznych typu
+//Vycet moznych typu (pouze u proměnných a funkcí). U proměnných je to jejich typ, u funkcí značí jejich návratový typ
 typedef enum {
     var_int,
     var_double,
     var_string,
+    var_void,
 } varType;
 
-// Hodnota promenne
+// Hodnota promenne, union zajišťuje, že v paměti zabírá místo pouze největší hodnota z nich
 union {
     int intValue;
     double doubleValue;
@@ -74,9 +76,8 @@ union {
 
 //Struktura tabulky symbolu
 typedef struct tableSymbolVariable {
-    varType type; // Promenna= typ promenne, Funkce= Typ navratove hodnoty, Class=nic
-    varValue value; // Promenna= hodnota promenne, Funkce= vyuzijeme int hodnotu a do ni vlozime pocet argumentu, class= nic
-
+    varType type; // U promenne= typ promenne | U funkce= Typ navratove hodnoty | U tridy=nic, NULL
+    varValue value; // U promenne- hodnota promenne | U trid a funkci tuto promennou nepouzivame NULL
 } tabSymbol, *tabSymbolPtr;
 
 
@@ -85,14 +86,14 @@ typedef struct tBTSNode {
     tableName key; // Klíč (název proměnné, třídy, funkce)
     NodeType nodeType; // Typ uzlu (proměnná, funkce, třída)
 
-    //Struktura, kde se využívá vždy jen jeden prvek
+    //Struktura, kde se využívá vždy jen jeden prvek, pokud se jedna o třídu, využije se první prvek, pokud u proměnnou, která je argumentem funkce, pak se využije druhá
     union {
         struct tBTSNode *functions; // Odkaz na funkce třídy
         int argNo; // Číslo argumentu funkce
 	} tBTSNode;
 
-    tabSymbol data; // Data
-	int inc;
+    tabSymbol data; // Data, obsahuje strukturu tabSymbol (Struktura tabulky symbolu hned nad touto strukturou)
+	int inc; // Označení, jestli byla proměnná inicializovaná
 
     struct tBTSNode *variables; // Odkaz na proměnné třídy nebo funkce
 
@@ -102,9 +103,9 @@ typedef struct tBTSNode {
 
 // Struktura stromu
 typedef struct {
-    BTSNode *root;
-    BTSNode *actClass;
-    BTSNode *actFunction;
+    BTSNode *root; // Kořen stromu
+    BTSNode *actClass; // Jaká třída je právě aktivní, resp. v jaké třídě se nacházíme
+    BTSNode *actFunction; // Jaká funkce je aktivní, resp. v jaké funkci se nacházíme
 } mainTree;
 
 /*
@@ -146,57 +147,36 @@ void swap(char *a, char *b);
  */
 SString repairHeap(SString *str);
 
-/*
- * Obě funkce volají příslušné fce binárního stromu na inicializaci, případně odstranění ze stromu
- */
-void TSInit(void);
-void TSDispose(void);
+// FUNKCE NAD BINÁRNÍM STROMEM
 
 /*
- * Funkce vloží symbol do tabulky
- * @param symbol Symbol, který chceme vložit
- * @return Navrací pointer na danou vloženou položku
+ * Funkce inicializuje binární strom
  */
-tabSymbol *TSInsert(tabSymbol symbol);
-/*
- * Funkce vloží data příslušného datového typu do tabulky
- * @param symbol data Data, která chceme vložit
- * @return Navrací pointer na danou položku
- */
-tabSymbol *TSInsertInt(tableName name, int data);
-tabSymbol *TSInsertDouble(tableName name, double data);
-tabSymbol *TSInsertString(tableName name, char *data);
-tabSymbol *TSInsertSimpleIdent(tableName name, char *data);
-tabSymbol *TSInsertCompleteIdent(tableName name, char *data);
-tabSymbol TSInsertFunction(tableName name, char *data);
-tabSymbol TSInsertClass(tableName name, char *data);
+void initTree(mainTree *tree);
 
 /*
- * Funkce inicializuje symbol
- * @param symbol Symbol, který chceme inicializovat
- * @return
+ * Funkce prohledá binární strom a najde příslušný uzel
  */
-void TSInitSymbol (tabSymbol symbol);
-/*
- * Funkce najde v daném stromu požadovanou položku
- * @param root Kořen, ve kterém hledáme
- * @param key Klíč, podle kterého hledáme
- * @return Navrací danou položku, případně NULL pokud ji nenajde
- */
-tBTSNodePtr BTSSearch (tBTSNodePtr root, tableName key);
+BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start);
 
 /*
- * Funkce vloží symbol do BS
- * @param root Pointer na BS
- * @param key klíč, podle kterého hledáme položku na případné přepsání
- * @param symbol symbol, který chceme vložit
- * @return Navrací pointer na danou vloženou položku
+ * Funkce přidá nový uzel do BS
  */
-static tBTSNodePtr BTSInsert(tBTSNodePtr *root, tableName key, tabSymbol symbol);
+void addNode(BTSNode *newItem, BTSNode *start);
+
 /*
- * Funkce smaže BS daného kořenu
- * @param symbol kořen, který chceme smazat
- * @return
+ * Funkce vytvoří nový uzel, inicializuje ho a přidá ho do stromu
  */
-static void BTSDispose(tBTSNodePtr *root);
+void createNewNode(char *id, NodeType nodeType, varType variableType, int status);
+
+
+/*
+ * Funkce vytvoří argument a přidá ho k příslušné funkci
+ */
+void addArgument(char *id, varType type);
+
+/*
+ * Funkce nalezne argument ve funkci podle jeho pořadí
+ */
+tNode *findArgument(BTSNode *start, int argNo);
 #endif

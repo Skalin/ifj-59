@@ -368,7 +368,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
         addNode(newNode, start);
 }
 
-void addArgument(char *id, int type) {
+void addArgument(char *id, varType type) {
     BTSNode *argument = plusMalloc(sizeof(BTSNode));
     argument->key = id;
     argument->nodeType = var;

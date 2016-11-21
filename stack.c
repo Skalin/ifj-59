@@ -31,6 +31,16 @@ tStack * stackInit ( tStack *stack ) {
     return stack;
 }
 
+tStackTmp * stackInitTmp (tStackTmp *stack2) {
+    //Inicializace polozek stacku
+    tStackTmp *stack = plusMalloc(sizeof(tStackTmp));
+    stack2->data2 = plusMalloc(sizeof(void) * 30);
+    stack2->allocated2 = 30;
+    stack2->counter2 = 0;
+
+    return stack2;
+}
+
 tStackIt *itemInit () {
     
     tStackIt * itemNew;
@@ -78,32 +88,15 @@ void itemDestroy (tItem *data) {
 	
 }
 
-void moveToAnotherStack (tStack *stc1, tStack *stc2) {
+void exprShift (tStack *stc1, tStackTmp *stc2) {
    	 
-	 tStackIt * tmp;
-   	 tmp = stackPop(stc1);
-		
-   	 while (!stackEmpty(stc1))
-    	 {
-		if (tmp != NULL) {
-            		stackPush(stc2, tmp);  //pushnutí na druhý zásobník
-		}
-        
-        	else {   
-            		throwException(2,0,0); //sytaktická chyba
-		}
-	}
-}
-
-void moveItemToTerm (tStack *stc1, tStack *stc2) {
-	
-	tStackIt * tmp;
-	tStackIt *item; 
-    	item = stc1->data->counter->typeIt;
+	tToken * tmp;
+	tToken *item;
 	tmp = stackPop(stc1);
-	
-	while (item == EXPRESSION || item == NONTERMINAL) {
+	item = stc1->data->counter->typeIt;
 		
+   	while (!stackEmpty(stc1) || item == EXPRESSION || item == NONTERMINAL)
+    	{
 		if (tmp != NULL) {
             		stackPush(stc2, tmp);  //pushnutí na druhý zásobník
 		}
@@ -112,10 +105,9 @@ void moveItemToTerm (tStack *stc1, tStack *stc2) {
             		throwException(2,0,0); //sytaktická chyba
 		}
 	}
-	
 }
 
-
+/*
 tStackIt *anotherToken (tToken *token) {
 	
 	tStackIt *tmp = NULL;
@@ -133,7 +125,7 @@ tStackIt *anotherToken (tToken *token) {
 		tmp->typeIt = TERMINAL;
 		return tmp;
 	}		
-}
+}*/
 
 
 

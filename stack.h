@@ -30,6 +30,15 @@ typedef struct {
     int allocated;
 } tStack;
 
+
+//Struktura pomocného zásobníku
+typedef struct {
+    tStackIt * data2;
+    int counter2;
+    int allocated2;
+} tStackTmp;
+
+
 /*
  * Inicializuje zásobník
  * @param zásobník
