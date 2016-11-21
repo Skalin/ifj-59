@@ -31,6 +31,16 @@ tStack * stackInit ( tStack *stack ) {
     return stack;
 }
 
+tStackTmp * stackInit (tStackTmp *stack ) {
+    //Inicializace polozek stacku
+    tStackTmp *stack = plusMalloc(sizeof(tStack));
+    stack->data2 = plusMalloc(sizeof(void) * 30);
+    stack->allocated2 = 30;
+    stack->counter2 = 0;
+
+    return stack2;
+}
+
 tStackIt *itemInit () {
     
     tStackIt * itemNew;
@@ -78,7 +88,7 @@ void itemDestroy (tItem *data) {
 	
 }
 
-void exprShift (tStack *stc1, tStack *stc2) {
+void exprShift (tStack *stc1, tStackTmp *stc2) {
    	 
 	tToken * tmp;
 	tToken *item;
