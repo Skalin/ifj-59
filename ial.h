@@ -50,23 +50,25 @@ void updateShift(mismatchTable *, char c, int shiftValue);
 void insertNext(mismatchTable *, char c, int shiftValue);
 
 
-// Klic binarniho vyhledavani
+// Klic binarniho vyhledavani (název funkce, třídy nebo proměnné)
 typedef char *tableName;
 
+// Typ uzlu (ve stromu pozname, jestli se jedna o funkci, třídu nebo proměnnou
 typedef enum{
     var,
     function,
     class,
 } NodeType;
 
-//Vycet moznych typu
+//Vycet moznych typu (pouze u proměnných a funkcí). U proměnných je to jejich typ, u funkcí značí jejich návratový typ
 typedef enum {
     var_int,
     var_double,
     var_string,
+    var_void,
 } varType;
 
-// Hodnota promenne
+// Hodnota promenne, union zajišťuje, že v paměti zabírá místo pouze největší hodnota z nich
 union {
     int intValue;
     double doubleValue;
@@ -75,9 +77,8 @@ union {
 
 //Struktura tabulky symbolu
 typedef struct tableSymbolVariable {
-    varType type; // Promenna= typ promenne, Funkce= Typ navratove hodnoty, Class=nic
-    varValue value; // Promenna= hodnota promenne, Funkce= vyuzijeme int hodnotu a do ni vlozime pocet argumentu, class= nic
-
+    varType type; // U promenne= typ promenne | U funkce= Typ navratove hodnoty | U tridy=nic, NULL
+    varValue value; // U promenne- hodnota promenne | U trid a funkci tuto promennou nepouzivame NULL
 } tabSymbol, *tabSymbolPtr;
 
 
@@ -86,14 +87,14 @@ typedef struct tBTSNode {
     tableName key; // Klíč (název proměnné, třídy, funkce)
     NodeType nodeType; // Typ uzlu (proměnná, funkce, třída)
 
-    //Struktura, kde se využívá vždy jen jeden prvek
+    //Struktura, kde se využívá vždy jen jeden prvek, pokud se jedna o třídu, využije se první prvek, pokud u proměnnou, která je argumentem funkce, pak se využije druhá
     union {
         struct tBTSNode *functions; // Odkaz na funkce třídy
         int argNo; // Číslo argumentu funkce
 } tBTSNode;
 
-    tabSymbol data; // Data
-	int inc;
+    tabSymbol data; // Data, obsahuje strukturu tabSymbol (Struktura tabulky symbolu hned nad touto strukturou)
+	int inc; // Označení, jestli byla proměnná inicializovaná
 
     struct tBTSNode *variables; // Odkaz na proměnné třídy nebo funkce
 
@@ -103,9 +104,9 @@ typedef struct tBTSNode {
 
 // Struktura stromu
 typedef struct {
-    BTSNode *root;
-    BTSNode *actClass;
-    BTSNode *actFunction;
+    BTSNode *root; // Kořen stromu
+    BTSNode *actClass; // Jaká třída je právě aktivní, resp. v jaké třídě se nacházíme
+    BTSNode *actFunction; // Jaká funkce je aktivní, resp. v jaké funkci se nacházíme
 } mainTree;
 
 /*
