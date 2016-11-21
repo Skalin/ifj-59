@@ -31,12 +31,12 @@ tStack * stackInit ( tStack *stack ) {
     return stack;
 }
 
-tStackTmp * stackInit (tStackTmp *stack ) {
+tStackTmp * stackInitTmp (tStackTmp *stack2) {
     //Inicializace polozek stacku
-    tStackTmp *stack = plusMalloc(sizeof(tStack));
-    stack->data2 = plusMalloc(sizeof(void) * 30);
-    stack->allocated2 = 30;
-    stack->counter2 = 0;
+    tStackTmp *stack = plusMalloc(sizeof(tStackTmp));
+    stack2->data2 = plusMalloc(sizeof(void) * 30);
+    stack2->allocated2 = 30;
+    stack2->counter2 = 0;
 
     return stack2;
 }
