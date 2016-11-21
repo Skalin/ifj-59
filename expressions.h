@@ -16,7 +16,6 @@
 
 #include "typedef.h"
 #include "lexical_analyzer.h"
-#include "ial.h"
 #include "garbage_collector.h"
 #include "stack.h"
 #include <stdlib.h>

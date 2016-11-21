@@ -143,10 +143,8 @@ int find(SString *str, SString *search) {
 }
 
 // swap pro heapsort
-char swap(char *a, char *b) {
-    char c = '\0';
-    
-    c = *a;
+void swap(char *a, char *b) {
+    char c = *a;
     *a = *b;
     *b = c;
 }
@@ -166,8 +164,8 @@ SString repairHeap(SString *str) {
 	for (i = str->length-1; i > 0; --i) {
 		j = 0;
 		if ((i % 2) == 0) {
-			j = 1;
 			if ((str->data[i] > str->data[(makeEven(i)/2)-1]) && (str->data[i-1] > str->data[(makeEven(i)/2)-1])) {
+				j = 1;
 				if (str->data[i] >= str->data[i-1]) {
 					swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
 				} else {
@@ -175,11 +173,12 @@ SString repairHeap(SString *str) {
 				}
 			}
 			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
+				j = 1;
 				swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
 			}
 		} else {
-			j = 1;
 			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
+				j = 1;
 				swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
 			}
 		}
@@ -247,13 +246,13 @@ BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
 
     } else {
         if (start == NULL)
-            start= mTree->root;
+            start = mTree->root;
         else {
             // Pokud nalezneme klic
             if(strcmp(key, start->key) == 0) {
                 // Pokud je to typ ktery jsme hledali, vratime ho
                 if (start->nodeType == nodeType)
-                    return start;
+                    return *start;
             }
             // Pokud mame hledat v pravem podstromu
             else if(strcmp(key, &start->key) > 0) {
@@ -371,9 +370,9 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 
 void addArgument(char *id, int type) {
     BTSNode *argument = plusMalloc(sizeof(BTSNode));
-    &argument->key = id;
+    argument->key = id;
     argument->nodeType = var;
-    argument->data.type = type;
+    argument->data.type = var_int; //doca
     argument->lptr = NULL;
     argument->rptr = NULL;
 
@@ -387,11 +386,11 @@ void addArgument(char *id, int type) {
         mTree->actFunction->variables = argument;
 }
 
-tNode *findArgument(BTSNode *start, int argNo) {
-    if (begin != NULL) {
+tBTSNode *findArgument(BTSNode *start, int argNo) {
+    if (start != NULL) {
         if(start->nodeType == var) {
             if(start->argNo == argNo)
-                return start;
+                return *start;
         }
 
         BTSNode *result;
@@ -403,199 +402,4 @@ tNode *findArgument(BTSNode *start, int argNo) {
 
     } else
         return NULL;
-}
-
-
-
-
-
-
-
-// OLD
-
-
-void TSInit(void) {
-    BTSInit(&symbolTable);
-}
-
-void TSDispose(void) {
-    BTSDispose(&symbolTable);
-}
-
-tabSymbol * TSInsert(tabSymbol symbol) {
-    // Pokud se uspesne vlozi, navrati se
-    if(tBTSNodePtr root = BTSInsert(&symbolTable, symbol.name, symbol))
-        return &(root->data);
-    //V opacnem pripade se vrati NULL
-    else
-        return NULL;
-}
-
-tabSymbol TSInsertInt(tableName name, int data) {
-    // Vytvoreni promenne
-    tabSymbol symbol;
-
-    // Inicializace dat
-    symbol.inc = 1;
-    symbol.name = name;
-    symbol.type = var_int;
-    symbol.value.intValue = data;
-
-    // Navraceni symbolu do binarniho stromu
-    return TSInsert(symbol);
-}
-
-tabSymbol TSInsertDouble(tableName name, double data) {
-    // Vytvoreni promenne
-    tabSymbol symbol;
-
-    // Inicializace dat
-    symbol.inc = 1;
-    symbol.name = name;
-    symbol.type = var_double;
-    symbol.value.doubleValueValue = data;
-
-    // Navraceni symbolu do binarniho stromu
-    return TSInsert(symbol);
-}
-
-tabSymbol TSInsertString(tableName name, char *data) {
-    // Vytvoreni promenne
-    tabSymbol symbol;
-
-    // Inicializace dat
-    symbol.inc = 1;
-    symbol.name = name;
-    symbol.type = var_string;
-    symbol.value.stringValueValue = data;
-
-    // Navraceni symbolu do binarniho stromu
-    return TSInsert(symbol);
-}
-
-tabSymbol TSInsertSimpleIdent(tableName name, char *data) {
-    // Vytvoreni promenne
-    tabSymbol symbol;
-
-    // Inicializace dat
-    symbol.name = name;
-    symbol.type = var_simpleident;
-    symbol.value.simpleIdentValue = data;
-
-    // Navraceni symbolu do binarniho stromu
-    return TSInsert(symbol);
-}
-
-tabSymbol TSInsertCompleteIdent(tableName name, char *data) {
-    // Vytvoreni promenne
-    tabSymbol symbol;
-
-    // Inicializace dat
-    symbol.inc = 1;
-    symbol.name = name;
-    symbol.type = var_completeidentident;
-    symbol.value.completeIdentValue = data;
-
-    // Navraceni symbolu do binarniho stromu
-    return TSInsert(symbol);
-}
-
-tabSymbol TSInsertFunction(tableName name, char *data) {
-    // Vytvoreni promenne
-    tabSymbol symbol;
-
-    // Inicializace dat
-    symbol.inc = 1;
-    symbol.name = name;
-    symbol.type = var_function;
-    symbol.isFunction = 1;
-    symbol.argument = NULL;
-
-    // Navraceni symbolu do binarniho stromu
-    return TSInsert(symbol);
-}
-tabSymbol TSInsertClass(tableName name, char *data) {
-    // Vytvoreni promenne
-    tabSymbol symbol;
-
-    // Inicializace dat
-    symbol.inc = 1;
-    symbol.name = name;
-    symbol.type = var_class;
-    symbol.isClass = 1;
-
-    // Navraceni symbolu do binarniho stromu
-    return TSInsert(symbol);
-}
-
-void TSInitSymbol (tabSymbol symbol) {
-    //Pokud máme co inicializovat
-    if (symbol != NULL) {
-        //Inicializujeme data
-        symbol.name= NULL;
-        symbol.type= NULL;
-        symbol.inc= 1;
-        symbol.isFunction= 0;
-        symbol.isArgument= 0;
-        symbol.argument= NULL;
-    }
-}
-
-tBTSNodePtr BTSSearch (tBTSNodePtr root, tableName key) {
-    // Pokud máme kde hledat
-    if (root != NULL) {
-        // Pokud nalezneme, navrátíme hodnotu kořene
-        if (strcmp(root->data.name, key) == 0)
-            return root;
-        //Případně hledáme rekurzivně vpravo
-        else if (strcmp(root->data.name, key) > 0)
-            return BTSSearch(root->rptr, key);
-        // Nebo vlevo
-        else
-            return BTSSearch(root->lptr, key);
-    // Pokud nemáme kde hledat, vrací funkce NULL
-    } else
-        return NULL;
-}
-
-static tBTSNodePtr BTSInsert(tBTSNodePtr *root, tableName key, tabSymbol symbol) {
-    // Pokud neexistuje žádný kořen
-    if ( (*root) == NULL) {
-        //Alokujeme paměť pro kořen
-        *root = plusMalloc(sizeof(struct tBTSNode));
-
-        //Inicializujeme data
-        (*root)->key = key;
-        (*root)->data = symbol;
-        (*root)->lptr = NULL;
-        (*root)->rptr = NULL;
-    //Pokud neexistuje
-    } else {
-        // Pokud je klíč nalezen
-        if (strcmp((*root)->key, key) == 0) {
-            // Přepíšeme data v nalezeném uzlu a kořen navrátíme
-            (*root)->data = symbol;
-            return *root;
-        // Pokud je klíč více vpravo, voláme rekurzivně funkci nad pravým podstromem
-        } else if (strcmp((*root)->key, key) > 0)
-            return BTSinsert(&((*root)->rptr), key, symbol);
-        // Obdobně pokud je vlevo
-        else
-            return BTSinsert(&((*root)->lptr), key, symbol);
-    }
-    // Pokud funkcí spustí Chuck Norris...
-    return NULL;
-}
-
-static void BTSDispose(tBTSNodePtr *root) {
-    if((*root) != NULL) {
-        //Uvolneni leveho podstromu
-        BTSDispose(&((*root)->lptr));
-
-        //Uvolneni praveho podstromu
-        BTSDispose(&((*root)->rptr));
-
-        // Kořen inicializován na NULL, neexistuje
-        *root= NULL;
-    }
 }

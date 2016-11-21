@@ -34,7 +34,7 @@ typedef struct mmtItem{
 } *mismatchTableItem;
 
 /*
- * Jednosmerny seznam polozek mmtItem
+ * Jednosmerny seznam polozek mmtItem alias mismatch tabulka
  */
 
 typedef struct {
@@ -44,7 +44,6 @@ typedef struct {
 
 void initMismatchTable(mismatchTable *);
 void disposeMismatchTable(mismatchTable *);
-void insertFirstMismatch(mismatchTable *, char c, int shiftValue);
 int findChar(mismatchTable *, char c);
 void updateShift(mismatchTable *, char c, int shiftValue);
 void insertNext(mismatchTable *, char c, int shiftValue);
@@ -90,7 +89,7 @@ typedef struct tBTSNode {
     union {
         struct tBTSNode *functions; // Odkaz na funkce třídy
         int argNo; // Číslo argumentu funkce
-} tBTSNode;
+	} tBTSNode;
 
     tabSymbol data; // Data
 	int inc;
@@ -139,7 +138,7 @@ int makeEven(int i);
  * @param *a prvek a, pres ktery vratime hodnotu b
  * @param *b prvek b, pres ktery vratime hodnotu a
  */
-char swap(char *a, char *b);
+void swap(char *a, char *b);
 
 /*
  * Funkce ziska z argumentu str string, ktery pote zpracuje za ucelem upravy haldy na spravny format
