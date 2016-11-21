@@ -147,57 +147,36 @@ char swap(char *a, char *b);
  */
 SString repairHeap(SString *str);
 
-/*
- * Obě funkce volají příslušné fce binárního stromu na inicializaci, případně odstranění ze stromu
- */
-void TSInit(void);
-void TSDispose(void);
+// FUNKCE NAD BINÁRNÍM STROMEM
 
 /*
- * Funkce vloží symbol do tabulky
- * @param symbol Symbol, který chceme vložit
- * @return Navrací pointer na danou vloženou položku
+ * Funkce inicializuje binární strom
  */
-tabSymbol *TSInsert(tabSymbol symbol);
-/*
- * Funkce vloží data příslušného datového typu do tabulky
- * @param symbol data Data, která chceme vložit
- * @return Navrací pointer na danou položku
- */
-tabSymbol *TSInsertInt(tableName name, int data);
-tabSymbol *TSInsertDouble(tableName name, double data);
-tabSymbol *TSInsertString(tableName name, char *data);
-tabSymbol *TSInsertSimpleIdent(tableName name, char *data);
-tabSymbol *TSInsertCompleteIdent(tableName name, char *data);
-tabSymbol TSInsertFunction(tableName name, char *data);
-tabSymbol TSInsertClass(tableName name, char *data);
+void initTree(mainTree *tree);
 
 /*
- * Funkce inicializuje symbol
- * @param symbol Symbol, který chceme inicializovat
- * @return
+ * Funkce prohledá binární strom a najde příslušný uzel
  */
-void TSInitSymbol (tabSymbol symbol);
-/*
- * Funkce najde v daném stromu požadovanou položku
- * @param root Kořen, ve kterém hledáme
- * @param key Klíč, podle kterého hledáme
- * @return Navrací danou položku, případně NULL pokud ji nenajde
- */
-tBTSNodePtr BTSSearch (tBTSNodePtr root, tableName key);
+BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start);
 
 /*
- * Funkce vloží symbol do BS
- * @param root Pointer na BS
- * @param key klíč, podle kterého hledáme položku na případné přepsání
- * @param symbol symbol, který chceme vložit
- * @return Navrací pointer na danou vloženou položku
+ * Funkce přidá nový uzel do BS
  */
-static tBTSNodePtr BTSInsert(tBTSNodePtr *root, tableName key, tabSymbol symbol);
+void addNode(BTSNode *newItem, BTSNode *start);
+
 /*
- * Funkce smaže BS daného kořenu
- * @param symbol kořen, který chceme smazat
- * @return
+ * Funkce vytvoří nový uzel, inicializuje ho a přidá ho do stromu
  */
-static void BTSDispose(tBTSNodePtr *root);
+void createNewNode(char *id, NodeType nodeType, varType variableType, int status);
+
+
+/*
+ * Funkce vytvoří argument a přidá ho k příslušné funkci
+ */
+void addArgument(char *id, varType type);
+
+/*
+ * Funkce nalezne argument ve funkci podle jeho pořadí
+ */
+tNode *findArgument(BTSNode *start, int argNo);
 #endif
