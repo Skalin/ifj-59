@@ -10,10 +10,11 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+
+#include <typedef.h>
 #include "interpret.h"
 #include "error_handler.h"
 #include "ial.h"
@@ -238,7 +239,7 @@ void interpretMainCore() {
     // Promenna, do ktere se ukladaji informace o instrukci
     Instr *instruction = NULL;
 
-    while(1 /*node != NULL*/ ) {
+    while(TRUE /*node != NULL*/ ) {
         instruction = NULL; // TODO, priradi se hodnota node-> data obsahujici adresy trojadresneho kodu a info o jakou instrukci se jedna
 
 

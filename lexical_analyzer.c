@@ -12,11 +12,13 @@
 /*
   *Include všech souborů
   */
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 #include "typedef.h"
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
-#include <stdio.h>
 
 // some coding
 
@@ -112,8 +114,8 @@ tToken * getToken(){
 
 
     // Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
-    int GlobalRow = 0;
-    int GlobalColumn = 0;
+    GlobalRow = 0;
+    GlobalColumn = 0;
 
     char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 

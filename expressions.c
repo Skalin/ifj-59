@@ -10,9 +10,13 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include "typedef.h"
+#include <stdlib.h>
 #include <math.h>
+#include <string.h>
+#include <ctype.h>
+#include "typedef.h"
 #include "garbage_collector.h"
+#include "lexical_analyzer.h"
 #include "expressions.h"
 #include "error_handler.h"
 #include "stack.h"
@@ -190,15 +194,116 @@ void reduceExp(tStackIt *handle[3]) {
         }
     }
     // E -> (E)
-    else if () {
+/*    else if () {
 
-    }
+    }*/
     // Syntaktická chyba
     else {
         throwException(2,0,0);
     }
     instrStackPush(iStack,instr);
 }
+
+SString substr(SString *str, int i, int n) {
+
+	SString helpStr;
+    initString(&helpStr);
+
+    while (i <= (i + n)) {
+		if (str->data[i] == EOF || isspace(str->data[i])) {
+			throwException(10, GlobalRow, GlobalColumn);
+		}
+        addCharacter(&helpStr, str->data[i]);
+        i++;
+    }
+
+	return helpStr;
+}
+
+void initString(SString *str){
+
+	if ((plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
+		str->data[0] = '\0';
+		str->length = 0;
+		str->allocatedSize = STR_ALLOCATION_SIZE;
+	} else {
+		throwException(99,0,0); //chyba alokace paměti
+	}
+
+
+}
+
+int addCharacter(SString *str, char c){
+  
+    if ((str->allocatedSize) <= (str->length + 1)) {
+		if (plusRealloc(str, sizeof(SString) + (sizeof(char)*(str->allocatedSize))) != NULL) {
+			str->allocatedSize = str->length + STR_ALLOCATION_SIZE;
+		} else {
+			throwException(99,0,0); //chyba alokace paměti
+			return STR_ERROR;
+		}
+	str->data[str->length] = c;
+	str->length++;
+	str->data[str->length] = '\0';
+
+	return STR_SUCCESS;
+	} else {
+		return 0;
+	}
+}
+
+void copyString(SString *str1, SString *str2) {
+
+	if (str2->allocatedSize < strLength(str1)) {
+		if (plusRealloc(str2, sizeof(SString) + (sizeof(char)*(str2->allocatedSize))) != NULL) {
+			str2->allocatedSize = str2->length + STR_ALLOCATION_SIZE;
+		} else {
+			throwException(99,0,0); //chyba alokace paměti
+		}
+	}
+	strClear(str2);
+	str2->length = str1->length;
+	str2->data = str1->data;
+}
+
+int compareString(SString *str1, SString *str2) {
+   //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
+   int result = strcmp(str1->data, str2->data);
+   if (result == 0) {
+      return result;
+   } else if (result < 0) {
+      return (result = -1);
+   } else {
+      return (result = 1);
+   }
+    
+}
+
+int strLength(SString *str) {
+	//vrátí délku řetězce (počet znaků) zadaného jedním parametrem str
+	int len = str->length;
+	return len;
+}
+
+int strEqual(char *str1, char *str2) {
+	int equal = !strcmp(str1, str2);
+	return equal;
+}
+
+void strClear(SString *str) {
+	// funkce sloužící k vymazání řetězce
+	str->length = 0;
+	str->data[0] = '\0';
+}
+
+void destroyString (SString *str) {
+	// funkce k uvolnění z paměti
+	if (str != NULL) {
+		plusFree(str->data);
+	}
+}
+
+
 
 SString readString(){
 	int c = getchar();
@@ -224,22 +329,22 @@ void print(char *string) {
 
 
 int readInt() {
-	SString * str;
-	initString(str);
-	*str = readString();
+	SString str;
+	initString(&str);
+	str = readString();
 	int number = 0;
 	int i = 0;
 
-	int length = str->length;
+	int length = str.length;
 
-	while (str->data[i] != '\0') {
-		if (!isdigit(str->data[i])) {
+	while (str.data[i] != '\0') {
+		if (!isdigit(str.data[i])) {
 			throwException(7, GlobalRow, GlobalColumn);
 		}
-		number += (str->data[i]-48) * (int)pow(10,length-i-1);
+		number += (str.data[i]-48) * (int)pow(10,length-i-1);
 		i++;
 	}
-	destroyString(str);
+	destroyString(&str);
 	return number;
 }
 
@@ -247,118 +352,15 @@ double readDouble(){
 	SString str;
 	initString(&str);
 	str = readString();
-	double doubleNumber = 0.0;
 	char *end;
+	double doubleNumber = strtod(str.data, &end);
 
-	doubleNumber = strtod(str->data,*end);
-
-	if (*end != NULL || doubleNumber < 0) {
+	if (*end != '\0' || doubleNumber < 0) {
 		throwException(7, GlobalRow, GlobalColumn);
 	}
 
-	destroyString(str);
+	destroyString(&str);
 
 	return doubleNumber;
 }
 
-
-SString substr(SString *str, int i, int n) {
-
-	SString *helpStr;
-    initString(helpStr);
-
-    while (i <= (i + n)) {
-		if (str->data[i] == EOF || isspace(str->data[i])) {
-			throwException(10, GlobalRow, GlobalColumn);
-		}
-        addCharacter(helpStr, str->data[i]);
-        i++;
-    }
-
-	return ((strLength(helpStr)) == n ? helpStr : throwException(10, GlobalRow, GlobalColumn));
-}
-
-
-int initString(SString *str) {
-
-	if ((plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
-		str->data[0] = '\0';
-		str->length = 0;
-		str->allocatedSize = STR_ALLOCATION_SIZE;
-	} else {
-		throwException(99,0,0); //chyba alokace paměti
-	}
-
-
-}
-
-int addCharacter(SString *str, char c) {
-  
-    if ((str->allocatedSize) <= (str->length + 1)) {
-		if (plusRealloc(str, sizeof(SString) + (sizeof(char)*(str->allocatedSize))) != NULL) {
-			str->allocatedSize = str->length + STR_ALLOCATION_SIZE;
-		} else {
-			throwException(99,0,0); //chyba alokace paměti
-			return STR_ERROR;
-		}
-	str->data[str->length] = c;
-	str->length++;
-	str->data[str->length] = '\0';
-
-	return STR_SUCCESS;
-	}
-}
-
-SString *copyString(SString *str1, SString *str2) {
-
-	if (str2->allocatedSize < strLength(str1)) {
-		if (plusRealloc(str2, sizeof(SString) + (sizeof(char)*(str2->allocatedSize))) != NULL) {
-			str2->allocatedSize = str2->length + STR_ALLOCATION_SIZE;
-		} else {
-			throwException(99,0,0); //chyba alokace paměti
-			return STR_ERROR;
-		}
-	}
-	strClear(str2);
-	str2->length = str1->length;
-	str2->data = str1->data;
-
-	return str2;
-}
-
-int compareString(SString *str1, SString *str2) {
-   //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
-   int result = strcmp(str1->data, str2->data);
-   if (result == 0) {
-      return result;
-   } else if (result < 0) {
-      return (result = -1);
-   } else {
-      return (result = 1);
-   }
-    
-}
-
-int strLength(SString *str) {
-	//vrátí délku řetězce (počet znaků) zadaného jedním parametrem str
-	int len = str->length;
-	return len;
-}
-
-bool strEqual(char *str1, char *str2) {
-	int equal = !strcmp(str1, str2);
-	return equal;
-}
-
-void strClear(SString *str) {
-	// funkce sloužící k vymazání řetězce
-	str->length = 0;
-	str->data[0] = '\0';
-}
-
-void destroyString (SString *str) {
-	// funkce k uvolnění z paměti
-	if (str != NULL) {
-		plusFree(str->data);
-	}
-}

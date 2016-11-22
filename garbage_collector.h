@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+int GlobalRow = 0;
+int GlobalColumn = 0;
 
 struct GarbageList
 {

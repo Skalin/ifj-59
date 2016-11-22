@@ -15,10 +15,6 @@
 #define EXPRESSIONS
 
 #include "typedef.h"
-#include "lexical_analyzer.h"
-#include "garbage_collector.h"
-#include "stack.h"
-#include <stdlib.h>
 
 
 
@@ -50,7 +46,7 @@ SString substr(SString *str, int i, int n);
  *
  */
 
-int initString(SString *str);
+void initString(SString *str);
 
 /*
  *
@@ -62,7 +58,7 @@ int addCharacter(SString *str, char c);
  *
  */
 
-SString copyString(SString *str1, SString *str2);
+void copyString(SString *str1, SString *str2);
 
 /*
  *

@@ -124,7 +124,7 @@ int find(SString *str, SString *search) {
 
 	while (found == 0 || str->data[stop] != '\0' || str->data[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
 		stop += shiftValue;
-		for (i = others-1, j = 0; i >= 0, j <= others-1; i--, j++) {
+		for (i = others-1, j = 0; i >= 0 && j <= others-1; i--, j++) {
 			if (str->data[stop-j] != search->data[i]) { // pokud se nam dva znaky ve stringu neshoduji, vyskocime z jednoho cyklu a posuneme se shiftem
 				break;
 			}
@@ -223,7 +223,7 @@ SString sort(SString *str) {
     return helpString;
 }
 
-/*
+
 
 //Uzel BT
 tBTSNodePtr symbolTable;
@@ -255,11 +255,11 @@ BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
                     return *start;
             }
             // Pokud mame hledat v pravem podstromu
-            else if(strcmp(key, &start->key) > 0) {
+            else if(strcmp(key, start->key) > 0) {
                 return start->rptr == NULL ?  NULL : searchForNode(key, nodeType, start->rptr);
             }
             // Pokud mame hledat v levem podstromu
-            else if (strcmp(key, &start->key) < 0)
+            else if (strcmp(key, start->key) < 0)
                 return start->lptr == NULL ?  NULL : searchForNode(key, nodeType, start->lptr);
             // V ostatnich pripadech (Chuck norris on STDin?) se jedna o chybu
             else
@@ -271,7 +271,7 @@ BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
 
 void addNode(BTSNode *newItem, BTSNode *start) {
     if(begin != NULL) {
-        if(strcmp(&newItem->key, &start->key) > 0) {
+        if(strcmp(newItem->key, start->key) > 0) {
             // Pokud nemame uzel kam vlozit
             if(start->rptr != NULL) {
                 addNode(newItem, start->rptr);
@@ -282,9 +282,9 @@ void addNode(BTSNode *newItem, BTSNode *start) {
                 if(newItem->nodeType == function)
                     mTree->actFunction = newItem;
                 if(newItem->nodeType == class)
-                    mTree->actClass == newItem;
+                    mTree->actClass = newItem;
 
-        } else if (strcmp(&newItem->key, &start->key) < 0) {
+        } else if (strcmp(newItem->key, start->key) < 0) {
             // Pokud nemame uzel kam vlozit
             if(start->lptr != NULL) {
                 addNode(newItem, start->lptr);
@@ -295,7 +295,7 @@ void addNode(BTSNode *newItem, BTSNode *start) {
             if(newItem->nodeType == function)
                 mTree->actFunction = newItem;
             if(newItem->nodeType == class)
-                mTree->actClass == newItem;
+                mTree->actClass = newItem;
 
         // If there is anything else throw error
         } else
@@ -393,8 +393,8 @@ tBTSNode *findArgument(BTSNode *start, int argNo) {
                 return *start;
         }
 
-        BTSNode *result;
-        result= findArgument(start->lptr, argNo);
+        tBTSNode result;
+        result = findArgument(start->lptr, argNo);
         if (result == NULL)
             result = findArgument(start->rptr, argNo);
 
@@ -402,4 +402,4 @@ tBTSNode *findArgument(BTSNode *start, int argNo) {
 
     } else
         return NULL;
-}*/
+}

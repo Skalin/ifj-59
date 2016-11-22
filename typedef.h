@@ -19,8 +19,8 @@
 #ifndef TYPEDEF
 #define TYPEDEF
 
-#include <stdio.h>
-#include <stdlib.h>
+#define TRUE 1
+#define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
 typedef enum {  
 /*****TYPY TOKENŮ POUŽÍVANÉ VE VÝRAZECH********/

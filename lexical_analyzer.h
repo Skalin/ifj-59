@@ -13,10 +13,6 @@
 #define LEXICAL_ANALYZER
 
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
 #include "garbage_collector.h"
 #include "typedef.h"
 
@@ -24,9 +20,6 @@
  * Definice
  */
 
-
-#define TRUE 1
-#define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 #define NUMBER_OF_KEY_WORDS 17
 #define NUMBER_OF_RESERVED_WORDS
 

@@ -140,7 +140,7 @@ int isTerm (int typeIt);
  * @param zásobník
  * @return nejvyšší terminál na zásobníku
  */
-int topTerm (tStack *stc)
+int topTerm (tStack *stc);
 
 	
 
