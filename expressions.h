@@ -78,7 +78,7 @@ double readDouble();
  *
  */
 
-void print();
+void print(char *string);
 
 /*
  *

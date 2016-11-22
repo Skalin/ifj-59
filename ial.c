@@ -223,7 +223,7 @@ SString sort(SString *str) {
     return helpString;
 }
 
-
+/*
 
 //Uzel BT
 tBTSNodePtr symbolTable;
@@ -284,7 +284,7 @@ void addNode(BTSNode *newItem, BTSNode *start) {
                 if(newItem->nodeType == class)
                     mTree->actClass == newItem;
 
-        } else if(strcmp(&newItem->key, &start->key) < 0) {
+        } else if (strcmp(&newItem->key, &start->key) < 0) {
             // Pokud nemame uzel kam vlozit
             if(start->lptr != NULL) {
                 addNode(newItem, start->lptr);
@@ -310,7 +310,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 
     // Inicializace noveho uzlu
     BTSNode *newNode = plusMalloc(sizeof(BTSNode));
-    &newNode->key = id;
+    newNode->key = id;
     newNode->nodeType = nodeType;
 	newNode->inc = 0;
     newNode->lptr = NULL;
@@ -402,4 +402,4 @@ tBTSNode *findArgument(BTSNode *start, int argNo) {
 
     } else
         return NULL;
-}
+}*/

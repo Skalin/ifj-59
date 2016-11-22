@@ -59,96 +59,73 @@ int precedAnalysis (FILE *filename) {
   
   
 }
-  
+
+SString readString(){
 
 
-int initString(SString *str) {
-    
-    if (plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE) != NULL) {
-		str->data[0] = '\0';
-		str->length = 0;
-		str->allocatedSize = STR_ALLOCATION_SIZE;
-		return 1;
-	} else {
-		throwException(99,0,0); //chyba alokace paměti
- 	}
+	int c = getchar();
+	SString str;
+	initString(&str);
+	int i = 0;
+
+
+	while (c != EOF || c != '\n') {
+		addCharacter(&str, (char) c);
+		i++;
+		c = getchar();
+	}
+	addCharacter(&str, '\0');
+	return str;
 }
 
+void print(char *string) {
+	// nejaka podminka kvuli typu vstupu..
+	printf("%s", string);
+
+}
+
+
 int readInt() {
-	char *c;
-	int size = 30;
+	SString * str;
+	initString(str);
+	*str = readString();
+	int number = 0;
+	int i = 0;
 
-	while (fgets(c, size, stdin) != NULL) {
-		size += size;
-	}
+	int length = str->length;
 
-	int j = 0;
-	while((c[j] != '\0' || c[j] != EOF || c[j] != '\n') && j < size) {
-		if (isdigit(c[j])) {
-			j++; // real size
-		} else {
+	while (str->data[i] != '\0') {
+		if (!isdigit(str->data[i])) {
 			throwException(7, GlobalRow, GlobalColumn);
 		}
+		number += (str->data[i]-48) * (int)pow(10,length-i-1);
+		i++;
 	}
-
-	int number = 0;
-	int i = j;
-	while (j > 0) {
-		number += (c[j]-48)*pow(10,(i-j));// pridat nasobeni mocnin desiti
-		j--;
-	}
+	destroyString(str);
 	return number;
 }
 
-double readDouble() {
-	char *c;
-	int size = 30;
+double readDouble(){
+	SString str;
+	initString(&str);
+	str = readString();
+	double doubleNumber = 0.0;
+	char *end;
 
-	while (fgets(c, size, stdin) != NULL) {
-		size += size;
-	}
-	int j = 0;
+	doubleNumber = strtod(str->data,*end);
 
-	SString *str = initString(SString *str);
-	while((c[j] != '\0' || c[j] != EOF || c[j] != '\n') && j < size) {
-		addCharacter(str, c[j]);
-		j++;
+	if (*end != NULL || doubleNumber < 0) {
+		throwException(7, GlobalRow, GlobalColumn);
 	}
 
+	return doubleNumber;
 }
 
-SString readString() {
-
-	char *c;
-	int size = 30;
-
-	while (fgets(c, size, stdin) != NULL) {
-		size += size;
-	}
-	int j = 0;
-
-	SString *str = initString(SString *str);
-
-	while((c[j] != '\0' || c[j] != EOF || c[j] != '\n') && j < size) {
-		addCharacter(str, c[j]);
-		j++;
-	}
-
-
-	return *str;
-
-
-}
-
-void print(/* term nebo konkatenace */) {
-	// nejaka podminka kvuli typu vstupu..
-	printf("%s", helpPtr->data);
-
-}
 
 SString substr(SString *str, int i, int n) {
 
-    SString helpStr = initString(SString *helpStr);
+	SString *helpStr;
+    initString(helpStr);
 
     while (i <= (i + n)) {
 		if (str->data[i] == EOF || isspace(str->data[i])) {

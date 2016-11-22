@@ -15,8 +15,8 @@
 #ifndef IFJ_59_TABLE_H_
 #define IFJ_59_TABLE_H_
 
-#include "expressions.h"
 #include <stdlib.h>
+#include "expressions.h"
 
 /*
  * Structures
