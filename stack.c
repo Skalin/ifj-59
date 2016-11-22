@@ -15,11 +15,7 @@
 #include "stack.h"
 #include "expressions.h"
 
-typedef enum {
-	EXPRESSION,
-	NONTERMINAL, 
-	TERMINAL,
-} ExprType;
+
 
 tStack * stackInit ( tStack *stack ) {
     //Inicializace polozek stacku
@@ -81,7 +77,7 @@ void stackDestroy (tStack *stc) {
 	
 }
 
-void itemDestroy (tItem *data) {
+void itemDestroy (tStackIt *data) {
 		
 	plusFree(data->dataIt);	
 	plusFree(data);	

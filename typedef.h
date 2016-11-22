@@ -138,4 +138,13 @@ typedef struct {
 	char data[]; // Data, která obshahuje
 } tToken;
 
+/*
+ * Typy výrazů 
+ */
+typedef enum {
+    expCond,
+    expArg,
+    expAssign
+} tExpType;
+
 #endif
