@@ -22,39 +22,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum {
+typedef enum {  
+/*****TYPY TOKENŮ POUŽÍVANÉ VE VÝRAZECH********/
+    // Závorky
+    t_bracket_l,        // (
+    t_bracket_r,        // )
+
+    // Operátory
+    t_div,              // /
+    t_multi,            // *    
+    t_plus,             // +
+    t_minus,            // - 
+    
+    // Porovnávací operátory
+    t_comparasion,      // ==
+    t_comparasion_ne,   // !=
+    t_greater,          // >
+    t_less,             // <
+    t_less_eq,          // <=
+    t_greater_eq,       // >=
+
+    // Negace
+    t_excl_mark,        // !
+
+    // Oddělovače
+    t_comma,            // ,
+    t_semicolon,        // ;  
+    
+    // Identifikátory
+    t_simple_ident,     // 15
+    t_complete_ident,   // 16    
+    
+    // Datové typy
+    t_int,              // 17
+    t_double,           // 18
+    t_double_e,         // 19
+    t_string,           // 20
+/**********************************************/
+
 	//Error status
-	t_error,
-
-    // Date types
-    t_int, 
-    t_double,
-    t_double_e,
-    t_string,
-    t_simple_ident,
-    t_complete_ident,
-
+	t_error, 
+    
     // Operators
-    t_div, 
-    t_multi,
-    t_plus,
-    t_minus,
-    t_greater,
-    t_greater_eq,
-    t_less,
-    t_less_eq,
     t_assignment, 
-    t_comparasion,
-    t_excl_mark,
-    t_comparasion_ne,
-
+    
     //Brackets
-    t_sq_bracket_l, // [
-    t_sq_bracket_r, // ]
-    t_bracket_l, // (
-    t_bracket_r, // )
     t_brace_l, // {
     t_brace_r, // }
+    t_sq_bracket_l,     // [
+    t_sq_bracket_r,     // ],  
 
     // Comments
 	t_simple_comment, 
@@ -62,8 +78,6 @@ typedef enum {
 	t_block_comment_end,   
 
 	// Other
-	t_semicolon,
-    t_comma,
 	t_eof,
     
     // Keywords
@@ -96,7 +110,7 @@ typedef enum {
 	t_read_int,
 	t_read_double,
 	t_read_string,
-	t_print,
+	t_print
 } tokenType;
 
 /*
