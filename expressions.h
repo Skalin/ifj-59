@@ -21,47 +21,7 @@
 #include "stack.h"
 #include <stdlib.h>
 
-/* PRIORITY PRO PRECEDENCE TABLE  */
-typedef enum {
-    P_GREATER = 3, // >        G
-    P_LESSER = 2, // <         L
-    P_EQUAL = 1, // =          E
-    P_FAIL = 0, //0            F
-  } tPriority;
 
-/* TERMINÁLY A NONTERMINÁLY  */
-typedef enum {
-    P_MUL,            // *
-    P_DIV,            // /
-    P_ADD,            // +
-    P_SUB,            // -
-    P_LESS,           // <
-    P_LESS_EQUAL,     // <=  
-    P_GREAT,          // >  
-    P_GREAT_EQUAL,    // >=  
-	P_IS_EQUAL,       // ==
-    P_NOT_EQUAL,      // !=
-    P_ID,             // ID
-    P_DOLLAR,         // $
-    P_COMMA,          // ,
-    P_BRACKET_L,      // (
-    P_BRACKET_R,      // )
-  
-  // DOPLNIT
-  } tInputs;
-
-
-/*
- *
- */
-
-int precedAnalysis();
-
-/*
- *
- */
-
-int getRule(tStack *stack, int something); // tady jste meli volno a asi cekate dalsi parametr, doplnil jsem "int something", je třeba refactor a překontrola jestli to je dobře
 
 /*
  *
