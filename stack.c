@@ -11,6 +11,7 @@
  */
 
 #include "typedef.h"
+#include "error_handler.h"
 #include "garbage_collector.h"
 #include "stack.h"
 #include "expressions.h"
@@ -18,87 +19,80 @@
 
 
 tStack * stackInit ( tStack *stack ) {
+
     //Inicializace polozek stacku
     tStack *stack = plusMalloc(sizeof(tStack));
     stack->data = plusMalloc(sizeof(void) * 30);
     stack->allocated = 30;
     stack->counter = 0;
-
     return stack;
 }
 
 tStackTmp * stackInitTmp (tStackTmp *stack2) {
+
     //Inicializace polozek stacku
     tStackTmp *stack = plusMalloc(sizeof(tStackTmp));
     stack2->data2 = plusMalloc(sizeof(void) * 30);
     stack2->allocated2 = 30;
     stack2->counter2 = 0;
-
     return stack2;
 }
 
 tStackIt *itemInit () {
-    
-    tStackIt * itemNew;
-    itemNew = plusMalloc(sizeof(tStackIt));
-    
-    if (itemNew != NULL) {
-        return;
-    }
-    
-    else {
-        throwException(99,0,0); //chyba alokace paměti
-        }
-    
-    tToken * tokenNew; 
-    tokenNew = plusMalloc(sizeof(tToken));
-    
-    if (tokenNew != NULL) {
-        return;
-    }
-    
-    else {
-        throwException(99,0,0); //chyba alokace paměti
-        }
-    
-    inintString(&tokenNew->attribute);
-    itemNew->dataIt = tokenNew;
-    return itemNew;
-    
+
+	tStackIt * itemNew;
+	itemNew = plusMalloc(sizeof(tStackIt));
+
+	if (itemNew != NULL) {
+		return;
+	} else {
+		throwException(99,0,0); //chyba alokace paměti
+	}
+
+	tToken * tokenNew;
+	tokenNew = plusMalloc(sizeof(tToken));
+
+	if (tokenNew != NULL) {
+		return;
+	} else {
+		throwException(99,0,0); //chyba alokace paměti
+	}
+
+	initString(&tokenNew->attribute);
+	itemNew->dataIt = tokenNew;
+	return itemNew;
+
 }
 
-void stackDestroy (tStack *stc) {
-		
+void stackDestroy(tStack *stc) {
+
 	while (stackSize(stc) > 0) {
 		tStack *tmp = stc;
 		stc = tmp->dataIt;
 		plusFree(tmp);
-	}	
-	
+	}
+
 }
 
 void itemDestroy (tStackIt *data) {
 		
-	plusFree(data->dataIt);	
-	plusFree(data);	
-	
+	plusFree(data->dataIt);
+	plusFree(data);
+
 }
 
 void exprShift (tStack *stc1, tStackTmp *stc2) {
-   	 
+
 	tToken * tmp;
 	tToken *item;
 	tmp = stackPop(stc1);
 	item = stc1->data->counter->typeIt;
-		
-   	while (!stackEmpty(stc1) || item == EXPRESSION || item == NONTERMINAL)
-    	{
+
+	while (!stackEmpty(stc1) || item == EXPRESSION || item == NONTERMINAL) {
 		if (tmp != NULL) {
-            		stackPush(stc2, tmp);  //pushnutí na druhý zásobník
-		}
-        
-        	else {   
-            		throwException(2,0,0); //sytaktická chyba
+			stackPush(stc2, tmp);  //pushnutí na druhý zásobník
+		} else {
+			throwException(2,0,0); //sytaktická chyba
 		}
 	}
 }
@@ -126,60 +120,69 @@ tStackIt *anotherToken (tToken *token) {
 
 
 int isTerm (int typeIt) {
-    return (typeIt < EXPRESSION);
+
+	return (typeIt < EXPRESSION);
 }
 
 int topTerm (tStack *stc) {
-	
-    tStackIt *item;
-    item = stc->data;
 
-    while (item->typeIt == EXPRESSION || item->typeIt == NONTERMINAL) {
-	    
-        if (isTerm(item->typeIt)) {
-            return item->typeIt;
-        }
-	    
-        item->typeIt = item->typeIt;
-        }
-    }
+	tStackIt *item;
+	item = stc->data;
+
+	while (item->typeIt == EXPRESSION || item->typeIt == NONTERMINAL) {
+
+		if (isTerm(item->typeIt)) {
+			return item->typeIt;
+		}
+
+		item->typeIt = item->typeIt;
+		}
+	}
 }
 
 
 int stackEmpty (const tStack* s) {
-    return(s->counter == 0 ? 1 : 0); // Pokud je vrchol zasobniku mensi jak nula
+
+	// Pokud je vrchol zasobniku mensi jak nula
+	return(s->counter == 0 ? 1 : 0);
 }
 
 int stackFull (const tStack* s) {
-    return(s->allocated < (s->counter+1) ? 1 : 0); // Pokud se stav zasobniku rovna max kapacite, vrati se 1
+
+	// Pokud se stav zasobniku rovna max kapacite, vrati se 1
+	return(s->allocated < (s->counter+1) ? 1 : 0);
 }
 
 void stackPush (tStack *stack, void *data) {
-    // Pokud uz neni dostatek alokovane pameti, provede se realloc
-    if(stackFull(stack)) {
-        stack->data = plusRealloc(stack->data, (sizeof(void *) * (stack->allocated+30)));
-        stack->allocated += 30;
-    }
-    //Na vrchol zasobniku vlozime data
-    stack->counter++;
-    stack->data[stack->counter] = data;
+
+	// Pokud uz neni dostatek alokovane pameti, provede se realloc
+	if(stackFull(stack)) {
+		stack->data = plusRealloc(stack->data, (sizeof(void *) * (stack->allocated+30)));
+		stack->allocated += 30;
+	}
+	//Na vrchol zasobniku vlozime data
+	stack->counter++;
+	stack->data[stack->counter] = data;
 }
 
 void * stackTop (tStack *stack) {
-    //Pokud jsou v zasobniku data, vrat data na vrcholu
-    if(!stackEmpty(stack))
-        return(stack->data[stack->counter+1]);
-    //Jinak vrat null
-    else
-        return NULL;
+
+	//Pokud jsou v zasobniku data, vrat data na vrcholu
+	if(!stackEmpty(stack))
+		return(stack->data[stack->counter+1]);
+	//Jinak vrat null
+	else
+		return NULL;
 }
 
 void stackPop (tStack *stack) {
-    if (!stackEmpty(stack))
-        stack->counter--;
+
+	if (!stackEmpty(stack))
+		stack->counter--;
 }
 
 int stackSize (tStack *stack) {
-    return stack->counter;
+
+	return stack->counter;
 }
 
