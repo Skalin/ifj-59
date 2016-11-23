@@ -92,7 +92,7 @@ void pClass(){
 	// vytvorit tridu v tabulce symbolu
 
 
-6
+
 	  //kill token with identifier
 
 	token = getToken();    // and get a new one, should be left curly brace

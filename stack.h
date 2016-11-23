@@ -16,11 +16,20 @@
 
 #include "typedef.h"
 
+// Typy elementů
+typedef enum {
+	EXPR,
+	NONTERM, 
+	TERM
+} tItemType;
+
 //Struktura položky
 typedef struct {
 	tToken * dataIt;
-	int typeIt;
+	tItemType typeIt;
 } tStackIt;
+
+
 
 
 //Struktura zásobníku
@@ -105,7 +114,7 @@ void stackDestroy (tStack *stc);
  * Zničí prvky na zásobníku
  * @param prvek zásobníku
  */
-void itemDestroy (tItem *data);
+void itemDestroy (tStackIt *data);
 
 /*
  * Funkce sloužící k přemístění prvků z jednoho zásobníku na zásobník druhý
