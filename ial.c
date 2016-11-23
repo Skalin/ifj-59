@@ -270,7 +270,7 @@ BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
 }
 
 void addNode(BTSNode *newItem, BTSNode *start) {
-    if(begin != NULL) {
+    if(start != NULL) {
         if(strcmp(newItem->key, start->key) > 0) {
             // Pokud nemame uzel kam vlozit
             if(start->rptr != NULL) {
@@ -318,8 +318,8 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 
     // Urceni zacatku podle typu uzlu
     BTSNode *start;
-
-    if (newNode->nodeType == var) {
+    switch(newNode->nodeType) {
+    case var:
         newNode->data.type = variableType;
         newNode->variables = NULL; // Neni potrebne u promenne
 
@@ -327,43 +327,37 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
             start = mTree->actClass->variables;
         else
             start = mTree->actFunction->variables;
-    }
-    else if (newNode->nodeType == function) {
+        break;
+    case function:
         newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
         newNode->variables = NULL;
         start= mTree->actClass->functions;
-    }
-    else if (newNode->nodeType == class) {
+        break;
+    case class:
         newNode->functions = NULL;
         newNode->variables = NULL;
         start= mTree->root;
+        break;
     }
 
     // Pokud neexistuje korenovy uzel a jedna se o classu
-    if (newNode ->nodeType == class) {
-        if (mTree->root == NULL) {
-            mTree->root = newNode;
-            mTree->actClass = newNode;
-        }
-    }
-    // Pokud se jedna o funkci a v aktivni classe nemame aktivni funkci
-    else if (newNode ->nodeType == function) {
-        if(mTree->actClass->functions == NULL) {
+    if (newNode ->nodeType == class && mTree->root == NULL) {
+        mTree->root = newNode;
+        mTree->actClass = newNode;
+    } // Pokud ve tride neexistuji funkce
+    else if (newNode ->nodeType == function && mTree->actClass->functions == NULL) {
             mTree->actClass->functions = newNode;
             mTree->actFunction = newNode;
-        }
     }
-    // Pokud se jedna o promennou
-    else if (newNode ->nodeType == var) {
-        if(status) {
-            if(mTree->actClass->variables == NULL)
-                mTree->actClass->variables = newNode;
-        }
-        else if (mTree->actFunction->variables == NULL) {
-            if(mTree->actFunction != NULL)
-                mTree->actFunction->variables = newNode;
-        }
+    // Pokud ve tride neexistuji zadne staticke promenne
+    else if (newNode ->nodeType == var && mTree->actClass->variables == NULL && status) {
+        mTree->actClass->variables = newNode;
     }
+    // Pokud ve funkci neexistuji zadne promenne
+    else if (newNode->nodeType == var && mTree->actFunction->variables == NULL && mTree->actFunction != NULL) {
+        mTree->actFunction->variables = newNode;
+    }
+    // Jinak se klasicky prida uzel
     else
         addNode(newNode, start);
 }
@@ -372,13 +366,13 @@ void addArgument(char *id, varType type) {
     BTSNode *argument = plusMalloc(sizeof(BTSNode));
     argument->key = id;
     argument->nodeType = var;
-    argument->data.type = var_int; //doca
+    argument->data.type = type;
     argument->lptr = NULL;
     argument->rptr = NULL;
 
     argNo++;
     argument->argNo = argNo;
-    mTree->actFunction->data.value.intValue = argNo;
+    mTree->actFunction->data.value->intValue = argNo;
 
     if (mTree->actFunction->variables != NULL)
         addNode(argument, mTree->actFunction->variables);
@@ -386,19 +380,19 @@ void addArgument(char *id, varType type) {
         mTree->actFunction->variables = argument;
 }
 
-tBTSNode *findArgument(BTSNode *start, int argNo) {
+BTSNode *findArgument(BTSNode *start, int argNo) {
     if (start != NULL) {
         if(start->nodeType == var) {
             if(start->argNo == argNo)
-                return *start;
+                return start;
         }
 
-        tBTSNode result;
+        BTSNode *result;
         result = findArgument(start->lptr, argNo);
         if (result == NULL)
             result = findArgument(start->rptr, argNo);
 
-        return found;
+        return result;
 
     } else
         return NULL;

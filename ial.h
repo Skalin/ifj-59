@@ -67,11 +67,11 @@ typedef enum {
 } varType;
 
 // Hodnota promenne, union zajišťuje, že v paměti zabírá místo pouze největší hodnota z nich
-union {
+union varValue{
     int intValue;
     double doubleValue;
     char *stringValue;
-} varValue;
+};
 
 //Struktura tabulky symbolu
 typedef struct tableSymbolVariable {
@@ -86,10 +86,8 @@ typedef struct tBTSNode {
     NodeType nodeType; // Typ uzlu (proměnná, funkce, třída)
 
     //Struktura, kde se využívá vždy jen jeden prvek, pokud se jedna o třídu, využije se první prvek, pokud u proměnnou, která je argumentem funkce, pak se využije druhá
-    union {
-        struct tBTSNode *functions; // Odkaz na funkce třídy
-        int argNo; // Číslo argumentu funkce
-	} tBTSNode;
+    struct tBTSNode *functions; // Odkaz na funkce třídy
+    int argNo; // Číslo argumentu funkce
 
     tabSymbol data; // Data, obsahuje strukturu tabSymbol (Struktura tabulky symbolu hned nad touto strukturou)
 	int inc; // Označení, jestli byla proměnná inicializovaná
@@ -177,5 +175,5 @@ void addArgument(char *id, varType type);
 /*
  * Funkce nalezne argument ve funkci podle jeho pořadí
  */
-tNode *findArgument(BTSNode *start, int argNo);
+BTSNode *findArgument(BTSNode *start, int argNo);
 #endif
