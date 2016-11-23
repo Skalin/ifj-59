@@ -14,11 +14,9 @@
 #ifndef IFJ_59_STACK_H
 #define IFJ_59_STACK_H
 
-#include "typedef.h"
-
 // Typy elementů
 typedef enum {
-	EXPR,
+	EXPR = 1,
 	NONTERM, 
 	TERM
 } tItemType;
