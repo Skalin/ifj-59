@@ -16,7 +16,7 @@
 CC=gcc
 MAIN=main
 CFLAGS=-g -std=c99 -Wall -Wextra -Werror -pedantic -lm
-ALLFILES=*.c
+ALLFILES=(patsubst %.c)
 
 all:	MAIN
 
