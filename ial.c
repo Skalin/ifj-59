@@ -390,7 +390,7 @@ tBTSNode *findArgument(BTSNode *start, int argNo) {
     if (start != NULL) {
         if(start->nodeType == var) {
             if(start->argNo == argNo)
-                return *start;
+                return start;
         }
 
         tBTSNode result;
