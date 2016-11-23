@@ -76,7 +76,7 @@ void instrStackPush (instrStack *stc, void *data) {
     stc->data[stc->count] = data;
 }
 
-void * instrStackTop (instrStack *stc) {
+Instr * instrStackTop (instrStack *stc) {
 
     //Pokud jsou v zasobniku data, vrat data na vrcholu
     if (!instrStackEmpty(stc)) {
@@ -86,6 +86,7 @@ void * instrStackTop (instrStack *stc) {
         return NULL;
     }
 }
+
 
 
 void instrStackPop (instrStack *stc) {
