@@ -131,16 +131,16 @@ int isTerm (int typeIt) {
 
 int topTerm (tStack *stc) {
 	
-    tStackIt *item; 
-    item = stc->data->typeIt;
+    tStackIt *item;
+    item = stc->data;
 
-    while (item == EXPRESSION || item == NONTERMINAL) {
+    while (item->typeIt == EXPRESSION || item->typeIt == NONTERMINAL) {
 	    
         if (isTerm(item->typeIt)) {
-            return item->type;
+            return item->typeIt;
         }
 	    
-        item = item->type;
+        item->typeIt = item->typeIt;
         }
     }
 }
