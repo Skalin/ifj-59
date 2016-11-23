@@ -10,16 +10,12 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-
+#include <string.h>
 #include "typedef.h"
 #include "parser.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
 #include "lexical_analyzer.h"
-#include "generator.h"
-#include "stack.h"
 
 //pomocne info o tokenu
 tokenType tempType;
