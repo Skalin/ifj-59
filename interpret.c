@@ -14,7 +14,7 @@
 #include <string.h>
 
 
-#include <typedef.h>
+#include "typedef.h"
 #include "interpret.h"
 #include "error_handler.h"
 #include "ial.h"
