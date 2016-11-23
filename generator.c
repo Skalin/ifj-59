@@ -9,3 +9,6 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+
+#include "typedef.h"
+#include "generator.h"
