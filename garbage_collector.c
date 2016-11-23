@@ -9,6 +9,8 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+
+#include <stdlib.h>
 #include "garbage_collector.h"
 #include "error_handler.h"
 

@@ -16,7 +16,6 @@
 #define GARBAGE_COLLECTOR
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 int GlobalRow = 0;
