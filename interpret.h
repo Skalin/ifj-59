@@ -14,6 +14,9 @@
 #ifndef IFJ_59_INTERPRET_H
 #define IFJ_59_INTERPRET_H
 
+#include "typedef.h"
+#include "ial.h"
+
  // POUZE PROVIZORNÍ! Struktury prosím přesuňte někam dopryč
 typedef enum {
     // MATH
