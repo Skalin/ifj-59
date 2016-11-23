@@ -80,7 +80,7 @@ void * instrStackTop (instrStack *stc) {
 
     //Pokud jsou v zasobniku data, vrat data na vrcholu
     if (!instrStackEmpty(stc)) {
-        return (stc->data[stc->count + 1]);
+        return (stc->dataInstr[stc->count + 1]);
         //Jinak vrat null
     } else {
         return NULL;
