@@ -165,7 +165,7 @@ void reduceExp(tStackIt *handle[3]) {
     // instrStackPush(iStack,instr);
 }
 
-/*
+
 void expression(tExpType expType, char *funcName) {
     // Inicializujeme zásobník a vložíme na něj znak ';'
     tStack *stack = NULL;
@@ -186,7 +186,7 @@ void expression(tExpType expType, char *funcName) {
          *   nebo se jedná o argument a na vstupu je ',' nebo ')'
          *   nebo se jedná o přiřazení a na vstupu je ';'
          *   (v posledním případě před vyskočením ještě vygeneruje instrukci)
-         **************
+         */
         if (topTerm()->type == t_semicolon) {
             if (((expType == expCond) && (token->type == t_bracket_r)) ||
                 ((expType == expArg) && ((token->type == t_comma) || (token->type == t_bracket_r))) ||
@@ -235,7 +235,7 @@ void expression(tExpType expType, char *funcName) {
         }
     }
     // TODO uvolnit paměť
-}*/
+}
 
 SString substr(SString *str, int i, int n) {
 
