@@ -19,9 +19,7 @@ CFLAGS=-g -std=c99 -Wall -Wextra -Werror -pedantic -lm
 ALLFILES=$(wildcard *.c)
 OBJS=$(ALLFILES:.c=.o)
 
-all: $(OBJS)
-
-main:	$(ALLFILES)
+main:	$(OBJS)
 		gcc -o main  $(CFLAGS) $(ALLFILES)
 
 %.o : %.c
