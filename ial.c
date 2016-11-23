@@ -317,7 +317,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
     newNode->rptr = NULL;
 
     // Urceni zacatku podle typu uzlu
-    BTSNode *start;
+    BTSNode *start = NULL;
     switch(newNode->nodeType) {
     case var:
         newNode->data.type = variableType;
