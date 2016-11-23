@@ -12,8 +12,6 @@
 #ifndef ERROR_HANDLER
 #define ERROR_HANDLER
 
-#include <stdio.h>
-#include <stdlib.h>
 /*
  * Ukonci program a jako navratovou chybu pouzije prvni parametr
  * @param errorNumber cislo chyboveho stavu
