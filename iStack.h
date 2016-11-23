@@ -14,25 +14,39 @@
 #define ISTACK_H
 
 typedef enum {
+    // BUILT-IN FUNCTIONS
+    insIfj16readInt,
+    insIfj16readDouble,
+    insIfj16readString,
+    insIfj16lenght,
+    insIfj16substr,
+    insIfj16compare,
+    insIfj16find,
+    insIfj16sort,
+    insIfj16print,
+    //
     // MATH
     insPlus, // Sčítání
     insMinus, // Odečítání
     insMux, // Násobení
     insDiv, // Dělení
+    //
+    //COMPARE
     insEqual, // Je rovno
     insNotEqual, // Neni rovno
     insLess, // Je mensi
     insLessOrEqual, // Je mensi nebo rovno
     insGreater, // Je vetsi
     insGreaterOrEqual, // Je vetsi nebo rovno
+    insAssignment
 }InstrType;
 
-typedef struct Instr {
-     void *Id1; // Adresa prvního operandu
-     void *Id2; // Adresa druhého operandu
-     void *Id3; // Adresa, kam se uloží výsledek operace
+ typedef struct Instr {
+     BTSNode *Id1; // Adresa prvního operandu
+     BTSNode *Id2; // Adresa druhého operandu
+     BTSNode *Id3; // Adresa, kam se uloží výsledek operace
      InstrType type;
-}Instr; 
+ }Instr;
 
 typedef struct {
     Instr *dataInstr;
