@@ -13,8 +13,6 @@
 #ifndef ISTACK_H
 #define ISTACK_H
 
-#include "typedef.h"
-
 typedef enum {
     // MATH
     insPlus, // Sčítání
