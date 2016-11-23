@@ -16,13 +16,15 @@
 CC=gcc
 MAIN=main
 CFLAGS=-g -std=c99 -Wall -Wextra -Werror -pedantic -lm
-ALLFILES=$(%.c)
-SHELL=bash
+ALLFILES=$(wildcard *.c)
+OBJS=$(ALLFILES:.c=.o)
 
-all:	main
+all: $(OBJS)
 
 main:	$(ALLFILES)
-		$(CC) $(CFLAGS) *.o -o main
+		gcc -o main  $(CFLAGS) $(ALLFILES)
+
+%.o : %.c
 
 
 clean:
