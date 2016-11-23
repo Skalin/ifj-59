@@ -14,7 +14,6 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
-#include "typedef.h"
 #include "garbage_collector.h"
 #include "lexical_analyzer.h"
 #include "expressions.h"
@@ -77,7 +76,7 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
 }
 
 // Načte handle a najde pravidla E -> i a E -> (E)
-void chnToExp(tStack *stack, tStackIt *handle[]) {
+tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
     int i = 0;
     //tStackIt *handle[3];
 
@@ -180,14 +179,14 @@ void expression(tExpType expType, char *funcName) {
     stackPush(stack,item);
 
     token = getToken();
-    while (1) {
+    while (TRUE) {
         /* Vyskočí z cyklu, pokud topTerm je roven ';' a
          *   jedná se o podmínku a na vstupu je ')'
          *   nebo se jedná o argument a na vstupu je ',' nebo ')'
          *   nebo se jedná o přiřazení a na vstupu je ';'
          *   (v posledním případě před vyskočením ještě vygeneruje instrukci)
          */
-        if (topTerm()->type == t_semicolon) {
+        if (topTerm(stack)->type == t_semicolon) {
             if (((expType == expCond) && (token->type == t_bracket_r)) ||
                 ((expType == expArg) && ((token->type == t_comma) || (token->type == t_bracket_r))) ||
                 ((expType == expAssign) && (token->type == t_semicolon)))
@@ -239,18 +238,18 @@ void expression(tExpType expType, char *funcName) {
 
 SString substr(SString *str, int i, int n) {
 
-	SString helpStr;
-    initString(&helpStr);
+	SString *helpStr = NULL;
+    initString(helpStr);
 
     while (i <= (i + n)) {
 		if (str->data[i] == EOF || isspace(str->data[i])) {
 			throwException(10, GlobalRow, GlobalColumn);
 		}
-        addCharacter(&helpStr, str->data[i]);
+        addCharacter(helpStr, str->data[i]);
         i++;
     }
 
-	return helpStr;
+	return *helpStr;
 }
 
 void initString(SString *str){
@@ -301,15 +300,15 @@ void copyString(SString *str1, SString *str2) {
 
 int compareString(SString *str1, SString *str2) {
    //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
-   int result = strcmp(str1->data, str2->data);
-   if (result == 0) {
-      return result;
-   } else if (result < 0) {
-      return (result = -1);
-   } else {
-      return (result = 1);
-   }
-    
+	int result = strcmp(str1->data, str2->data);
+	if (result < 0) {
+		result = -1;
+	} else if (result > 0) {
+		result = 1;
+	}
+
+	return result;
+
 }
 
 int strLength(SString *str) {
@@ -340,18 +339,18 @@ void destroyString (SString *str) {
 
 SString readString(){
 	int c = getchar();
-	SString str;
-	initString(&str);
+	SString *str = NULL;
+	initString(str);
 	int i = 0;
 
 
 	while (c != EOF || c != '\n') {
-		addCharacter(&str, (char) c);
+		addCharacter(str, (char) c);
 		i++;
 		c = getchar();
 	}
-	addCharacter(&str, '\0');
-	return str;
+	addCharacter(str, '\0');
+	return *str;
 }
 
 void print(char *string) {
@@ -362,37 +361,37 @@ void print(char *string) {
 
 
 int readInt() {
-	SString str;
-	initString(&str);
-	str = readString();
+	SString *str = NULL;
+	initString(str);
+	*str = readString();
 	int number = 0;
 	int i = 0;
 
-	int length = str.length;
+	int length = str->length;
 
-	while (str.data[i] != '\0') {
-		if (!isdigit(str.data[i])) {
+	while (str->data[i] != '\0') {
+		if (!isdigit(str->data[i])) {
 			throwException(7, GlobalRow, GlobalColumn);
 		}
-		number += (str.data[i]-48) * (int)pow(10,length-i-1);
+		number += (str->data[i]-48) * (int)pow(10,length-i-1);
 		i++;
 	}
-	destroyString(&str);
+	destroyString(str);
 	return number;
 }
 
 double readDouble(){
-	SString str;
-	initString(&str);
-	str = readString();
+	SString *str = NULL;
+	initString(str);
+	*str = readString();
 	char *end;
-	double doubleNumber = strtod(str.data, &end);
+	double doubleNumber = strtod(str->data, &end);
 
 	if (*end != '\0' || doubleNumber < 0) {
 		throwException(7, GlobalRow, GlobalColumn);
 	}
 
-	destroyString(&str);
+	destroyString(str);
 
 	return doubleNumber;
 }

@@ -192,19 +192,19 @@ SString repairHeap(SString *str) {
 
 // samotny heapsort
 SString sort(SString *str) {
-	SString helpString;
-	initString(&(helpString));
-    copyString(str, &helpString);
+	SString *helpString;
+	initString(helpString));
+    copyString(str, helpString);
 
 
 
     int biggestNumber = 0;
-	int length = strLength(&helpString);
+	int length = strLength(helpString);
     while (length) {
 
-		repairHeap(&helpString);
+		repairHeap(helpString);
 
-		biggestNumber = helpString.data[0];
+		biggestNumber = helpString->data[0];
 
 /*
  * zbytecne, protoze biggest number bude prvni
@@ -215,12 +215,12 @@ SString sort(SString *str) {
             biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
         }
   */
-        swap(&helpString.data[biggestNumber], &helpString.data[length-1]);
+        swap(&helpString->data[0], &helpString->data[length-1]);
         
         length--;
     }
 
-    return helpString;
+    return *helpString;
 }
 
 
@@ -397,3 +397,10 @@ BTSNode *findArgument(BTSNode *start, int argNo) {
     } else
         return NULL;
 }
+
+/*
+ * POZOR! JE TŘEBA VYUŽÍVAT SString struktury tedy postup pro uložení struktury doporučuji následující
+ *
+ * Provede se inicializace stringu / SString *str;
+ *
+ */
