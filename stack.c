@@ -124,7 +124,7 @@ int isTerm (int typeIt) {
 	return (typeIt < EXPRESSION);
 }
 
-int topTerm (tStack *stc) {
+tToken * topTerm (tStack *stc) {
 
 	tStackIt *item;
 	item = stc->data;
