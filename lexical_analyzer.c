@@ -581,11 +581,7 @@ tToken * getToken(){
 				break;
 			case LA_MULTI:
 				if (c == 47) {
-					buffer[i] = c;
-					i++;
-					token = updateToken(token, buffer);
-					token->type = t_block_comment_end;
-					return token;
+					throwException(1, GlobalRow, GlobalColumn);
 				} else {
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
