@@ -291,7 +291,7 @@ tToken * getToken(){
 						throwException(1, GlobalRow, GlobalColumn);
 					}
 				}
-				if (((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c == 95) || (c == 36))) { // a..z,A..Z,_,$
+				if (((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c == 95) || (c == 36))) { // a..z,A..Z,_,$
 					buffer[i] = c;
 					i++;
 				} else {
