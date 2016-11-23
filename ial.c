@@ -192,19 +192,19 @@ SString repairHeap(SString *str) {
 
 // samotny heapsort
 SString sort(SString *str) {
-	SString *helpString;
-	initString(helpString));
+	SString *helpString = NULL;
+	initString(helpString);
     copyString(str, helpString);
 
 
 
-    int biggestNumber = 0;
+    char biggestItem = '\0';
 	int length = strLength(helpString);
     while (length) {
 
 		repairHeap(helpString);
 
-		biggestNumber = helpString->data[0];
+		biggestItem = helpString->data[0];
 
 /*
  * zbytecne, protoze biggest number bude prvni
@@ -215,7 +215,7 @@ SString sort(SString *str) {
             biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
         }
   */
-        swap(&helpString->data[0], &helpString->data[length-1]);
+        swap(&biggestItem, &helpString->data[length-1]);
         
         length--;
     }
