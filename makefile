@@ -16,11 +16,12 @@
 CC=gcc
 MAIN=main
 CFLAGS=-g -std=c99 -Wall -Wextra -Werror -pedantic -lm
-ALLFILES=(patsubst %.c)
+ALLFILES=$(patsubst %.c, %.c.o, $(shell ls *.c))
+SHELL=bash
 
-all:	MAIN
+all:	main
 
-MAIN:	$(ALLFILES)
+main:	$(ALLFILES)
 		$(CC) $(CFLAGS) *.o -o main
 
 
