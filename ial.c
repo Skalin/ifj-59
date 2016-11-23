@@ -372,7 +372,7 @@ void addArgument(char *id, varType type) {
 
     argNo++;
     argument->argNo = argNo;
-    mTree->actFunction->data.value->intValue = argNo;
+    mTree->actFunction->data.value.intValue = argNo;
 
     if (mTree->actFunction->variables != NULL)
         addNode(argument, mTree->actFunction->variables);

@@ -76,7 +76,7 @@ union varValue{
 //Struktura tabulky symbolu
 typedef struct tableSymbolVariable {
     varType type; // U promenne= typ promenne | U funkce= Typ navratove hodnoty | U tridy=nic, NULL
-    union varValue *value; // U promenne- hodnota promenne | U trid a funkci tuto promennou nepouzivame NULL
+    union varValue value; // U promenne- hodnota promenne | U trid a funkci tuto promennou nepouzivame NULL
 } tabSymbol, *tabSymbolPtr;
 
 
