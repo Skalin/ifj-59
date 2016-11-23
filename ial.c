@@ -198,7 +198,7 @@ SString sort(SString *str) {
 
 
 
-    char biggestItem = '\0';
+    char biggestItem;
 	int length = strLength(helpString);
     while (length) {
 
