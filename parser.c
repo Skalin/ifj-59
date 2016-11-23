@@ -375,6 +375,15 @@ void pSingleCommand(){
 		case t_kw_return :
 			// RETURN statement
 			// asi rovnou volam precedencni TODO
+			//DELETE THIS
+			token = getToken();
+			while (token->type != t_semicolon) {
+				
+			token = getToken();
+			}
+			// END OF DELETE BLOCK
+			break;
+
 			break;
 
 		case t_kw_static :
