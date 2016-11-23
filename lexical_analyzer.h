@@ -12,8 +12,6 @@
 #ifndef LEXICAL_ANALYZER
 #define LEXICAL_ANALYZER
 
-
-#include "garbage_collector.h"
 #include "typedef.h"
 
 /*
