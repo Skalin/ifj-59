@@ -241,7 +241,7 @@ void initTree(mainTree *tree) {
     mTree->actFunction = NULL;
 }
 
-BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
+BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
     if(mTree->root != NULL) {
 
     } else {
@@ -252,7 +252,7 @@ BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
             if(strcmp(key, start->key) == 0) {
                 // Pokud je to typ ktery jsme hledali, vratime ho
                 if (start->nodeType == nodeType)
-                    return *start;
+                    return start;
             }
             // Pokud mame hledat v pravem podstromu
             else if(strcmp(key, start->key) > 0) {

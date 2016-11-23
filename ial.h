@@ -154,7 +154,7 @@ void initTree(mainTree *tree);
 /*
  * Funkce prohledá binární strom a najde příslušný uzel
  */
-BTSNode searchForNode(tableName key, NodeType nodeType, BTSNode *start);
+BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start);
 
 /*
  * Funkce přidá nový uzel do BS

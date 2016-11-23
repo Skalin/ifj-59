@@ -14,8 +14,21 @@
 #ifndef IFJ_59_INTERPRET_H
 #define IFJ_59_INTERPRET_H
 
- // POUZE PROVIZORNÍ! Struktury prosím přesuňte někam dopryč
+
+
+// POUZE PROVIZORNÍ! Struktury prosím přesuňte někam dopryč
 typedef enum {
+    // BUILT-IN FUNCTIONS
+    insIfj16readInt,
+    insIfj16readDouble,
+    insIfj16readString,
+    insIfj16lenght,
+    insIfj16substr,
+    insIfj16compare,
+    insIfj16find,
+    insIfj16sort,
+    insIfj16print,
+    //
     // MATH
     insPlus, // Sčítání
     insMinus, // Odečítání
@@ -32,9 +45,9 @@ typedef enum {
 }InstrType;
 
  typedef struct Instr {
-     void *Id1; // Adresa prvního operandu
-     void *Id2; // Adresa druhého operandu
-     void *Id3; // Adresa, kam se uloží výsledek operace
+     BTSNode *Id1; // Adresa prvního operandu
+     BTSNode *Id2; // Adresa druhého operandu
+     BTSNode *Id3; // Adresa, kam se uloží výsledek operace
      InstrType type;
  }Instr;
 
@@ -47,7 +60,7 @@ typedef enum {
  * @param Název proměnné, kterou chceme najít
  * @return Ukazatel uzel hledane promenne
  */
-BTSNode* getVariable(char* id);
+BTSNode *getVariable(char* id);
 
 /*
  * Funkce provede aritmetickou operaci/ konkateraci retezcu
