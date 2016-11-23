@@ -12,20 +12,19 @@
 #               David Hél, xhelda00@stud.fit.vutbr.cz
 #
 
-
 CC=gcc
-MAIN=main
-CFLAGS=-g -std=c99 -Wall -Wextra -Werror -pedantic -lm
-ALLFILES=$(wildcard *.c)
-OBJS=$(ALLFILES:.c=.o)
+CFLAGS=-std=c99 -Wall -Werror -Wextra -pedantic -g -lm
+OBJFILES=$(patsubst %.c, %.c.o, $(shell ls *.c))
+TESTFILES=$(patsubst tests/%.pas, tests/%, $(shell ls tests/*.pas));
+SHELL=bash
 
-main:	$(OBJS)
-		gcc -o main  $(CFLAGS) $(ALLFILES)
+# build
+all: ifj
 
-%.o : %.c
+ifj: $(OBJFILES)
+	$(CC) $(CFLAGS) *.o -o ifj
 
-
-clean:
-		rm -rf *.o *~ $(MAIN)
+%.c.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $(subst , , $<.o)
 
 
