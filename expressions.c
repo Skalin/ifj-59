@@ -26,31 +26,27 @@
 #define STR_ALLOCATION_SIZE 8  // Udává, kolik bude alokováno na začátku paměti. Pokud načítáme po jednom znaku, dojde k alokaci na násobky tohoto čísla
 
 char precTable[16][16] = {
-//    +    -    *    /    (    )    ID   <    >    <=   >=   ==  !=    !
-//    (    )    /    *    +    -    ==   !=   <    >    <=   >=   !    ,    ;    ID      
-    {'<', '<', '<', '<', '<', '=', '<', '<', '<', '<', '<', '<', '<', '<', ' ', ' '}, // (
-    {'>', '>', '>', '>', 'F', '>', 'F', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // )
-    {'>', '>', '>', '>', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // /
-    {'>', '>', '>', '>', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // *
-    {'>', '>', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // +
-    {'>', '>', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // -
-    {'<', '<', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // ==
-    {'<', '<', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // !=
-    {'<', '<', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // <
-    {'<', '<', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // >
-    {'<', '<', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // <=
-    {'<', '<', '<', '<', '<', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '}, // >=
-    {'>', '>', '>', '>', '=', '>', '<', '>', '>', '>', '>', '>', '>', '>', ' ', ' '},  // !
-    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},  // ,
-    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},  // ;
-    {'>', '>', '>', '>', 'F', '>', 'F', '>', '>', '>', '>', '>', '>', 'F', ' ', ' '}, // ID
+  //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
+    {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'} // (
+    {'F','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','F'} // )
+    {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'} // /
+    {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','<'} // *
+    {'<','>','<','<','>','>','>','>','>','>','>','>','>',' ','>','<'} // +
+    {'<','>','<','<','>','>','>','>','>','>','>','>','>',' ',' ','<'} // -
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // ==
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // !=
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // <
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // >
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // <=
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // >=
+    {'=','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'} // !
+    {'<','=',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ','=','F','<'} // , 
+    {'<','F',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ',' ','F','<'} // ;
+    {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'} // ID
 };
 
-
-
-
-bool isId(tToken *token) {
-    if ((token->type >= t_simple_ident) && (token->type <= t_complete_ident))
+bool isIdent(tToken *token) {
+    if ((token->type >= t_simple_ident) && (token->type <= t_print))
         return true;
     return false;
 }
@@ -61,27 +57,34 @@ bool isConst(tToken *token) {
     return false;    
 }
 
-
 char getPrecChar(tToken *stackToken, tToken *inToken) {
     int stackTokenNum = stackToken->type;
     int inTokenNum = inToken->type;
     
-    if (isId(stackToken) || isConst(stackToken)) {
+    if (isIdent(stackToken) || isConst(stackToken)) {
         stackTokenNum = 15;
     }
-    if (isId(inToken) || isConst(inToken)) {
+    if (isIdent(inToken) || isConst(inToken)) {
         inTokenNum = 15;
     }
     return precTable[stackTokenNum][inTokenNum];
 }
 
-// Načte handle a najde pravidla E -> i a E -> (E)
+
+
+void instrCreate(Instr instr) {
+    // Najít uzel, pokud neexistuje vytvořit
+    // Na iStack hodit instrukci
+}
+
+/* Mění terminály na výrazy a odstraňuje závorky podle pravidel:
+ * E -> id  a  E -> (E)
+ */
 tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
     int i = 0;
-    //tStackIt *handle[3];
 
     // Čteme ze zásobníku dokud nenarazíme na NONTERM
-    while (topItemType() != NONTERM) {
+    while (stackTop()->data->typeIt != NONTERM) {
         i++;
         // Pokud je handle větší než 3, vyvoláme syntaktickou chybu
         if (i > 3) throwException(2,0,0);
@@ -93,54 +96,53 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
     stackPop(stack);
 
     // Pravidlo E -> id
-    if ((i == 1) && (handle[0]->typeIt == TERM) && (handle[0]->dataIt->type >= t_simple_ident) && (handle[0]->typeIt <= t_string)) {
+    if ((i == 1) && (isIdent(handle[0]->dataIt))) {
         handle[0]->typeIt = EXPR;
-
-        /*TOMUHLE NEROZUMÍM ALE MOŽNÁ TO TU MÁ BÝT (zřejmě je to uložení identifikátoru)
-        copyString(&item->dataIt->attribute,&handle[0]->dataIt->attribute); */
+        stackPush(stack,handle[0]);
     }
     // Pravidlo E -> (E)
-    else if ((i == 3) && (handle[0]->dataIt->type == t_bracket_l) && (handle[1]->dataIt->type >= t_simple_ident) && (handle[1]->typeIt <= t_string) && (handle[2]->dataIt->type == t_bracket_r)) {
-        handle[0]->typeIt = EXPR;
+    else if ((i == 3) && (handle[0]->dataIt->type == t_bracket_r) && (isIdent(handle[1]->dataIt)) && (handle[2]->dataIt->type == t_bracket_l)) {
+        stackPush(stack,handle[1]);
     }
-    /* TOMUHLE TAKY NEROZUMÍM ALE MOŽNÁ TO TU MǍ BÝT
-    else {
-        addCharacter(&item->dataIt->attribute, 'E');
-    }*/
 
-    stackPush(stack,handle[0]);
     return handle;
 }
+/****ODSUD VÝŠ ZKONTROLOVÁNO**/
 
+// Vyhledává pravidla pro aritmetické a porovnávací instrukce
 void reduceExp(tStackIt *handle[3]) {
     Instr *instr = instrItemInit();
-
-    // Jedná se o aritmetickou nebo porovnávací instrukci
+    // TODO ID3 !!
+    // Pokud se jedná se o aritmetickou nebo porovnávací instrukci
     if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
+        
+        instr->Id1 = handle[0];
+        instr->Id2 = handle[2];
+        
         switch (handle[1]->dataIt->type) {
             case t_plus: // E -> E+E
-                instr->type = insPlus;
+                instr->type = insPlus;                
                 break;
             case t_minus: // E -> E-E
-                instr->type = insMinus;
+                instr->type = insMinus;                
                 break;
             case t_multi: // E -> E*E
-                instr->type = insMux;
+                instr->type = insMux;                
                 break;
             case t_div: // E -> E/E
-                instr->type = insDiv;
+                instr->type = insDiv;                
                 break;
             case t_comparasion: // E -> E==E
-                instr->type = insEqual;
+                instr->type = insEqual;                
                 break;
             case t_comparasion_ne: // E -> E!=E
-                instr->type = insNotEqual;
+                instr->type = insNotEqual;                
                 break;
             case t_less: // E -> E<E
-                instr->type = insLess;
+                instr->type = insLess;                
                 break;
             case t_less_eq: // E -> E<=E
-                instr->type = insLessOrEqual;
+                instr->type = insLessOrEqual;                
                 break;
             case t_greater: // E -> E>E
                 instr->type = insGreater;
@@ -153,19 +155,14 @@ void reduceExp(tStackIt *handle[3]) {
                 break;
         }
     }
-    // E -> (E)
-/*    else if () {
-
-    }*/
     // Syntaktická chyba
     else {
         throwException(2,0,0);
     }
-    // instrStackPush(iStack,instr);
+    instrCreate(instr);
 }
 
-
-void expression(tExpType expType, char *funcName) {
+void expression(char *targetId, tExpType expType) {
     // Inicializujeme zásobník a vložíme na něj znak ';'
     tStack *stack = NULL;
     stack = stackInit(stack);
@@ -192,8 +189,17 @@ void expression(tExpType expType, char *funcName) {
                 ((expType == expAssign) && (token->type == t_semicolon)))
                 break;
         }
-
-        switch (getPrecChar(topTerm(),token)) { // TODO
+        // Syntaktická chyba
+        else if (token->type <= t_string) {
+            throwException(2,0,0);
+        }
+        // Jedná se o funkci uvnitř výrazu
+        else if (isIdent(topTerm()) && token->type == t_bracket_l) {
+            token = getToken();
+            expression(topTerm()->data,expArg);
+        }
+        
+        switch (getPrecChar(topTerm(),token)) { 
             case '<': ; // Tento středník tu musí být jinak to řve error :-)
                 // Vloží znak '<' na zásobník
                 tToken *lessToken = initToken();
@@ -334,8 +340,6 @@ void destroyString (SString *str) {
 		plusFree(str->data);
 	}
 }
-
-
 
 SString readString(){
 	int c = getchar();
