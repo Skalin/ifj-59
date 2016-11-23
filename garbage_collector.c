@@ -103,8 +103,8 @@ void plusFree(void * memoryPtr) {
         }
 
         if (memoryPtr != NULL) {
-            free(memoryPtr);
             memoryPtr = NULL;
+            free(memoryPtr);
         }
 }
 
