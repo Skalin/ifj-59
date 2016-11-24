@@ -15,43 +15,9 @@
 #define IFJ_59_INTERPRET_H
 
 #include "ial.h"
+#include "typedef.h"
 
- // POUZE PROVIZORNÍ! Struktury prosím přesuňte někam dopryč
-typedef enum {
-    // BUILT-IN FUNCTIONS
-    insIfj16readInt,
-    insIfj16readDouble,
-    insIfj16readString,
-    insIfj16lenght,
-    insIfj16substr,
-    insIfj16compare,
-    insIfj16find,
-    insIfj16sort,
-    insIfj16print,
-    //
-    // MATH
-    insPlus, // Sčítání
-    insMinus, // Odečítání
-    insMux, // Násobení
-    insDiv, // Dělení
-    //
-    //COMPARE
-    insEqual, // Je rovno
-    insNotEqual, // Neni rovno
-    insLess, // Je mensi
-    insLessOrEqual, // Je mensi nebo rovno
-    insGreater, // Je vetsi
-    insGreaterOrEqual, // Je vetsi nebo rovno
-}InstrType;
-
- typedef struct Instr {
-     BTSNode *Id1; // Adresa prvního operandu
-     BTSNode *Id2; // Adresa druhého operandu
-     BTSNode *Id3; // Adresa, kam se uloží výsledek operace
-     InstrType type;
- }Instr;
-
-// KONEC ČÁSTI, KTERÁ SE MÁ ZKOPÍROVAT
+//přesunuto do typedef.h
 
 //Prototypy
 

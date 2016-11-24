@@ -609,7 +609,6 @@ tToken * getToken(){
 	} //cyklus
 
 	keywordCheckToken(token);
-	//token->length += i; ERROR opět tohle má dělat funkce updateToken
 	updateToken(token, buffer);
 
 	return token;

@@ -21,7 +21,7 @@
 tStack * stackInit ( tStack *stack ) {
 
     //Inicializace polozek stacku
-    tStack *stack = plusMalloc(sizeof(tStack));
+    stack = plusMalloc(sizeof(tStack));
     stack->data = plusMalloc(sizeof(void) * 30);
     stack->allocated = 30;
     stack->counter = 0;
@@ -44,7 +44,7 @@ tStackIt *itemInit () {
 	itemNew = plusMalloc(sizeof(tStackIt));
 
 	if (itemNew != NULL) {
-		return;
+		return NULL;
 	} else {
 		throwException(99,0,0); //chyba alokace paměti
 	}
@@ -53,7 +53,7 @@ tStackIt *itemInit () {
 	tokenNew = plusMalloc(sizeof(tToken));
 
 	if (tokenNew != NULL) {
-		return;
+		return NULL;
 	} else {
 		throwException(99,0,0); //chyba alokace paměti
 	}
@@ -68,7 +68,7 @@ void stackDestroy(tStack *stc) {
 
 	while (stackSize(stc) > 0) {
 		tStack *tmp = stc;
-		stc = tmp->dataIt;
+		stc = tmp->data;
 		plusFree(tmp);
 	}
 
@@ -86,9 +86,9 @@ void exprShift (tStack *stc1, tStackTmp *stc2) {
 	tToken * tmp;
 	tToken *item;
 	tmp = stackPop(stc1);
-	item = stc1->data->counter->typeIt;
+	item = stc1->data[stc1->counter].typeIt;
 
-	while (!stackEmpty(stc1) || item == EXPRESSION || item == NONTERMINAL) {
+	while (!stackEmpty(stc1) || item == EXPR || item == NONTERM) {
 		if (tmp != NULL) {
 			stackPush(stc2, tmp);  //pushnutí na druhý zásobník
 		} else {
@@ -121,15 +121,15 @@ tStackIt *anotherToken (tToken *token) {
 
 int isTerm (int typeIt) {
 
-	return (typeIt < EXPRESSION);
+	return (typeIt < EXPR);
 }
 
-int topTerm (tStack *stc) {
+tToken * topTerm (tStack *stc) {
 
 	tStackIt *item;
 	item = stc->data;
 
-	while (item->typeIt == EXPRESSION || item->typeIt == NONTERMINAL) {
+	while (item->typeIt == EXPR || item->typeIt == NONTERM) {
 
 		if (isTerm(item->typeIt)) {
 			return item->typeIt;

@@ -58,14 +58,14 @@ tStack * stackInit ( tStack *stack );
  * @param zásobník
  * @return true/false
  */
-int stackEmpty (tStack *s );
+int stackEmpty (const tStack *s );
 
 /*
  * Vrací 1/0 hodnotu jestli je zásobník plný
  * @param zásobník
  * @return true/false
  */
-int stackFull (tStack *s );
+int stackFull (const tStack *s );
 
 /*
  * Push dat na zásobník

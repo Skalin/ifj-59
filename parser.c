@@ -144,7 +144,8 @@ void pClassBody(){
 						global.hasRun = TRUE;
 					} else {
 						// semanticka chyba, nemuze byt funkce run jinde nez v class Main
-						throwException(3,0,0);
+						// tak prej muze, i kdyz se mi to nezda
+						//throwException(3,0,0);
 					}
 					if (tempType != t_kw_void) {
 					// navratovy typ run musi byt void

@@ -16,41 +16,50 @@
 #include "typedef.h"
 #include "iStack.h"
 #include "stack.h"
+#include "ial.h"
 
 instrStack * instrStackInit (instrStack *stc ) {
 
     //Inicializace polozek stacku
-    tStack *stc = plusMalloc(sizeof(instrStack));
-    stack->dataInstr = plusMalloc(sizeof(void) * 30);
-    stack->alloc = 30;
-    stack->count = 0;
+    stc = plusMalloc(sizeof(instrStack));
+    stc->dataInstr = plusMalloc(sizeof(void) * 30);
+    stc->alloc = 30;
+    stc->count = 0;
 
     return stc;
 }
 
-Instr *instrItemInit () {
+Instr *instrItemInit (Instr *stc) {
 
-    Instr * itemNew;
-    itemNew = plusMalloc(sizeof(tStackIt));
+	stc->Id1 = NULL;
+	stc->Id2 = NULL;
+	stc->Id3 = NULL;
+	
+	Instr * itemNew;
+	itemNew = plusMalloc(sizeof(tStackIt));
 
-    if (itemNew != NULL) {
-        return;
-    } else {
-        throwException(99,0,0); //chyba alokace paměti
-    }
+	if (itemNew != NULL) {
+		return NULL;
+	} 
+	
+	else {
+        	throwException(99,0,0); //chyba alokace paměti
+    	}
 
-    InstrType * instrNew;
-    instrNew = plusMalloc(sizeof(tToken));
+	InstrType * instrNew;
+	instrNew = plusMalloc(sizeof(tToken));
 
-    if (instrNew != NULL) {
-        return;
-    } else {
-    throwException(99,0,0); //chyba alokace paměti
-    }
+	if (instrNew != NULL) {
+        	return NULL;
+	} 
+	
+	else {
+		throwException(99,0,0); //chyba alokace paměti
+	}
 
-    inintString(&instrNew);
-    itemNew->type = instrNew;
-    return itemNew;
+	initString(&instrNew);
+	itemNew->type = instrNew;
+	return itemNew;
 }
 
 int instrStackEmpty (const instrStack* stc) {
@@ -60,32 +69,34 @@ int instrStackEmpty (const instrStack* stc) {
 
 int instrStackFull (const instrStack* stc) {
 
-    return(stc->alloc < (s->count+1) ? 1 : 0); // Pokud se stav zasobniku rovna max kapacite, vrati se 1
+    return(stc->alloc < (stc->count+1) ? 1 : 0); // Pokud se stav zasobniku rovna max kapacite, vrati se 1
 }
 
 
-void instrStackPush (instrStack *stc, void *data) {
+void instrStackPush (instrStack *stc, Instr *data) {
 
     // Pokud uz neni dostatek alokovane pameti, provede se realloc
     if(instrStackFull(stc)) {
-        stc->data = plusRealloc(stc->data, (sizeof(void *) * (stc->alloc+30)));
+        stc->dataInstr = plusRealloc(stc->dataInstr, (sizeof(void *) * (stc->alloc+30)));
         stc->alloc += 30;
     }
     //Na vrchol zasobniku vlozime data
     stc->count++;
-    stc->data[stc->count] = data;
+    stc->dataInstr[stc->count] = data;
 }
 
-void * instrStackTop (instrStack *stc) {
+Instr * instrStackTop (instrStack *stc) {
 
     //Pokud jsou v zasobniku data, vrat data na vrcholu
     if (!instrStackEmpty(stc)) {
-        return (stc->data[stc->count + 1]);
+	stc->dataInstr[stc->count + 1];
+	stc->count--;
         //Jinak vrat null
     } else {
         return NULL;
     }
 }
+
 
 
 void instrStackPop (instrStack *stc) {
@@ -102,7 +113,7 @@ void instrStackDestroy (instrStack *stc) {
 
     while (instrStackSize(stc) > 0) {
 		instrStack *tmp = stc;
-		stc = tmp->type;
+		stc = tmp->dataInstr;
 		plusFree(tmp);
     }
 

@@ -12,36 +12,21 @@
 
 #ifndef ISTACK_H
 #define ISTACK_H
-
-typedef enum {
-    // MATH
-    insPlus, // Sčítání
-    insMinus, // Odečítání
-    insMux, // Násobení
-    insDiv, // Dělení
-    insEqual, // Je rovno
-    insNotEqual, // Neni rovno
-    insLess, // Je mensi
-    insLessOrEqual, // Je mensi nebo rovno
-    insGreater, // Je vetsi
-    insGreaterOrEqual, // Je vetsi nebo rovno
-}InstrType;
-
-typedef struct Instr {
-     void *Id1; // Adresa prvního operandu
-     void *Id2; // Adresa druhého operandu
-     void *Id3; // Adresa, kam se uloží výsledek operace
-     InstrType type;
-}Instr; 
-
-typedef struct {
-    Instr *dataInstr;
-    int count;
-    int alloc;
-}instrStack;
-
+// přesunuty struktury do typedef.h
 
 //FUNKCE
+instrStack *instrStackInit (instrStack *stc );
+Instr *instrItemInit (Instr *stc);
+int instrStackEmpty (const instrStack* stc);
+int instrStackFull (const instrStack* stc);
+void instrStackPush (instrStack *stc, Instr *data);
+Instr *instrStackTop (instrStack *stc);
+void instrStackPop (instrStack *stc);
+int instrStackSize (instrStack *stc);
+void instrStackDestroy (instrStack *stc);
+void instrItemDestroy (Instr *data);
+
+
 
 
 #endif
