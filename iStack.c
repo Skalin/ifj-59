@@ -21,7 +21,7 @@
 instrStack * instrStackInit (instrStack *stc ) {
 
     //Inicializace polozek stacku
-    tStack *stc = plusMalloc(sizeof(instrStack));
+    stc = plusMalloc(sizeof(instrStack));
     stack->dataInstr = plusMalloc(sizeof(void) * 30);
     stack->alloc = 30;
     stack->count = 0;
