@@ -28,7 +28,6 @@ char *tempData;
 int isInMain = FALSE;
 
 // TODO TODO TODO naplneni help structure vsude kde je potreba
-// kontrola jestli neni vestavena funkce ( pole s vestavenymi funkcemi)
 // kontrola semanticke chyby 8, natavit na 1 pri inicializaci rpomene
 
 void pParse(){
@@ -55,11 +54,11 @@ void pParse(){
 	}
 
 	if(token->type != t_eof) {
-		throwException(2,0,0);    // TODO TODO TODO syntax error right?
+		throwException(2,0,0);    // TODO syntax?
 	}
 	
 
-	if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - sematicka chyba
+	if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - semanticka chyba
 		throwException(3,0,0);
 	}
 	//uspesny konec
@@ -89,14 +88,14 @@ void pClass(){
 
 
 
-	  //kill token with identifier
+	
 
-	token = getToken();    // and get a new one, should be left curly brace
+	token = getToken();    
 
 	if(token->type != t_brace_l){
 		throwException(2,0,0);
 	}
-	  // kill curly brace token and start parsing body of class;
+	  
 
 	pClassBody();
 
@@ -111,7 +110,7 @@ void pClassBody(){
 	tToken * token;
 	token = getToken();
 
-	if (token->type == t_kw_static){       //received 'static' keyword - defining global function or variable
+	if (token->type == t_kw_static){       // funkce nebo globalni promena
 		 //static
 
 		token = getToken();
@@ -123,7 +122,7 @@ void pClassBody(){
 			tempType = token->type;
 			tempStatic = 1;
 
-			 // zruseni tokenu s datatype
+			
 			// static dataType - musi nasledovat identifikator
 			token = getToken();
 
@@ -133,7 +132,7 @@ void pClassBody(){
 
 			 // ulozime si identifikator
 			 tempData = token->data;
-			 // identifikator
+			
 
 			token = getToken(); // nacist dalsi token, bud zavorka - funkce, jinak promena
 
@@ -171,7 +170,7 @@ void pClassBody(){
 		// ulozime si typ tokenu
 		tempType = token->type;
 		tempStatic = 0;
-		 //datatype
+		
 
 		token = getToken();
 
@@ -342,7 +341,7 @@ void pCommands(){
 	tToken * token;
 	token = getToken();
 
-	if (token->type != t_brace_l){   // left curly brace, start of block
+	if (token->type != t_brace_l){   
 		throwException(2,0,0);
 	}
 	
