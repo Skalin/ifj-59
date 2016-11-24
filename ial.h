@@ -76,7 +76,7 @@ String repairHeap(String str);
 /*
  * Funkce inicializuje binární strom
  */
-void initTree(mainTree tree);
+void initTree(mainTree *tree);
 
 /*
  * Funkce prohledá binární strom a najde příslušný uzel
