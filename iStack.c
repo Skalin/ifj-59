@@ -73,7 +73,7 @@ int instrStackFull (const instrStack* stc) {
 }
 
 
-void instrStackPush (instrStack *stc, void *data) {
+void instrStackPush (instrStack *stc, Instr *data) {
 
     // Pokud uz neni dostatek alokovane pameti, provede se realloc
     if(instrStackFull(stc)) {
