@@ -39,7 +39,7 @@ Instr *instrItemInit (Instr *stc) {
 	itemNew = plusMalloc(sizeof(tStackIt));
 
 	if (itemNew != NULL) {
-		return;
+		return NULL;
 	} 
 	
 	else {
@@ -50,14 +50,14 @@ Instr *instrItemInit (Instr *stc) {
 	instrNew = plusMalloc(sizeof(tToken));
 
 	if (instrNew != NULL) {
-        	return;
+        	return NULL;
 	} 
 	
 	else {
 		throwException(99,0,0); //chyba alokace paměti
 	}
 
-	inintString(&instrNew);
+	initString(&instrNew);
 	itemNew->type = instrNew;
 	return itemNew;
 }
