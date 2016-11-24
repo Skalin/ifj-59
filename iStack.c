@@ -113,7 +113,7 @@ void instrStackDestroy (instrStack *stc) {
 
     while (instrStackSize(stc) > 0) {
 		instrStack *tmp = stc;
-		stc = tmp->type;
+		stc = tmp->dataInstr;
 		plusFree(tmp);
     }
 
