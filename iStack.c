@@ -28,29 +28,37 @@ instrStack * instrStackInit (instrStack *stc ) {
     return stc;
 }
 
-Instr *instrItemInit () {
+Instr *instrItemInit (Instr *stc) {
 
-    Instr * itemNew;
-    itemNew = plusMalloc(sizeof(tStackIt));
+	stc->Id1 = NULL;
+	stc->Id2 = NULL;
+	stc->Id3 = NULL;
+	
+	Instr * itemNew;
+	itemNew = plusMalloc(sizeof(tStackIt));
 
-    if (itemNew != NULL) {
-        return;
-    } else {
-        throwException(99,0,0); //chyba alokace paměti
-    }
+	if (itemNew != NULL) {
+		return;
+	} 
+	
+	else {
+        	throwException(99,0,0); //chyba alokace paměti
+    	}
 
-    InstrType * instrNew;
-    instrNew = plusMalloc(sizeof(tToken));
+	InstrType * instrNew;
+	instrNew = plusMalloc(sizeof(tToken));
 
-    if (instrNew != NULL) {
-        return;
-    } else {
-    throwException(99,0,0); //chyba alokace paměti
-    }
+	if (instrNew != NULL) {
+        	return;
+	} 
+	
+	else {
+		throwException(99,0,0); //chyba alokace paměti
+	}
 
-    inintString(&instrNew);
-    itemNew->type = instrNew;
-    return itemNew;
+	inintString(&instrNew);
+	itemNew->type = instrNew;
+	return itemNew;
 }
 
 int instrStackEmpty (const instrStack* stc) {
