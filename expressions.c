@@ -313,7 +313,7 @@ String substr(String str, int i, int n) {
 		if (str[i] == EOF || isspace(str[i])) {
 			throwException(10, GlobalRow, GlobalColumn);
 		}
-        realString[j] = str[i]);
+        realString[j] = str[i];
 		j++;
         i++;
     }

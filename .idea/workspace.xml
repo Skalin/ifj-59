@@ -14,10 +14,6 @@
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expressions.c" afterPath="$PROJECT_DIR$/expressions.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expressions.h" afterPath="$PROJECT_DIR$/expressions.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ial.c" afterPath="$PROJECT_DIR$/ial.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ial.h" afterPath="$PROJECT_DIR$/ial.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typedef.h" afterPath="$PROJECT_DIR$/typedef.h" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,8 +60,8 @@
           <file leaf-file-name="expressions.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/expressions.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="87">
-                  <caret line="322" column="17" selection-start-line="322" selection-start-column="17" selection-end-line="322" selection-end-column="17" />
+                <state relative-caret-position="189">
+                  <caret line="314" column="9" selection-start-line="314" selection-start-column="9" selection-end-line="314" selection-end-column="9" />
                   <folding>
                     <element signature="e#396#415#0" expanded="true" />
                   </folding>
@@ -118,8 +114,8 @@
           <file leaf-file-name="ial.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ial.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+                <state relative-caret-position="206">
+                  <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -527,14 +523,7 @@
       <workItem from="1479423709629" duration="1825000" />
       <workItem from="1479492224100" duration="6817000" />
       <workItem from="1479503118765" duration="6727000" />
-      <workItem from="1479654129451" duration="60229000" />
-    </task>
-    <task id="LOCAL-00090" summary="[MODIFY] 0.4 - doplněny prototypy funkcí do .h souboru">
-      <created>1479329610866</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1479329610867</updated>
+      <workItem from="1479654129451" duration="60333000" />
     </task>
     <task id="LOCAL-00091" summary="[MODIFY] 0.4 - merge">
       <created>1479424876763</created>
@@ -872,11 +861,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480019700721</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="[MODIFY] 0.5 - uprava string">
+      <created>1480022746893</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1480022746893</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179451000" />
+    <option name="totallyTimeSpent" value="179555000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -942,7 +938,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.5 - bugfixes" />
     <MESSAGE value="[MODIFY] 0.5 - some changes to includes" />
     <MESSAGE value="[MODIFY] 0.5 - some updates of includes" />
     <MESSAGE value="[MODIFY] 0.5 - includes" />
@@ -967,7 +962,8 @@
     <MESSAGE value="[MODIFY] 0.5 - uprava SString na String" />
     <MESSAGE value="[MODIFY] 0.5 - uprava uprava include, presun struktur do korektnich slozek" />
     <MESSAGE value="[MODIFY] 0.5 - priprava pro upravu String struktur na string char*" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.5 - priprava pro upravu String struktur na string char*" />
+    <MESSAGE value="[MODIFY] 0.5 - uprava string" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.5 - uprava string" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1359,16 +1355,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ial.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+        <state relative-caret-position="206">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/expressions.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="322" column="17" selection-start-line="322" selection-start-column="17" selection-end-line="322" selection-end-column="17" />
+        <state relative-caret-position="189">
+          <caret line="314" column="9" selection-start-line="314" selection-start-column="9" selection-end-line="314" selection-end-column="9" />
           <folding>
             <element signature="e#396#415#0" expanded="true" />
           </folding>
