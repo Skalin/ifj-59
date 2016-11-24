@@ -69,7 +69,7 @@ int instrStackEmpty (const instrStack* stc) {
 
 int instrStackFull (const instrStack* stc) {
 
-    return(stc->alloc < (s->count+1) ? 1 : 0); // Pokud se stav zasobniku rovna max kapacite, vrati se 1
+    return(stc->alloc < (stc->count+1) ? 1 : 0); // Pokud se stav zasobniku rovna max kapacite, vrati se 1
 }
 
 
@@ -77,12 +77,12 @@ void instrStackPush (instrStack *stc, void *data) {
 
     // Pokud uz neni dostatek alokovane pameti, provede se realloc
     if(instrStackFull(stc)) {
-        stc->data = plusRealloc(stc->data, (sizeof(void *) * (stc->alloc+30)));
+        stc->dataInstr = plusRealloc(stc->dataInstr, (sizeof(void *) * (stc->alloc+30)));
         stc->alloc += 30;
     }
     //Na vrchol zasobniku vlozime data
     stc->count++;
-    stc->data[stc->count] = data;
+    stc->dataInstr[stc->count] = data;
 }
 
 Instr * instrStackTop (instrStack *stc) {
