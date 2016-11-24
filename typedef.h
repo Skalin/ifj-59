@@ -183,7 +183,7 @@ typedef enum {
  }Instr;
 
 typedef struct {
-    Instr *dataInstr;
+    Instr **dataInstr;
     int count;
     int alloc;
 }instrStack;
