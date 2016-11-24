@@ -15,12 +15,10 @@
 #include <string.h>
 #include <ctype.h>
 #include "garbage_collector.h"
-#include "lexical_analyzer.h"
 #include "expressions.h"
 #include "error_handler.h"
 #include "stack.h"
 #include "iStack.h"
-#include "ial.h"
 
 #define STR_ERROR   0
 #define STR_SUCCESS 1
@@ -60,7 +58,7 @@ bool isConst(tToken *token) {
     return false;    
 }
 
-varType varType(tToken *token) {
+varType variableType(tToken *token) {
     return var; // TODO
 }
 
@@ -108,7 +106,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
 void reduceExp(char *targetId, tStackIt *handle[3]) {
-    Instr *instr = instrItemInit();
+    Instr *instr = instrItemInit(instr);
 
     // Najde identifikátor cílové proměnné
     instr->Id3 = searchForNode(targetId,var,ptrAktTridy);  // TODO

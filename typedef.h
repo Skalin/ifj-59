@@ -10,7 +10,6 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdio.h>
 
 /*
  * Struktura typů tokenů
@@ -113,6 +112,7 @@ typedef enum {
 	t_print
 } tokenType;
 
+
 /*
  * Struktura stringu (SString)
  */
@@ -124,19 +124,19 @@ typedef struct SStr{
 } String;
 
 
-
-
 /*
  * Struktura tokenu
  */
 
+
 typedef struct {
     tokenType type;  // Typ tokenu
-    SString attribute;
+    String attribute;
     unsigned int length; // Délka, počet charů
     unsigned int allocated; // Status, jestli byl alokován
 	char data[]; // Data, která obshahuje
 } tToken;
+
 
 /*
  * Typy výrazů 
@@ -147,45 +147,126 @@ typedef enum {
     expAssign
 } tExpType;
 
-typedef enum {
-    // BUILT-IN FUNCTIONS
-    insIfj16readInt,
-    insIfj16readDouble,
-    insIfj16readString,
-    insIfj16lenght,
-    insIfj16substr,
-    insIfj16compare,
-    insIfj16find,
-    insIfj16sort,
-    insIfj16print,
-    //
-    // MATH
-    insPlus, // Sčítání
-    insMinus, // Odečítání
-    insMux, // Násobení
-    insDiv, // Dělení
-    //
-    //COMPARE
-    insEqual, // Je rovno
-    insNotEqual, // Neni rovno
-    insLess, // Je mensi
-    insLessOrEqual, // Je mensi nebo rovno
-    insGreater, // Je vetsi
-    insGreaterOrEqual, // Je vetsi nebo rovno
-    insAssignment
-}InstrType;
 
- typedef struct Instr {
-     BTSNode *Id1; // Adresa prvního operandu
-     BTSNode *Id2; // Adresa druhého operandu
-     BTSNode *Id3; // Adresa, kam se uloží výsledek operace
-     InstrType type;
- }Instr;
+
+/*
+ * Struktura polozky mismatch tabulky
+ */
+
+typedef struct mmtItem{
+	char c;
+	int shiftValue;
+	struct mmtItem *next;
+} *mismatchTableItem;
+
+/*
+ * Jednosmerny seznam polozek mmtItem alias mismatch tabulka
+ */
 
 typedef struct {
-    Instr **dataInstr;
-    int count;
-    int alloc;
+	mismatchTableItem First;
+	mismatchTableItem Act;
+} mismatchTable;
+
+// Klic binarniho vyhledavani (název funkce, třídy nebo proměnné)
+typedef char *tableName;
+
+// Typ uzlu (ve stromu pozname, jestli se jedna o funkci, třídu nebo proměnnou
+typedef enum{
+	var,
+	function,
+	class,
+} NodeType;
+
+
+//Vycet moznych typu (pouze u proměnných a funkcí). U proměnných je to jejich typ, u funkcí značí jejich návratový typ
+typedef enum {
+	var_int,
+	var_double,
+	var_string,
+	var_void,
+} varType;
+
+// Hodnota promenne, union zajišťuje, že v paměti zabírá místo pouze největší hodnota z nich
+union varValue{
+	int intValue;
+	double doubleValue;
+	char *stringValue;
+};
+
+//Struktura tabulky symbolu
+typedef struct tableSymbolVariable {
+	varType type; // U promenne= typ promenne | U funkce= Typ navratove hodnoty | U tridy=nic, NULL
+	union varValue value; // U promenne- hodnota promenne | U trid a funkci tuto promennou nepouzivame NULL
+} tabSymbol, *tabSymbolPtr;
+
+
+//Struktura uzlu binarniho stromu
+typedef struct tBTSNode {
+	tableName key; // Klíč (název proměnné, třídy, funkce)
+	NodeType nodeType; // Typ uzlu (proměnná, funkce, třída)
+
+	//Struktura, kde se využívá vždy jen jeden prvek, pokud se jedna o třídu, využije se první prvek, pokud u proměnnou, která je argumentem funkce, pak se využije druhá
+	struct tBTSNode *functions; // Odkaz na funkce třídy
+	int argNo; // Číslo argumentu funkce
+
+	tabSymbol data; // Data, obsahuje strukturu tabSymbol (Struktura tabulky symbolu hned nad touto strukturou)
+	int inc; // Označení, jestli byla proměnná inicializovaná
+
+	struct tBTSNode *variables; // Odkaz na proměnné třídy nebo funkce
+
+	struct tBTSNode *lptr; // Pointer na levý podstrom
+	struct tBTSNode *rptr; // Pointer na pravý podstrom
+} BTSNode, *tBTSNodePtr;
+
+// Struktura stromu
+typedef struct {
+	BTSNode *root; // Kořen stromu
+	BTSNode *actClass; // Jaká třída je právě aktivní, resp. v jaké třídě se nacházíme
+	BTSNode *actFunction; // Jaká funkce je aktivní, resp. v jaké funkci se nacházíme
+} mainTree;
+
+
+typedef enum {
+	// BUILT-IN FUNCTIONS
+	insIfj16readInt,
+	insIfj16readDouble,
+	insIfj16readString,
+	insIfj16lenght,
+	insIfj16substr,
+	insIfj16compare,
+	insIfj16find,
+	insIfj16sort,
+	insIfj16print,
+	//
+	// MATH
+	insPlus, // Sčítání
+	insMinus, // Odečítání
+	insMux, // Násobení
+	insDiv, // Dělení
+	//
+	//COMPARE
+	insEqual, // Je rovno
+	insNotEqual, // Neni rovno
+	insLess, // Je mensi
+	insLessOrEqual, // Je mensi nebo rovno
+	insGreater, // Je vetsi
+	insGreaterOrEqual, // Je vetsi nebo rovno
+	insAssignment
+}InstrType;
+
+typedef struct Instr {
+	BTSNode *Id1; // Adresa prvního operandu
+	BTSNode *Id2; // Adresa druhého operandu
+	BTSNode *Id3; // Adresa, kam se uloží výsledek operace
+	InstrType type;
+}Instr;
+
+typedef struct {
+	Instr **dataInstr;
+	int count;
+	int alloc;
 }instrStack;
+
 
 #endif

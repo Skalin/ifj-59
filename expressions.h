@@ -17,67 +17,71 @@
 #include "typedef.h"
 
 
-
+/*
+ *
+ */
 String readString();
 
+
 /*
  *
  */
-
 int readInt();
 
+
 /*
  *
  */
-
 double readDouble();
 
+
 /*
  *
  */
-
 void print(char *string);
 
+
 /*
  *
  */
-
 String substr(String *str, int i, int n);
 
+
 /*
  *
  */
-
 void initString(String *str);
 
+
 /*
  *
  */
-
 int addCharacter(String *str, char c);
 
+
 /*
  *
  */
-
 void copyString(String *str1, String *str2);
 
+
 /*
  *
  */
-
 int compareString(String *str1, String *str2);
 
+
 /*
  *
  */
-
 int strLength(String *str);
+
 
 /*
  *
  */
 void strClear(String *str);
+
 
 /*
  *

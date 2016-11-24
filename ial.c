@@ -95,7 +95,7 @@ void updateShift(mismatchTable *Table, char c, int shiftValue) {
 }
 
 // samotny find
-int find(SString *str, SString *search) {
+int find(String *str, String *search) {
 
 	int i = 0, j = 0;
 	int found = 0;
@@ -158,7 +158,7 @@ int makeEven(int i) {
 }
 
 // fce pro korektni nastaveni pozice nejvetsiho prvku na zacatek haldy
-SString repairHeap(SString *str) {
+String repairHeap(String *str) {
 
 	int i = 0, j = 0;
 	for (i = str->length-1; i > 0; --i) {
@@ -191,8 +191,8 @@ SString repairHeap(SString *str) {
 
 
 // samotny heapsort
-SString sort(SString *str) {
-	SString *helpString = NULL;
+String sort(String *str) {
+	String *helpString = NULL;
 	initString(helpString);
     copyString(str, helpString);
 

@@ -16,7 +16,7 @@
 #include "typedef.h"
 #include "iStack.h"
 #include "stack.h"
-#include "ial.h"
+#include "expressions.h"
 
 instrStack * instrStackInit (instrStack *stc ) {
 

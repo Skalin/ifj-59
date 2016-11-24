@@ -16,8 +16,8 @@
 
 #include "ial.h"
 #include "typedef.h"
-
-//přesunuto do typedef.h
+#include "iStack.h"
+//přesunuto do iStacku
 
 //Prototypy
 

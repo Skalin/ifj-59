@@ -12,7 +12,7 @@
 
 #ifndef ISTACK_H
 #define ISTACK_H
-// přesunuty struktury do typedef.h
+#include "typedef.h"
 
 //FUNKCE
 instrStack *instrStackInit (instrStack *stc );

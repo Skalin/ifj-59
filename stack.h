@@ -28,8 +28,6 @@ typedef struct {
 } tStackIt;
 
 
-
-
 //Struktura zásobníku
 typedef struct {
     tStackIt * data;
