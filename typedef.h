@@ -253,7 +253,7 @@ typedef struct Instr {
 	BTSNode *Id1; // Adresa prvního operandu
 	BTSNode *Id2; // Adresa druhého operandu
 	BTSNode *Id3; // Adresa, kam se uloží výsledek operace
-	InstrType type;
+	InstrType *type;
 }Instr;
 
 typedef struct {
