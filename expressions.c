@@ -236,9 +236,9 @@ void expression(tExpType expType, char *funcName) {
     // TODO uvolnit paměť
 }
 
-SString substr(SString *str, int i, int n) {
+String substr(String *str, int i, int n) {
 
-	SString *helpStr = NULL;
+	String *helpStr = NULL;
     initString(helpStr);
 
     while (i <= (i + n)) {
@@ -252,9 +252,9 @@ SString substr(SString *str, int i, int n) {
 	return *helpStr;
 }
 
-void initString(SString *str){
+void initString(String *str){
 
-	if ((plusMalloc(sizeof(SString) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
+	if ((plusMalloc(sizeof(String) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
 		str->data[0] = '\0';
 		str->length = 0;
 		str->allocatedSize = STR_ALLOCATION_SIZE;
@@ -265,10 +265,10 @@ void initString(SString *str){
 
 }
 
-int addCharacter(SString *str, char c){
+int addCharacter(String *str, char c){
   
     if ((str->allocatedSize) <= (str->length + 1)) {
-		if (plusRealloc(str, sizeof(SString) + (sizeof(char)*(str->allocatedSize))) != NULL) {
+		if (plusRealloc(str, sizeof(String) + (sizeof(char)*(str->allocatedSize))) != NULL) {
 			str->allocatedSize = str->length + STR_ALLOCATION_SIZE;
 		} else {
 			throwException(99,0,0); //chyba alokace paměti
@@ -284,10 +284,10 @@ int addCharacter(SString *str, char c){
 	}
 }
 
-void copyString(SString *str1, SString *str2) {
+void copyString(String *str1, String *str2) {
 
 	if (str2->allocatedSize < strLength(str1)) {
-		if (plusRealloc(str2, sizeof(SString) + (sizeof(char)*(str2->allocatedSize))) != NULL) {
+		if (plusRealloc(str2, sizeof(String) + (sizeof(char)*(str2->allocatedSize))) != NULL) {
 			str2->allocatedSize = str2->length + STR_ALLOCATION_SIZE;
 		} else {
 			throwException(99,0,0); //chyba alokace paměti
@@ -298,7 +298,7 @@ void copyString(SString *str1, SString *str2) {
 	str2->data = str1->data;
 }
 
-int compareString(SString *str1, SString *str2) {
+int compareString(String *str1, String *str2) {
    //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
 	int result = strcmp(str1->data, str2->data);
 	if (result < 0) {
@@ -311,7 +311,7 @@ int compareString(SString *str1, SString *str2) {
 
 }
 
-int strLength(SString *str) {
+int strLength(String *str) {
 	//vrátí délku řetězce (počet znaků) zadaného jedním parametrem str
 	int len = str->length;
 	return len;
@@ -322,13 +322,13 @@ int strEqual(char *str1, char *str2) {
 	return equal;
 }
 
-void strClear(SString *str) {
+void strClear(String *str) {
 	// funkce sloužící k vymazání řetězce
 	str->length = 0;
 	str->data[0] = '\0';
 }
 
-void destroyString (SString *str) {
+void destroyString (String *str) {
 	// funkce k uvolnění z paměti
 	if (str != NULL) {
 		plusFree(str->data);
@@ -337,9 +337,9 @@ void destroyString (SString *str) {
 
 
 
-SString readString(){
+String readString(){
 	int c = getchar();
-	SString *str = NULL;
+	String *str = NULL;
 	initString(str);
 	int i = 0;
 
@@ -361,7 +361,7 @@ void print(char *string) {
 
 
 int readInt() {
-	SString *str = NULL;
+	String *str = NULL;
 	initString(str);
 	*str = readString();
 	int number = 0;
@@ -381,7 +381,7 @@ int readInt() {
 }
 
 double readDouble(){
-	SString *str = NULL;
+	String *str = NULL;
 	initString(str);
 	*str = readString();
 	char *end;

@@ -18,6 +18,8 @@
 
 
 
+String readString();
+
 /*
  *
  */
@@ -40,46 +42,46 @@ void print(char *string);
  *
  */
 
-SString substr(SString *str, int i, int n);
+String substr(String *str, int i, int n);
 
 /*
  *
  */
 
-void initString(SString *str);
+void initString(String *str);
 
 /*
  *
  */
 
-int addCharacter(SString *str, char c);
+int addCharacter(String *str, char c);
 
 /*
  *
  */
 
-void copyString(SString *str1, SString *str2);
+void copyString(String *str1, String *str2);
 
 /*
  *
  */
 
-int compareString(SString *str1, SString *str2);
+int compareString(String *str1, String *str2);
 
 /*
  *
  */
 
-int strLength(SString *str);
+int strLength(String *str);
 
 /*
  *
  */
-void strClear(SString *str);
+void strClear(String *str);
 
 /*
  *
  */
-void destroyString(SString *str);
+void destroyString(String *str);
 
 #endif

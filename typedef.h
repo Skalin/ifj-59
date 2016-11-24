@@ -121,7 +121,7 @@ typedef struct SStr{
 	char *data;
 	int length;		        // délka řetězce
 	int allocatedSize;	  // alokovaná paměť
-} SString;
+} String;
 
 
 
