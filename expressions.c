@@ -196,23 +196,28 @@ void expression(char *targetId, tExpType expType) {
 
     token = getToken();
     
-    /* TODO Kontrola vestavěných funkcí
+    // TODO - obsluha vestavěných funkcí
+    Instr *instr = instrItemInit();
+    instr->Id3 = searchForNode(targetId,var,ptrAktTridy);  
+    
+    
     switch (targetId) {
-        case "ifj16." :
+        case "ifj16.readInt":
+            
             break;
-        case "ifj16." :
+        case "ifj16.readDouble":
             break;
-        case "ifj16." :
+        case "ifj16.readString":
             break;
-        case "ifj16." :
+        case "ifj16.length":
             break;    
-        case "ifj16." :
+        case "ifj16.substr":
             break;
-        case "ifj16." :
+        case "ifj16.compare":
             break;
-        case "ifj16." :
+        case "ifj16.find":
             break;
-        case "ifj16." :
+        case "ifj16.sort":
             break;       
     }*/
         
