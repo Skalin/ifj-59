@@ -109,16 +109,6 @@ int instrStackSize (instrStack *stc) {
 	return stc->count;
 }
 
-void instrStackDestroy (instrStack *stc) {
-
-    while (instrStackSize(stc) > 0) {
-		instrStack *tmp = stc;
-		stc = tmp->dataInstr;
-		plusFree(tmp);
-    }
-
-}
-
 void instrItemDestroy (Instr *data) {
 
     plusFree(data->type);
