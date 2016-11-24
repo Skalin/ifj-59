@@ -21,12 +21,6 @@
 
 //Prototypy
 
-/*
- * Funkce najde v hashovací tabulce proměnnou s názvem id
- * @param Název proměnné, kterou chceme najít
- * @return Ukazatel uzel hledane promenne
- */
-BTSNode *getVariable(char* id);
 
 /*
  * Funkce provede aritmetickou operaci/ konkateraci retezcu
