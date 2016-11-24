@@ -17,30 +17,73 @@
 /**
 HLAVIČKY FUNKCÍ
 */
+/**
+* Funkce zacne parsovani souboru
+*/
 void pParse();
+
+/**
+* Funkce pro parsovani trid v souboru
+*/
 void pClass();
+
+/**
+* Funkce pro parsovani tela tridy
+*/
 void pClassBody();
+
+/**
+* Funkce pro parsovani deklarace promene, nebo prirazeni hodnoty promene
+*/
 void pVar();
+
+/**
+* Funkce pro parsovani tela funkce
+*/
 void pFunction();
+
+/**
+* Funkce pro parsovani prvniho argumentu pri deklaraci funkce
+*/
 void pParams();
+
+/**
+* Funkce pro parsovani dalsich argumentu pri deklaraci funkce
+*/
 void pParamsNext();
+
+/**
+*Funkce pro parsovani bloku prikazu
+*/
 void pCommands();
+
+/**
+* Funkce pro parsovani jednoho prikazu
+*/
 void pSingleCommand();
+
+/**
+* Funkce pro parsovani prvniho argumentu pri volani funkce
+*/
 void pExprParams();
+
+/**
+* Funkce pro parsovani dalsich argumentu pri volani funkce
+*/
 void pExprParamsNext();
+
+/**
+* Funkce pro parsovani ridici struktury if
+*/
 void pIf();
+
+/**
+* Funkce pro parsovani cyklu while
+*/
 void pWhile();
 
 
 
 #endif //IFJ_59_PARSER_H
 
-/*// struktura pro ukladani doceasnych informaci o tokenu
-typedef struct tTemp{
-	tokenType type;   // typ tokenu
-	bool isStatic;     // je static
-	char data[];      // data tokenu
-} tTemp;
 
-struct tTemp temp;
-*/
