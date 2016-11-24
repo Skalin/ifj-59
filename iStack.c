@@ -22,9 +22,9 @@ instrStack * instrStackInit (instrStack *stc ) {
 
     //Inicializace polozek stacku
     stc = plusMalloc(sizeof(instrStack));
-    stack->dataInstr = plusMalloc(sizeof(void) * 30);
-    stack->alloc = 30;
-    stack->count = 0;
+    stc->dataInstr = plusMalloc(sizeof(void) * 30);
+    stc->alloc = 30;
+    stc->count = 0;
 
     return stc;
 }
