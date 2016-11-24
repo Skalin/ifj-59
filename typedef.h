@@ -245,7 +245,8 @@ typedef enum {
 	insLessOrEqual, // Je mensi nebo rovno
 	insGreater, // Je vetsi
 	insGreaterOrEqual, // Je vetsi nebo rovno
-	insAssignment
+	insAssignment,
+    insFunctionCall
 }InstrType;
 
 typedef struct Instr {
