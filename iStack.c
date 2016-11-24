@@ -36,7 +36,7 @@ Instr *instrItemInit (Instr *stc) {
 	stc->Id3 = NULL;
 	
 	Instr * itemNew;
-	itemNew = plusMalloc(sizeof(tStackIt));
+	itemNew = plusMalloc(sizeof(Instr));
 
 	if (itemNew != NULL) {
 		return NULL;
@@ -47,7 +47,7 @@ Instr *instrItemInit (Instr *stc) {
     	}
 
 	InstrType * instrNew;
-	instrNew = plusMalloc(sizeof(tToken));
+	instrNew = plusMalloc(sizeof(InstrType));
 
 	if (instrNew != NULL) {
         	return NULL;
