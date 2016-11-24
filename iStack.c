@@ -86,12 +86,12 @@ void instrStackPush (instrStack *stc, Instr *data) {
 }
 
 Instr * instrStackTop (instrStack *stc) {
-
     //Pokud jsou v zasobniku data, vrat data na vrcholu
     if (!instrStackEmpty(stc)) {
-	stc->dataInstr[stc->count + 1];
-	stc->count--;
-        //Jinak vrat null
+        int counter = stc->count+1;
+        stc->count--;
+		return stc->dataInstr[counter];
+    //Jinak vrat null
     } else {
         return NULL;
     }

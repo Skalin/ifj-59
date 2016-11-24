@@ -22,10 +22,6 @@
 // Definice flagů
 
 
-BTSNode* getVariable(char* id) {
-    //TODO
-    return NULL;
-}
 
 
 void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
@@ -343,53 +339,146 @@ void compareInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, InstrType oper
 }
 
 void interpretMainCore() {
-    // Uzel stromu instrukci
-    BTSNode *node = NULL; // TODO, vola se funkce, ktera ze stacku vybere prvni polozku
-    // Promenna, do ktere se ukladaji informace o instrukci
-    Instr *instruction = NULL;
+    // Init stacku TODO pouze provizorni, prevest do global promenne
+    instrStack *instrStack;
+    // Pointer na instrukci
+    struct Instr *instruction;
+    instruction = instrStackTop(instrStack);
 
-    while( /*node != NULL*/ ) {
-        instruction = NULL; // TODO, priradi se hodnota node-> data obsahujici adresy trojadresneho kodu a info o jakou instrukci se jedna
-
-
+    while(instruction != NULL) {
+        instruction = instrStackTop(instrStack);
         // Switch pro jednotlive typy instrukci
         switch (instruction->type) {
             // BUILT-IN FUNCTIONS
-            case  insIfj16print:
-
+            // Pokud se jedna o volani funkce int readInt();
+            case  insIfj16readInt:
+                if(instruction->Id3->inc == 1) {
+                    if (instruction->Id3->data.type == var_int) {
+                        instruction->Id3->data.value.intValue = readInt();
+                    // Pokud neni promenna prirazeni int, pak se jedna o chybu
+                    } else {
+                        throwException(4,0,0);
+                    }
+                // Pokud pracujeme s neinicializovanou promennou
+                } else {
+                    throwException(8, 0, 0);
+                }
+                break;
+            case insIfj16readString:
+                if(instruction->Id3->inc == 1) {
+                    if(instruction->Id3->data.type == var_string) {
+                        instruction->Id3->data.value.stringValue = readString();
+                    } else {
+                        throwException(4,0,0);
+                    }
+                } else {
+                    throwException(8,0,0);
+                }
+                break;
+            // Pokud se jedna o volani funkce int readDouble();
+            case insIfj16readDouble:
+                if(instruction->Id3->inc == 1) {
+                    if(instruction->Id3->data.type == var_double) {
+                        instruction->Id3->data.value.doubleValue = readDouble();
+                    } else {
+                        throwException(4,0,0);
+                    }
+                } else {
+                    throwException(8,0,0);
+                }
+                break;
+            // Pokud se jedna o volani fce void print(char *string);
+            case insIfj16print:
+                if(instruction->Id1->inc == 1) {
+                    if(instruction->Id3->data.type == var_string) {
+                        print(instruction->Id1->data.value.stringValue);
+                    } else {
+                        throwException(4,0,0);
+                    }
+                } else {
+                    throwException(8,0,0);
+                }
+                break;
+            case insIfj16lenght:
+                if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
+                    if(instruction->Id3->data.type == var_int && instruction->Id1->data.type == var_string) {
+                        instruction->Id3->data.value.intValue = strLength(instruction->Id1->data.value.stringValue);
+                    } else {
+                        throwException(4,0,0);
+                    }
+                } else {
+                    throwException(8,0,0);
+                }
+                break;
+            case insIfj16substr:
+                //TODO
+                break;
+            case insIfj16compare:
+                if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
+                    if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
+                        instruction->Id3->data.value.intValue = strcmp(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                    } else {
+                        throwException(4,0,0);
+                    }
+                } else {
+                    throwException(8,0,0);
+                }
+                break;
+            case insIfj16find:
+                if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
+                    if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
+                        instruction->Id3->data.value.intValue = find(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                    } else {
+                        throwException(4,0,0);
+                    }
+                } else {
+                    throwException(8,0,0);
+                }
+                break;
+            case insIfj16sort:
+                if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
+                    if(instruction->Id3->data.type == var_string && instruction->Id1->data.type == var_string) {
+                        instruction->Id3->data.value.intValue = sort(instruction->Id1->data.value.stringValue);
+                    } else {
+                        throwException(4,0,0);
+                    }
+                } else {
+                    throwException(8,0,0);
+                }
+                break;
             // END BUILT-IN FUNCTIONS
             // MATH
             case insPlus:
-                mathInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),'+');
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
                 break;
             case insMinus:
-                mathInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),'-');
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                 break;
             case insMux:
-                mathInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),'*');
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
                 break;
             case insDiv:
-                mathInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),'/');
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                 break;
             //END MATH
             //COMPARE
             case insEqual:
-                compareInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),insEqual);
+                compareInstruction(instruction->Id1,instruction->Id2,instruction->Id3,insEqual);
                 break;
             case insNotEqual:
-                compareInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),insNotEqual);
+                compareInstruction(instruction->Id1,instruction->Id2,instruction->Id3,insNotEqual);
                 break;
             case insLess:
-                compareInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),insLess);
+                compareInstruction(instruction->Id1,instruction->Id2,instruction->Id3,insLess);
                 break;
             case insLessOrEqual:
-                compareInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),insLessOrEqual);
+                compareInstruction(instruction->Id1,instruction->Id2,instruction->Id3,insLessOrEqual);
                 break;
             case insGreater:
-                compareInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),insGreater);
+                compareInstruction(instruction->Id1,instruction->Id2,instruction->Id3,insGreater);
                 break;
             case insGreaterOrEqual:
-                compareInstruction(getVariable(instruction->Id1),getVariable(instruction->Id2),getVariable(instruction->Id3),insGreaterOrEqual);
+                compareInstruction(instruction->Id1,instruction->Id2,instruction->Id3,insGreaterOrEqual);
                 break;
             //END COMPARE
         }
