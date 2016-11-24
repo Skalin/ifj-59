@@ -19,6 +19,7 @@
 #include "error_handler.h"
 #include "stack.h"
 #include "iStack.h"
+#include "lexical_analyzer.h"
 
 #define STR_ERROR   0
 #define STR_SUCCESS 1

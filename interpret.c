@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "interpret.h"
+#include "expressions.h"
 #include "error_handler.h"
 
 

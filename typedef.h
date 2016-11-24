@@ -117,12 +117,16 @@ typedef enum {
  * Struktura stringu (SString)
  */
 
-typedef struct SStr{
+typedef struct Str{
 	char *data;
 	int length;		        // délka řetězce
 	int allocatedSize;	  // alokovaná paměť
 } String;
 
+/*
+ * Datovy typ string
+ */
+#define string char*;
 
 /*
  * Struktura tokenu

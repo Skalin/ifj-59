@@ -14,7 +14,6 @@
 #ifndef IFJ_59_INTERPRET_H
 #define IFJ_59_INTERPRET_H
 
-#include "ial.h"
 #include "typedef.h"
 #include "iStack.h"
 //přesunuto do iStacku
