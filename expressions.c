@@ -20,6 +20,7 @@
 #include "error_handler.h"
 #include "stack.h"
 #include "iStack.h"
+#include "ial.h"
 
 #define STR_ERROR   0
 #define STR_SUCCESS 1
@@ -45,6 +46,8 @@ char precTable[16][16] = {
     {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'} // ID
 };
 
+int argNum = 0;
+
 bool isIdent(tToken *token) {
     if ((token->type >= t_simple_ident) && (token->type <= t_print))
         return true;
@@ -55,6 +58,10 @@ bool isConst(tToken *token) {
     if ((token->type >= t_int) && (token->type <= t_string))
         return true;
     return false;    
+}
+
+varType varType(tToken *token) {
+    return var; // TODO
 }
 
 char getPrecChar(tToken *stackToken, tToken *inToken) {
@@ -70,21 +77,12 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
     return precTable[stackTokenNum][inTokenNum];
 }
 
-
-
-void instrCreate(Instr instr) {
-    // Najít uzel, pokud neexistuje vytvořit
-    // Na iStack hodit instrukci
-}
-
-/* Mění terminály na výrazy a odstraňuje závorky podle pravidel:
- * E -> id  a  E -> (E)
- */
+// Mění terminály na výrazy a odstraňuje závorky podle pravidel: E -> id  a  E -> (E)
 tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
     int i = 0;
 
     // Čteme ze zásobníku dokud nenarazíme na NONTERM
-    while (stackTop()->data->typeIt != NONTERM) {
+    while (stackTop(stack)->typeIt != NONTERM) {
         i++;
         // Pokud je handle větší než 3, vyvoláme syntaktickou chybu
         if (i > 3) throwException(2,0,0);
@@ -107,59 +105,80 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 
     return handle;
 }
-/****ODSUD VÝŠ ZKONTROLOVÁNO**/
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
-void reduceExp(tStackIt *handle[3]) {
+void reduceExp(char *targetId, tStackIt *handle[3]) {
     Instr *instr = instrItemInit();
-    // TODO ID3 !!
+    
+    // Najde identifikátor cílové proměnné
+    instr->Id3 = searchForNode(targetId,var,ptrAktTridy);  // TODO 
+    if (instr->Id3->NodeType == function) {
+        instr->Id3->variables[argNum];
+        argNum++;
+    }
+    
     // Pokud se jedná se o aritmetickou nebo porovnávací instrukci
     if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
         
-        instr->Id1 = handle[0];
-        instr->Id2 = handle[2];
-        
+        instr->Id1 = searchForNode(handle[2],var,ptrAktFunkceNeboTridy); 
+        instr->Id2 = searchForNode(handle[0],var,ptrAktFunkceNeboTridy); 
+
         switch (handle[1]->dataIt->type) {
             case t_plus: // E -> E+E
-                instr->type = insPlus;                
+                instr->type = insPlus;  
+                if (instr->Id3)
+                instrStackPush(iStack,instr); // TODO iStack nahradit skutečným názvem instručního stacku
                 break;
             case t_minus: // E -> E-E
-                instr->type = insMinus;                
+                instr->type = insMinus; 
+                instrStackPush(iStack,instr);
                 break;
             case t_multi: // E -> E*E
-                instr->type = insMux;                
+                instr->type = insMux; 
+                instrStackPush(iStack,instr);
                 break;
             case t_div: // E -> E/E
-                instr->type = insDiv;                
+                instr->type = insDiv;  
+                instrStackPush(iStack,instr);
                 break;
             case t_comparasion: // E -> E==E
-                instr->type = insEqual;                
+                instr->type = insEqual; 
+                instrStackPush(iStack,instr);
                 break;
             case t_comparasion_ne: // E -> E!=E
-                instr->type = insNotEqual;                
+                instr->type = insNotEqual; 
+                instrStackPush(iStack,instr);
                 break;
             case t_less: // E -> E<E
-                instr->type = insLess;                
+                instr->type = insLess; 
+                instrStackPush(iStack,instr);
                 break;
             case t_less_eq: // E -> E<=E
-                instr->type = insLessOrEqual;                
+                instr->type = insLessOrEqual;   
+                instrStackPush(iStack,instr);
                 break;
             case t_greater: // E -> E>E
                 instr->type = insGreater;
+                instrStackPush(iStack,instr);
                 break;
             case t_greater_eq: // E -> E>=E
                 instr->type = insGreaterOrEqual;
+                instrStackPush(iStack,instr);
                 break;
             default: // Syntaktická chyba
                 throwException(2,0,0);
                 break;
         }
     }
-    // Syntaktická chyba
+    // Pokud se jedná o jednoduché přiřazení
+    else if (handle[0]->typeIt == EXPR) {
+        instr->type = insAssignment;
+        instr->Id1 = searchForNode(handle[0],var,ptrAktFunkceNeboTridy); 
+        instrStackPush(iStack,instr);
+    }
     else {
         throwException(2,0,0);
     }
-    instrCreate(instr);
 }
 
 void expression(char *targetId, tExpType expType) {
@@ -176,6 +195,27 @@ void expression(char *targetId, tExpType expType) {
     stackPush(stack,item);
 
     token = getToken();
+    
+    /* TODO Kontrola vestavěných funkcí
+    switch (targetId) {
+        case "ifj16." :
+            break;
+        case "ifj16." :
+            break;
+        case "ifj16." :
+            break;
+        case "ifj16." :
+            break;    
+        case "ifj16." :
+            break;
+        case "ifj16." :
+            break;
+        case "ifj16." :
+            break;
+        case "ifj16." :
+            break;       
+    }*/
+        
     while (TRUE) {
         /* Vyskočí z cyklu, pokud topTerm je roven ';' a
          *   jedná se o podmínku a na vstupu je ')'
@@ -184,20 +224,36 @@ void expression(char *targetId, tExpType expType) {
          *   (v posledním případě před vyskočením ještě vygeneruje instrukci)
          */
         if (topTerm(stack)->type == t_semicolon) {
-            if (((expType == expCond) && (token->type == t_bracket_r)) ||
-                ((expType == expArg) && ((token->type == t_comma) || (token->type == t_bracket_r))) ||
-                ((expType == expAssign) && (token->type == t_semicolon)))
+            if ((expType == expCond) && (token->type == t_bracket_r)) {
                 break;
+            }
+            else if (expType == expArg) {
+                
+                if (token->type == t_comma) {
+                    expression(targetId, expArg);
+                    break;
+                }
+                else if (token->type == t_bracket_r) {
+                    argNum = 0;
+                    break;
+                }
+            }
+            else if ((expType == expAssign) && (token->type == t_semicolon)) {
+                break;
+            }
+        }
+        
+        // Jedná se o funkci uvnitř výrazu
+        else if (isIdent(topTerm()) && token->type == t_bracket_l) {
+            token = getToken();
+            tokenCounter++;
+            expression(topTerm()->data,expArg);
         }
         // Syntaktická chyba
         else if (token->type <= t_string) {
             throwException(2,0,0);
         }
-        // Jedná se o funkci uvnitř výrazu
-        else if (isIdent(topTerm()) && token->type == t_bracket_l) {
-            token = getToken();
-            expression(topTerm()->data,expArg);
-        }
+        
         
         switch (getPrecChar(topTerm(),token)) { 
             case '<': ; // Tento středník tu musí být jinak to řve error :-)
@@ -217,6 +273,7 @@ void expression(char *targetId, tExpType expType) {
 
                 //Načte nový token
                 token = getToken();
+                tokenCounter++;
                 break;
             case '=':
                 // Vloží aktuální token na zásobník
@@ -227,11 +284,12 @@ void expression(char *targetId, tExpType expType) {
 
                 //Načte nový token
                 token = getToken();
+                tokenCounter++;
                 break;
             case '>': ; // Stejná situace se středníkem jako v první case
                 tStackIt *handle[3];
                 chnToExp(stack,handle);
-                reduceExp(handle);
+                reduceExp(targetId,handle);
                 break;
             default:
                 // Syntaktická chyba
@@ -239,7 +297,7 @@ void expression(char *targetId, tExpType expType) {
                 break;
         }
     }
-    // TODO uvolnit paměť
+    stackDestroy(stack);
 }
 
 SString substr(SString *str, int i, int n) {
