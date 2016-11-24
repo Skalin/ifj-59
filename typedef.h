@@ -112,21 +112,10 @@ typedef enum {
 	t_print
 } tokenType;
 
-
-/*
- * Struktura stringu (SString)
- */
-
-typedef struct Str{
-	char *data;
-	int length;		        // délka řetězce
-	int allocatedSize;	  // alokovaná paměť
-} String;
-
 /*
  * Datovy typ string
  */
-#define string char*;
+typedef char* String;
 
 /*
  * Struktura tokenu

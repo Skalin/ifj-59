@@ -38,54 +38,48 @@ double readDouble();
 /*
  *
  */
-void print(char *string);
+void print(String string);
 
 
 /*
  *
  */
-String substr(String *str, int i, int n);
+String substr(String str, int i, int n);
 
 
 /*
  *
  */
-void initString(String *str);
+int addCharacter(String str, char c);
 
 
 /*
  *
  */
-int addCharacter(String *str, char c);
+void copyString(String str1, String str2);
 
 
 /*
  *
  */
-void copyString(String *str1, String *str2);
+int compareString(String str1, String str2);
 
 
 /*
  *
  */
-int compareString(String *str1, String *str2);
+int strLength(String str);
 
 
 /*
  *
  */
-int strLength(String *str);
+void strClear(String str);
 
 
 /*
  *
  */
-void strClear(String *str);
-
-
-/*
- *
- */
-void destroyString(String *str);
+void destroyString(String str);
 
 #endif

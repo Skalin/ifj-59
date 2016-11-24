@@ -95,7 +95,7 @@ void updateShift(mismatchTable *Table, char c, int shiftValue) {
 }
 
 // samotny find
-int find(String *str, String *search) {
+int find(String str, String search) {
 
 	int i = 0, j = 0;
 	int found = 0;
@@ -107,32 +107,32 @@ int find(String *str, String *search) {
 	initMismatchTable(&Table);
 
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
-	while (search->data[i] != '\0' || search->data[i] != EOF) {
-			if (findChar(&Table, search->data[i]) < 0) {
-				if (search->data[i+1] != '\0') { // pokud toto neni posledni prvek
-					insertNext(&Table, search->data[i], strLength(search) - i - 1);
+	while (search[i] != '\0' || search[i] != EOF) {
+			if (findChar(&Table, search[i]) < 0) {
+				if (search[i+1] != '\0') { // pokud toto neni posledni prvek
+					insertNext(&Table, search[i], strLength(search) - i - 1);
 				} else { // jinak nastavime shift posledniho prvku dle boyer-moore algoritmu
-					insertNext(&Table, search->data[i], others);
+					insertNext(&Table, search[i], others);
 				}
 			} else {
-				updateShift(&Table, search->data[i], (strLength(search)-i-1));
+				updateShift(&Table, search[i], (strLength(search)-i-1));
 			}
 			i++;
 	}
 
 	i = 0; // jen pro jistotu
 
-	while (found == 0 || str->data[stop] != '\0' || str->data[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
+	while (found == 0 || str[stop] != '\0' || str[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
 		stop += shiftValue;
 		for (i = others-1, j = 0; i >= 0 && j <= others-1; i--, j++) {
-			if (str->data[stop-j] != search->data[i]) { // pokud se nam dva znaky ve stringu neshoduji, vyskocime z jednoho cyklu a posuneme se shiftem
+			if (str[stop-j] != search[i]) { // pokud se nam dva znaky ve stringu neshoduji, vyskocime z jednoho cyklu a posuneme se shiftem
 				break;
 			}
-			if (str->data[stop-others+1] == search->data[0]) {
+			if (str[stop-others+1] == search[0]) {
 				found = stop-others+1;
 				break;
 			}
-			shiftValue = getShiftValue(&(Table), search->data[i]);
+			shiftValue = getShiftValue(&(Table), search[i]);
 		}
 	}
 
@@ -158,53 +158,47 @@ int makeEven(int i) {
 }
 
 // fce pro korektni nastaveni pozice nejvetsiho prvku na zacatek haldy
-String repairHeap(String *str) {
+String repairHeap(String str) {
 
 	int i = 0, j = 0;
-	for (i = str->length-1; i > 0; --i) {
+	for (i = strLength(str)-1; i > 0; --i) {
 		j = 0;
 		if ((i % 2) == 0) {
-			if ((str->data[i] > str->data[(makeEven(i)/2)-1]) && (str->data[i-1] > str->data[(makeEven(i)/2)-1])) {
+			if ((str[i] > str[(makeEven(i)/2)-1]) && (str[i-1] > str[(makeEven(i)/2)-1])) {
 				j = 1;
-				if (str->data[i] >= str->data[i-1]) {
-					swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
+				if (str[i] >= str[i-1]) {
+					swap(&str[i], &str[(makeEven(i)/2)-1]);
 				} else {
-					swap(&str->data[i-1], &str->data[(makeEven(i)/2)-1]);
+					swap(&str[i-1], &str[(makeEven(i)/2)-1]);
 				}
 			}
-			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
+			if (str[i] > str[(makeEven(i)/2)-1]) {
 				j = 1;
-				swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
+				swap(&str[i], &str[(makeEven(i)/2)-1]);
 			}
 		} else {
-			if (str->data[i] > str->data[(makeEven(i)/2)-1]) {
+			if (str[i] > str[(makeEven(i)/2)-1]) {
 				j = 1;
-				swap(&str->data[i], &str->data[(makeEven(i)/2)-1]);
+				swap(&str[i], &str[(makeEven(i)/2)-1]);
 			}
 		}
 	}
 	if (j == 1)
 		repairHeap(str);
 
-	return *str;
+	return str;
 }
 
 
 // samotny heapsort
-String sort(String *str) {
-	String *helpString = NULL;
-	initString(helpString);
-    copyString(str, helpString);
+String sort(String str) {
+	String helpString;
+    helpString = str;
 
-
-
-    char biggestItem;
 	int length = strLength(helpString);
     while (length) {
 
 		repairHeap(helpString);
-
-		biggestItem = helpString->data[0];
 
 /*
  * zbytecne, protoze biggest number bude prvni
@@ -215,12 +209,12 @@ String sort(String *str) {
             biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
         }
   */
-        swap(&biggestItem, &helpString->data[length-1]);
+        swap(&helpString[0], &helpString[length-1]);
         
         length--;
     }
 
-    return *helpString;
+    return helpString;
 }
 
 

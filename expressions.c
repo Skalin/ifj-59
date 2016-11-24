@@ -304,35 +304,23 @@ void expression(char *targetId, tExpType expType) {
     stackDestroy(stack);
 }
 
-String substr(String *str, int i, int n) {
+String substr(String str, int i, int n) {
 
-	String *helpStr = NULL;
-    initString(helpStr);
+	String realString = '\0';
+	int j = 0;
 
     while (i <= (i + n)) {
-		if (str->data[i] == EOF || isspace(str->data[i])) {
+		if (str[i] == EOF || isspace(str[i])) {
 			throwException(10, GlobalRow, GlobalColumn);
 		}
-        addCharacter(helpStr, str->data[i]);
+        realString[j] = str[i]);
+		j++;
         i++;
     }
-
-	return *helpStr;
+	return realString;
 }
 
-void initString(String *str){
-
-	if ((plusMalloc(sizeof(String) + sizeof(char)*STR_ALLOCATION_SIZE)) != NULL) {
-		str->data[0] = '\0';
-		str->length = 0;
-		str->allocatedSize = STR_ALLOCATION_SIZE;
-	} else {
-		throwException(99,0,0); //chyba alokace paměti
-	}
-
-
-}
-
+/* asi nepotrebne
 int addCharacter(String *str, char c){
   
     if ((str->allocatedSize) <= (str->length + 1)) {
@@ -350,25 +338,19 @@ int addCharacter(String *str, char c){
 	} else {
 		return 0;
 	}
-}
+}*/
 
-void copyString(String *str1, String *str2) {
-
-	if (str2->allocatedSize < strLength(str1)) {
-		if (plusRealloc(str2, sizeof(String) + (sizeof(char)*(str2->allocatedSize))) != NULL) {
-			str2->allocatedSize = str2->length + STR_ALLOCATION_SIZE;
-		} else {
-			throwException(99,0,0); //chyba alokace paměti
-		}
+void copyString(String str1, String str2) {
+	int i = 0;
+	while (str1[i] != '\0' || str1[i] != EOF) {
+		str2[i] = str1[i];
+		i++;
 	}
-	strClear(str2);
-	str2->length = str1->length;
-	str2->data = str1->data;
 }
 
-int compareString(String *str1, String *str2) {
+int compareString(String str1, String str2) {
    //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
-	int result = strcmp(str1->data, str2->data);
+	int result = strcmp(str1, str2);
 	if (result < 0) {
 		result = -1;
 	} else if (result > 0) {
@@ -379,47 +361,46 @@ int compareString(String *str1, String *str2) {
 
 }
 
-int strLength(String *str) {
+int strLength(String str) {
 	//vrátí délku řetězce (počet znaků) zadaného jedním parametrem str
-	int len = str->length;
-	return len;
+	int length = 0;
+
+	while (str[length] != '\0' || str[length] != EOF) {
+		length++;
+	}
+	return length;
 }
 
-int strEqual(char *str1, char *str2) {
+int strEqual(String str1, String str2) {
 	int equal = !strcmp(str1, str2);
 	return equal;
 }
 
-void strClear(String *str) {
+void strClear(String str) {
 	// funkce sloužící k vymazání řetězce
-	str->length = 0;
-	str->data[0] = '\0';
-}
-
-void destroyString (String *str) {
-	// funkce k uvolnění z paměti
-	if (str != NULL) {
-		plusFree(str->data);
+	int length = strLength(str);
+	while (length != 0) {
+		str[length] = '\0';
+		length--;
 	}
 }
 
+
 String readString(){
 	int c = getchar();
-	String *str = NULL;
-	initString(str);
+	String str = '\0';
 	int i = 0;
 
 
 	while (c != EOF || c != '\n') {
-		addCharacter(str, (char) c);
+		str[i] = (char)c;
 		i++;
 		c = getchar();
 	}
-	addCharacter(str, '\0');
-	return *str;
+	return str;
 }
 
-void print(char *string) {
+void print(String string) {
 	// nejaka podminka kvuli typu vstupu..
 	printf("%s", string);
 
@@ -427,37 +408,30 @@ void print(char *string) {
 
 
 int readInt() {
-	String *str = NULL;
-	initString(str);
-	*str = readString();
+	String str = readString();
 	int number = 0;
 	int i = 0;
 
-	int length = str->length;
+	int length = strLength(str);
 
-	while (str->data[i] != '\0') {
-		if (!isdigit(str->data[i])) {
+	while (str[i] != '\0') {
+		if (!isdigit(str[i])) {
 			throwException(7, GlobalRow, GlobalColumn);
 		}
-		number += (str->data[i]-48) * (int)pow(10,length-i-1);
+		number += (str[i]-48) * (int)pow(10,length-i-1);
 		i++;
 	}
-	destroyString(str);
 	return number;
 }
 
 double readDouble(){
-	String *str = NULL;
-	initString(str);
-	*str = readString();
+	String str = readString();
 	char *end;
-	double doubleNumber = strtod(str->data, &end);
+	double doubleNumber = strtod(str, &end);
 
 	if (*end != '\0' || doubleNumber < 0) {
 		throwException(7, GlobalRow, GlobalColumn);
 	}
-
-	destroyString(str);
 
 	return doubleNumber;
 }

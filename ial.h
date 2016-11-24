@@ -39,13 +39,13 @@ void updateShift(mismatchTable *, char c, int shiftValue);
 void insertNext(mismatchTable *, char c, int shiftValue);
 
 
-int find(String *str, String *search);
+int find(String str, String search);
 
 /*
  * heapsort
  * @param str string (pole charu), kazdy znak stringu je razen dle ordinalni hodnoty vzestupne
  */
-String sort(String *str);
+String sort(String str);
 
 /*
  * pomocne fce pro sort
@@ -69,14 +69,14 @@ void swap(char *a, char *b);
  * Funkce ziska z argumentu str string, ktery pote zpracuje za ucelem upravy haldy na spravny format
  * @param str string se kterym se pracuje
  */
-String repairHeap(String *str);
+String repairHeap(String str);
 
 // FUNKCE NAD BINÁRNÍM STROMEM
 
 /*
  * Funkce inicializuje binární strom
  */
-void initTree(mainTree *tree);
+void initTree(mainTree tree);
 
 /*
  * Funkce prohledá binární strom a najde příslušný uzel
