@@ -194,12 +194,9 @@ void expression(char *targetId, tExpType expType) {
     stackPush(stack,item);
 
     token = getToken();
-
-    // TODO - obsluha vestavěných funkcí
     Instr *instr = instrItemInit();
-    instr->Id3 = searchForNode(targetId,var,ptrAktTridy);
 
-
+    /* TODO obsluha vestavěných funkcí
     switch (targetId) {
         case "ifj16.readInt":
 
@@ -249,9 +246,17 @@ void expression(char *targetId, tExpType expType) {
 
         // Jedná se o funkci uvnitř výrazu
         else if (isIdent(topTerm()) && token->type == t_bracket_l) {
+            /* Vytvořím instrukci, kde: 
+             *   - id3 je proměnná v aktuální funkci
+             *   - id2 je řetězec s id volané funkce
+             *   - id1 je pole argumentů
+             *   - type je insFunctionCall
+             */
+            instr->Id3 = targetId;
+            instr->Id1 = topTerm()->data;
+            instr->type = insFunctionCall;
+            instrStackPush(iStack,instr);
             token = getToken();
-            tokenCounter++;
-            expression(topTerm()->data,expArg);
         }
         // Syntaktická chyba
         else if (token->type <= t_string) {
@@ -277,7 +282,6 @@ void expression(char *targetId, tExpType expType) {
 
                 //Načte nový token
                 token = getToken();
-                tokenCounter++;
                 break;
             case '=':
                 // Vloží aktuální token na zásobník
@@ -288,7 +292,6 @@ void expression(char *targetId, tExpType expType) {
 
                 //Načte nový token
                 token = getToken();
-                tokenCounter++;
                 break;
             case '>': ; // Stejná situace se středníkem jako v první case
                 tStackIt *handle[3];
@@ -303,6 +306,8 @@ void expression(char *targetId, tExpType expType) {
     }
     stackDestroy(stack);
 }
+
+void func
 
 String substr(String str, int i, int n) {
 
