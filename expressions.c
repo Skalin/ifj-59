@@ -46,6 +46,7 @@ char precTable[16][16] = {
 };
 
 int argNum = 0;
+int funcCnt = 0; // Bude muset být globální
 
 bool isIdent(tToken *token) {
     if ((token->type >= t_simple_ident) && (token->type <= t_print))
@@ -111,8 +112,9 @@ void reduceExp(char *targetId, tStackIt *handle[3]) {
 
     // Najde identifikátor cílové proměnné
     instr->Id3 = searchForNode(targetId,var,ptrAktTridy);  // TODO
-    if (instr->Id3->NodeType == function) {
-        instr->Id3->variables[argNum];
+    // Jedná se o argument ne/definované funkce
+    if ((instr->Id3 == NULL) || (instr->Id3->NodeType == function)) {
+        instr->Id3 = instrStackAddArg(argNum); // TODO Tady se musí vytvořit uzl argumentů a přidávat do něj
         argNum++;
     }
 
@@ -181,6 +183,8 @@ void reduceExp(char *targetId, tStackIt *handle[3]) {
 }
 
 void expression(char *targetId, tExpType expType) {
+    
+    
     // Inicializujeme zásobník a vložíme na něj znak ';'
     tStack *stack = NULL;
     stack = stackInit(stack);
@@ -195,28 +199,8 @@ void expression(char *targetId, tExpType expType) {
 
     token = getToken();
     Instr *instr = instrItemInit();
-
-    /* TODO obsluha vestavěných funkcí
-    switch (targetId) {
-        case "ifj16.readInt":
-
-            break;
-        case "ifj16.readDouble":
-            break;
-        case "ifj16.readString":
-            break;
-        case "ifj16.length":
-            break;
-        case "ifj16.substr":
-            break;
-        case "ifj16.compare":
-            break;
-        case "ifj16.find":
-            break;
-        case "ifj16.sort":
-            break;
-    }*/
-
+    
+    
     while (TRUE) {
         /* Vyskočí z cyklu, pokud topTerm je roven ';' a
          *   jedná se o podmínku a na vstupu je ')'
@@ -229,12 +213,14 @@ void expression(char *targetId, tExpType expType) {
                 break;
             }
             else if (expType == expArg) {
-
+                // Zpracování dalšího argumentu
                 if (token->type == t_comma) {
                     expression(targetId, expArg);
-                    break;
                 }
                 else if (token->type == t_bracket_r) {
+                    if (argNum == 0) {
+                        // Funkce bez parametrů. Může a nemusí být void
+                    }
                     argNum = 0;
                     break;
                 }
@@ -242,21 +228,36 @@ void expression(char *targetId, tExpType expType) {
             else if ((expType == expAssign) && (token->type == t_semicolon)) {
                 break;
             }
-        }
-
+        }      
         // Jedná se o funkci uvnitř výrazu
-        else if (isIdent(topTerm()) && token->type == t_bracket_l) {
+        if (isIdent(topTerm()) && token->type == t_bracket_l) {            
             /* Vytvořím instrukci, kde: 
              *   - id3 je proměnná v aktuální funkci
-             *   - id2 je řetězec s id volané funkce
-             *   - id1 je pole argumentů
+             *   - id1 je řetězec s id volané funkce
+             *   - id2 je pole argumentů
              *   - type je insFunctionCall
              */
             instr->Id3 = targetId;
             instr->Id1 = topTerm()->data;
             instr->type = insFunctionCall;
-            instrStackPush(iStack,instr);
-            token = getToken();
+            
+            // Vytvoří uzel, nahraje do něj všechny argumenty a pokračuje dál ve zpracovávání výrazu
+            instr->Id2 = createNewNode(funcCnt);
+            expression(funcCnt, expArg);
+            // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
+        }
+        // Jedná se o void funkci
+        else if (expType == expVoid) {
+            instr->Id3 = NULL;
+            instr->Id1 = targetId;
+            instr->type = insFunctionCall;
+            
+            // Vytvoří uzel, nahraje do něj všechny argumenty
+            instr->Id2 = createNewNode(funcCnt);
+            expression(funcCnt, expArg);
+            // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
+            // TODO tady budu kontrolovat přítomnost středníku já ne milan
+            break;
         }
         // Syntaktická chyba
         else if (token->type <= t_string) {
@@ -307,7 +308,37 @@ void expression(char *targetId, tExpType expType) {
     stackDestroy(stack);
 }
 
-void func
+void funcCallToNormalInstrConvertPlusControll() {
+    /* TODO 
+     * projte istack a změní CALL instrukce na aritmetické
+     * možná že může uzly s argumenty zrušit
+     * Volá se na konci syntaktické analýzy
+     * Zjistí zda se jedná o vestavěnou funkci
+     * kontroluje počet parametrů
+     * možná volá interpret
+     */
+    
+    
+    switch (topTerm()->data) {
+        case "ifj16.readInt":
+            expression();
+            break;
+        case "ifj16.readDouble":
+            break;
+        case "ifj16.readString":
+            break;
+        case "ifj16.length":
+            break;
+        case "ifj16.substr":
+            break;
+        case "ifj16.compare":
+            break;
+        case "ifj16.find":
+            break;
+        case "ifj16.sort":
+            break;
+    }
+}
 
 String substr(String str, int i, int n) {
 

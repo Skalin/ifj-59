@@ -167,17 +167,17 @@ typedef char *tableName;
 // Typ uzlu (ve stromu pozname, jestli se jedna o funkci, třídu nebo proměnnou
 typedef enum{
 	var,
+    params,
 	function,
 	class,
 } NodeType;
-
 
 //Vycet moznych typu (pouze u proměnných a funkcí). U proměnných je to jejich typ, u funkcí značí jejich návratový typ
 typedef enum {
 	var_int,
 	var_double,
 	var_string,
-	var_void,
+	var_void
 } varType;
 
 // Hodnota promenne, union zajišťuje, že v paměti zabírá místo pouze největší hodnota z nich
@@ -197,7 +197,7 @@ typedef struct tableSymbolVariable {
 //Struktura uzlu binarniho stromu
 typedef struct tBTSNode {
 	tableName key; // Klíč (název proměnné, třídy, funkce)
-	NodeType nodeType; // Typ uzlu (proměnná, funkce, třída)
+	NodeType nodeType; // Typ uzlu (proměnná, funkce, třída, argumenty)
 
 	//Struktura, kde se využívá vždy jen jeden prvek, pokud se jedna o třídu, využije se první prvek, pokud u proměnnou, která je argumentem funkce, pak se využije druhá
 	struct tBTSNode *functions; // Odkaz na funkce třídy
