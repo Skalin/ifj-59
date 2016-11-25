@@ -242,7 +242,7 @@ void expression(char *targetId, tExpType expType) {
             instr->type = insFunctionCall;
             
             // Vytvoří uzel, nahraje do něj všechny argumenty a pokračuje dál ve zpracovávání výrazu
-            instr->Id2 = createNewNode(funcCnt);
+            instr->Id2 = createNewNode(funcCnt, tempVar, );
             expression(funcCnt, expArg);
             // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
         }
