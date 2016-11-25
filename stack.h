@@ -30,7 +30,7 @@ typedef struct {
 
 //Struktura zásobníku
 typedef struct {
-    tStackIt * data;
+    tStackIt ** data;
     int counter;
     int allocated;
 } tStack;
@@ -38,7 +38,7 @@ typedef struct {
 
 //Struktura pomocného zásobníku
 typedef struct {
-    tStackIt * data2;
+    tStackIt ** data2;
     int counter2;
     int allocated2;
 } tStackTmp;
