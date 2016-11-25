@@ -31,7 +31,7 @@ tStack * stackInit ( tStack *stack ) {
 tStackTmp * stackInitTmp (tStackTmp *stack2) {
 
     //Inicializace polozek stacku
-    stack = plusMalloc(sizeof(tStackTmp));
+    stack2 = plusMalloc(sizeof(tStackTmp));
     stack2->data2 = plusMalloc(sizeof(void*) * 30);
     stack2->allocated2 = 30;
     stack2->counter2 = 0;
