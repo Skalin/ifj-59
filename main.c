@@ -1,6 +1,8 @@
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
+#include "parser.h"
+#include "interpret.h"
 #include <stdbool.h>
 
 
@@ -23,6 +25,9 @@ int main(int argc, char* argv[]) {
         if ( global.file == NULL)
         //    throwException(99, 0, 0);
         global.fileName = argv[1];
+
+        pParse();
+        interpretMainCore();
     //}
 
 
@@ -68,12 +73,9 @@ int main(int argc, char* argv[]) {
     
     pToken4 = plusRealloc(pToken4, sizeof(tToken) + sizeof(char)*(realloc[3]+pToken4->length));
     pToken5 = plusRealloc(pToken5, sizeof(tToken) + sizeof(char)*(realloc[4]+pToken5->length));
-    
-    
-    finalFree();
+
     
     *************************************/
-    return 0;
 }
  
 

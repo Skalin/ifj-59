@@ -208,6 +208,7 @@ typedef struct tBTSNode {
 
 	struct tBTSNode *variables; // Odkaz na proměnné třídy nebo funkce
 
+
 	struct tBTSNode *lptr; // Pointer na levý podstrom
 	struct tBTSNode *rptr; // Pointer na pravý podstrom
 } BTSNode, *tBTSNodePtr;
@@ -253,7 +254,7 @@ typedef struct Instr {
 	BTSNode *Id1; // Adresa prvního operandu
 	BTSNode *Id2; // Adresa druhého operandu
 	BTSNode *Id3; // Adresa, kam se uloží výsledek operace
-	InstrType *type;
+	InstrType type;
 }Instr;
 
 typedef struct {

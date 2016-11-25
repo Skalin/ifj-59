@@ -129,6 +129,6 @@ void finalFree() {
     //Zavření souboru
     if(global.file != NULL)
         fclose(global.file);
-
+    return 0;
 }
 

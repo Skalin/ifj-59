@@ -41,4 +41,8 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation);
  */
 void compareInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, InstrType operation);
 
+/*
+ * Hlavni jadro interpretu, interpret samotny
+ */
+void interpretMainCore();
 #endif //IFJ_59_INTERPRET_H

@@ -16,14 +16,8 @@
 #include "interpret.h"
 #include "expressions.h"
 #include "error_handler.h"
+#include "garbage_collector.h"
 #include "ial.h"
-
-
-
-
-// Definice flagů
-
-
 
 
 void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
@@ -440,7 +434,7 @@ void interpretMainCore() {
             case insIfj16sort:
                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
                     if(instruction->Id3->data.type == var_string && instruction->Id1->data.type == var_string) {
-                        instruction->Id3->data.value.intValue = sort(instruction->Id1->data.value.stringValue);
+                        instruction->Id3->data.value.stringValue = sort(instruction->Id1->data.value.stringValue);
                     } else {
                         throwException(4,0,0);
                     }
@@ -482,9 +476,11 @@ void interpretMainCore() {
             case insGreaterOrEqual:
                 compareInstruction(instruction->Id1,instruction->Id2,instruction->Id3,insGreaterOrEqual);
                 break;
+            default:
+                break;
             //END COMPARE
         }
-    //TODO ZBYTEK INTERPRETU
+    // Konec while- zadne dalsi instrukce
     }
-
+    finalFree();
 }
