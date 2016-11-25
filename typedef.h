@@ -137,7 +137,8 @@ typedef struct {
 typedef enum {
     expCond,
     expArg,
-    expAssign
+    expAssign,
+    expVoid
 } tExpType;
 
 

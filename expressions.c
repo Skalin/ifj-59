@@ -27,22 +27,22 @@
 
 char precTable[16][16] = {
   //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
-    {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'} // (
-    {'F','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','F'} // )
-    {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'} // /
-    {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','<'} // *
-    {'<','>','<','<','>','>','>','>','>','>','>','>','>',' ','>','<'} // +
-    {'<','>','<','<','>','>','>','>','>','>','>','>','>',' ',' ','<'} // -
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // ==
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // !=
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // <
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // >
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // <=
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'} // >=
-    {'=','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'} // !
-    {'<','=',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ','=','F','<'} // ,
-    {'<','F',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ',' ','F','<'} // ;
-    {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'} // ID
+    {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'}, // (
+    {'F','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','F'}, // )
+    {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'}, // /
+    {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','<'}, // *
+    {'<','>','<','<','>','>','>','>','>','>','>','>','>',' ','>','<'}, // +
+    {'<','>','<','<','>','>','>','>','>','>','>','>','>',' ',' ','<'}, // -
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'}, // ==
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'}, // !=
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'}, // <
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'}, // >
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'}, // <=
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>',' ',' ','<'}, // >=
+    {'=','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'}, // !
+    {'<','=',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ','=','F','<'}, // ,
+    {'<','F',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ',' ','F','<'}, // ;
+    {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'}  // ID
 };
 
 int argNum = 0;
@@ -58,10 +58,6 @@ bool isConst(tToken *token) {
     if ((token->type >= t_int) && (token->type <= t_string))
         return true;
     return false;    
-}
-
-varType variableType(tToken *token) {
-    return var; // TODO
 }
 
 char getPrecChar(tToken *stackToken, tToken *inToken) {
@@ -107,28 +103,31 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 }
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
-void reduceExp(char *targetId, tStackIt *handle[3]) {
+void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
     Instr *instr = instrItemInit(instr);
+    BTSNode *start = mTree->actFunction;
+    
+    if (start != NULL) {
+        start = mTree->actClass;
+    }
 
-    // Najde identifikátor cílové proměnné
-    instr->Id3 = searchForNode(targetId,var,ptrAktTridy);  // TODO
     // Jedná se o argument ne/definované funkce
-    if ((instr->Id3 == NULL) || (instr->Id3->NodeType == function)) {
-        instr->Id3 = instrStackAddArg(targetId, funcCnt); // TODO Přidat do uzlu argumentů
+    if (instr->Id3 == NULL) {       
+        // Vytvořím nový uzel typu param s klíčem targetId + argNum
         argNum++;
     }
 
     // Pokud se jedná se o aritmetickou nebo porovnávací instrukci
     if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
 
-        instr->Id1 = searchForNode(handle[2],var,ptrAktFunkceNeboTridy);
-        instr->Id2 = searchForNode(handle[0],var,ptrAktFunkceNeboTridy);
+        instr->Id1 = searchForNode(handle[2],var,start);
+        instr->Id2 = searchForNode(handle[0],var,start);
 
         switch (handle[1]->dataIt->type) {
             case t_plus: // E -> E+E
                 instr->type = insPlus;
                 if (instr->Id3)
-                instrStackPush(iStack,instr); // TODO iStack nahradit skutečným názvem instručního stacku
+                instrStackPush(iStack,instr);
                 break;
             case t_minus: // E -> E-E
                 instr->type = insMinus;
@@ -174,7 +173,7 @@ void reduceExp(char *targetId, tStackIt *handle[3]) {
     // Pokud se jedná o jednoduché přiřazení
     else if (handle[0]->typeIt == EXPR) {
         instr->type = insAssignment;
-        instr->Id1 = searchForNode(handle[0],var,ptrAktFunkceNeboTridy);
+        instr->Id1 = searchForNode(handle[0],var,start);
         instrStackPush(iStack,instr);
     }
     else {
@@ -183,7 +182,12 @@ void reduceExp(char *targetId, tStackIt *handle[3]) {
 }
 
 void expression(char *targetId, tExpType expType) {
-    
+    /* Pokud jsme ve funkci run, ukládáme na globální instrukční stack. 
+     * V opačném případě na instruční stack aktuální funkce */ 
+    instrStack *iStack = globalIStack; // TODO za globalIStack doplnit jeho skutečný název 
+    if (mTree->actFunction->Key != "run") {  // TODO ošetřit situaci kdy je actFunction=NULL
+        iStack = mTree->actFunction->iStack; // Zatím neexistuje ale bude
+    }
     
     // Inicializujeme zásobník a vložíme na něj znak ';'
     tStack *stack = NULL;
@@ -198,7 +202,8 @@ void expression(char *targetId, tExpType expType) {
     stackPush(stack,item);
 
     token = getToken();
-    Instr *instr = instrItemInit();
+    Instr *instr;
+    instr = instrItemInit(instr);
     
     
     while (TRUE) {
@@ -230,7 +235,7 @@ void expression(char *targetId, tExpType expType) {
             }
         }      
         // Jedná se o funkci uvnitř výrazu
-        if (isIdent(topTerm()) && token->type == t_bracket_l) {            
+        if (isIdent(topTerm(stack)) && token->type == t_bracket_l) {            
             /* Vytvořím instrukci, kde: 
              *   - id3 je proměnná v aktuální funkci
              *   - id1 je řetězec s id volané funkce
@@ -238,12 +243,13 @@ void expression(char *targetId, tExpType expType) {
              *   - type je insFunctionCall
              */
             instr->Id3 = targetId;
-            instr->Id1 = topTerm()->data;
+            instr->Id1 = topTerm(stack)->data;
             instr->type = insFunctionCall;
             
             // Vytvoří uzel, nahraje do něj všechny argumenty a pokračuje dál ve zpracovávání výrazu
-            instr->Id2 = createNewNode(funcCnt, tempVar, );
+            instr->Id2 = createNewNode(funcCnt); 
             expression(funcCnt, expArg);
+            instrStackPush(iStack,instr);
             // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
         }
         // Jedná se o void funkci
@@ -253,8 +259,10 @@ void expression(char *targetId, tExpType expType) {
             instr->type = insFunctionCall;
             
             // Vytvoří uzel, nahraje do něj všechny argumenty
-            instr->Id2 = createNewNode(funcCnt);
+            // vytvořit uzel typu params instr->Id2 = createNewNode(funcCnt); 
             expression(funcCnt, expArg);
+            instrStackPush(iStack,instr);
+            
             // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
             // TODO tady budu kontrolovat přítomnost středníku já ne milan
             break;
@@ -265,7 +273,7 @@ void expression(char *targetId, tExpType expType) {
         }
 
 
-        switch (getPrecChar(topTerm(),token)) {
+        switch (getPrecChar(topTerm(stack),token)) {
             case '<': ; // Tento středník tu musí být jinak to řve error :-)
                 // Vloží znak '<' na zásobník
                 tToken *lessToken = initToken();
@@ -297,7 +305,7 @@ void expression(char *targetId, tExpType expType) {
             case '>': ; // Stejná situace se středníkem jako v první case
                 tStackIt *handle[3];
                 chnToExp(stack,handle);
-                reduceExp(targetId,handle);
+                reduceExp(targetId,handle,iStack);
                 break;
             default:
                 // Syntaktická chyba
@@ -308,6 +316,7 @@ void expression(char *targetId, tExpType expType) {
     stackDestroy(stack);
 }
 
+// vím že je to debilní název, vymyslím lepsí. Zatím ještě nevím co všechno to bude dělat
 void funcCallToNormalInstrConvertPlusControll() {
     /* TODO 
      * projte istack a změní CALL instrukce na aritmetické
@@ -317,9 +326,9 @@ void funcCallToNormalInstrConvertPlusControll() {
      * kontroluje počet parametrů
      * možná volá interpret
      */
+    /*
     
-    
-    switch (topTerm()->data) {
+    switch () {
         case "ifj16.readInt":
             expression();
             break;
@@ -337,7 +346,7 @@ void funcCallToNormalInstrConvertPlusControll() {
             break;
         case "ifj16.sort":
             break;
-    }
+    }*/
 }
 
 String substr(String str, int i, int n) {
