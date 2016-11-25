@@ -165,7 +165,7 @@ void stackPush (tStack *stack, void *data) {
 	stack->data[stack->counter] = data;
 }
 
-void * stackTop (tStack *stack) {
+tStackIt * stackTop (tStack *stack) {
 
 	//Pokud jsou v zasobniku data, vrat data na vrcholu
 	if(!stackEmpty(stack))
