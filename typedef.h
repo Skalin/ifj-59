@@ -167,7 +167,6 @@ typedef char *tableName;
 // Typ uzlu (ve stromu pozname, jestli se jedna o funkci, třídu nebo proměnnou
 typedef enum{
 	var,
-    params,
 	function,
 	class,
 } NodeType;

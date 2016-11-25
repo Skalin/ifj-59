@@ -114,7 +114,7 @@ void reduceExp(char *targetId, tStackIt *handle[3]) {
     instr->Id3 = searchForNode(targetId,var,ptrAktTridy);  // TODO
     // Jedná se o argument ne/definované funkce
     if ((instr->Id3 == NULL) || (instr->Id3->NodeType == function)) {
-        instr->Id3 = instrStackAddArg(argNum); // TODO Tady se musí vytvořit uzl argumentů a přidávat do něj
+        instr->Id3 = instrStackAddArg(targetId, funcCnt); // TODO Přidat do uzlu argumentů
         argNum++;
     }
 
