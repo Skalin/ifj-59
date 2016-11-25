@@ -316,36 +316,40 @@ void expression(char *targetId, tExpType expType) {
     stackDestroy(stack);
 }
 
-// vím že je to debilní název, vymyslím lepsí. Zatím ještě nevím co všechno to bude dělat
-void funcCallToNormalInstrConvertPlusControll() {
-    /* TODO 
-     * projte istack a změní CALL instrukce na aritmetické
-     * možná že může uzly s argumenty zrušit
-     * Volá se na konci syntaktické analýzy
-     * Zjistí zda se jedná o vestavěnou funkci
-     * kontroluje počet parametrů
-     * možná volá interpret
-     */
-    /*
+void completeInstr() {
+    /* Je zavolán na konci syntaktické analýzy
+     * Prochází iStack a mění instrukci insFunctionCall na posloupnost aritmetických instrukcí
+     * Zjistí, zda se jedná o vestavěnou funkci
+     * Kontroluje počet parametrů
+     * Na svém konci volá interpret (možná)  
+     */    
     
-    switch () {
-        case "ifj16.readInt":
-            expression();
-            break;
-        case "ifj16.readDouble":
-            break;
-        case "ifj16.readString":
-            break;
-        case "ifj16.length":
-            break;
-        case "ifj16.substr":
-            break;
-        case "ifj16.compare":
-            break;
-        case "ifj16.find":
-            break;
-        case "ifj16.sort":
-            break;
+    /*
+    while (není konec istacku) {
+        if (najde instrukci insFunctionCall) {
+        
+        
+            //Detekce vestavěných funkcí
+            switch () {
+                case "ifj16.readInt":
+                    expression();
+                    break;
+                case "ifj16.readDouble":
+                    break;
+                case "ifj16.readString":
+                    break;
+                case "ifj16.length":
+                    break;
+                case "ifj16.substr":
+                    break;
+                case "ifj16.compare":
+                    break;
+                case "ifj16.find":
+                    break;
+                case "ifj16.sort":
+                    break;
+            }
+        }
     }*/
 }
 
