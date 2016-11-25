@@ -15,14 +15,13 @@
 #include "error_handler.h"
 #include "typedef.h"
 #include "iStack.h"
-#include "stack.h"
-#include "expressions.h"
+
 
 instrStack * instrStackInit (instrStack *stc ) {
 
     //Inicializace polozek stacku
     stc = plusMalloc(sizeof(instrStack));
-    stc->dataInstr = plusMalloc(sizeof(void) * 30);
+    stc->dataInstr = plusMalloc(sizeof(instrStack) * 30);
     stc->alloc = 30;
     stc->count = 0;
 
@@ -57,8 +56,8 @@ Instr *instrItemInit (Instr *stc) {
 		throwException(99,0,0); //chyba alokace paměti
 	}
 
-	initString(&instrNew);
-	itemNew->type = instrNew;
+	//initString(&instrNew);
+	//itemNew->type = instrNew;
 	return itemNew;
 }
 
@@ -96,8 +95,6 @@ Instr * instrStackTop (instrStack *stc) {
         return NULL;
     }
 }
-
-
 
 void instrStackPop (instrStack *stc) {
 

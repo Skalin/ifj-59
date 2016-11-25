@@ -30,7 +30,7 @@ typedef struct {
 
 //Struktura zásobníku
 typedef struct {
-    tStackIt ** data;
+    tStackIt **data;
     int counter;
     int allocated;
 } tStack;
@@ -85,14 +85,14 @@ void stackPush ( tStack *stack, void *data);
  * @param zásobník
  * @return ukazatel na vrchol zasobniku
  */
-tStackIt *stackTop (tStack *stack);
+tStackIt * stackTop (tStack *stack);
 
 /*
  * Funkce popne data z vrcholu zásobníku
  * @param zásobník
  * @return
  */
-void stackPop ( tStack *stack );
+tStackIt * stackPop (tStack *stack );
 
 /*
  * Funkce navrátí hodnotu velikosti zásobníku
@@ -127,25 +127,11 @@ void itemDestroy (tStackIt *data);
 void exprShift (tStack *stc1, tStack *stc2);
 
 /*
- * Funkce vytvářející další prvek. Dochází ke čtení dalšího tokenu a uložení dat.
- * @param token
- * @return nový prvek zásobníku
- */	
-tStackIt *anotherToken (tToken *token);	
-
-/*
- * Zjištění zda je daný prvek terminálem
- * @param typ
- * @return typ prvku
- */
-int isTerm (int typeIt);
-
-/*
  * Zjištění zda je první prvek terminálem
  * @param zásobník
  * @return nejvyšší terminál na zásobníku
  */
-tToken *topTerm (tStack *stc);
+tokenType topTerm (tStack *stc);
 
 	
 

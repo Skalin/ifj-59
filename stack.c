@@ -14,8 +14,6 @@
 #include "error_handler.h"
 #include "garbage_collector.h"
 #include "stack.h"
-#include "expressions.h"
-
 
 
 tStack * stackInit ( tStack *stack ) {
@@ -66,11 +64,7 @@ tStackIt *itemInit () {
 
 void stackDestroy(tStack *stc) {
 
-	while (stackSize(stc) > 0) {
-		tStack *tmp = stc;
-		stc = tmp->data;
-		plusFree(tmp);
-	}
+	plusFree(stc);
 
 }
 
@@ -81,14 +75,12 @@ void itemDestroy (tStackIt *data) {
 
 }
 
-void exprShift (tStack *stc1, tStackTmp *stc2) {
+void exprShift (tStack *stc1, tStack *stc2) {
 
-	tToken * tmp;
-	tToken *item;
+	tStackIt * tmp;
 	tmp = stackPop(stc1);
-	item = stc1->data[stc1->counter].typeIt;
 
-	while (!stackEmpty(stc1) || item == EXPR || item == NONTERM) {
+	while (!stackEmpty(stc1) || stc1->data[stc1->counter]->typeIt == EXPR || stc1->data[stc1->counter]->typeIt == NONTERM) {
 		if (tmp != NULL) {
 			stackPush(stc2, tmp);  //pushnutí na druhý zásobník
 		} else {
@@ -97,47 +89,12 @@ void exprShift (tStack *stc1, tStackTmp *stc2) {
 	}
 }
 
-/*
-tStackIt *anotherToken (tToken *token) {
-	
-	tStackIt *tmp = NULL;
-	tmp = itemInit();
-	
-	if (tmp == NULL) {
-		throwException(99,0,0); //chyba alokace paměti	
-	}
-	
-	else if (tmp != NULL) {
-		
-		getToken(token);
-		copyString();
-		
-		tmp->typeIt = TERMINAL;
-		return tmp;
-	}		
-}*/
 
+tokenType topTerm (tStack *stc) {
 
-
-int isTerm (int typeIt) {
-
-	return (typeIt < EXPR);
-}
-
-tToken * topTerm (tStack *stc) {
-
-	tStackIt *item;
-	item = stc->data;
-
-	while (item->typeIt == EXPR || item->typeIt == NONTERM) {
-
-		if (isTerm(item->typeIt)) {
-			return item->typeIt;
-		}
-
-		item->typeIt = item->typeIt;
-		}
-	}
+	while ((stc->data[stc->counter])->typeIt == EXPR || (stc->data[stc->counter])->typeIt == NONTERM)
+		stc->counter--;
+		return (stc->data[stc->counter]->dataIt->type);
 }
 
 
@@ -175,10 +132,14 @@ tStackIt * stackTop (tStack *stack) {
 		return NULL;
 }
 
-void stackPop (tStack *stack) {
+tStackIt * stackPop (tStack *stack) {
+
+	tStackIt *tmp = NULL;
 
 	if (!stackEmpty(stack))
+		tmp = stack->data[stack->counter];
 		stack->counter--;
+		return tmp;
 }
 
 int stackSize (tStack *stack) {
