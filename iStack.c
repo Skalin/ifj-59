@@ -36,7 +36,7 @@ Instr *instrItemInit (Instr *stc) {
 	stc->Id3 = NULL;
 	
 	Instr * itemNew;
-	itemNew = plusMalloc(sizeof(tStackIt));
+	itemNew = plusMalloc(sizeof(Instr));
 
 	if (itemNew != NULL) {
 		return NULL;
@@ -47,7 +47,7 @@ Instr *instrItemInit (Instr *stc) {
     	}
 
 	InstrType * instrNew;
-	instrNew = plusMalloc(sizeof(tToken));
+	instrNew = plusMalloc(sizeof(InstrType));
 
 	if (instrNew != NULL) {
         	return NULL;
@@ -107,16 +107,6 @@ void instrStackPop (instrStack *stc) {
 
 int instrStackSize (instrStack *stc) {
 	return stc->count;
-}
-
-void instrStackDestroy (instrStack *stc) {
-
-    while (instrStackSize(stc) > 0) {
-		instrStack *tmp = stc;
-		stc = tmp->dataInstr;
-		plusFree(tmp);
-    }
-
 }
 
 void instrItemDestroy (Instr *data) {
