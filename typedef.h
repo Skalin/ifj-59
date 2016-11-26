@@ -21,7 +21,7 @@
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
-struct instrStack;
+typedef struct instrStack;
 
 typedef enum {  
 /*****TYPY TOKENŮ POUŽÍVANÉ VE VÝRAZECH********/
