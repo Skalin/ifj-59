@@ -15,15 +15,15 @@
 #include "garbage_collector.h"
 
 //FUNKCE
-struct instrStack* instrStackInit (struct instrStack* stc );
+instrStack* instrStackInit (instrStack* stc );
 Instr *instrItemInit (Instr* stc);
-int instrStackEmpty (const struct instrStack* stc);
-int instrStackFull (const struct instrStack* stc);
-void instrStackPush (struct instrStack* stc, Instr* data);
-Instr *instrStackTop (struct instrStack* stc);
-void instrStackPop (struct instrStack* stc);
-int instrStackSize (struct instrStack* stc);
-void instrStackDestroy (struct instrStack* stc);
+int instrStackEmpty (const instrStack* stc);
+int instrStackFull (const instrStack* stc);
+void instrStackPush (instrStack* stc, Instr* data);
+Instr *instrStackTop (instrStack* stc);
+void instrStackPop (instrStack* stc);
+int instrStackSize (instrStack* stc);
+void instrStackDestroy (instrStack* stc);
 void instrItemDestroy (Instr* data);
 
 
