@@ -194,8 +194,8 @@ typedef struct tableSymbolVariable {
 } tabSymbol, *tabSymbolPtr;
 
 
-typedef struct instrStack instrStack;
-typedef struct tBTSNode tBTSNode;
+typedef struct instrStack iStack;
+typedef struct tBTSNode BTSNode;
 
 //Struktura uzlu binarniho stromu
 struct tBTSNode {
