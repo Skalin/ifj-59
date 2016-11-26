@@ -19,6 +19,7 @@
 #include "expressions.h"
 #include "error_handler.h"
 #include "stack.h"
+#include "ial.h"
 #include "iStack.h"
 #include "lexical_analyzer.h"
 
