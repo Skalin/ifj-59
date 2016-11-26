@@ -45,6 +45,8 @@ struct tGlobal{
 	//promene pro parsing - kontrola zda program ma class Main a method run
 	bool hasMain;
 	bool hasRun;
+	
+	struct instrStack;
 };
 
 extern struct tGlobal global;
