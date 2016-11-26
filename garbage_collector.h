@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "typedef.h"
+#include "iStack.h"
 
 int GlobalRow = 0;
 int GlobalColumn = 0;
