@@ -38,6 +38,11 @@ void pParse(){
 
 	tToken * token;
 	token = getToken();
+	
+		// no main.run
+	if (token->type == t_eof){
+		throwException(3,0,0);
+	}
 
 	if(token->type != t_kw_class){
 		throwException(2,0,0);
