@@ -16,22 +16,23 @@ void printToken(tToken *token) {
 
 int main(int argc, char* argv[]) {
     initTree(global.mTree);
-    /*****TESTOVÁNÍ LEXU******************
-    //if(argc != 2)
-    //    printf("");
+    if(argc != 1) /* TODO ZMENIT PODMINKU */
+        printf("");
         //throwException(99, 0, 0);
-    //else {
+    else {
         globalInit();
         global.file = fopen("testing/fac_iter.ifj", "r");
         if ( global.file == NULL)
         //    throwException(99, 0, 0);
         global.fileName = argv[1];
 
+        global.fStack
+
         pParse();
         interpretMainCore();
-    //}
+    }
 
-
+    /*****TESTOVÁNÍ LEXU******************
     tToken *pToken = NULL;
 
     for (int j = 0; j <= 100; j++){
