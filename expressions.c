@@ -14,7 +14,6 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
-#include "typedef.h"
 #include "expressions.h"
 #include "error_handler.h"
 #include "stack.h"
