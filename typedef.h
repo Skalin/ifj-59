@@ -261,7 +261,7 @@ typedef struct Instr {
 	InstrType type;
 }Instr;
 
-typedef struct {
+struct {
 	Instr **dataInstr;
 	int count;
 	int alloc;
