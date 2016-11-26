@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "iStack.h"
+#include "fStack.h"
 
 int GlobalRow = 0;
 int GlobalColumn = 0;
@@ -47,7 +47,7 @@ struct tGlobal{
 	bool hasMain;
 	bool hasRun;
 	
-	struct instrStack* Stack;
+	struct fStack* fStack;
 	struct mainTree *mTree;
 };
 
