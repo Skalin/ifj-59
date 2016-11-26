@@ -12,7 +12,7 @@
 
 #ifndef ISTACK_H
 #define ISTACK_H
-#include "typedef.h"
+#include "garbage_collector.h"
 
 //FUNKCE
 instrStack *instrStackInit (instrStack *stc );
