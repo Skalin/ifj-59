@@ -15,7 +15,7 @@
 #include "garbage_collector.h"
 
 //FUNKCE
-instrStack* instrStackInit (instrStack* stc );
+struct instrStack* instrStackInit (struct instrStack* stc );
 Instr *instrItemInit (Instr* stc);
 int instrStackEmpty (const instrStack* stc);
 int instrStackFull (const instrStack* stc);
