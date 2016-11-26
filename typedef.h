@@ -23,65 +23,65 @@
 
 typedef enum {  
 /*****TYPY TOKENŮ POUŽÍVANÉ VE VÝRAZECH********/
-    // Závorky
-    t_bracket_l,        // (
-    t_bracket_r,        // )
+	// Závorky
+	t_bracket_l,        // (
+	t_bracket_r,        // )
 
-    // Operátory
-    t_div,              // /
-    t_multi,            // *    
-    t_plus,             // +
-    t_minus,            // - 
-    
-    // Porovnávací operátory
-    t_comparasion,      // ==
-    t_comparasion_ne,   // !=
-    t_greater,          // >
-    t_less,             // <
-    t_less_eq,          // <=
-    t_greater_eq,       // >=
+	// Operátory
+	t_div,              // /
+	t_multi,            // *    
+	t_plus,             // +
+	t_minus,            // - 
 
-    // Negace
-    t_excl_mark,        // !
+	// Porovnávací operátory
+	t_comparasion,      // ==
+	t_comparasion_ne,   // !=
+	t_greater,          // >
+	t_less,             // <
+	t_less_eq,          // <=
+	t_greater_eq,       // >=
 
-    // Oddělovače
-    t_comma,            // ,
-    t_semicolon,        // ;  
-    
-    // Identifikátory
-    t_simple_ident,     // 15
-    t_complete_ident,   // 16    
-    
-    // Datové typy
-    t_int,              // 17
-    t_double,           // 18
-    t_double_e,         // 19
-    t_string,           // 20
-/**********************************************/
+	// Negace
+	t_excl_mark,        // !
+
+	// Oddělovače
+	t_comma,            // ,
+	t_semicolon,        // ;  
+
+	// Identifikátory
+	t_simple_ident,     // 15
+	t_complete_ident,   // 16    
+
+	// Datové typy
+	t_int,              // 17
+	t_double,           // 18
+	t_double_e,         // 19
+	t_string,           // 20
+	/**********************************************/
 
 	//Error status
 	t_error, 
-    
-    // Operators
-    t_assignment, 
-    
-    //Brackets
-    t_brace_l, // {
-    t_brace_r, // }
-    t_sq_bracket_l,     // [
-    t_sq_bracket_r,     // ],  
 
-    // Comments
+	// Operators
+	t_assignment, 
+
+	//Brackets
+	t_brace_l, // {
+	t_brace_r, // }
+	t_sq_bracket_l,     // [
+	t_sq_bracket_r,     // ],  
+
+	// Comments
 	t_simple_comment, 
 	t_block_comment_start,
 	t_block_comment_end,   
 
 	// Other
 	t_eof,
-    
-    // Keywords
-    t_kw_class,
-    t_kw_static,
+
+	// Keywords
+	t_kw_class,
+	t_kw_static,
 	t_kw_boolean,
 	t_kw_double,
 	t_kw_int,
@@ -98,14 +98,14 @@ typedef enum {
 	t_kw_true,
 	t_kw_false,
 
-     // Integrated functions for strings
+	// Integrated functions for strings
 	t_find,
 	t_sort,
 	t_length,
 	t_substring,
 	t_compare,
 
-     // Integrated functions for input and output
+	// Integrated functions for input and output
 	t_read_int,
 	t_read_double,
 	t_read_string,
@@ -247,7 +247,7 @@ typedef enum {
 	insGreater, // Je vetsi
 	insGreaterOrEqual, // Je vetsi nebo rovno
 	insAssignment,
-    insFunctionCall
+	insFunctionCall
 }InstrType;
 
 typedef struct Instr {

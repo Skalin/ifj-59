@@ -50,7 +50,7 @@ void * plusRealloc(void * destPtr,unsigned int length) {
             continue;
         }
         // Pokud je prvek nalezen, reallocuj paměť a vrať pointer na novou paměť
-        tmp->dataPointer = realloc(tmp->dataPointer, length);
+        tmp->dataPointer = (void *)realloc(tmp->dataPointer, length);
         return tmp->dataPointer;
     }
     // Pokud prvek v listu není, vrať NULL
