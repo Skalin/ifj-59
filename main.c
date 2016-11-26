@@ -3,6 +3,7 @@
 #include "error_handler.h"
 #include "parser.h"
 #include "interpret.h"
+#include "ial.h"
 #include <stdbool.h>
 
 
@@ -15,7 +16,7 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
-    initTree(global.mTree);
+    //initTree(global.mTree);
     if(argc != 1) /* TODO ZMENIT PODMINKU */
         printf("");
         //throwException(99, 0, 0);
@@ -26,10 +27,11 @@ int main(int argc, char* argv[]) {
         //    throwException(99, 0, 0);
         global.fileName = argv[1];
 
-        global.fStack
+        //struct instrStack dummyInstrStack;
+        //global.iStack = instrStackInit(&dummyInstrStack);
 
         pParse();
-        interpretMainCore();
+        //interpretMainCore(global.iStack);
     }
 
     /*****TESTOVÁNÍ LEXU******************

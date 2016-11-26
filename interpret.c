@@ -334,15 +334,14 @@ void compareInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, InstrType oper
         throwException(8,0,0);
 }
 
-void interpretMainCore() {
+void interpretMainCore(instrStack *interpretStack) {
     // Init stacku TODO pouze provizorni, prevest do global promenne
-    instrStack *instrStack;
     // Pointer na instrukci
     struct Instr *instruction;
-    instruction = instrStackTop(instrStack);
+    instruction = instrStackTop(interpretStack);
 
     while(instruction != NULL) {
-        instruction = instrStackTop(instrStack);
+        instruction = instrStackTop(interpretStack);
         // Switch pro jednotlive typy instrukci
         switch (instruction->type) {
             // BUILT-IN FUNCTIONS

@@ -44,5 +44,5 @@ void compareInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, InstrType oper
 /*
  * Hlavni jadro interpretu, interpret samotny
  */
-void interpretMainCore();
+void interpretMainCore(instrStack *interpretStack);
 #endif //IFJ_59_INTERPRET_H

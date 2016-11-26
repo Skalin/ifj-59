@@ -47,7 +47,7 @@ struct tGlobal{
 	bool hasMain;
 	bool hasRun;
 	
-	struct instrStack* iStack;
+	struct instrStack *iStack;
 	struct mainTree *mTree;
 };
 
