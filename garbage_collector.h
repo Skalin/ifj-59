@@ -47,7 +47,7 @@ struct tGlobal{
 	bool hasMain;
 	bool hasRun;
 	
-	struct instrStack;
+	struct instrStack* Stack;
 };
 
 extern struct tGlobal global;
