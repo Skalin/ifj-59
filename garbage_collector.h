@@ -17,7 +17,6 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "typedef.h"
 
 int GlobalRow = 0;
 int GlobalColumn = 0;
