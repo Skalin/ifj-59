@@ -195,9 +195,10 @@ typedef struct tableSymbolVariable {
 
 
 typedef struct instrStack instrStack;
+typedef struct tBTSNode tBTSNode;
 
 //Struktura uzlu binarniho stromu
-typedef struct tBTSNode {
+struct tBTSNode {
 	tableName key; // Klíč (název proměnné, třídy, funkce)
 	NodeType nodeType; // Typ uzlu (proměnná, funkce, třída, argumenty)
 
