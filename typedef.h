@@ -18,8 +18,6 @@
 #ifndef TYPEDEF
 #define TYPEDEF
 
-#include "garbage_collector.h"
-
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
@@ -124,7 +122,7 @@ typedef char* String;
  */
 
 
-typedef struct {
+typedef struct{
 	tokenType type;  // Typ tokenu
 	String attribute;
 	unsigned int length; // Délka, počet charů
@@ -262,7 +260,7 @@ typedef struct Instr {
 }Instr;
 
 struct {
-	Instr *(*dataInstr);
+	Instr *dataInstr;
 	int count;
 	int alloc;
 }instrStack;
