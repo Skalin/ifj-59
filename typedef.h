@@ -213,7 +213,7 @@ typedef struct tBTSNode {
 	struct tBTSNode *lptr; // Pointer na levý podstrom
 	struct tBTSNode *rptr; // Pointer na pravý podstrom
 	
-	struct functionStack *Stack;
+	struct functionStack *fStack;
 } BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
