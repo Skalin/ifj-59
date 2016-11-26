@@ -257,11 +257,5 @@ typedef struct Instr {
 	InstrType type;
 }Instr;
 
-typedef struct {
-	Instr **dataInstr;
-	int count;
-	int alloc;
-}instrStack;
-
 
 #endif
