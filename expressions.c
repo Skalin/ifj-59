@@ -107,7 +107,8 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
 void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
     Instr *instr = instrItemInit(instr);
-	initTree(mainTree mTree);
+	mainTree *mTree;
+	initTree(&mTree);
     BTSNode *start = mTree->actFunction;
     
     if (start != NULL) {
