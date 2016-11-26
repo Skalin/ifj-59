@@ -194,7 +194,7 @@ typedef struct tableSymbolVariable {
 } tabSymbol, *tabSymbolPtr;
 
 
-struct instrStack;
+typedef struct instrStack instrStack;
 
 //Struktura uzlu binarniho stromu
 typedef struct tBTSNode {
@@ -214,7 +214,7 @@ typedef struct tBTSNode {
 	struct tBTSNode *lptr; // Pointer na levý podstrom
 	struct tBTSNode *rptr; // Pointer na pravý podstrom
 	
-	struct instrStack *Stack;
+	instrStack *Stack;
 } BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
