@@ -18,7 +18,7 @@
 #ifndef TYPEDEF
 #define TYPEDEF
 
-#include "fStack.h"
+#include "iStack.h"
 
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
@@ -213,7 +213,7 @@ typedef struct tBTSNode {
 	struct tBTSNode *lptr; // Pointer na levý podstrom
 	struct tBTSNode *rptr; // Pointer na pravý podstrom
 	
-	struct functionStack *fStack;
+	struct instrStack *iStack;
 } BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
