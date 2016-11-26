@@ -79,7 +79,7 @@ tToken * updateToken(tToken * token, char *string) {
     
     
     if (token->allocated < (stringLength + token->length) ) {     // pokud je alokováno méně než je potřeba
-        token = plusRealloc(token, sizeof(tToken) + sizeof(char)*(stringLength+token->length) );   //TODO
+        token = plusRealloc(token, sizeof(tToken) + sizeof(char)*(stringLength) );   //TODO
         token->allocated = stringLength + token->length;      // update hodnoty allocated v tokenu
     }
     
