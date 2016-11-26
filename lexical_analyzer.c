@@ -400,7 +400,7 @@ tToken * getToken(){
 					return token;
 				} else if (c == EOF) {
 					throwException(1, GlobalRow, GlobalColumn);
-				} else if (c > 31) {
+				} else if (c <= 31) {
 					throwException(1, GlobalRow, GlobalColumn);					
 				} else { // "xxxxxx
 					buffer[i] = c;
