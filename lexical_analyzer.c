@@ -286,12 +286,9 @@ tToken * getToken(){
 				break;
 
 			case LA_COMPLETE_IDENT:
-				if (buffer[i] == 46) {
+				if (buffer[i-1] == 46) {
 					if (((!isalpha(c)) && (c != 95) && (c != 36)) || isdigit(c)) {
 						throwException(1, GlobalRow, GlobalColumn);
-					} else {
-						buffer[i] = c;
-						i++;
 					}
 				}
 				if (((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c == 95) || (c == 36))) { // a..z,A..Z,_,$
