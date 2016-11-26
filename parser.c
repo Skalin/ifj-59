@@ -26,6 +26,8 @@ char *tempData;
 
 // nabyva TRUE pokud parsujeme tridu main (metoda run musi byt v ni)
 int isInMain = FALSE;
+//nabyva true pri parsovnani metody run
+int isInRun = FALSE;
 
 // TODO TODO TODO naplneni help structure vsude kde je potreba
 // kontrola semanticke chyby 8, natavit na 1 pri inicializaci rpomene
@@ -139,6 +141,7 @@ void pClassBody(){
 				if (strcmp(tempData,"run") == 0) { // funkce 'run'
 					if (isInMain) {               // a jsme v class Main
 						global.hasRun = TRUE;
+						isInRun = TRUE;
 					} else {
 						// semanticka chyba, nemuze byt funkce run jinde nez v class Main
 						// tak prej muze, i kdyz se mi to nezda
@@ -213,6 +216,8 @@ void pFunction(){
 	pParams();  // parse parametru
 
 	pCommands(); // parse tela funkce
+	//vystupujeme z funkce
+	isInRun = FALSE;
 
 }
 void pVar(tToken *token){
@@ -266,6 +271,11 @@ void pParams(){
 
   //
   if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
+	  
+    if (isInRun == TRUE){
+	// run nemuze mit parametry    
+    	throwException(6,0,0);
+    }	  
     
     tempType = token->type;
     tempStatic = 0;
