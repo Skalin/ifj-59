@@ -85,10 +85,8 @@ void pClass(){
 	// zkontrolovat jestli identifikator tridy uz neexistuje
 
 	// vytvorit tridu v tabulce symbolu
-
-
-
 	
+	//createNewNode(token->data, class, NULL, int status);	
 
 	token = getToken();    
 
@@ -209,6 +207,8 @@ void pFunction(){
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	// ulozit do tab. symbolu
+	
+	//createNewNode(tempData, function, tempType, int status);
 
 	pParams();  // parse parametru
 
@@ -231,6 +231,8 @@ void pVar(tToken *token){
 
   //musime vytvorit uzel
   // mozna kontrolovat jestli uz neexistuje
+	
+  //createNewNode(tempData, var, tempType, int status);
 
   if (token->type == t_semicolon) { // neprirazujem zadnou hodnotu, konec funkce
     return;
@@ -277,6 +279,7 @@ void pParams(){
     
 
     // zpracovat parametr TODO
+    //addArgument(tempData, tempType);		  
 
     pParamsNext(); // zpracovani dalsi parametru
 
@@ -321,6 +324,7 @@ void pParamsNext(){
 			
 
 			// zpracovat parametr TODO
+			//addArgument(tempData, tempType);
 
 			pParamsNext(); // zpracovani dalsi parametru
 		} else {
