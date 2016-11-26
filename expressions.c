@@ -14,6 +14,7 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include "typedef.h"
 #include "expressions.h"
 #include "error_handler.h"
 #include "stack.h"
@@ -102,7 +103,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 }
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
-void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
+void reduceExp(char *targetId, tStackIt *handle[3], struct instrStack *iStack) {
     Instr *instr = instrItemInit(instr);
     BTSNode *start = mTree->actFunction;
     
