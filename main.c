@@ -15,6 +15,7 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
+    initTree(global.mTree);
     /*****TESTOVÁNÍ LEXU******************
     //if(argc != 2)
     //    printf("");
