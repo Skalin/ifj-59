@@ -29,7 +29,7 @@
 
 char precTable[16][16] = {
   //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
-    {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'}, // (
+  /*  {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'}, // (
     {'F','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','F'}, // )
     {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'}, // /
     {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','<'}, // *
@@ -44,11 +44,11 @@ char precTable[16][16] = {
     {'=','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'}, // !
     {'<','=',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ','=','F','<'}, // ,
     {'<','F',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ',' ','F','<'}, // ;
-    {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'}  // ID
+    {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'}  // ID*/
 };
 
 int argNum = 0;
-int funcCnt = 0; // Bude muset být globální
+// TODO global.funcCnt = 0; 
 
 bool isIdent(tToken *token) {
     if ((token->type >= t_simple_ident) && (token->type <= t_print))
@@ -107,10 +107,10 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
 void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
     Instr *instr = instrItemInit(instr);
-    BTSNode *start = global.mTree->actFunction;
+    BTSNode *start ; // TODO = &global.mTree->actFunction;
     
     if (start != NULL) {
-        start = mTree->actClass;
+       // TODO start = global.mTree->actClass;
     }
 
     // Jedná se o argument ne/definované funkce
@@ -186,11 +186,11 @@ void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
 void expression(char *targetId, tExpType expType) {
     /* Pokud jsme ve funkci run, ukládáme na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
-    instrStack *iStack = globalIStack; // TODO za globalIStack doplnit jeho skutečný název 
-    if (mTree->actFunction->Key != "run") {  // TODO ošetřit situaci kdy je actFunction=NULL
-        iStack = mTree->actFunction->iStack; // Zatím neexistuje ale bude
+    instrStack *iStack = global.iStack; // TODO za globalIStack doplnit jeho skutečný název 
+  /* TODO  if (global.mTree->actFunction->Key != "run") {  // TODO ošetřit situaci kdy je actFunction=NULL
+        global.iStack = global.mTree->actFunction->iStack; // Zatím neexistuje ale bude
     }
-    
+    */
     // Inicializujeme zásobník a vložíme na něj znak ';'
     tStack *stack = NULL;
     stack = stackInit(stack);
@@ -249,8 +249,8 @@ void expression(char *targetId, tExpType expType) {
             instr->type = insFunctionCall;
             
             // Vytvoří uzel, nahraje do něj všechny argumenty a pokračuje dál ve zpracovávání výrazu
-            instr->Id2 = createNewNode(funcCnt); 
-            expression(funcCnt, expArg);
+            //instr->Id2 = createNewNode(funcCnt); 
+            //expression(funcCnt, expArg);
             instrStackPush(iStack,instr);
             // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
         }
@@ -262,8 +262,8 @@ void expression(char *targetId, tExpType expType) {
             
             // Vytvoří uzel, nahraje do něj všechny argumenty
             // vytvořit uzel typu params instr->Id2 = createNewNode(funcCnt); 
-            expression(funcCnt, expArg);
-            instrStackPush(iStack,instr);
+            //expression(funcCnt, expArg);
+            //instrStackPush(iStack,instr);
             
             // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
             // TODO tady budu kontrolovat přítomnost středníku já ne milan

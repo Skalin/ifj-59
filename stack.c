@@ -90,11 +90,11 @@ void exprShift (tStack *stc1, tStack *stc2) {
 }
 
 
-tokenType topTerm (tStack *stc) {
+tToken *topTerm (tStack *stc) {
 
 	while ((stc->data[stc->counter])->typeIt == EXPR || (stc->data[stc->counter])->typeIt == NONTERM)
 		stc->counter--;
-		return (stc->data[stc->counter]->dataIt->type);
+		return (stc->data[stc->counter]->dataIt);
 }
 
 

@@ -46,6 +46,9 @@ struct tGlobal{
 	//promene pro parsing - kontrola zda program ma class Main a method run
 	bool hasMain;
 	bool hasRun;
+    
+    // Proměnné pro expressions
+    int funcCnt;
 	
 	struct instrStack *iStack;
 	struct mainTree *mTree;

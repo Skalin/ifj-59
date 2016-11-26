@@ -25,7 +25,7 @@ Instr *instrStackTop (instrStack* stc);
 void instrStackPop (instrStack* stc);
 int instrStackSize (instrStack* stc);
 void instrStackDestroy (instrStack* stc);
-void instrItemDestroy (instrStack *data)
+void instrItemDestroy (instrStack *data);
 
 
 

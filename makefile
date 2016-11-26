@@ -13,7 +13,7 @@
 #
 
 CC=gcc
-CFLAGS=-std=c99 -Wall -Werror -Wextra -pedantic -g -lm
+CFLAGS=-std=c99 -Wall  -Wextra -pedantic -g -lm
 OBJFILES=$(patsubst %.c, %.c.o, $(shell ls *.c))
 TESTFILES=$(patsubst tests/%.pas, tests/%, $(shell ls tests/*.pas));
 SHELL=bash

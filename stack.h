@@ -131,7 +131,7 @@ void exprShift (tStack *stc1, tStack *stc2);
  * @param zásobník
  * @return nejvyšší terminál na zásobníku
  */
-tokenType topTerm (tStack *stc);
+tToken *topTerm (tStack *stc);
 
 	
 
