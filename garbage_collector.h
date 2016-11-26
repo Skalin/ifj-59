@@ -48,6 +48,7 @@ struct tGlobal{
 	bool hasRun;
 	
 	struct instrStack* Stack;
+	struct mainTree *mTree;
 };
 
 extern struct tGlobal global;
