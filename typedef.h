@@ -21,7 +21,7 @@
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
-struct instrStack;
+struct instrStack* Stack;
 
 typedef enum {  
 /*****TYPY TOKENŮ POUŽÍVANÉ VE VÝRAZECH********/
@@ -214,7 +214,7 @@ typedef struct tBTSNode {
 	struct tBTSNode *lptr; // Pointer na levý podstrom
 	struct tBTSNode *rptr; // Pointer na pravý podstrom
 	
-	struct instrStack;
+	struct instrStack* Stack;
 } BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
