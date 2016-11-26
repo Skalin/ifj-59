@@ -18,6 +18,8 @@
 #ifndef TYPEDEF
 #define TYPEDEF
 
+#include "fStack.h"
+
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
@@ -193,12 +195,8 @@ typedef struct tableSymbolVariable {
 	union varValue value; // U promenne- hodnota promenne | U trid a funkci tuto promennou nepouzivame NULL
 } tabSymbol, *tabSymbolPtr;
 
-
-typedef struct instrStack iStack;
-typedef struct tBTSNode BTSNode;
-
 //Struktura uzlu binarniho stromu
-struct tBTSNode {
+typedef struct tBTSNode {
 	tableName key; // Klíč (název proměnné, třídy, funkce)
 	NodeType nodeType; // Typ uzlu (proměnná, funkce, třída, argumenty)
 
@@ -215,7 +213,7 @@ struct tBTSNode {
 	struct tBTSNode *lptr; // Pointer na levý podstrom
 	struct tBTSNode *rptr; // Pointer na pravý podstrom
 	
-	instrStack *Stack;
+	struct functionStack *Stack;
 } BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
@@ -262,7 +260,7 @@ typedef struct Instr {
 	InstrType type;
 }Instr;
 
-struct {
+typedef struct {
 	Instr **dataInstr;
 	int count;
 	int alloc;
