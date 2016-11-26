@@ -108,7 +108,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
     Instr *instr = instrItemInit(instr);
 	mainTree *mTree;
-	initTree(&mTree);
+	initTree(mTree);
     BTSNode *start = mTree->actFunction;
     
     if (start != NULL) {
