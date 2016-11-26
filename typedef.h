@@ -18,10 +18,10 @@
 #ifndef TYPEDEF
 #define TYPEDEF
 
+#include "garbage_collector.h"
+
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
-
-struct instrStack* Stack;
 
 typedef enum {  
 /*****TYPY TOKENŮ POUŽÍVANÉ VE VÝRAZECH********/
@@ -262,7 +262,7 @@ typedef struct Instr {
 }Instr;
 
 struct {
-	Instr **dataInstr;
+	Instr *(*dataInstr);
 	int count;
 	int alloc;
 }instrStack;
