@@ -12,7 +12,7 @@
 
 #ifndef ISTACK_H
 #define ISTACK_H
-#include "garbage_collector.h"
+#include "typedef.h"
 
 
 typedef enum {
