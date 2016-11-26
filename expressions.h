@@ -14,7 +14,7 @@
 #ifndef EXPRESSIONS
 #define EXPRESSIONS
 
-#include "typedef.h"
+#include "garbage_collector.h"
 
 
 /*
