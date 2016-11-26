@@ -21,6 +21,8 @@
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
+struct instrStack;
+
 typedef enum {  
 /*****TYPY TOKENŮ POUŽÍVANÉ VE VÝRAZECH********/
     // Závorky
@@ -123,10 +125,10 @@ typedef char* String;
 
 
 typedef struct {
-    tokenType type;  // Typ tokenu
-    String attribute;
-    unsigned int length; // Délka, počet charů
-    unsigned int allocated; // Status, jestli byl alokován
+	tokenType type;  // Typ tokenu
+	String attribute;
+	unsigned int length; // Délka, počet charů
+	unsigned int allocated; // Status, jestli byl alokován
 	char data[]; // Data, která obshahuje
 } tToken;
 
@@ -135,10 +137,10 @@ typedef struct {
  * Typy výrazů 
  */
 typedef enum {
-    expCond,
-    expArg,
-    expAssign,
-    expVoid
+	expCond,
+	expArg,
+	expAssign,
+	expVoid
 } tExpType;
 
 
@@ -211,6 +213,8 @@ typedef struct tBTSNode {
 
 	struct tBTSNode *lptr; // Pointer na levý podstrom
 	struct tBTSNode *rptr; // Pointer na pravý podstrom
+	
+	struct instrStack;
 } BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
