@@ -49,7 +49,7 @@ struct tGlobal{
     int funcCnt;
     
 	struct instrStack *iStack;
-	struct mainTree *mTree;
+	mainTree *mTree;
 };
 
 extern struct tGlobal global;
