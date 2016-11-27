@@ -70,13 +70,13 @@ tToken * initToken() {
 }
 
 tToken * updateToken(tToken * token, char *string) {
-   // Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
-    // Pomoci strncat() pridat novy retezec nakonec
-    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
-    // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
-
+	// Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
+	// Pomoci strncat() pridat novy retezec nakonec
+	// POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
+	// Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+/*
     int strLength = strlen(string);
-    
+
     
     if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokováno méně než je potřeba
 
@@ -89,6 +89,21 @@ tToken * updateToken(tToken * token, char *string) {
     token->length = token->length + strLength;   // update délky tokenu
 
     return token;
+    */
+
+
+	unsigned int len = strlen(string);
+
+	unsigned int total_len = len + (token->length) + 1;
+
+	if (total_len > token->allocated) {
+		token->allocated = total_len;
+		token = plusRealloc(token, sizeof(tToken) + (sizeof(char) * (token->allocated)));
+		if (token == NULL) {
+			throwException(1, GlobalRow, GlobalColumn);
+			return 0;
+		}
+	}
 }
 
 void tokenReturnToken(tToken * token) {
