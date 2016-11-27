@@ -19,8 +19,7 @@
 #include <stdbool.h>
 #include "typedef.h"
 
-int GlobalRow = 0;
-int GlobalColumn = 0;
+
 
 struct GarbageList
 {
@@ -34,6 +33,8 @@ struct GarbageList
  */
 
 struct tGlobal{
+    int GlobalRow;
+    int GlobalColumn;
 
 	// Listový seznam obsahující alokované položky
 	struct GarbageList* wholeList;
@@ -49,7 +50,7 @@ struct tGlobal{
     
     // Proměnné pro expressions
     int funcCnt;
-	
+    
 	struct instrStack *iStack;
 	struct mainTree *mTree;
 };
