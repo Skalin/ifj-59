@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
 	} else {
 		globalInit();
 		global.file = fopen(global.fileName = argv[1], "r");
-		if (&global.file == NULL) {
+		if (global.file == NULL) {
 		    throwException(99, 0, 0);
 		}
 		mainTree mTree;
