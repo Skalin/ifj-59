@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 		throwException(99, 0, 0);
 	} else {
 		globalInit();
-		global.file = fopen("testing/test1.ifj", "r");/*global.fileName = argv[1]*/
+		global.file = fopen(global.fileName = argv[1], "r");/*global.fileName = argv[1]*/
 		if (global.file == NULL) {
 		    throwException(99, 0, 0);
 		}
