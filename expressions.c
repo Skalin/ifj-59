@@ -27,9 +27,10 @@
 #define STR_SUCCESS 1
 #define STR_ALLOCATION_SIZE 8  // Udává, kolik bude alokováno na začátku paměti. Pokud načítáme po jednom znaku, dojde k alokaci na násobky tohoto čísla
 
+// TODO doplnit chybějící stavy a možná odstranit čárku
 char precTable[16][16] = {
   //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
-  /*  {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'}, // (
+    {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'}, // (
     {'F','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','F'}, // )
     {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'}, // /
     {'<','>','>','>','>','>','>','>','>','>','>','>','>',' ','>','<'}, // *
@@ -44,11 +45,10 @@ char precTable[16][16] = {
     {'=','>','>','>','>','>','>','>','>','>','>','>','>',' ',' ','<'}, // !
     {'<','=',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ','=','F','<'}, // ,
     {'<','F',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ',' ','F','<'}, // ;
-    {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'}  // ID*/
+    {'F','>','>','>','>','>','>','>','>','>','>','>','F',' ','>','F'}  // ID
 };
 
 int argNum = 0;
-// TODO global.funcCnt = 0; 
 
 bool isIdent(tToken *token) {
     if ((token->type >= t_simple_ident) && (token->type <= t_print))
@@ -105,9 +105,11 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 }
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
-void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
-    Instr *instr = instrItemInit(instr);
-    BTSNode *start ; // TODO = &global.mTree->actFunction;
+void reduceExp(BTSNode *targetId, tStackIt *handle[3], instrStack *iStack) {
+    (void)targetId; // DELETE - je to tu jen kvůli warningu
+    Instr *instr = NULL;
+    instr = instrItemInit(instr);
+    BTSNode *start = NULL; // TODO global.mTree->actFunction;
     
     if (start != NULL) {
        // TODO start = global.mTree->actClass;
@@ -122,8 +124,8 @@ void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
     // Pokud se jedná se o aritmetickou nebo porovnávací instrukci
     if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
 
-        instr->Id1 = searchForNode(handle[2],var,start);
-        instr->Id2 = searchForNode(handle[0],var,start);
+        instr->Id1 = searchForNode(handle[2]->dataIt->data,var,start);
+        instr->Id2 = searchForNode(handle[0]->dataIt->data,var,start);
 
         switch (handle[1]->dataIt->type) {
             case t_plus: // E -> E+E
@@ -175,7 +177,7 @@ void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
     // Pokud se jedná o jednoduché přiřazení
     else if (handle[0]->typeIt == EXPR) {
         instr->type = insAssignment;
-        instr->Id1 = searchForNode(handle[0],var,start);
+        instr->Id1 = searchForNode(handle[0]->dataIt->data,var,start);
         instrStackPush(iStack,instr);
     }
     else {
@@ -183,12 +185,12 @@ void reduceExp(char *targetId, tStackIt *handle[3], instrStack *iStack) {
     }
 }
 
-void expression(char *targetId, tExpType expType) {
-    /* Pokud jsme ve funkci run, ukládáme na globální instrukční stack. 
+void expression(BTSNode *targetId, tExpType expType) {
+    /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
-    instrStack *iStack = global.iStack; // TODO za globalIStack doplnit jeho skutečný název 
-  /* TODO  if (global.mTree->actFunction->Key != "run") {  // TODO ošetřit situaci kdy je actFunction=NULL
-        global.iStack = global.mTree->actFunction->iStack; // Zatím neexistuje ale bude
+    instrStack *iStack = global.iStack;
+    /* TODO  if ((global.mTree->actFunction != NULL) || (global.mTree->actFunction->Key != "run")) {
+        iStack = global.mTree->actFunction->iStack; // Zatím neexistuje ale bude
     }
     */
     // Inicializujeme zásobník a vložíme na něj znak ';'
@@ -204,7 +206,7 @@ void expression(char *targetId, tExpType expType) {
     stackPush(stack,item);
 
     token = getToken();
-    Instr *instr;
+    Instr *instr = NULL;
     instr = instrItemInit(instr);
     
     
@@ -244,15 +246,15 @@ void expression(char *targetId, tExpType expType) {
              *   - id2 je pole argumentů
              *   - type je insFunctionCall
              */
-            instr->Id3 = targetId;
-            instr->Id1 = topTerm(stack)->data;
+            instr->Id3 = targetId; 
+            instr->Id1 = topTerm(stack)->data; // TODO co když uzel funkce ještě neexistuje?
             instr->type = insFunctionCall;
             
             // Vytvoří uzel, nahraje do něj všechny argumenty a pokračuje dál ve zpracovávání výrazu
             //instr->Id2 = createNewNode(funcCnt); 
             //expression(funcCnt, expArg);
             instrStackPush(iStack,instr);
-            // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
+            // TODO zrušit uzel pokud je prázdný a do id2 dát NULL. funcCnt by se v tomho případě asi nemusela inkrementovat
         }
         // Jedná se o void funkci
         else if (expType == expVoid) {
@@ -260,13 +262,11 @@ void expression(char *targetId, tExpType expType) {
             instr->Id1 = targetId;
             instr->type = insFunctionCall;
             
-            // Vytvoří uzel, nahraje do něj všechny argumenty
-            // vytvořit uzel typu params instr->Id2 = createNewNode(funcCnt); 
+            // Vytvoří uzel, nahraje do něj všechny argumenty ale už nepokračuje dál ve zpracovávání výrazu
+            //instr->Id2 = createNewNode(funcCnt); 
             //expression(funcCnt, expArg);
-            //instrStackPush(iStack,instr);
-            
-            // TODO zrušit uzel pokud je prázdný, do id2 dát NULL a zvýšit funcCnt
-            // TODO tady budu kontrolovat přítomnost středníku já ne milan
+            instrStackPush(iStack,instr);
+            // TODO zrušit uzel pokud je prázdný a do id2 dát NULL. funcCnt by se v tomho případě asi nemusela inkrementovat
             break;
         }
         // Syntaktická chyba
@@ -319,11 +319,11 @@ void expression(char *targetId, tExpType expType) {
 }
 
 void completeInstr() {
-    /* Je zavolán na konci syntaktické analýzy
+    /* Funkce je zavolána na konci syntaktické analýzy
      * Prochází iStack a mění instrukci insFunctionCall na posloupnost aritmetických instrukcí
      * Zjistí, zda se jedná o vestavěnou funkci
-     * Kontroluje počet parametrů
-     * Na svém konci volá interpret (možná)  
+     * Pokud ne zkontroluje počet parametrů
+     * Na svém konci volá interpret (asi)  
      */    
     
     /*
@@ -351,6 +351,7 @@ void completeInstr() {
                 case "ifj16.sort":
                     break;
             }
+            
         }
     }*/
 }
