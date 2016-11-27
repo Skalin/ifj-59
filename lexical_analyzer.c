@@ -75,14 +75,13 @@ tToken * updateToken(tToken * token, char *string) {
 	// POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
 	// Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
-    int strLength = strlen(string);
+	unsigned int stringLength = strlen(string);
 
-    
-    if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokováno méně než je potřeba
 
-		token->allocated = strLength + token->length + 1;      // update hodnoty allocated v tokenu
-		token = plusRealloc(token, sizeof(tToken) + sizeof(char)*token->allocated);   //TODO
-    }
+	if (token->allocated < (stringLength + token->length) ) {     // pokud je alokováno méně než je potřeba
+		token = plusRealloc(token, sizeof(tToken) + sizeof(char)*(stringLength+token->length));  //TODO
+		token->allocated = stringLength + token->length;    length;      // update hodnoty allocated v tokenu
+	}
 
 
     strncat(token->data, string, strLength);      // připojení stringu na konec tokenu

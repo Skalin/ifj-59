@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 		throwException(99, 0, 0);
 	} else {
 		globalInit();
-		global.file = fopen(global.fileName = argv[1], "r");/*global.fileName = argv[1]*/
+		global.file = fopen(global.fileName = argv[1], "r");
 		if (global.file == NULL) {
 		    throwException(99, 0, 0);
 		}
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 	}
 
 
-		/*****TESTOVÁNÍ LEXU******************
+		/*****TESTOVÁNÍ LEXU*******************
 		tToken *pToken = NULL;
 
 		for (int j = 0; j <= 100; j++){
@@ -39,8 +39,8 @@ int main(int argc, char* argv[]) {
 		pToken = getToken();
 		printToken(pToken);
 		}
-		*************************************/
-		/*****TESTOVÁNÍ GARBAGE***************
+
+		/*****TESTOVÁNÍ GARBAGE****************
 		global.fileName = "testing/test1.ifj";
 		global.file = fopen(global.fileName, "r");
 		globalInit();
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
 		pToken5 = plusRealloc(pToken5, sizeof(tToken) + sizeof(char)*(realloc[4]+pToken5->length));
 
 
-		*************************************/
+		/*************************************
 		/*****TESTOVÁNÍ PRECEDENČNÍ ANALÝZY**
 		#include "expressions.h"
 		(void)argc;
@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
 
 
 
-		*************************************/
+		************************************/
 }
 
 
