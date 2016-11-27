@@ -1,5 +1,6 @@
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
+#include "iStack.h"
 #include "error_handler.h"
 #include "parser.h"
 #include "interpret.h"
@@ -28,6 +29,7 @@ int main(int argc, char* argv[]) {
         //    throwException(99, 0, 0);
         global.fileName = argv[1];
 		initTree(global.mTree);
+		instrStackInit(global.iStack);
 
         //struct instrStack dummyInstrStack;
         //global.iStack = instrStackInit(&dummyInstrStack);
