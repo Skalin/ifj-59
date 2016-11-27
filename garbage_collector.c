@@ -58,6 +58,7 @@ void * plusRealloc(void * destPtr,unsigned int length) {
 }
 
 void globalInit() {
+    global.funcCnt = 0;
     global.wholeList = malloc(sizeof(struct GarbageList));
     if(global.wholeList == NULL)
         throwException(99,0,0);
