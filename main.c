@@ -13,10 +13,11 @@ int main(int argc, char* argv[]) {
 		throwException(99, 0, 0);
 	} else {
 		globalInit();
-		global.file = fopen("testing/fac_iter.ifj", "r");
-		if (global.file == NULL)
-		//    throwException(99, 0, 0);
 		global.fileName = argv[1];
+		global.file = fopen(global.fileName, "r");
+		if (global.file == NULL) {
+		    throwException(99, 0, 0);
+		}
 		mainTree mTree;
 		initTree(&mTree);
 		instrStack iStack;
