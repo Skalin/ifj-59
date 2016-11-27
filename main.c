@@ -5,7 +5,7 @@ static const char *tokenTypeString[] = {
 };
 
 void printToken(tToken *token) {
-	printf("%20s %25s\n",token->data,tokenTypeString[token->type]);
+	printf("%20s %d\n",token->data,token->type);
 }
 
 int main(int argc, char* argv[]) {
