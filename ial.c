@@ -98,13 +98,17 @@ void updateShift(mismatchTable *Table, char c, int shiftValue) {
 int find(String str, String search) {
 
 	int i = 0, j = 0;
-	int found = 0;
+	int found = -1;
 	int others = strLength(search);
 	int textLength = strLength(str);
 	int stop = -1; // zarazka
 	int shiftValue = others; // prvotni nastaveni shiftu
 	mismatchTable Table;
 	initMismatchTable(&Table);
+
+	if (others == 0) {
+		return 0;
+	}
 
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
 	while (search[i] != '\0' || search[i] != EOF) {
@@ -122,7 +126,7 @@ int find(String str, String search) {
 
 	i = 0; // jen pro jistotu
 
-	while (found == 0 || str[stop] != '\0' || str[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
+	while (found == -1 || str[stop] != '\0' || str[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
 		stop += shiftValue;
 		for (i = others-1, j = 0; i >= 0 && j <= others-1; i--, j++) {
 			if (str[stop-j] != search[i]) { // pokud se nam dva znaky ve stringu neshoduji, vyskocime z jednoho cyklu a posuneme se shiftem

@@ -11,9 +11,9 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.6. - urychlení vyhledávacího algoritmu pro případy length(searchStr) = 0">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.h" afterPath="$PROJECT_DIR$/garbage_collector.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ial.c" afterPath="$PROJECT_DIR$/ial.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="ifj-59.iws" />
@@ -39,8 +39,8 @@
           <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+                <state relative-caret-position="289">
+                  <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
                   <folding>
                     <element signature="e#0#29#0" expanded="true" />
                   </folding>
@@ -72,19 +72,9 @@
             <entry file="file://$PROJECT_DIR$/ial.c">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="289">
-                  <caret line="230" column="28" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="28" />
+                  <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
                   <folding>
                     <element signature="e#388#404#0" expanded="true" />
-                    <marker date="1480022707823" expanded="true" signature="601:654" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="704:846" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="910:1279" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="1324:1497" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="1547:1726" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="1791:1977" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="3432:3477" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="3564:3612" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="6227:7365" ph="{...}" />
-                    <marker date="1480022707823" expanded="true" signature="9859:10219" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -159,13 +149,13 @@
         <option value="$PROJECT_DIR$/interpret.h" />
         <option value="$PROJECT_DIR$/typedef.h" />
         <option value="$PROJECT_DIR$/expressions.h" />
-        <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/expressions.c" />
         <option value="$PROJECT_DIR$/interpret.c" />
         <option value="$PROJECT_DIR$/ial.h" />
         <option value="$PROJECT_DIR$/iStack.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/garbage_collector.h" />
+        <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
@@ -472,14 +462,7 @@
       <workItem from="1479423709629" duration="1825000" />
       <workItem from="1479492224100" duration="6817000" />
       <workItem from="1479503118765" duration="6727000" />
-      <workItem from="1479654129451" duration="64080000" />
-    </task>
-    <task id="LOCAL-00096" summary="[MODIFY] 0.5 - asi hotovy find">
-      <created>1479659034337</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1479659034337</updated>
+      <workItem from="1479654129451" duration="64735000" />
     </task>
     <task id="LOCAL-00097" summary="[MODIFY] 0.5 - uprava nazvoslovi">
       <created>1479659103977</created>
@@ -817,11 +800,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480246351216</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="[MODIFY] 0.5 - include iStack a init v main.c">
+      <created>1480247337280</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1480247337280</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183302000" />
+    <option name="totallyTimeSpent" value="183957000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -836,11 +826,11 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32426777" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46757323" sideWeight="0.48958334" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.54375" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22698745" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -887,9 +877,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.5 - init value" />
-    <MESSAGE value="[MODIFY] 0.5 - bugfix complete ident" />
-    <MESSAGE value="[MODIFY] 0.5 - bugfix" />
     <MESSAGE value="[MODIFY] 0.5 - bugfix garbage" />
     <MESSAGE value="[MODIFY] 0.5 - bugfix garbage ve fci plusFree" />
     <MESSAGE value="[MODIFY] 0.5 - bugfix fci se strukturami" />
@@ -912,7 +899,10 @@
     <MESSAGE value="[MODIFY] 0.5 - uprava mainTree" />
     <MESSAGE value="[MODIFY] 0.5 - odebrani souboru generator.c" />
     <MESSAGE value="[MODIFY] 0.5 - include mainTree" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.5 - include mainTree" />
+    <MESSAGE value="[MODIFY] 0.5 - include iStack a init v main.c" />
+    <MESSAGE value="[MODIFY] 0.6. - urychlení vyhledávací algoritmu pro případy length(searchStr) = 0" />
+    <MESSAGE value="[MODIFY] 0.6. - urychlení vyhledávacího algoritmu pro případy length(searchStr) = 0" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6. - urychlení vyhledávacího algoritmu pro případy length(searchStr) = 0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1239,26 +1229,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ial.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="230" column="28" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="28" />
-          <folding>
-            <element signature="e#388#404#0" expanded="true" />
-            <marker date="1480022707823" expanded="true" signature="601:654" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="704:846" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="910:1279" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="1324:1497" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="1547:1726" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="1791:1977" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="3432:3477" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="3564:3612" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="6227:7365" ph="{...}" />
-            <marker date="1480022707823" expanded="true" signature="9859:10219" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generator.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1309,10 +1279,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ial.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+          <folding>
+            <element signature="e#388#404#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+        <state relative-caret-position="289">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
