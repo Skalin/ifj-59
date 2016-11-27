@@ -12,6 +12,7 @@
 
 #ifndef MAIN
 #define MAIN
+
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
 #include "iStack.h"
@@ -20,4 +21,5 @@
 #include "interpret.h"
 #include "ial.h"
 #include <stdbool.h>
-#endif MAIN
+
+#endif //MAIN
