@@ -11,10 +11,10 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.6. - urychlení vyhledávacího algoritmu pro případy length(searchStr) = 0">
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fStack.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/generator.h" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ial.c" afterPath="$PROJECT_DIR$/ial.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,14 +36,34 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+                <state relative-caret-position="459">
+                  <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="main.h" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/main.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
                   <folding>
-                    <element signature="e#0#29#0" expanded="true" />
+                    <element signature="e#401#430#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="parser.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/parser.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1395">
+                  <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="24" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -131,7 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.h" />
         <option value="$PROJECT_DIR$/string.h" />
         <option value="$PROJECT_DIR$/generator.c" />
         <option value="$PROJECT_DIR$/lexical_analyzer.c" />
@@ -157,6 +176,7 @@
         <option value="$PROJECT_DIR$/garbage_collector.h" />
         <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/main.h" />
       </list>
     </option>
   </component>
@@ -462,49 +482,7 @@
       <workItem from="1479423709629" duration="1825000" />
       <workItem from="1479492224100" duration="6817000" />
       <workItem from="1479503118765" duration="6727000" />
-      <workItem from="1479654129451" duration="64735000" />
-    </task>
-    <task id="LOCAL-00097" summary="[MODIFY] 0.5 - uprava nazvoslovi">
-      <created>1479659103977</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1479659103977</updated>
-    </task>
-    <task id="LOCAL-00098" summary="[MODIFY] 0.5 - bugtracking">
-      <created>1479676020785</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1479676020785</updated>
-    </task>
-    <task id="LOCAL-00099" summary="[MODIFY] 0.5 - bugtracking">
-      <created>1479676037318</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1479676037318</updated>
-    </task>
-    <task id="LOCAL-00100" summary="[MODIFY] 0.5 - bugtracking">
-      <created>1479676261487</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1479676261487</updated>
-    </task>
-    <task id="LOCAL-00101" summary="[MODIFY] 0.5 - bug fixes">
-      <created>1479736639113</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1479736639115</updated>
-    </task>
-    <task id="LOCAL-00102" summary="[MODIFY] 0.5 - bugfix, builtin functions">
-      <created>1479845105113</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1479845105113</updated>
+      <workItem from="1479654129451" duration="65139000" />
     </task>
     <task id="LOCAL-00103" summary="[MODIFY] 0.5 - bugfixes">
       <created>1479849536413</created>
@@ -807,11 +785,53 @@
       <option name="project" value="LOCAL" />
       <updated>1480247337280</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="[MODIFY] 0.6. - urychlení vyhledávacího algoritmu pro případy length(searchStr) = 0">
+      <created>1480247985847</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1480247985847</updated>
+    </task>
+    <task id="LOCAL-00147" summary="[MODIFY] 0.6. - odsazeni TAB">
+      <created>1480248082596</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1480248082596</updated>
+    </task>
+    <task id="LOCAL-00148" summary="[MODIFY] 0.6. - uprava TAB a mezer">
+      <created>1480248136184</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1480248136184</updated>
+    </task>
+    <task id="LOCAL-00149" summary="[MODIFY] 0.6. - uprava include pres main.h">
+      <created>1480248236132</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1480248236132</updated>
+    </task>
+    <task id="LOCAL-00150" summary="[MODIFY] 0.6. - smazani zakomentovaneho initTree pri startu programu">
+      <created>1480248297184</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1480248297184</updated>
+    </task>
+    <task id="LOCAL-00151" summary="[MODIFY] 0.6. - uprava main.h">
+      <created>1480248378139</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1480248378139</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183957000" />
+    <option name="totallyTimeSpent" value="184361000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -826,14 +846,14 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32426777" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32426777" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46757323" sideWeight="0.48958334" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.54375" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49375" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -877,11 +897,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.5 - bugfix garbage" />
-    <MESSAGE value="[MODIFY] 0.5 - bugfix garbage ve fci plusFree" />
-    <MESSAGE value="[MODIFY] 0.5 - bugfix fci se strukturami" />
-    <MESSAGE value="[MODIFY] 0.5 - uprava stavu konce komentare, pokud nedorazil zacatek" />
-    <MESSAGE value="[MODIFY] 0.5 - odebrani zbytecneho include" />
     <MESSAGE value="[MODIFY] 0.5 - prazdny file /TODO" />
     <MESSAGE value="[MODIFY] 0.5 - remove include a nastaveni prvotni hodnoty enumu" />
     <MESSAGE value="[MODIFY] 0.5 - uprava fce topTerm" />
@@ -902,7 +917,12 @@
     <MESSAGE value="[MODIFY] 0.5 - include iStack a init v main.c" />
     <MESSAGE value="[MODIFY] 0.6. - urychlení vyhledávací algoritmu pro případy length(searchStr) = 0" />
     <MESSAGE value="[MODIFY] 0.6. - urychlení vyhledávacího algoritmu pro případy length(searchStr) = 0" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6. - urychlení vyhledávacího algoritmu pro případy length(searchStr) = 0" />
+    <MESSAGE value="[MODIFY] 0.6. - odsazeni TAB" />
+    <MESSAGE value="[MODIFY] 0.6. - uprava TAB a mezer" />
+    <MESSAGE value="[MODIFY] 0.6. - uprava include pres main.h" />
+    <MESSAGE value="[MODIFY] 0.6. - smazani zakomentovaneho initTree pri startu programu" />
+    <MESSAGE value="[MODIFY] 0.6. - uprava main.h" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6. - uprava main.h" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1049,14 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/error_handler.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1098,14 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2414">
           <caret line="142" column="31" selection-start-line="142" selection-start-column="31" selection-end-line="142" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1247,14 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/iStack.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1289,12 +1285,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/generator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        <state relative-caret-position="459">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1395">
+          <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#401#430#0" expanded="true" />
           </folding>
         </state>
       </provider>
