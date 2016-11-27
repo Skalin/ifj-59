@@ -74,7 +74,7 @@ tToken * updateToken(tToken * token, char *string) {
 	// Pomoci strncat() pridat novy retezec nakonec
 	// POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
 	// Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
-/*
+
     int strLength = strlen(string);
 
     
@@ -89,8 +89,8 @@ tToken * updateToken(tToken * token, char *string) {
     token->length = token->length + strLength;   // update délky tokenu
 
     return token;
-    */
 
+/*
 
 	unsigned int len = strlen(string);
 
@@ -106,6 +106,7 @@ tToken * updateToken(tToken * token, char *string) {
 	}
 
 	return token;
+ */
 }
 
 void tokenReturnToken(tToken * token) {
