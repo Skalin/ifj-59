@@ -26,5 +26,3 @@ ifj: $(OBJFILES)
 
 %.c.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $(subst , , $<.o)
-
-

@@ -362,7 +362,7 @@ String substr(String str, int i, int n) {
 
     while (i <= (i + n)) {
 		if (str[i] == EOF || isspace(str[i])) {
-			throwException(10, GlobalRow, GlobalColumn);
+			throwException(10, 0, 0);
 		}
         realString[j] = str[i];
 		j++;
@@ -467,7 +467,7 @@ int readInt() {
 
 	while (str[i] != '\0') {
 		if (!isdigit(str[i])) {
-			throwException(7, GlobalRow, GlobalColumn);
+			throwException(7, 0, 0);
 		}
 		number += (str[i]-48) * (int)pow(10,length-i-1);
 		i++;
@@ -481,7 +481,7 @@ double readDouble(){
 	double doubleNumber = strtod(str, &end);
 
 	if (*end != '\0' || doubleNumber < 0) {
-		throwException(7, GlobalRow, GlobalColumn);
+		throwException(7, 0, 0);
 	}
 
 	return doubleNumber;

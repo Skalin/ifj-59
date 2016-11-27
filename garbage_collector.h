@@ -33,9 +33,6 @@ struct GarbageList
  */
 
 struct tGlobal{
-    int GlobalRow;
-    int GlobalColumn;
-
 	// Listový seznam obsahující alokované položky
 	struct GarbageList* wholeList;
 	struct GarbageList* listLast;

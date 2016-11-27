@@ -17,7 +17,8 @@ void printToken(tToken *token) {
 
 int main(int argc, char* argv[]) {
     //initTree(global.mTree);
-    if(argc != 1) /* TODO ZMENIT PODMINKU */
+    
+    if(argc != 1) // TODO ZMENIT PODMINKU 
         printf("");
         //throwException(99, 0, 0);
     else {
@@ -79,6 +80,22 @@ int main(int argc, char* argv[]) {
     pToken5 = plusRealloc(pToken5, sizeof(tToken) + sizeof(char)*(realloc[4]+pToken5->length));
 
     
+    *************************************/
+    /*****TESTOVÁNÍ PRECEDENČNÍ ANALÝZY**
+        #include "expressions.h"
+        globalInit();
+        global.file = fopen("testing/text_precedence.ifj", "r");
+        expression();
+
+
+        //struct instrStack dummyInstrStack;
+        //global.iStack = instrStackInit(&dummyInstrStack);
+
+     
+        //interpretMainCore(global.iStack);
+    
+      
+     
     *************************************/
 }
  

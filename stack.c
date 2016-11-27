@@ -56,7 +56,7 @@ tStackIt *itemInit () {
 		throwException(99,0,0); //chyba alokace paměti
 	}
 
-	initString(&tokenNew->attribute);
+	// ERROR - initstring neexistuje   initString(&tokenNew->attribute);
 	itemNew->dataIt = tokenNew;
 	return itemNew;
 

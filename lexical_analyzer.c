@@ -113,9 +113,6 @@ tToken * getToken(){
     // Připojí se do souboru a postupně načte následující token (+ o něm přidá informace do struktury tToken)
 
 
-    // Globalni promenne pro pocitani radku a sloupcu, bude potreba v lexical_analyzer.c a v error_handler.c
-    GlobalRow = 0;
-    GlobalColumn = 0;
 
     char c = '\0'; // inicializovaná proměnná c s výchozí hodnotou \0
 
@@ -134,12 +131,6 @@ tToken * getToken(){
 	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(global.file);
 		
-		GlobalColumn++; // pozice na radku, resetuje se pri kazdem novem radku.., viz podminka o radek nize
-		if (c == 10) {
-			GlobalRow++; // pocet radku
-			GlobalColumn = 0; // reset pozice na radku
-		}
-
 		switch(status) {
 			case LA_START:	// pocatecni stav automatu
 				while(isspace(c)) { 
@@ -264,7 +255,7 @@ tToken * getToken(){
 					status = LA_STRING_PREP;
 				// konec stringu
 				} else {
-					throwException(1, GlobalRow, GlobalColumn); 
+					throwException(1, 0, 0); 
 				}
 				break;
 
@@ -288,7 +279,7 @@ tToken * getToken(){
 			case LA_COMPLETE_IDENT:
 				if (buffer[i-1] == 46) {
 					if (((!isalpha(c)) && (c != 95) && (c != 36)) || isdigit(c)) {
-						throwException(1, GlobalRow, GlobalColumn);
+						throwException(1, 0, 0);
 					}
 				}
 				if (((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c == 95) || (c == 36))) { // a..z,A..Z,_,$
@@ -330,7 +321,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn); 
+					throwException(1, 0, 0); 
                     
 				}
 				break;
@@ -361,7 +352,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_E_SIGN;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn); 
+					throwException(1, 0, 0); 
 				}
 				break;
 
@@ -371,7 +362,7 @@ tToken * getToken(){
 					i++;
 					status = LA_DOUBLE_E;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn); 
+					throwException(1, 0, 0); 
 				}
 				break;
 
@@ -399,9 +390,9 @@ tToken * getToken(){
 					token->type = t_string;
 					return token;
 				} else if (c == EOF) {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, 0, 0);
 				} else if (c <= 31) {
-					throwException(1, GlobalRow, GlobalColumn);					
+					throwException(1, 0, 0);					
 				} else { // "xxxxxx
 					buffer[i] = c;
 					i++;
@@ -428,7 +419,7 @@ tToken * getToken(){
 					octalBuffer[0] = c;
 					status = LA_OCT1;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, 0, 0);
 				}
 				break;
 			case LA_OCT1:
@@ -439,7 +430,7 @@ tToken * getToken(){
 					octalBuffer[1] = c;
 					status = LA_OCT2_NZ;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, 0, 0);
 				}
 				break;
 			case LA_OCT2_Z:
@@ -452,7 +443,7 @@ tToken * getToken(){
 					}
 					status = LA_STRING_PREP;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, 0, 0);
 				}
 				break;
             case LA_OCT2_NZ:
@@ -465,7 +456,7 @@ tToken * getToken(){
 					}
 					status = LA_STRING_PREP;
 				} else {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, 0, 0);
 				}
 				break;    
 			// dalsi porovnani KA
@@ -531,25 +522,25 @@ tToken * getToken(){
 					while (TRUE) {
 						c = fgetc(global.file);
 						if (c == EOF) {
-							throwException(1, GlobalRow, GlobalColumn);
+							throwException(1, 0, 0);
 						} else if (c == '\n') {
 							break;
 						}
 					}
-					GlobalRow++;
+					
 					status = LA_START;
 				} else if (c == 42) { /* komentare tohoto typu */
 					while (TRUE) {
 						c = fgetc(global.file);
 						if (c == '\n') {
-							GlobalRow++;
+							
 						} else if (c == EOF){
-							throwException(1, GlobalRow, GlobalColumn);
+							throwException(1, 0, 0);
 						} else if (c == 47) {
 							while (TRUE) {
 								c = fgetc(global.file);
 								if (c == 42) {
-									throwException(1, GlobalRow, GlobalColumn);
+									throwException(1, 0, 0);
 								} else {
 									break;
 								}
@@ -561,10 +552,10 @@ tToken * getToken(){
 									status = LA_START;
 									break;
 								} else if (c == EOF) {
-									throwException(1, GlobalRow, GlobalColumn);
+									throwException(1, 0, 0);
 								} else {
 									if (c == '\n')
-										GlobalRow++;
+										
 									continue;
 								}
 							}
@@ -583,7 +574,7 @@ tToken * getToken(){
 				break;
 			case LA_MULTI:
 				if (c == 47) {
-					throwException(1, GlobalRow, GlobalColumn);
+					throwException(1, 0, 0);
 				} else {
 					ungetc(c, global.file);
 					token = updateToken(token, buffer);
@@ -606,7 +597,7 @@ tToken * getToken(){
 		}
 
 		if (c == EOF) {
-			throwException(1, GlobalRow, GlobalColumn);
+			throwException(1, 0, 0);
 		}
 	} //cyklus
 
