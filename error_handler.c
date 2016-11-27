@@ -16,16 +16,16 @@
 #include "garbage_collector.h"
 void throwException(int errorNumber, int row, int column) {
 
-    fprintf(stdout, "=========================================================================\n" );
-    fprintf(stdout, "============================ PROBLEM OCCURED ============================\n" );
-    fprintf(stdout, "================= Log may show you where the mistake is =================\n\n" );
+    fprintf(stderr, "=========================================================================\n" );
+    fprintf(stderr, "============================ PROBLEM OCCURED ============================\n" );
+    fprintf(stderr, "================= Log may show you where the mistake is =================\n\n" );
 
     int exit_code;
 
     if (row == 0 && column == 0)
-        fprintf(stdout, "FILE: %s >", global.fileName);
+        fprintf(stderr, "FILE: %s >", global.fileName);
     else
-        fprintf(stdout, "FILE: %s line %d, in column %d >", global.fileName, row, column);
+        fprintf(stderr, "FILE: %s line %d, in column %d >", global.fileName, row, column);
 
 
     switch(errorNumber) {

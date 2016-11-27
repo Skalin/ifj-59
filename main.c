@@ -9,7 +9,7 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
-	if(argc != 1) {
+	if(argc != 2) {
 		throwException(99, 0, 0);
 	} else {
 		globalInit();
