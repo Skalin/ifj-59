@@ -17,8 +17,10 @@ int main(int argc, char* argv[]) {
 		if (global.file == NULL)
 		//    throwException(99, 0, 0);
 		global.fileName = argv[1];
-		initTree(global.mTree);
-		instrStackInit(global.iStack);
+		mainTree mTree;
+		initTree(&mTree);
+		instrStack iStack;
+		instrStackInit(&iStack);
 
 		//struct instrStack dummyInstrStack;
 		//global.iStack = instrStackInit(&dummyInstrStack);
