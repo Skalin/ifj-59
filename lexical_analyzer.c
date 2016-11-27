@@ -88,24 +88,6 @@ tToken * updateToken(tToken * token, char *string) {
     token->length = token->length + stringLength;   // update délky tokenu
 
     return token;
-
-/*
-
-	unsigned int len = strlen(string);
-
-	unsigned int total_len = len + (token->length) + 1;
-
-	if (total_len > token->allocated) {
-		token->allocated = total_len;
-		token = plusRealloc(token, sizeof(tToken) + (sizeof(char) * (token->allocated)));
-		if (token == NULL) {
-			throwException(1, 0, 0);
-			return 0;
-		}
-	}
-
-	return token;
- */
 }
 
 void tokenReturnToken(tToken * token) {

@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 		printToken(pToken);
 		}
 
-		/*****TESTOVÁNÍ GARBAGE****************
+		*****TESTOVÁNÍ GARBAGE****************
 		global.fileName = "testing/test1.ifj";
 		global.file = fopen(global.fileName, "r");
 		globalInit();
@@ -75,8 +75,8 @@ int main(int argc, char* argv[]) {
 		pToken5 = plusRealloc(pToken5, sizeof(tToken) + sizeof(char)*(realloc[4]+pToken5->length));
 
 
-		/*************************************
-		/*****TESTOVÁNÍ PRECEDENČNÍ ANALÝZY**
+		*************************************
+		*****TESTOVÁNÍ PRECEDENČNÍ ANALÝZY**
 		#include "expressions.h"
 		(void)argc;
 		(void)argv;
