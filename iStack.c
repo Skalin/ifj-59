@@ -54,8 +54,7 @@ Instr *instrItemInit (Instr *stc) {
 		throwException(99,0,0); //chyba alokace paměti
 	}
 
-	//initString(&instrNew);
-	//itemNew->type = instrNew;
+	itemNew->type = instrNew;
 	return itemNew;
 }
 
