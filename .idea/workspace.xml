@@ -11,10 +11,9 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.6. - jeste uprava include">
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.h" afterPath="$PROJECT_DIR$/garbage_collector.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/error_handler.c" afterPath="$PROJECT_DIR$/error_handler.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,8 +80,8 @@
           <file leaf-file-name="error_handler.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/error_handler.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+                <state relative-caret-position="357">
+                  <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
                   <folding>
                     <element signature="e#393#411#0" expanded="true" />
                   </folding>
@@ -191,7 +190,6 @@
         <option value="$PROJECT_DIR$/generator.c" />
         <option value="$PROJECT_DIR$/lexical_analyzer.c" />
         <option value="$PROJECT_DIR$/error_handler.h" />
-        <option value="$PROJECT_DIR$/error_handler.c" />
         <option value="$PROJECT_DIR$/garbage_collector.c" />
         <option value="$PROJECT_DIR$/parser.c" />
         <option value="$PROJECT_DIR$/stack.c" />
@@ -213,6 +211,7 @@
         <option value="$PROJECT_DIR$/ial.h" />
         <option value="$PROJECT_DIR$/garbage_collector.h" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/error_handler.c" />
       </list>
     </option>
   </component>
@@ -518,14 +517,7 @@
       <workItem from="1479423709629" duration="1825000" />
       <workItem from="1479492224100" duration="6817000" />
       <workItem from="1479503118765" duration="6727000" />
-      <workItem from="1479654129451" duration="69407000" />
-    </task>
-    <task id="LOCAL-00106" summary="[MODIFY] 0.5 - includes">
-      <created>1479918182756</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1479918182756</updated>
+      <workItem from="1479654129451" duration="70320000" />
     </task>
     <task id="LOCAL-00107" summary="[MODIFY] 0.5 - init value">
       <created>1479918198564</created>
@@ -863,11 +855,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480248616726</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="[MODIFY] 0.6. - uprava global tree a stacku">
+      <created>1480258967194</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1480258967195</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188629000" />
+    <option name="totallyTimeSpent" value="189542000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -880,10 +879,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32426777" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32426777" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46757323" sideWeight="0.48958334" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.54375" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
@@ -894,7 +893,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39958158" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958158" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -933,8 +932,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.5 - zjednoduseni kodu" />
-    <MESSAGE value="[MODIFY] 0.5 - uprava include a tabu" />
     <MESSAGE value="[MODIFY] 0.5 - uprava include" />
     <MESSAGE value="[MODIFY] 0.5 - kraceni a zkrasneni kodu, uprava include" />
     <MESSAGE value="[MODIFY] 0.5 - smazani typedef.c" />
@@ -958,7 +955,9 @@
     <MESSAGE value="[MODIFY] 0.6. - uprava main.h a odebrani fStack a generator souboru" />
     <MESSAGE value="[MODIFY] 0.6. - par uprav a testu s include" />
     <MESSAGE value="[MODIFY] 0.6. - jeste uprava include" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6. - jeste uprava include" />
+    <MESSAGE value="[MODIFY] 0.6. - uprava global tree a stacku" />
+    <MESSAGE value="[MODIFY] 0.6. - temp. uprava" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6. - temp. uprava" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1361,8 +1360,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/error_handler.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="357">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding>
             <element signature="e#393#411#0" expanded="true" />
           </folding>
