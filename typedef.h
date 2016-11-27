@@ -21,19 +21,21 @@
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
+
+
 typedef enum {  
-/*****TYPY TOKENÅ® POUÅ½ÃVANÃ‰ VE VÃRAZECH********/
-	// ZÃ¡vorky
+/*****TYPY TOKENÙ POUÍVANÉ VE VİRAZECH********/
+	// Závorky
 	t_bracket_l,        // (
 	t_bracket_r,        // )
 
-	// OperÃ¡tory
+	// Operátory
 	t_div,              // /
 	t_multi,            // *    
 	t_plus,             // +
 	t_minus,            // - 
 
-	// PorovnÃ¡vacÃ­ operÃ¡tory
+	// Porovnávací operátory
 	t_comparasion,      // ==
 	t_comparasion_ne,   // !=
 	t_greater,          // >
@@ -44,15 +46,15 @@ typedef enum {
 	// Negace
 	t_excl_mark,        // !
 
-	// OddÄ›lovaÄe
+	// Oddìlovaèe
 	t_comma,            // ,
 	t_semicolon,        // ;  
 
-	// IdentifikÃ¡tory
+	// Identifikátory
 	t_simple_ident,     // 15
 	t_complete_ident,   // 16    
 
-	// DatovÃ© typy
+	// Datové typy
 	t_int,              // 17
 	t_double,           // 18
 	t_double_e,         // 19

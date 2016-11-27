@@ -1,13 +1,13 @@
 /**
- * IFJ/IAL - SyntaktickÃ¡ analÃ½za
+ * IFJ/IAL - Syntaktická analýza
  * Varianta:    b/2/I
  * Soubor:      parser.c
- * TÃ½m:         59
- * AutoÅ™i:      Jan HrbotickÃ½, xhrbot01@stud.fit.vutbr.cz
- *              Dominik SkÃ¡la, xskala11@stud.fit.vutbr.cz
+ * Tým:         59
+ * Autoøi:      Jan Hrbotický, xhrbot01@stud.fit.vutbr.cz
+ *              Dominik Skála, xskala11@stud.fit.vutbr.cz
  *              Milan Hruban, xhruba08@stud.fit.vutbr.cz
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
- *              David HÃ©l, xhelda00@stud.fit.vutbr.cz
+ *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
 #include <string.h>
@@ -408,8 +408,23 @@ void pSingleCommand(){
 			break;
 
 		case t_kw_static :
-			// static keyword
+				// static keyword
 			// TODO laterz
+ 			//DELETE THIS
+			token = getToken();
+			if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double){
+				token = getToken();
+				if (token->type != t_simple_ident){
+					throwException(2,0,0);
+					}
+
+    			     token = getToken();
+    			     while (token->type != t_semicolon) {
+      		      
+        		    token = getToken();
+     			     }
+        		  // END OF DELETE BLOCK
+			} else {throwException(2,0,0);}
 			break;
 
 		case t_simple_ident :
