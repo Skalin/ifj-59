@@ -9,8 +9,6 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
-	//initTree(global.mTree);
-
 	if(argc != 1) {
 		throwException(99, 0, 0);
 	} else {
