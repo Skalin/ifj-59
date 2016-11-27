@@ -154,7 +154,9 @@ void pClassBody(){
 					}
 					if (tempType != t_kw_void) {
 					// navratovy typ run musi byt void
-						throwException(3,0,0);
+						if (isInMain){
+							throwException(3,0,0);
+						}
 					}
 				}
 				pFunction();
