@@ -84,8 +84,8 @@ tToken * updateToken(tToken * token, char *string) {
 	}
 
 
-    strncat(token->data, string, strLength);      // připojení stringu na konec tokenu
-    token->length = token->length + strLength;   // update délky tokenu
+    strncat(token->data, string, stringLength);      // připojení stringu na konec tokenu
+    token->length = token->length + stringLength;   // update délky tokenu
 
     return token;
 
