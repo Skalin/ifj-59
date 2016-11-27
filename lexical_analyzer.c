@@ -78,12 +78,13 @@ tToken * updateToken(tToken * token, char *string) {
     int strLength = strlen(string);
     
     
-    if (token->allocated < (strLength + token->length) ) {     // pokud je alokováno méně než je potřeba
-        token = plusRealloc(token, sizeof(tToken) + sizeof(char)*strLength);   //TODO
-        token->allocated = strLength + token->length;      // update hodnoty allocated v tokenu
+    if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokováno méně než je potřeba
+
+		token->allocated = strLength + token->length + 1;      // update hodnoty allocated v tokenu
+		token = plusRealloc(token, sizeof(tToken) + sizeof(char)*token->allocated);   //TODO
     }
-    
-    
+
+
     strncat(token->data, string, strLength);      // připojení stringu na konec tokenu
     token->length = token->length + strLength;   // update délky tokenu
 
