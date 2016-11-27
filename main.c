@@ -27,6 +27,7 @@ int main(int argc, char* argv[]) {
 
 		pParse();
 		//interpretMainCore(global.iStack);
+		finalFree();
 	}
 
 
