@@ -34,7 +34,8 @@ int main(int argc, char* argv[]) {
         pParse();
         //interpretMainCore(global.iStack);
     }
-
+    
+    
     /*****TESTOVÁNÍ LEXU******************
     tToken *pToken = NULL;
 
@@ -43,8 +44,7 @@ int main(int argc, char* argv[]) {
         pToken = getToken(); 
         printToken(pToken);    
     }
-                                      */
-    
+    *************************************/
     /*****TESTOVÁNÍ GARBAGE***************
     global.fileName = "testing/test1.ifj";
     global.file = fopen(global.fileName, "r");
@@ -83,9 +83,13 @@ int main(int argc, char* argv[]) {
     *************************************/
     /*****TESTOVÁNÍ PRECEDENČNÍ ANALÝZY**
         #include "expressions.h"
+        (void)argc;
+        (void)argv;
         globalInit();
         global.file = fopen("testing/text_precedence.ifj", "r");
-        expression();
+        initTree(global.mTree);
+        createNewNode("a", var, var_int, 1);
+
 
 
         //struct instrStack dummyInstrStack;
