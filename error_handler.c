@@ -87,5 +87,6 @@ void throwException(int errorNumber, int row, int column) {
     fprintf(stderr, "\n============================= END OF LOG ================================\n" );
     fprintf(stderr, "===================== EXITING PROGRAM with error %d =====================\n", exit_code);
     fprintf(stderr, "=========================================================================\n" );
+    finalFree();
     exit(exit_code);
 }
