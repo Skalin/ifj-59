@@ -100,10 +100,12 @@ tToken * updateToken(tToken * token, char *string) {
 		token->allocated = total_len;
 		token = plusRealloc(token, sizeof(tToken) + (sizeof(char) * (token->allocated)));
 		if (token == NULL) {
-			throwException(1, GlobalRow, GlobalColumn);
+			throwException(1, 0, 0);
 			return 0;
 		}
 	}
+
+	return token;
 }
 
 void tokenReturnToken(tToken * token) {
