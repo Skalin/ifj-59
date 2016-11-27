@@ -27,7 +27,7 @@
 #define STR_SUCCESS 1
 #define STR_ALLOCATION_SIZE 8  // Udává, kolik bude alokováno na začátku paměti. Pokud načítáme po jednom znaku, dojde k alokaci na násobky tohoto čísla
 
-// TODO doplnit chybějící stavy a možná odstranit čárku
+// TODO doplnit chybějící stavy a asi odstranit čárku
 char precTable[16][16] = {
   //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
     {'<','=','<','<','<','<','<','<','<','<','<','<','<',' ','F','<'}, // (
@@ -188,7 +188,7 @@ void reduceExp(BTSNode *targetId, tStackIt *handle[3], instrStack *iStack) {
 void expression(BTSNode *targetId, tExpType expType) {
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
-    instrStack *iStack = global.iStack;
+    instrStack *iStack = NULL; // TODO = global.iStack;
     /* TODO  if ((global.mTree->actFunction != NULL) || (global.mTree->actFunction->Key != "run")) {
         iStack = global.mTree->actFunction->iStack; // Zatím neexistuje ale bude
     }
@@ -247,14 +247,21 @@ void expression(BTSNode *targetId, tExpType expType) {
              *   - type je insFunctionCall
              */
             instr->Id3 = targetId; 
-            instr->Id1 = topTerm(stack)->data; // TODO co když uzel funkce ještě neexistuje?
+            /* TODO tady budu muset najít uzel s klíčem nejvyššího terminálu, pokud neexistuje tak ho vytvořit a pointer na něj dát do id2
+            instr->Id1 = searchForNode(topTerm(stack)->data,function,start);
+            if (instr->Id1 == NULL) {
+                instr->Id1 = Nově vytvořený uzel
+            }
+            */
             instr->type = insFunctionCall;
             
-            // Vytvoří uzel, nahraje do něj všechny argumenty a pokračuje dál ve zpracovávání výrazu
-            //instr->Id2 = createNewNode(funcCnt); 
-            //expression(funcCnt, expArg);
-            instrStackPush(iStack,instr);
-            // TODO zrušit uzel pokud je prázdný a do id2 dát NULL. funcCnt by se v tomho případě asi nemusela inkrementovat
+            /* TODO Vytvořit uzel, nahrát do něj všechny argumenty
+             * instrukci vložit do stacku a pokračovat dál ve zpracovávání výrazu.
+             * Pokud uzel nemá argumenty zrušit ho, do id2 dát NULL (funcCnt by se v tomho případě asi nemusela inkrementovat)
+             * a pokračovat ve zpravocání výrazu
+                instr->Id2 = createNewNode(funcCnt); 
+                expression(funcCnt, expArg);
+                instrStackPush(iStack,instr);*/
         }
         // Jedná se o void funkci
         else if (expType == expVoid) {
@@ -262,11 +269,13 @@ void expression(BTSNode *targetId, tExpType expType) {
             instr->Id1 = targetId;
             instr->type = insFunctionCall;
             
-            // Vytvoří uzel, nahraje do něj všechny argumenty ale už nepokračuje dál ve zpracovávání výrazu
-            //instr->Id2 = createNewNode(funcCnt); 
-            //expression(funcCnt, expArg);
-            instrStackPush(iStack,instr);
-            // TODO zrušit uzel pokud je prázdný a do id2 dát NULL. funcCnt by se v tomho případě asi nemusela inkrementovat
+            /* TODO Vytvořit uzel, nahrát do něj všechny argumenty
+             * instrukci vložit do stacku a pokračovat dál ve zpracovávání výrazu.
+             * Pokud uzel nemá argumenty zrušit ho, do id2 dát NULL (funcCnt by se v tomho případě asi nemusela inkrementovat)
+             * ale už nepokračovat ve zpravocání výrazu
+                instr->Id2 = createNewNode(funcCnt); 
+                expression(funcCnt, expArg);
+                instrStackPush(iStack,instr);*/
             break;
         }
         // Syntaktická chyba

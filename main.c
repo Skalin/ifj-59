@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     //initTree(global.mTree);
     
     if(argc != 1) // TODO ZMENIT PODMINKU 
-        printf("");
+        printf("dfsd");
         //throwException(99, 0, 0);
     else {
         globalInit();

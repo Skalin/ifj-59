@@ -54,7 +54,8 @@ Instr *instrItemInit (Instr *stc) {
 		throwException(99,0,0); //chyba alokace paměti
 	}
 
-	itemNew->type = instrNew;
+	// Tohle si zkontroluj. Původně tu bylo itemNew->type = instrNew;
+	itemNew->type = *instrNew;
 	return itemNew;
 }
 
