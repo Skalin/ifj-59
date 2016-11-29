@@ -13,6 +13,7 @@
 
 #include "error_handler.h"
 #include "instrstack.h"
+#include "typedef.h"
 
 
 instrStack * instrStackInit (instrStack *stc ) {
@@ -93,6 +94,23 @@ Instr * instrStackTop (instrStack *stc) {
         return NULL;
     }
 }
+// PRO DEJVA, ZKONTROLOVAT, PRIPADNE OPRAVIT
+// Funkce vrati instrukci na pozici n
+Instr * instrStackDataAt (instrStack *stc, int n) {
+	//Pokud jsou v zasobniku data, vrat data na vrcholu
+	if (!instrStackEmpty(stc)) {
+		return stc->dataInstr[n];
+		//Jinak vrat null
+	} else {
+		return NULL;
+	}
+}
+// PRO DEJVA, ZKONTROLOVAT, PRIPADNE OPRAVIT
+// FUNKCE POSUNE VRCHOL ZASOBNIKU NA NTOU HODNOTU. Kterou nejprve dostanu pomoci instrStackSize a pak se tam na tu hodnotu potrebuju vratit
+void getBackTo (instrStack *stc, int n) {
+	stc->count = n;
+}
+
 
 void instrStackPop (instrStack *stc) {
 
