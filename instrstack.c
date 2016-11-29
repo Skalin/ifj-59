@@ -12,7 +12,7 @@
 
 
 #include "error_handler.h"
-#include "iStack.h"
+#include "instrstack.h"
 
 
 instrStack * instrStackInit (instrStack *stc ) {

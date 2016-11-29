@@ -35,7 +35,7 @@ void pClassBody();
 /**
 * Funkce pro parsovani deklarace promene, nebo prirazeni hodnoty promene
 */
-void pVar();
+void pVar(tToken *token);
 
 /**
 * Funkce pro parsovani tela funkce
@@ -81,9 +81,6 @@ void pIf();
 * Funkce pro parsovani cyklu while
 */
 void pWhile();
-
-
-
 #endif //IFJ_59_PARSER_H
 
 

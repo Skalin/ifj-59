@@ -14,7 +14,7 @@
 #define MAIN
 #include "lexical_analyzer.h"
 #include "garbage_collector.h"
-#include "iStack.h"
+#include "instrstack.h"
 #include "error_handler.h"
 #include "parser.h"
 #include "interpret.h"
