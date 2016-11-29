@@ -103,16 +103,136 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insPlus:
+                if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Pokud je konecny operand int, musi se jedna o int = int + int
+                    if(instr->Id3->data.type == var_int) {
+                        if(instr->Id1->data.type != var_int && instr->Id2->data.type != var_int)
+                            throwException(4,0,0);
+                    // Pokud chceme do double ukladat soucet neceho a stringu, jedna se o chybu
+                    } else if (instr->Id3->data.type == var_double) {
+                        if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string)
+                            throwException(4,0,0);
+                    }
+                // Pokud nejsou vsechny promenne inicializovane
+                } else
+                    throwException(8,0,0);
+                break;
             case insMinus:
+                if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Nelze odecitat stringy a ani do stringu ukladat
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string || instr->Id3->data.type == var_string)
+                        throwException(4,0,0);
+                    else {
+                        // Pokud je konecny vysledek ulozek do int, musi se jedna o int = int - int
+                        if(instr->Id3->data.type == var_int) {
+                            if(instr->Id1->data.type != var_int && instr->Id2->data.type != var_int)
+                                throwException(4,0,0);
+                        }
+                    }
+                    // Pokud nejsou vsechny promenne inicializovane
+                } else
+                    throwException(8,0,0);
+                break;
             case insMux:
+                if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Nelze operovat se stringy
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string || instr->Id3->data.type == var_string)
+                        throwException(4,0,0);
+                    // Pokud ma byt vysledek int, musi se jednat o int = int * int
+                    if(instr->Id3->data.type == var_int) {
+                        if(instr->Id1->data.type != var_int && instr->Id2->data.type != var_int)
+                            throwException(4,0,0);
+                    }
+                    // Pokud nejsou vsechny promenne inicializovane
+                } else
+                    throwException(8,0,0);
+                break;
             case insDiv:
+                if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Nelze operovat se stringy
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string || instr->Id3->data.type == var_string)
+                        throwException(4,0,0);
+                    // Pokud ma byt vysledek int, musi se jednat o int = int * int
+                    if(instr->Id3->data.type == var_int) {
+                        if(instr->Id1->data.type != var_int && instr->Id2->data.type != var_int)
+                            throwException(4,0,0);
+                    }
+                    // Pokud se jedna o int, proverim jeho hodnotu jestli neni nula pri deleni
+                    if(instr->Id2->data.type == var_int) {
+                        if (instr->Id2->data.value.intValue == 0)
+                            throwException(9,0,0);
+                        // Pokud se jedna o double, proverim jeho hodnotu jestli neni nula pri deleni
+                    } else {
+                        if (instr->Id2->data.value.doubleValue == 0)
+                            throwException(9,0,0);
+                    }
+                    // Pokud nejsou vsechny promenne inicializovane
+                } else
+                    throwException(8,0,0);
+                break;
             case insEqual:
+                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Lze porovnavat pouze int a double hodnoty viz zadani
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                        throwException(4,0,0);
+                    }
+                } else
+                    throwException(8,0,0);
+                break;
             case insNotEqual:
+                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Lze porovnavat pouze int a double hodnoty viz zadani
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                        throwException(4,0,0);
+                    }
+                } else
+                    throwException(8,0,0);
+                break;
             case insLess:
+                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Lze porovnavat pouze int a double hodnoty viz zadani
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                        throwException(4,0,0);
+                    }
+                } else
+                    throwException(8,0,0);
+                break;
             case insLessOrEqual:
+                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Lze porovnavat pouze int a double hodnoty viz zadani
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                        throwException(4,0,0);
+                    }
+                } else
+                    throwException(8,0,0);
+                break;
             case insGreater:
+                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Lze porovnavat pouze int a double hodnoty viz zadani
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                        throwException(4,0,0);
+                    }
+                } else
+                    throwException(8,0,0);
+                break;
             case insGreaterOrEqual:
+                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Lze porovnavat pouze int a double hodnoty viz zadani
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                        throwException(4,0,0);
+                    }
+                } else
+                    throwException(8,0,0);
+                break;
             case insAssignment:
+                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                    // Lze porovnavat pouze int a double hodnoty viz zadani
+                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                        throwException(4,0,0);
+                    }
+                } else
+                    throwException(8,0,0);
+                break;
             default:
                 break;
         }
@@ -403,9 +523,10 @@ int compareInstruction(BTSNode *Id1, BTSNode *Id2, InstrType operation) {
 void interpretMainCore(instrStack *interpretStack) {
     // Pomocne promenne
     int cond=0;
-    int whilecond=0;
+    int whileCondPos=0;
     // Pointer na instrukci
     struct Instr *instruction;
+    struct Instr *instructionWhile;
 
     while((instruction = instrStackTop(interpretStack)) != NULL) {
         // Switch pro jednotlive typy instrukci
@@ -787,7 +908,7 @@ void interpretMainCore(instrStack *interpretStack) {
             case insWhile :
                 instruction = instrStackTop(interpretStack);
                 cond = compareInstruction(instruction->Id1, instruction->Id2, instruction->type);
-                whilecond = instrStackSize(interpretStack);
+                whileCondPos = instrStackSize(interpretStack);
 
                 // Nactu instrukci po podmince
                 instruction = instrStackTop(interpretStack);
@@ -917,7 +1038,15 @@ void interpretMainCore(instrStack *interpretStack) {
                         instruction = instrStackTop(interpretStack);
                     }
                 }
-                // TODO DODELAT OPAKOVANI CYKLU
+                // Nacteme instrukci reprezentujici pozici vyrazu while(vyraz)
+                instructionWhile = instrStackDataAt(interpretStack, whileCondPos);
+
+                // Po dokonceni jednoho cyklu overime jeslti podminka stale plati.
+                if(compareInstruction(instructionWhile->Id1, instructionWhile->Id2, instructionWhile->type) == 1) {
+                    // Pokud ano, vratime ukazatel vrcholu zasobniku na pozici podminky cyklu-1 (tj prvni instrukce na stacku je insWhile a vse probehne znovu
+                    getBackTo(interpretStack, whileCondPos-1);
+                }
+                // Pokud podminka neplati, pokracujeme ve zpracovani stacku
                 break;
              // END WHILE
             // Default

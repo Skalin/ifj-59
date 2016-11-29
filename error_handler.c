@@ -76,11 +76,11 @@ void throwException(int errorNumber, int row, int column) {
             break;
         //interní chyba interpretu tj. neovlivnená vstupním programem (napr. chyba a-lokace pameti, chyba při otvírání souboru s řídicím programem, špatné parametry příkazové řádky atd.).
         case 99:
-            fprintf(stderr, "|Internal error|");
+            fprintf(stderr, "|Internal error|\n");
             exit_code = 99;
             break;
         default:
-            fprintf(stderr, "|Uknown error|");
+            fprintf(stderr, "|Uknown error|\n");
             exit_code = 99;
             break;
     }
