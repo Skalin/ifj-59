@@ -9,25 +9,39 @@ void printToken(tToken *token) {
 }
 
 int main(int argc, char* argv[]) {
+	// Pokud se program spousti se spatnym poctem parametru, ukonci se
 	if(argc != 2) {
 		throwException(99, 0, 0);
 	} else {
+		/* Inicializace globalni promenne */
 		globalInit();
+
+		/* Otevreni souboru */
 		global.file = fopen(global.fileName = argv[1], "r");
 		if (global.file == NULL) {
 		    throwException(99, 0, 0);
 		}
+		/* */
+
+		/* Inicializace hlavnich struktur prekladace */
 		mainTree mTree;
 		initTree(&mTree);
 		instrStack iStack;
 		instrStackInit(&iStack);
+		/* */
 
-		//struct instrStack dummyInstrStack;
-		//global.iStack = instrStackInit(&dummyInstrStack);
-
+		/* Parser */
 		pParse();
-		//interpretMainCore(global.iStack);
+		/* */
+
+		/* Interpret */
+		//semCheck(iStack);
+		//interpretMainCore(iStack);
+		/* */
+
+		/* Uvolneni pameti a ukonceni programu*/
 		finalFree();
+		/* */
 	}
 
 

@@ -39,10 +39,17 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation);
  * @param operation Enum typedef, ktery znaci pozadovanou operaci
  * @return
  */
-void compareInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, InstrType operation);
+int compareInstruction(BTSNode *Id1, BTSNode *Id2, InstrType operation);
 
 /*
  * Hlavni jadro interpretu, interpret samotny
+ * @param interpretStack Stack instrukci
  */
 void interpretMainCore(instrStack *interpretStack);
+
+/*
+ * Funkce zkontroluje semantiku prikazu
+ * @param interpretStack Stack instrukci
+ */
+void semCheck(instrStack *interpretStack);
 #endif //IFJ_59_INTERPRET_H

@@ -247,7 +247,16 @@ typedef enum {
 	insGreater, // Je vetsi
 	insGreaterOrEqual, // Je vetsi nebo rovno
 	insAssignment,
-	insFunctionCall
+	insFunctionCall,
+	//Condition
+	insCond,
+	insIf,
+	insIfEnd,
+	insElse,
+	insCondEnd,
+    //WHILE
+    insWhile,
+    insEndWhile,
 }InstrType;
 
 typedef struct Instr {
