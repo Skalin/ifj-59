@@ -5,20 +5,20 @@
       <sourceFolder url="file://$MODULE_DIR$/error_handler.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/stack.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interpret.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/iStack.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/typedef.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ial.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/expressions.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/stack.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lexical_analyzer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/instrstack.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lexical_analyzer.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/instrstack.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/garbage_collector.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/parser.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/garbage_collector.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/typedef.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/iStack.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/expressions.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parser.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/interpret.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/parser.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/expressions.c" isTestSource="false" />

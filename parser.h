@@ -81,9 +81,6 @@ void pIf();
 * Funkce pro parsovani cyklu while
 */
 void pWhile();
-
-
-
 #endif //IFJ_59_PARSER_H
 
 
