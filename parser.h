@@ -35,7 +35,7 @@ void pClassBody();
 /**
 * Funkce pro parsovani deklarace promene, nebo prirazeni hodnoty promene
 */
-void pVar();
+void pVar(tToken *token);
 
 /**
 * Funkce pro parsovani tela funkce
