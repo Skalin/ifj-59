@@ -20,7 +20,7 @@
 #include "error_handler.h"
 #include "stack.h"
 #include "ial.h"
-#include "iStack.h"
+#include "instrstack.h"
 #include "lexical_analyzer.h"
 
 #define STR_ERROR   0

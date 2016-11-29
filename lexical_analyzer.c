@@ -1,16 +1,16 @@
 /**
- * IFJ/IAL - LexikÃ¡lnÃ­ analyzÃ¡tor
+ * IFJ/IAL - Lexikální analyzátor
  * Varianta:    b/2/I
  * Soubor:       lexical_analyzer.c
- * TÃ½m:         59
- * AutoÅ™i:      Jan HrbotickÃ½, xhrbot01@stud.fit.vutbr.cz
- *              Dominik SkÃ¡la, xskala11@stud.fit.vutbr.cz
+ * Tım:         59
+ * Autoøi:      Jan Hrbotickı, xhrbot01@stud.fit.vutbr.cz
+ *              Dominik Skála, xskala11@stud.fit.vutbr.cz
  *              Milan Hruban, xhruba08@stud.fit.vutbr.cz
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
- *              David HÃ©l, xhelda00@stud.fit.vutbr.cz
+ *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 /*
-  *Include vÅ¡ech souborÅ¯
+  *Include všech souborù
   */
 #include <stdio.h>
 #include <string.h>
@@ -37,8 +37,8 @@ void keywordCheckToken(tToken *token) {
 	};
 	token->type = t_simple_ident; 
 
-    // For cyklus prohledÃ¡ prvnÃ­ tabulku a pokud v nÃ­ nalezne shodu v tokenu (strcmp()), pÅ™iÅ™adÃ­ do tToken type pÅ™Ã­sluÅ¡nou hodnotu z druhÃ© tabulky
-    // DONE Jan HrbotickÃ½
+    // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), pøiøadí do tToken type pøíslušnou hodnotu z druhé tabulky
+    // DONE Jan Hrbotickı
     for (int i=0; i < NUMBER_OF_KEY_WORDS; i++) {
         if (strcmp(keyWordTable[i], token->data) == 0)
             token->type = keyWordTokenTable[i];
@@ -53,16 +53,16 @@ tToken * t_buffer;
 
 tToken * initToken() {
     // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
-    // POZOR, ZDE SE MUSÃ IMPLEMENTOVAT CELÃ NOVÃ SOUBOR, KTERÃ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUÅ ENÃ
-    // JednÃ¡ se o to, Å¾e vÅ¡echny data budou v listovÃ©m seznamu (viz 1. Ãºkol IAL)
+    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELİ NOVİ SOUBOR, KTERİ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
+    // Jedná se o to, e všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
 	unsigned int mallocSize = 16;
 
 	tToken * token = (tToken *) plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
-    // TODO mÃ¡m tady vytvÃ¡Å™et novÃ½ token nebo pouÅ¾Ã­vÃ¡m globalnÃ­?
+    // TODO mám tady vytváøet novı token nebo pouívám globalní?
 
-    token->type = t_error;   // nastavÃ­ token do poÄÃ¡teÄnÃ­ho stavu
-    token->data[0] = '\0';      // inicializace vÅ¡ech prvkÅ¯ na vÃ½chozÃ­ hodnoty
+    token->type = t_error;   // nastaví token do poèáteèního stavu
+    token->data[0] = '\0';      // inicializace všech prvkù na vıchozí hodnoty
     token->length = 0;
     token->allocated = 0;
 
@@ -72,51 +72,66 @@ tToken * initToken() {
 tToken * updateToken(tToken * token, char *string) {
 	// Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
 	// Pomoci strncat() pridat novy retezec nakonec
-	// POZOR, ZDE SE MUSÃ IMPLEMENTOVAT CELÃ NOVÃ SOUBOR, KTERÃ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUÅ ENÃ
-	// JednÃ¡ se o to, Å¾e vÅ¡echny data budou v listovÃ©m seznamu (viz 1. Ãºkol IAL)
+	// POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELİ NOVİ SOUBOR, KTERİ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
+	// Jedná se o to, e všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
-	unsigned int stringLength = strlen(string);
+    int strLength = strlen(string);
+
+    
+    if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokováno ménì ne je potøeba
+
+		token->allocated = strLength + token->length + 1;      // update hodnoty allocated v tokenu
+		token = plusRealloc(token, sizeof(tToken) + (sizeof(char) * (token->allocated)));   //TODO
+    }
 
 
-	if (token->allocated < (stringLength + token->length) ) {     // pokud je alokovÃ¡no mÃ©nÄ› neÅ¾ je potÅ™eba
-		token = plusRealloc(token, sizeof(tToken) + sizeof(char)*(stringLength+token->length));  //TODO
-		token->allocated = stringLength + token->length;    // update hodnoty allocated v tokenu
-	}
-
-
-    strncat(token->data, string, stringLength);      // pÅ™ipojenÃ­ stringu na konec tokenu
-    token->length = token->length + stringLength;   // update dÃ©lky tokenu
+    strncat(token->data, string, strLength);      // pøipojení stringu na konec tokenu
+    token->length = token->length + strLength;   // update délky tokenu
 
     return token;
+/*
+
+	unsigned int len = strlen(string);
+	unsigned int total_len = len + (token->length) + 1;
+	if (total_len > token->allocated) {
+		token->allocated = total_len;
+		token = plusRealloc(token, sizeof(tToken) + (sizeof(char) * (token->allocated)));
+		if (token == NULL) {
+			throwException(1, 0, 0);
+			return 0;
+		}
+	}
+	return token;*/
+ 
 }
 
 void tokenReturnToken(tToken * token) {
-    // Do tokenu pÅ™iÅ™adÃ­ naÄtenÃ© hodnoty z pomocnÃ©ho tokenu t_buffer
+    // Do tokenu pøiøadí naètené hodnoty z pomocného tokenu t_buffer
     t_buffer = token;
 }
 
 void destroyToken(tToken * token) {
-    // ZruÅ¡Ã­ danÃ½ token
-    // POZOR, ZDE SE MUSÃ IMPLEMENTOVAT CELÃ NOVÃ SOUBOR, KTERÃ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUÅ ENÃ
-    // JednÃ¡ se o to, Å¾e vÅ¡echny data budou v listovÃ©m seznamu (viz 1. Ãºkol IAL)
+    // Zruší danı token
+    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELİ NOVİ SOUBOR, KTERİ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
+    // Jedná se o to, e všechny data budou v listovém seznamu (viz 1. úkol IAL)
 
     plusFree(token);
 }
 
 void fillToken(tToken * token, tokenType type) {
-    // NastavÃ­ typ tokenu
+    // Nastaví typ tokenu
     token->type = type;
 }
 
 
 tToken * getToken(){
-    // PÅ™ipojÃ­ se do souboru a postupnÄ› naÄte nÃ¡sledujÃ­cÃ­ token (+ o nÄ›m pÅ™idÃ¡ informace do struktury tToken)
+    // Pøipojí se do souboru a postupnì naète následující token (+ o nìm pøidá informace do struktury tToken)
 
 
 
-    char c = '\0'; // inicializovanÃ¡ promÄ›nnÃ¡ c s vÃ½chozÃ­ hodnotou \0
+    char c = '\0'; // inicializovaná promìnná c s vıchozí hodnotou \0
 
-	 // staÄÃ­ nÃ¡m soubor pouze pro ÄtenÃ­
+	 // staèí nám soubor pouze pro ètení
 
 	tToken * token = initToken(); //pomocny token
 
@@ -128,7 +143,7 @@ tToken * getToken(){
 	int i = 0;
 
 
-	while (TRUE) { // TRUE je definovÃ¡na jako 1 v .h souboru
+	while (TRUE) { // TRUE je definována jako 1 v .h souboru
 		c = fgetc(global.file);
 		
 		switch(status) {

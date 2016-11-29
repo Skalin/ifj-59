@@ -13,16 +13,21 @@
 #
 
 CC=gcc
-CFLAGS=-std=c99 -Wall -Werror -Wextra -pedantic -g -lm
+CFLAGS=-std=c99 -Wall -Wextra -pedantic -g -lm
 OBJFILES=$(patsubst %.c, %.c.o, $(shell ls *.c))
 TESTFILES=$(patsubst tests/%.pas, tests/%, $(shell ls tests/*.pas));
 SHELL=bash
 
 # build
 all: ifj
+	rm -rf *.c.o
 
 ifj: $(OBJFILES)
 	$(CC) $(CFLAGS) *.o -o ifj
 
 %.c.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $(subst , , $<.o)
+
+clean: 
+	rm -rf *.c.o
+	rm -rf ./ifj
