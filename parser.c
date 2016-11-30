@@ -1,13 +1,13 @@
 /**
- * IFJ/IAL - Syntaktická analýza
+ * IFJ/IAL - SyntaktickÃ¡ analÃ½za
  * Varianta:    b/2/I
  * Soubor:      parser.c
- * Tým:         59
- * Autoøi:      Jan Hrbotický, xhrbot01@stud.fit.vutbr.cz
- *              Dominik Skála, xskala11@stud.fit.vutbr.cz
+ * TÃ½m:         59
+ * AutoÃ¸i:      Jan HrbotickÃ½, xhrbot01@stud.fit.vutbr.cz
+ *              Dominik SkÃ¡la, xskala11@stud.fit.vutbr.cz
  *              Milan Hruban, xhruba08@stud.fit.vutbr.cz
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
- *              David Hél, xhelda00@stud.fit.vutbr.cz
+ *              David HÃ©l, xhelda00@stud.fit.vutbr.cz
  */
 
 #include <string.h>
@@ -227,7 +227,7 @@ void pFunction(){
 	isInRun = FALSE;
 
 }
-void pVar(tToken *token){
+void pVar(tToken *token, int dataType){
 /**
  * variable assign
  * <type> ID = <expr>;
@@ -251,8 +251,9 @@ void pVar(tToken *token){
   }
 
   if (token->type == t_assignment) {
+	  
     // tady doplnit neco z precedencni
-    //DELETE THIS
+          //DELETE THIS
           token = getToken();
           while (token->type != t_semicolon) {
             
@@ -408,7 +409,8 @@ void pSingleCommand(){
 			break;
 
 		case t_kw_static :
-				// static keyword
+				
+			// static keyword
 			// TODO laterz
  			//DELETE THIS
 			token = getToken();
@@ -437,26 +439,16 @@ void pSingleCommand(){
 
 			if (token->type == t_assignment) {
 				// a =
-				pVar(token);
+				pVar(token,0);
 				break;     // toto mozna pujde pryc
 			} else if (token->type == t_bracket_l) {
 				// volani funkce
-
-				if (strcmp(tempData,"ifj16.print") == 0) {
-					//vyresit ifj16.print TODO
-					//DELETE THIS
-					token = getToken();
-					while (token->type != t_bracket_r) {
-						
-						token = getToken();
-					}
-					// END OF DELETE BLOCK
-				} else {
-					// nacist argumenty funkce
-					pExprParams();
-				}
+				//vytvorit uzel nebo najit
+				//expression();
+				
 
 				// mozna si ho precedencni uz vyresi, takze za pvar() v assigment musim dat break;
+				// DELETE
 				token = getToken();
 				if (token->type != t_semicolon) {
 					// missing semicolon
@@ -484,7 +476,7 @@ void pSingleCommand(){
 			tempData = token->data;
 			
 
-			pVar(NULL);
+			pVar(NULL,1);
 
 		break;
 
@@ -542,13 +534,8 @@ void pIf(){
 
 	tToken * token;
 
-	//DELETE THIS
-	token = getToken();
-	while (token->type != t_bracket_r) {
-		
-		token = getToken();
-	}
-	// END OF DELETE BLOCK
+	//vytvorit instrukce pro condition, if
+	//expression();
 
 	pCommands();
 
@@ -556,10 +543,12 @@ void pIf(){
 	if (token->type != t_kw_else){   // else
 		throwException(2,0,0);
 	}
-	
+	// instrukce endif , else 
 
 	// block of code for else
 	pCommands();
+	
+	//instrukce endcond
 
 }
 void pWhile(){
@@ -567,17 +556,12 @@ void pWhile(){
 * while ( <expr> ) { <commands> }
 */
 
-	tToken * token;
-
-	//DELETE THIS
-	token = getToken();
-	while (token->type != t_bracket_r) {
-		
-		token = getToken();
-	}
-	// END OF DELETE BLOCK
+	// instrukce while
+	//expression();
+	
 
 
 	pCommands();
+	// instrukce endwhile
 }
 
