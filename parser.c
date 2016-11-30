@@ -519,41 +519,7 @@ void pSingleCommand(){
 	pSingleCommand();
 }
 
-void pExprParams(){
-/*
-* parametry pri volani funkce - prvni parametr
-*/
-	tToken * token;
-	token = getToken();
 
-	if (token->type == t_bracket_r) {
-		//zadne parametry;
-		return;
-	} else {
-		// zpracovani jednoho parametru, nevim jeste jak TODO
-		pExprParamsNext();
-	}
-}
-void pExprParamsNext(){
-/*
-* zpracovani dalsiho parametru pri volani funkce
-*/
-	tToken * token;
-	token = getToken();
-
-	if (token->type == t_bracket_r) {
-		//zadne dalsi parametry;
-		return;
-	} else if (token->type == t_comma) {
-		// zpracovani jednoho parametru, nevim jeste jak TODO
-		//DELETE THIS
-		token = getToken();
-		//END OF DELETE BLOCK
-		pExprParamsNext();
-	} else {
-		throwException(2,0,0);
-	}
-}
 
 void pIf(){
 /***
