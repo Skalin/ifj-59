@@ -34,8 +34,10 @@ void pClassBody();
 
 /**
 * Funkce pro parsovani deklarace promene, nebo prirazeni hodnoty promene
+* @param *token posledni nacteny token
+* @param dataType info zda se jedna o prirazeni hodnoty nebo inicializaci
 */
-void pVar(tToken *token);
+void pVar(tToken *token, int dataType);
 
 /**
 * Funkce pro parsovani tela funkce
@@ -63,16 +65,6 @@ void pCommands();
 void pSingleCommand();
 
 /**
-* Funkce pro parsovani prvniho argumentu pri volani funkce
-*/
-void pExprParams();
-
-/**
-* Funkce pro parsovani dalsich argumentu pri volani funkce
-*/
-void pExprParamsNext();
-
-/**
 * Funkce pro parsovani ridici struktury if
 */
 void pIf();
@@ -81,6 +73,13 @@ void pIf();
 * Funkce pro parsovani cyklu while
 */
 void pWhile();
+
+/**
+* prevod typu tokenType na typ varType
+* @param temp prevadeny tokenType
+*/
+varType tempToVar(tokenType temp);
+
 #endif //IFJ_59_PARSER_H
 
 
