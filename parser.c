@@ -68,6 +68,8 @@ void pParse(){
 	if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - semanticka chyba
 		throwException(3,0,0);
 	}
+	
+	// completeInstr();
 	//uspesny konec
 }
 
