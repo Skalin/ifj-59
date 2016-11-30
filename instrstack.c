@@ -111,6 +111,14 @@ void getBackTo (instrStack *stc, int n) {
 	stc->count = n;
 }
 
+// Funcke zkopiruje obsah jednoho zasobniku do druheho, jednu položku po druhé
+void instrStackCopy(instrStack *originalStc, instrStack *copiedStc) {
+	int i = 0;
+	while (i < originalStc->count) {
+		instrStackPush(copiedStc, copiedStc->dataInstr[i]);
+		i++;
+	}
+}
 
 void instrStackPop (instrStack *stc) {
 
@@ -121,7 +129,6 @@ void instrStackPop (instrStack *stc) {
 int instrStackSize (instrStack *stc) {
 	return stc->count;
 }
-
 
 void instrItemDestroy (instrStack *data) {
 
