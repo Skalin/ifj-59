@@ -431,29 +431,6 @@ void pSingleCommand(){
 			// END OF DELETE BLOCK
 			break;
 
-			break;
-
-		case t_kw_static :
-				
-			// static keyword
-			// TODO laterz
- 			//DELETE THIS
-			token = getToken();
-			if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double){
-				token = getToken();
-				if (token->type != t_simple_ident){
-					throwException(2,0,0);
-					}
-
-    			     token = getToken();
-    			     while (token->type != t_semicolon) {
-      		      
-        		    token = getToken();
-     			     }
-        		  // END OF DELETE BLOCK
-			} else {throwException(2,0,0);}
-			break;
-
 		case t_simple_ident :
 		case t_complete_ident :
 			//  identifikator,
