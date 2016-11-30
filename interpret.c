@@ -1044,7 +1044,7 @@ void interpretMainCore(instrStack *interpretStack) {
                 // Po dokonceni jednoho cyklu overime jeslti podminka stale plati.
                 if(compareInstruction(instructionWhile->Id1, instructionWhile->Id2, instructionWhile->type) == 1) {
                     // Pokud ano, vratime ukazatel vrcholu zasobniku na pozici podminky cyklu-1 (tj prvni instrukce na stacku je insWhile a vse probehne znovu
-                    getBackTo(interpretStack, whileCondPos-1);
+                    getBackTo(interpretStack, whileCondPos-2);
                 }
                 // Pokud podminka neplati, pokracujeme ve zpracovani stacku
                 break;
