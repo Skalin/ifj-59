@@ -69,7 +69,7 @@ void pParse(){
 		throwException(3,0,0);
 	}
 	
-	// completeInstr();
+	//completeInstr();  //TODO
 	//uspesny konec
 }
 
@@ -92,10 +92,16 @@ void pClass(){
 		isInMain = TRUE;
 	}
 	// zkontrolovat jestli identifikator tridy uz neexistuje
-
-	// vytvorit tridu v tabulce symbolu
+	BTSNode * node;
+	node = searchForNode(token->data, class, BTSNode *start); //TODO start??
 	
-	//createNewNode(token->data, class, NULL, int status);	
+	if (node != NULL){
+		// pokus o definici tridy se stejnym jmenem
+		throwException(3,0,0);
+	}
+	
+	// vytvorit tridu v tabulce symbolu
+	createNewNode(token->data, class, NULL, int status);	// TODO  status??
 
 	token = getToken();    
 
@@ -164,7 +170,7 @@ void pClassBody(){
 				pFunction();
 			} else {
 				
-				pVar(token);
+				pVar(token, 1);
 			}
 
 				pClassBody(); // pokravujeme ve zpracovani zbytku tela tridy
@@ -174,11 +180,11 @@ void pClassBody(){
 			throwException(2,0,0);
 		}
 			// end  if (token->type == t_kw_static)
-	} else if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
+	} /*else if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
 		// data type - promena (neni globalni)
 
 		// ulozime si typ tokenu
-		tempType = token->type;
+		tempType = token->type;                  //Nakonec to neni povolene, 
 		tempStatic = 0;
 		
 
@@ -196,13 +202,13 @@ void pClassBody(){
 
 		pClassBody(); // pokravujeme ve zpracovani zbytku tela tridy
 
-	} else if (token->type == t_brace_r) {
+	}*/ else if (token->type == t_brace_r) {
 		
 		isInMain = FALSE;
 		// dalsi token je prava curly zavorka, konec tela  tridy vracime se do funkce pClass(); ( a z ni hned zpatku do funkce pParse();
 
 	} else {
-	// token neni ani kw 'static', ani datatype, ani zavorka na konec funkce - syntax error
+	// token neni ani kw 'static', ani zavorka na konec funkce - syntax error
 		throwException(2,0,0);
 	}
 
@@ -218,9 +224,18 @@ void pFunction(){
 	
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
+	BTSNode * node;
+	node = searchForNode(tempData, function, BTSNode *start); //TODO start??
+	
+	
+	if (node != NULL){
+		// pokus o definici funkce se stejnym jmenem //pokud na to neprijdem tak tady echame throwexception
+		throwException(3,0,0);                // TADY SE MUSI Nejak vyresit pokus uz ji vytvoril Martin, doplnit data,oddelat exceptin
+	} else {
 	// ulozit do tab. symbolu
 	
-	//createNewNode(tempData, function, tempType, int status);
+	createNewNode(tempData, function, tempToVar(tempType), int status); //TODO INT STATUS
+	}
 
 	pParams();  // parse parametru
 
@@ -234,38 +249,46 @@ void pVar(tToken *token, int dataType){
  * variable assign
  * <type> ID = <expr>;
  * <type> ID;
+ * int dataType = 0-> prirazeni ; dataType = 1 -> inicializace(+mozne prirazeni)
  *
  */
-  // v temp mame identifikator a typ promene
-  // parametr je posledni nacteny token
+	// v temp mame identifikator a typ promene
+	// parametr je posledni nacteny token3
 
-  if (token == NULL) {
-    token = getToken();
-  }
+	if (token == NULL) {
+		token = getToken();
+	}
 
-  //musime vytvorit uzel
-  // mozna kontrolovat jestli uz neexistuje
+	//musime vytvorit uzel
+	// kontrolovat jestli uz neexistuje
+	BTSNode * node;
+	node = searchForNode(tempData, var, BTSNode *start); //TODO start??
 	
-  //createNewNode(tempData, var, tempType, int status);
+	if (dataType == 1) {
+		if (node != NULL){
+			throwException(3,0,0);
+		}
+		createNewNode(tempData, var, tempToVar(tempType), int status);  // TODO status??
+	} else {
+		if (node == NULL){
+			throwException(3,0,0);
+		}
+		
+	}
 
-  if (token->type == t_semicolon) { // neprirazujem zadnou hodnotu, konec funkce
-    return;
-  }
+	
 
-  if (token->type == t_assignment) {
-	  
-    // tady doplnit neco z precedencni
-          //DELETE THIS
-          token = getToken();
-          while (token->type != t_semicolon) {
-            
-            token = getToken();
-          }
-          // END OF DELETE BLOCK
-  }
-  else {
-    throwException(2,0,0);
-  }
+	if (token->type == t_semicolon) { // neprirazujem zadnou hodnotu, konec funkce
+		return;
+	}
+
+	if (token->type == t_assignment) {
+		expression(BTSNode *targetId, expAssign); // TODO  NODE
+	
+	}
+	else {
+		throwException(2,0,0);
+	}
 
 }
 
@@ -299,7 +322,7 @@ void pParams(){
     
 
     // zpracovat parametr TODO
-    //addArgument(tempData, tempType);		  
+    addArgument(tempData, tempToVar(tempType));		  
 
     pParamsNext(); // zpracovani dalsi parametru
 
@@ -344,7 +367,7 @@ void pParamsNext(){
 			
 
 			// zpracovat parametr TODO
-			//addArgument(tempData, tempType);
+			addArgument(tempData, tempToVar(tempType));
 
 			pParamsNext(); // zpracovani dalsi parametru
 		} else {
@@ -442,20 +465,23 @@ void pSingleCommand(){
 			if (token->type == t_assignment) {
 				// a =
 				pVar(token,0);
-				break;     // toto mozna pujde pryc
+				
 			} else if (token->type == t_bracket_l) {
 				// volani funkce
 				//vytvorit uzel nebo najit
-				//expression();
+				BTSNode * node;
+				node = searchForNode(tempData, function, BTSNode *start); //TODO start??
+				
+				//mozna tady musim vytvorit NODE pokud neexistuje
+				
+				expression(BTSNode *targetId, expArg); //TODO? je exp arg spravne?
 				
 
-				// mozna si ho precedencni uz vyresi, takze za pvar() v assigment musim dat break;
-				// DELETE
-				token = getToken();
-				if (token->type != t_semicolon) {
-					// missing semicolon
-					throwException(2,0,0);
-				}
+				// sem pridat check na strednik pokud to bude potreba
+			}
+			else {
+				// ident musi nasledovat prirazeni nebo volani fce
+				throwException(2,0,0); 
 			}
 		break;
 
@@ -537,7 +563,7 @@ void pIf(){
 	tToken * token;
 
 	//vytvorit instrukce pro condition, if
-	//expression();
+	expression(BTSNode *targetId, expCond); //TODO
 
 	pCommands();
 
@@ -559,11 +585,27 @@ void pWhile(){
 */
 
 	// instrukce while
-	//expression();
+	expression(BTSNode *targetId, expCond); //TODO
 	
 
 
 	pCommands();
 	// instrukce endwhile
+}
+
+varType tempToVar(tokenType temp){
+	switch(temp){
+		case t_kw_int:
+			return var_int;
+		case t_kw_double:
+			return var_double;
+		case t_kw_string:
+			return var_string;
+		case t_kw_void:
+			return var_void;
+	
+	}
+	
+
 }
 
