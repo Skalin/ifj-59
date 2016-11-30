@@ -93,7 +93,7 @@ void pClass(){
 	}
 	// zkontrolovat jestli identifikator tridy uz neexistuje
 	BTSNode * node;
-	node = searchForNode(token->data, class, BTSNode *start); //TODO start??
+	node = searchForNode(token->data, class, NULL); //TODO start??
 	
 	if (node != NULL){
 		// pokus o definici tridy se stejnym jmenem
@@ -101,7 +101,7 @@ void pClass(){
 	}
 	
 	// vytvorit tridu v tabulce symbolu
-	createNewNode(token->data, class, NULL, int status);	// TODO  status??
+	createNewNode(token->data, class, NULL, 0);	// TODO  status??
 
 	token = getToken();    
 
@@ -225,7 +225,7 @@ void pFunction(){
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	BTSNode * node;
-	node = searchForNode(tempData, function, BTSNode *start); //TODO start??
+	node = searchForNode(tempData, function, NULL); //TODO start??
 	
 	
 	if (node != NULL){
@@ -234,7 +234,7 @@ void pFunction(){
 	} else {
 	// ulozit do tab. symbolu
 	
-	createNewNode(tempData, function, tempToVar(tempType), int status); //TODO INT STATUS
+	createNewNode(tempData, function, tempToVar(tempType), 1); //TODO INT STATUS
 	}
 
 	pParams();  // parse parametru
@@ -262,13 +262,13 @@ void pVar(tToken *token, int dataType){
 	//musime vytvorit uzel
 	// kontrolovat jestli uz neexistuje
 	BTSNode * node;
-	node = searchForNode(tempData, var, BTSNode *start); //TODO start??
+	node = searchForNode(tempData, var, NULL); //TODO start??
 	
 	if (dataType == 1) {
 		if (node != NULL){
 			throwException(3,0,0);
 		}
-		createNewNode(tempData, var, tempToVar(tempType), int status);  // TODO status??
+		createNewNode(tempData, var, tempToVar(tempType), tempStatic);  // TODO status??
 	} else {
 		if (node == NULL){
 			throwException(3,0,0);
@@ -447,7 +447,7 @@ void pSingleCommand(){
 				// volani funkce
 				//vytvorit uzel nebo najit
 				BTSNode * node;
-				node = searchForNode(tempData, function, BTSNode *start); //TODO start??
+				node = searchForNode(tempData, function, NULL); //TODO start??
 				
 				//mozna tady musim vytvorit NODE pokud neexistuje
 				
