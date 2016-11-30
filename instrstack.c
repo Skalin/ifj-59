@@ -99,7 +99,12 @@ Instr * instrStackTop (instrStack *stc) {
 Instr * instrStackDataAt (instrStack *stc, int n) {
 	//Pokud jsou v zasobniku data, vrat data na vrcholu
 	if (!instrStackEmpty(stc)) {
-		return stc->dataInstr[n];
+		// pokud je pocet prvku mensi nez hledany prvek, vratim NULL, jinak vratime prvek
+		if (stc->count < n) {
+			return NULL;
+		} else {
+			return stc->dataInstr[n];
+		}
 		//Jinak vrat null
 	} else {
 		return NULL;
