@@ -115,7 +115,7 @@ void getBackTo (instrStack *stc, int n) {
 void instrStackCopy(instrStack *originalStc, instrStack *copiedStc) {
 	int i = 0;
 	while (i < originalStc->count) {
-		instrStackPush(copiedStc, copiedStc->dataInstr[i]);
+		instrStackPush(copiedStc, originalStc->dataInstr[i]);
 		i++;
 	}
 }
