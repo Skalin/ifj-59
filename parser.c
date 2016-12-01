@@ -265,11 +265,14 @@ void pVar(tToken *token, int dataType){
 	node = searchForNode(tempData, var, NULL); //TODO start??
 	
 	if (dataType == 1) {
+		//inicializace promene, uzel nemuze existovat, vytvorime novy
 		if (node != NULL){
 			throwException(3,0,0);
 		}
 		createNewNode(tempData, var, tempToVar(tempType), tempStatic);  // TODO status??
+		node = searchForNode(tempData, var, NULL);
 	} else {
+		//prirazeni, uzel musi existovat
 		if (node == NULL){
 			throwException(3,0,0);
 		}
@@ -283,7 +286,7 @@ void pVar(tToken *token, int dataType){
 	}
 
 	if (token->type == t_assignment) {
-		expression(BTSNode *targetId, expAssign); // TODO  NODE
+		expression(node, expAssign); // TODO  NODE
 	
 	}
 	else {
@@ -451,7 +454,7 @@ void pSingleCommand(){
 				
 				//mozna tady musim vytvorit NODE pokud neexistuje
 				
-				expression(BTSNode *targetId, expArg); //TODO? je exp arg spravne?
+				expression(node, expArg); //TODO? je exp arg spravne?
 				
 
 				// sem pridat check na strednik pokud to bude potreba
@@ -506,7 +509,7 @@ void pIf(){
 	tToken * token;
 
 	//vytvorit instrukce pro condition, if
-	expression(BTSNode *targetId, expCond); //TODO
+	expression(NULL, expCond); //TODO
 
 	pCommands();
 
@@ -528,7 +531,7 @@ void pWhile(){
 */
 
 	// instrukce while
-	expression(BTSNode *targetId, expCond); //TODO
+	expression(NULL, expCond); //TODO
 	
 
 
