@@ -106,9 +106,8 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
 void reduceExp(BTSNode *targetId, tStackIt *handle[3], instrStack *iStack) {
-    (void)targetId; // DELETE - je to tu jen kvůli warningu
     Instr *instr = NULL;
-    instr = instrItemInit(instr);
+    instr = instrItemInit();
     BTSNode *start = NULL; // TODO global.mTree->actFunction;
     
     if (start != NULL) {

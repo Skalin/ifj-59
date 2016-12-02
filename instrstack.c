@@ -27,37 +27,25 @@ instrStack * instrStackInit (instrStack *stc ) {
     return stc;
 }
 
-Instr *instrItemInit (Instr *stc) {
+Instr *instrItemInit () {
 
-	stc->Id1 = NULL;
-	stc->Id2 = NULL;
-	stc->Id3 = NULL;
-	
 	Instr * itemNew;
 	itemNew = plusMalloc(sizeof(Instr));
 
-	if (itemNew != NULL) {
-		return NULL;
-	} 
-	
-	else {
-        	throwException(99,0,0); //chyba alokace paměti
-    	}
-
-	InstrType * instrNew;
-	instrNew = plusMalloc(sizeof(InstrType));
-
-	if (instrNew != NULL) {
-        	return NULL;
-	} 
-	
-	else {
+	if (itemNew == NULL) {
 		throwException(99,0,0); //chyba alokace paměti
-	}
-
-	// Tohle si zkontroluj. Původně tu bylo itemNew->type = instrNew;
-	itemNew->type = *instrNew;
-	return itemNew;
+	} 
+	
+	else {
+		InstrType * instrNew;
+		instrNew = plusMalloc(sizeof(InstrType));
+		itemNew->type = *instrNew;
+        itemNew->Id1 = NULL;
+        itemNew->Id2 = NULL;
+        itemNew->Id3 = NULL;
+		return itemNew;
+    }
+	return NULL;
 }
 
 int instrStackEmpty (const instrStack* stc) {

@@ -17,7 +17,7 @@
 
 //FUNKCE
 instrStack* instrStackInit (instrStack* stc );
-Instr *instrItemInit (Instr* stc);
+Instr *instrItemInit ();
 int instrStackEmpty (const instrStack* stc);
 int instrStackFull (const instrStack* stc);
 void instrStackPush (instrStack* stc, Instr* data);
