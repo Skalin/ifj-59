@@ -17,7 +17,7 @@
 #include <ctype.h>
 #include "garbage_collector.h"
 #include "expressions.h"
-#include "error_handler.h"
+#include "error_handler.h"-
 #include "stack.h"
 #include "ial.h"
 #include "instrstack.h"
@@ -27,8 +27,8 @@
 #define STR_SUCCESS 1
 #define STR_ALLOCATION_SIZE 8  // Udává, kolik bude alokováno na začátku paměti. Pokud načítáme po jednom znaku, dojde k alokaci na násobky tohoto čísla
 
-// TODO doplnit chybějící stavy a asi odstranit čárku
-char precTable[16][16] = {
+// TODO zkontrolovat správnost tabulky
+char precTable[15][15] = {
   //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ;   ID
     {'<','=','<','<','<','<','<','<','<','<','<','<','<','F','<'}, // (
     {'F','>','>','>','>','>','>','>','>','>','>','>','>','>','F'}, // )
@@ -43,14 +43,14 @@ char precTable[16][16] = {
     {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // <=
     {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // >=
     {'=','>','>','>','>','>','>','>','>','>','>','>','>','F','<'}, // !
-    {'<','F',' ','<','<',' ',' ',' ',' ',' ',' ',' ',' ','F','<'}, // ;
+    {'<','F','<','<','<','<','<','<','<','<','<','<','F','F','<'}, // ;
     {'F','>','>','>','>','>','>','>','>','>','>','>','F','>','F'}  // ID
 };
 
 int argNum = 0;
 
 bool isIdent(tToken *token) {
-    if ((token->type >= t_simple_ident) && (token->type <= t_print))
+    if ((token->type >= t_simple_ident) && (token->type <= t_complete_ident))
         return true;
     return false;
 }
@@ -66,15 +66,16 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
     int inTokenNum = inToken->type;
     
     if (isIdent(stackToken) || isConst(stackToken)) {
-        stackTokenNum = 15;
+        stackTokenNum = 14;
     }
     if (isIdent(inToken) || isConst(inToken)) {
-        inTokenNum = 15;
+        inTokenNum = 14;
     }
+    printf("posilam [%d][%d]\n",stackTokenNum,inTokenNum);
     return precTable[stackTokenNum][inTokenNum];
 }
 
-// Mění terminály na výrazy a odstraňuje závorky podle pravidel: E -> id  a  E -> (E)
+
 tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
     int i = 0;
 
@@ -86,12 +87,12 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
         handle[i] = stackTop(stack);
         stackPop(stack);
     }
-
+    
     // Odstraníme ze zásobníku začátek handle '<'
     stackPop(stack);
 
     // Pravidlo E -> id
-    if ((i == 1) && (isIdent(handle[0]->dataIt))) {
+    if ((i == 1) && (isIdent(&handle[0]->dataIt))) {
         handle[0]->typeIt = EXPR;
         stackPush(stack,handle[0]);
     }
@@ -185,13 +186,70 @@ void reduceExp(BTSNode *targetId, tStackIt *handle[3], instrStack *iStack) {
 }
 
 void expression(BTSNode *targetId, tExpType expType) {
+    // Otestováno: isIdent, isConst, getPrecChar, topTerm
+/*
+    // DELETE - testování interních funkcí v expressions (aktualne chnToExp)  
+    tStack *teststack = NULL;
+    teststack = stackInit(teststack);
+    tToken *testtoken = NULL;
+    tStackIt *testitem = NULL;
+    
+    testtoken = initToken();
+    fillToken(testtoken, t_semicolon);
+    updateToken(testtoken,";");
+    testitem = itemInit();
+    testitem->dataIt = testtoken;
+    testitem->typeIt = TERM;
+    stackPush(teststack,testitem);
+    
+    testtoken = initToken();
+    fillToken(testtoken, t_int);
+    updateToken(testtoken,"<");
+    testitem = itemInit();
+    testitem->dataIt = testtoken;
+    testitem->typeIt = NONTERM;
+    stackPush(teststack,testitem);
+    
+    testtoken = initToken();
+    fillToken(testtoken, t_int);
+    updateToken(testtoken,"ID");
+    testitem = itemInit();
+    testitem->dataIt = testtoken;
+    testitem->typeIt = TERM;
+    stackPush(teststack,testitem);
+       
+    int j = 1;
+    while (j <= 1) {
+        printf("%2d. krok--------------\n",j);
+        printf("   Obsah stacku: ");
+        
+        int i = 0;
+        while (teststack->counter-i > 0) {
+            printf("|%s",teststack->data[teststack->counter-i]->dataIt->data);
+            i++;
+        }
+        printf("|\n");
+
+        tStackIt *testhandle[3];
+        chnToExp(teststack,testhandle);
+        j++;
+    }
+   
+    
+    printf("\n\nTESTY PROSLY!!\n");
+    printf("topterm=%s\n",topTerm(teststack)->data);
+    
+    // END DELETE*/
+    
+    
+    
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
-    instrStack *iStack = NULL; // TODO = global.iStack;
-    /* TODO  if ((global.mTree->actFunction != NULL) || (global.mTree->actFunction->Key != "run")) {
-        iStack = global.mTree->actFunction->iStack; // Zatím neexistuje ale bude
-    }
-    */
+    instrStack *localIStack =NULL;/* =  globální iStack;
+    if ((global.mTree->actFunction != NULL) || (global.mTree->actFunction->Key != "run")) {
+        localIStack = global.mTree->actFunction->iStack; // Zatím neexistuje ale bude
+    }*/
+    
     // Inicializujeme zásobník a vložíme na něj znak ';'
     tStack *stack = NULL;
     stack = stackInit(stack);
@@ -207,7 +265,7 @@ void expression(BTSNode *targetId, tExpType expType) {
     token = getToken();
     Instr *instr = NULL;
     instr = instrItemInit(instr);
-    
+       
     
     while (TRUE) {
         /* Vyskočí z cyklu, pokud topTerm je roven ';' a
@@ -315,7 +373,7 @@ void expression(BTSNode *targetId, tExpType expType) {
             case '>': ; // Stejná situace se středníkem jako v první case
                 tStackIt *handle[3];
                 chnToExp(stack,handle);
-                reduceExp(targetId,handle,iStack);
+                reduceExp(targetId,handle,localIStack);
                 break;
             default:
                 // Syntaktická chyba

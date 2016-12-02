@@ -36,28 +36,18 @@ tStackTmp * stackInitTmp (tStackTmp *stack2) {
     return stack2;
 }
 
-tStackIt *itemInit () {
+tStackIt *itemInit (tToken *token) {
 
 	tStackIt * itemNew;
 	itemNew = plusMalloc(sizeof(tStackIt));
 
-	if (itemNew != NULL) {
-		return NULL;
-	} else {
+	if (itemNew == NULL) {
 		throwException(99,0,0); //chyba alokace paměti
 	}
-
-	tToken * tokenNew;
-	tokenNew = plusMalloc(sizeof(tToken));
-
-	if (tokenNew != NULL) {
-		return NULL;
-	} else {
-		throwException(99,0,0); //chyba alokace paměti
-	}
-
+	
+	else
 	// ERROR - initstring neexistuje   initString(&tokenNew->attribute);
-	itemNew->dataIt = tokenNew;
+	itemNew->dataIt = token;
 	return itemNew;
 
 }
@@ -126,18 +116,21 @@ tStackIt * stackTop (tStack *stack) {
 
 	//Pokud jsou v zasobniku data, vrat data na vrcholu
 	if(!stackEmpty(stack))
-		return(stack->data[stack->counter+1]);
+		return(stack->data[stack->counter]);
 	//Jinak vrat null
 	else
 		return NULL;
 }
 
+
 tStackIt * stackPop (tStack *stack) {
 
-	tStackIt *tmp = NULL;
+	tStackIt *tmp;
+	tmp = NULL;
 
 	if (!stackEmpty(stack))
 		tmp = stack->data[stack->counter];
+		stack->data[stack->counter] = NULL;
 		stack->counter--;
 		return tmp;
 }

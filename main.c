@@ -7,107 +7,80 @@ static const char *tokenTypeString[] = {
 void printToken(tToken *token) {
 	printf("%20s %25s\n",token->data,tokenTypeString[token->type]);
 }
-
+/*
 int main(int argc, char* argv[]) {
 	// Pokud se program spousti se spatnym poctem parametru, ukonci se
 	if(argc != 2) {
 		throwException(99, 0, 0);
 	} else {
-		/* Inicializace globalni promenne */
+		// Inicializace globalni promenne 
 		globalInit();
 
-		/* Otevreni souboru */
+		// Otevreni souboru 
 		global.file = fopen(global.fileName = argv[1], "r");
 		if (global.file == NULL) {
 		    throwException(99, 0, 0);
 		}
-		/* */
+		
 
-		/* Inicializace hlavnich struktur prekladace */
+		// Inicializace hlavnich struktur prekladace 
 		mainTree mTree;
 		initTree(&mTree);
 		instrStack iStack;
 		instrStackInit(&iStack);
+		
+
+		// Parser 
+		pParse();
+		
+
+		// Interpret 
+		semCheck(&iStack);
+		interpretMainCore(&iStack);
+		
+
+		// Uvolneni pameti a ukonceni programu
+		finalFree();
+	
+	}
+}
+*/
+
+
+/* TESTOVÁNÍ EXPRESSIONS - prosím nemazat jen zakomentovat */
+int main(int argc, char* argv[]) {
+
+    /* Inicializace globalni promenne */
+    globalInit();
+    global.fileName = "testing/fac_rec.ifj";
+
+	/* Otevreni souboru */
+	global.file = fopen(global.fileName, "r");
+	if (global.file == NULL) {
+	    throwException(99, 0, 0);
+	}
+
+
+	/* Inicializace hlavnich struktur prekladace */
+	mainTree mTree;
+	initTree(&mTree);
+	instrStack iStack;
+	instrStackInit(&iStack);
 		/* */
 
 		/* Parser */
-		pParse();
+	pParse();
 		/* */
 
 		/* Interpret */
-		semCheck(&iStack);
-		interpretMainCore(&iStack);
+	semCheck(&iStack);
+	interpretMainCore(&iStack);
 		/* */
 
 		/* Uvolneni pameti a ukonceni programu*/
-		finalFree();
+	finalFree();
 		/* */
-	}
+	
 }
-
-
-/*
-//TESTOVÁNÍ LEXU
-tToken *pToken = NULL;
-
-for (int j = 0; j <= 100; j++){
-
-pToken = getToken();
-printToken(pToken);
-}
-
-//TESTOVÁNÍ GARBAGE
-global.fileName = "testing/test1.ifj";
-global.file = fopen(global.fileName, "r");
-globalInit();
-
-int alloc[5] =   {16,1,0,6000,20};
-int realloc[5] = {2,1,5,4,0};
-tToken *pToken1 = NULL;
-tToken *pToken2 = NULL;
-tToken *pToken3 = NULL;
-tToken *pToken4 = NULL;
-tToken *pToken5 = NULL;
-
-pToken1 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[0]);
-pToken2 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[1]);
-pToken3 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[2]);
-pToken1 -> length = alloc[0];
-pToken2 -> length = alloc[1];
-pToken3 -> length = alloc[2];
-
-pToken3 = plusRealloc(pToken3, sizeof(tToken) + sizeof(char)*(realloc[2]+pToken3->length));
-pToken1 = plusRealloc(pToken1, sizeof(tToken) + sizeof(char)*(realloc[0]+pToken1->length));
-pToken2 = plusRealloc(pToken2, sizeof(tToken) + sizeof(char)*(realloc[1]+pToken2->length));
-
-plusFree(pToken2);
-
-pToken4 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[3]);
-pToken5 = plusMalloc(sizeof(tToken) + sizeof(char)*alloc[4]);
-pToken4 -> length = alloc[3];
-pToken5 -> length = alloc[4];
-
-pToken4 = plusRealloc(pToken4, sizeof(tToken) + sizeof(char)*(realloc[3]+pToken4->length));
-pToken5 = plusRealloc(pToken5, sizeof(tToken) + sizeof(char)*(realloc[4]+pToken5->length));
-
-
-
-//TESTOVÁNÍ PRECEDENČNÍ ANALÝZY
-#include "expressions.h"
-(void)argc;
-(void)argv;
-globalInit();
-global.file = fopen("testing/text_precedence.ifj", "r");
-initTree(global.mTree);
-createNewNode("a", var, var_int, 1);
-
-
-
-struct instrStack dummyInstrStack;
-global.iStack = instrStackInit(&dummyInstrStack);
-
-
-interpretMainCore(global.iStack);
- */
 
 
