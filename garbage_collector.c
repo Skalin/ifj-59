@@ -58,15 +58,31 @@ void * plusRealloc(void * destPtr,unsigned int length) {
 }
 
 void globalInit() {
-    global.funcCnt = 0;
-    global.wholeList = malloc(sizeof(struct GarbageList));
-    if(global.wholeList == NULL)
-        throwException(99,0,0);
+	global.funcCnt = 0;
+	global.DEBUG = 0;
+	global.wholeList = malloc(sizeof(struct GarbageList));
+	if(global.wholeList == NULL)
+		throwException(99, 0, 0);
 
 	global.wholeList->nextPtr = NULL;
 
-    global.listLast = global.wholeList;
-    global.wholeList->dataPointer = NULL;
+	global.listLast = global.wholeList;
+	global.wholeList->dataPointer = NULL;
+
+	global.mTree = malloc(sizeof(struct MTree));
+	if (global.mTree == NULL)
+		throwException(99, 0, 0);
+
+	global.mTree->root = NULL;
+	global.mTree->actClass = NULL;
+	global.mTree->actFunction = NULL;
+
+	global.iStack = malloc(sizeof(struct instructionStack));
+	if (global.iStack == NULL)
+		throwException(99, 0, 0);
+	global.iStack->dataInstr = NULL;
+	global.iStack->count = 0;
+	global.iStack->alloc = 0;
 }
 
 void plusFree(void * memoryPtr) {

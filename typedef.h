@@ -218,7 +218,7 @@ typedef struct tBTSNode {
 } BTSNode, *tBTSNodePtr;
 
 // Struktura stromu
-typedef struct {
+typedef struct MTree{
 	BTSNode *root; // Kořen stromu
 	BTSNode *actClass; // Jaká třída je právě aktivní, resp. v jaké třídě se nacházíme
 	BTSNode *actFunction; // Jaká funkce je aktivní, resp. v jaké funkci se nacházíme
@@ -269,7 +269,7 @@ typedef struct Instr {
 	InstrType type;
 }Instr;
 
-typedef struct {
+typedef struct instructionStack{
 	Instr **dataInstr;
 	int count;
 	int alloc;

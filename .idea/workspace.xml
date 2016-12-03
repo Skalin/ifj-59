@@ -11,10 +11,12 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/syntax01.ifj" />
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.6 - mTree v global">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.c" afterPath="$PROJECT_DIR$/garbage_collector.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.h" afterPath="$PROJECT_DIR$/garbage_collector.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typedef.h" afterPath="$PROJECT_DIR$/typedef.h" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,11 +38,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.36458334">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+                <state relative-caret-position="480">
+                  <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -51,6 +53,16 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
                   <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="string.ifj" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testing/string.ifj">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="510">
+                  <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -68,11 +80,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/garbage_collector.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+                <state relative-caret-position="450">
+                  <caret line="75" column="30" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
                   <folding>
                     <element signature="e#401#420#0" expanded="true" />
                   </folding>
@@ -153,11 +165,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="garbage_collector.h" pinned="false" current-in-tab="true">
+          <file leaf-file-name="garbage_collector.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/garbage_collector.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
+                <state relative-caret-position="375">
+                  <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
                   <folding>
                     <element signature="e#459#477#0" expanded="true" />
                   </folding>
@@ -175,11 +187,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="typedef.h" pinned="false" current-in-tab="false">
+          <file leaf-file-name="typedef.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/typedef.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+                <state relative-caret-position="1184">
+                  <caret line="269" column="7" selection-start-line="269" selection-start-column="7" selection-end-line="269" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -213,7 +225,6 @@
         <option value="$PROJECT_DIR$/string.h" />
         <option value="$PROJECT_DIR$/generator.c" />
         <option value="$PROJECT_DIR$/lexical_analyzer.c" />
-        <option value="$PROJECT_DIR$/garbage_collector.c" />
         <option value="$PROJECT_DIR$/stack.c" />
         <option value="$PROJECT_DIR$/lexical_analyzer.h" />
         <option value="$PROJECT_DIR$/instructions.c" />
@@ -221,7 +232,6 @@
         <option value="$PROJECT_DIR$/iStack.h" />
         <option value="$PROJECT_DIR$/stack.h" />
         <option value="$PROJECT_DIR$/interpret.h" />
-        <option value="$PROJECT_DIR$/typedef.h" />
         <option value="$PROJECT_DIR$/expressions.h" />
         <option value="$PROJECT_DIR$/iStack.c" />
         <option value="$PROJECT_DIR$/main.h" />
@@ -235,9 +245,11 @@
         <option value="$PROJECT_DIR$/expressions.c" />
         <option value="$PROJECT_DIR$/parser.c" />
         <option value="$PROJECT_DIR$/error_handler.h" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/error_handler.c" />
+        <option value="$PROJECT_DIR$/typedef.h" />
         <option value="$PROJECT_DIR$/garbage_collector.h" />
+        <option value="$PROJECT_DIR$/garbage_collector.c" />
+        <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
@@ -449,14 +461,7 @@
       <workItem from="1480278911351" duration="657000" />
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
-      <workItem from="1480711996503" duration="7203000" />
-    </task>
-    <task id="LOCAL-00121" summary="[MODIFY] 0.5 - zjednoduseni kodu">
-      <created>1479930747246</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1479930747247</updated>
+      <workItem from="1480711996503" duration="8541000" />
     </task>
     <task id="LOCAL-00122" summary="[MODIFY] 0.5 - uprava include">
       <created>1479930851638</created>
@@ -794,11 +799,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480763852419</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="[MODIFY] 0.6 - mTree v global">
+      <created>1480767631528</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1480767631528</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202893000" />
+    <option name="totallyTimeSpent" value="204231000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -864,7 +876,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.5 - odebrani souboru generator.c" />
     <MESSAGE value="[MODIFY] 0.5 - include mainTree" />
     <MESSAGE value="[MODIFY] 0.5 - include iStack a init v main.c" />
     <MESSAGE value="[MODIFY] 0.6. - urychlení vyhledávací algoritmu pro případy length(searchStr) = 0" />
@@ -889,7 +900,8 @@
     <MESSAGE value="[MODIFY] 0.6 - expressions: uprava dereference, parser: uprava include" />
     <MESSAGE value="[MODIFY] 0.6 - global iStack" />
     <MESSAGE value="[MODIFY] 0.6 - debug aplikace" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - debug aplikace" />
+    <MESSAGE value="[MODIFY] 0.6 - mTree v global" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - mTree v global" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -998,13 +1010,6 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.097/c016.c" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.002/c401.c" />
-    <entry file="file://$PROJECT_DIR$/testing/string.ifj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/string.h" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
@@ -1199,10 +1204,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
+    <entry file="file://$PROJECT_DIR$/makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="465">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1215,39 +1220,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
+    <entry file="file://$PROJECT_DIR$/testing/string.ifj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding>
-            <element signature="e#401#420#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/typedef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        <state relative-caret-position="510">
+          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/garbage_collector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
+        <state relative-caret-position="375">
+          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
           <folding>
             <element signature="e#459#477#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typedef.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1184">
+          <caret line="269" column="7" selection-start-line="269" selection-start-column="7" selection-end-line="269" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="75" column="30" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
+          <folding>
+            <element signature="e#401#420#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

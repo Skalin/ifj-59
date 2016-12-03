@@ -22,7 +22,6 @@ int main(int argc, char* argv[]) {
 			if (strcmp(argv[2], "NONDEBUG") == 0) {
 			// Inicializace globalni promenne v pripade nedebug verze aplikace
 				globalInit();
-				global.DEBUG = 0;
 			} else if (strcmp(argv[2], "DEBUG") == 0) {
 			// Inicializace globalni promenne v pripade debug verze aplikace
 				globalInit();
@@ -34,7 +33,6 @@ int main(int argc, char* argv[]) {
 		} else {
 			// Inicializace globalni promenne v pripade nedebug verze aplikace
 			globalInit();
-			global.DEBUG = 0;
 		};
 
 		// Otevreni souboru 
@@ -42,12 +40,6 @@ int main(int argc, char* argv[]) {
 		if (global.file == NULL) {
 		    throwException(99, 0, 0);
 		}
-		
-
-		// Inicializace hlavnich struktur prekladace 
-		initTree(&mTree);
-		instrStack iStack;
-		instrStackInit(&iStack);
 		
 
 		// Parser 
