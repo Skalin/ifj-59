@@ -437,29 +437,9 @@ String substr(String str, int i, int n) {
 	return realString;
 }
 
-/* asi nepotrebne
-int addCharacter(String *str, char c){
-  
-    if ((str->allocatedSize) <= (str->length + 1)) {
-		if (plusRealloc(str, sizeof(String) + (sizeof(char)*(str->allocatedSize))) != NULL) {
-			str->allocatedSize = str->length + STR_ALLOCATION_SIZE;
-		} else {
-			throwException(99,0,0); //chyba alokace paměti
-			return STR_ERROR;
-		}
-	str->data[str->length] = c;
-	str->length++;
-	str->data[str->length] = '\0';
-
-	return STR_SUCCESS;
-	} else {
-		return 0;
-	}
-}*/
-
 void copyString(String str1, String str2) {
 	int i = 0;
-	while (str1[i] != '\0' || str1[i] != EOF) {
+	while (str1[i] != '\0' || str1[i] != EOF || str2[i] != EOF) {
 		str2[i] = str1[i];
 		i++;
 	}
