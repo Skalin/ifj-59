@@ -17,22 +17,26 @@
 
 void initMismatchTable(mismatchTable *Table) {
 	Table->First = NULL;
-	Table->Act = Table->First;
+	Table->Act = NULL;
 }
 
 void disposeMismatchTable(mismatchTable *Table) {
+
 	mismatchTableItem pom = NULL;
 
 	while (Table->First != NULL) {
-		pom = Table->First;
+		Table->Act = Table->First;
 		Table->First = Table->First->next;
+		pom = Table->Act;
 		plusFree(pom);
 	}
+
+	Table->Act = NULL;
 }
 
 void insertNext(mismatchTable *Table, char c, int shiftValue) {
 
-	struct mmtItem *pom = plusMalloc(sizeof(mismatchTableItem));
+	mismatchTableItem pom = plusMalloc(sizeof(struct mmtItem));
 
 	if (pom != NULL) {
 		if (Table == NULL) {
@@ -41,10 +45,10 @@ void insertNext(mismatchTable *Table, char c, int shiftValue) {
 			pom->next = NULL;
 			Table->First = pom;
 		} else {
-			pom = Table->First;
-			Table->First->next = pom;
-			Table->First->c = c;
-			Table->First->shiftValue = shiftValue;
+			pom->next = Table->First;
+			pom->c = c;
+			pom->shiftValue = shiftValue;
+			Table->First = pom;
 		}
 	} else {
 		throwException(99,0,0);
