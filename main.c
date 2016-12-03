@@ -94,6 +94,8 @@ int main(int argc, char* argv[]) {
 			printf("%d", where);
 			where = find(testString, hledej5);
 			printf("%d", where);
+
+			finalFree();
 		}
 	}
 }
