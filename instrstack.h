@@ -26,6 +26,7 @@ void instrStackPop (instrStack* stc);
 int instrStackSize (instrStack* stc);
 void instrStackDestroy (instrStack* stc);
 void instrItemDestroy (instrStack *data);
+void instrStackCopy(instrStack *originalStc, instrStack *copiedStc);
 Instr * instrStackDataAt (instrStack *stc, int n);
 void getBackTo (instrStack *stc, int n);
 

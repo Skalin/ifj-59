@@ -245,8 +245,8 @@ void expression(BTSNode *targetId, tExpType expType) {
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
     instrStack *localIStack = global.iStack;
-    if ((global.mTree->actFunction != NULL) || (global.mTree->actFunction->key != "run")) {
-        localIStack = mTree->actFunction->iStack; // Zatím neexistuje ale bude
+    if ((global.mTree->actFunction != NULL) || (strcmp(global.mTree->actFunction->key, "run") != 0)) {
+		instrStackCopy(localIStack, global.mTree->actFunction->iStack); // Zatím neexistuje ale bude
     }
     
     // Inicializujeme zásobník a vložíme na něj znak ';'

@@ -11,9 +11,9 @@
  */
 
 
+#include "typedef.h"
 #include "error_handler.h"
 #include "instrstack.h"
-#include "typedef.h"
 
 
 instrStack * instrStackInit (instrStack *stc ) {
