@@ -102,7 +102,7 @@ void pClass(){
 	}
 	
 	// vytvorit tridu v tabulce symbolu
-	createNewNode(token->data, class, NULL, 0);	// TODO  status??
+	createNewNode(token->data, class, var_init, 0);	// TODO  status??
 
 	token = getToken();    
 
