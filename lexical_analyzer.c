@@ -1,16 +1,16 @@
 /**
- * IFJ/IAL - Lexikální analyzátor
+ * IFJ/IAL - Lexikï¿½lnï¿½ analyzï¿½tor
  * Varianta:    b/2/I
  * Soubor:       lexical_analyzer.c
- * Tým:         59
- * Autoøi:      Jan Hrbotický, xhrbot01@stud.fit.vutbr.cz
- *              Dominik Skála, xskala11@stud.fit.vutbr.cz
+ * Tï¿½m:         59
+ * Autoï¿½i:      Jan Hrbotickï¿½, xhrbot01@stud.fit.vutbr.cz
+ *              Dominik Skï¿½la, xskala11@stud.fit.vutbr.cz
  *              Milan Hruban, xhruba08@stud.fit.vutbr.cz
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
- *              David Hél, xhelda00@stud.fit.vutbr.cz
+ *              David Hï¿½l, xhelda00@stud.fit.vutbr.cz
  */
 /*
-  *Include všech souborù
+  *Include vï¿½ech souborï¿½
   */
 #include <stdio.h>
 #include <string.h>
@@ -37,8 +37,8 @@ void keywordCheckToken(tToken *token) {
 	};
 	token->type = t_simple_ident; 
 
-    // For cyklus prohledá první tabulku a pokud v ní nalezne shodu v tokenu (strcmp()), pøiøadí do tToken type pøíslušnou hodnotu z druhé tabulky
-    // DONE Jan Hrbotický
+    // For cyklus prohledï¿½ prvnï¿½ tabulku a pokud v nï¿½ nalezne shodu v tokenu (strcmp()), pï¿½iï¿½adï¿½ do tToken type pï¿½ï¿½sluï¿½nou hodnotu z druhï¿½ tabulky
+    // DONE Jan Hrbotickï¿½
     for (int i=0; i < NUMBER_OF_KEY_WORDS; i++) {
         if (strcmp(keyWordTable[i], token->data) == 0)
             token->type = keyWordTokenTable[i];
@@ -53,16 +53,16 @@ tToken * t_buffer;
 
 tToken * initToken() {
     // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
-    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
-    // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+    // POZOR, ZDE SE MUSï¿½ IMPLEMENTOVAT CELï¿½ NOVï¿½ SOUBOR, KTERï¿½ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUï¿½ENï¿½
+    // Jednï¿½ se o to, ï¿½e vï¿½echny data budou v listovï¿½m seznamu (viz 1. ï¿½kol IAL)
 
 	unsigned int mallocSize = 16;
 
 	tToken * token = (tToken *) plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
-    // TODO mám tady vytváøet nový token nebo používám globalní?
+    // TODO mï¿½m tady vytvï¿½ï¿½et novï¿½ token nebo pouï¿½ï¿½vï¿½m globalnï¿½?
 
-    token->type = t_error;   // nastaví token do poèáteèního stavu
-    token->data[0] = '\0';      // inicializace všech prvkù na výchozí hodnoty
+    token->type = t_error;   // nastavï¿½ token do poï¿½ï¿½teï¿½nï¿½ho stavu
+    token->data[0] = '\0';      // inicializace vï¿½ech prvkï¿½ na vï¿½chozï¿½ hodnoty
     token->length = 0;
     token->allocated = 0;
 
@@ -72,21 +72,21 @@ tToken * initToken() {
 tToken * updateToken(tToken * token, char *string) {
 	// Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
 	// Pomoci strncat() pridat novy retezec nakonec
-	// POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
-	// Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+	// POZOR, ZDE SE MUSï¿½ IMPLEMENTOVAT CELï¿½ NOVï¿½ SOUBOR, KTERï¿½ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUï¿½ENï¿½
+	// Jednï¿½ se o to, ï¿½e vï¿½echny data budou v listovï¿½m seznamu (viz 1. ï¿½kol IAL)
 
     int strLength = strlen(string);
 
     
-    if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokováno ménì než je potøeba
+    if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokovï¿½no mï¿½nï¿½ neï¿½ je potï¿½eba
 
 		token->allocated = strLength + token->length + 1;      // update hodnoty allocated v tokenu
 		token = plusRealloc(token, sizeof(tToken) + (sizeof(char) * (token->allocated)));   //TODO
     }
 
 
-    strncat(token->data, string, strLength);      // pøipojení stringu na konec tokenu
-    token->length = token->length + strLength;   // update délky tokenu
+    strncat(token->data, string, strLength);      // pï¿½ipojenï¿½ stringu na konec tokenu
+    token->length = token->length + strLength;   // update dï¿½lky tokenu
 
     return token;
 /*
@@ -106,32 +106,32 @@ tToken * updateToken(tToken * token, char *string) {
 }
 
 void tokenReturnToken(tToken * token) {
-    // Do tokenu pøiøadí naètené hodnoty z pomocného tokenu t_buffer
+    // Do tokenu pï¿½iï¿½adï¿½ naï¿½tenï¿½ hodnoty z pomocnï¿½ho tokenu t_buffer
     t_buffer = token;
 }
 
 void destroyToken(tToken * token) {
-    // Zruší daný token
-    // POZOR, ZDE SE MUSÍ IMPLEMENTOVAT CELÝ NOVÝ SOUBOR, KTERÝ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUŠENÍ
-    // Jedná se o to, že všechny data budou v listovém seznamu (viz 1. úkol IAL)
+    // Zruï¿½ï¿½ danï¿½ token
+    // POZOR, ZDE SE MUSï¿½ IMPLEMENTOVAT CELï¿½ NOVï¿½ SOUBOR, KTERï¿½ BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUï¿½ENï¿½
+    // Jednï¿½ se o to, ï¿½e vï¿½echny data budou v listovï¿½m seznamu (viz 1. ï¿½kol IAL)
 
     plusFree(token);
 }
 
 void fillToken(tToken * token, tokenType type) {
-    // Nastaví typ tokenu
+    // Nastavï¿½ typ tokenu
     token->type = type;
 }
 
 
 tToken * getToken(){
-    // Pøipojí se do souboru a postupnì naète následující token (+ o nìm pøidá informace do struktury tToken)
+    // Pï¿½ipojï¿½ se do souboru a postupnï¿½ naï¿½te nï¿½sledujï¿½cï¿½ token (+ o nï¿½m pï¿½idï¿½ informace do struktury tToken)
 
 
 
-    char c = '\0'; // inicializovaná promìnná c s výchozí hodnotou \0
+    char c = '\0'; // inicializovanï¿½ promï¿½nnï¿½ c s vï¿½chozï¿½ hodnotou \0
 
-	 // staèí nám soubor pouze pro ètení
+	 // staï¿½ï¿½ nï¿½m soubor pouze pro ï¿½tenï¿½
 
 	tToken * token = initToken(); //pomocny token
 
@@ -143,7 +143,7 @@ tToken * getToken(){
 	int i = 0;
 
 
-	while (TRUE) { // TRUE je definována jako 1 v .h souboru
+	while (TRUE) { // TRUE je definovï¿½na jako 1 v .h souboru
 		c = fgetc(global.file);
 		
 		switch(status) {
@@ -624,4 +624,8 @@ tToken * getToken(){
 
 char octToAscii(char *octalArray) {
 	return (octalArray[0]-48)*8*8 + (octalArray[1]-48)*8 + (octalArray[2]-48);
+}
+
+void printToken(tToken *token) {
+	printf("%20s %25s\n",token->data,tokenTypeString[token->type]);
 }
