@@ -32,7 +32,7 @@ void disposeMismatchTable(mismatchTable *Table) {
 
 void insertNext(mismatchTable *Table, char c, int shiftValue) {
 
-	mismatchTableItem pom = malloc(sizeof(struct mmtItem));
+	mismatchTableItem pom = malloc(sizeof(struct mismatchTableItem));
 
 	if (pom != NULL) {
 		if (Table == NULL) {
