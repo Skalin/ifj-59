@@ -12,67 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/lex1.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/fac_iter.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/fac_rec.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/run1.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem1.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem10.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem11.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem12.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem13.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem14.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem15.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem16.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem17.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem18.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem19.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem2.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem20.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem21.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem22.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem23.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem24.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem25.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem26.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem27.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem28.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem29.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem3.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem30.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem31.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem32.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem33.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem34.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem35.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem36.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem37.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem38.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem39.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem4.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem40.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem41.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem42.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem43.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem44.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem45.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem46.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem5.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem6.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem7.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem8.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/sem9.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/string.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/synt1.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/synt2.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/synt3.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/synt4.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/synt5.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/synt6.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/synt7.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/test1.ifj16" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/test_precedence.ifj16" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ial.c" afterPath="$PROJECT_DIR$/ial.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,8 +39,18 @@
           <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-122">
-                  <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+                <state relative-caret-position="374">
+                  <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="expressions.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/expressions.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="239">
+                  <caret line="463" column="0" selection-start-line="463" selection-start-column="0" selection-end-line="463" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -107,8 +59,8 @@
           <file leaf-file-name="ial.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ial.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+                <state relative-caret-position="225">
+                  <caret line="196" column="28" selection-start-line="196" selection-start-column="28" selection-end-line="196" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -127,7 +79,7 @@
           <file leaf-file-name="instrstack.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/instrstack.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1506">
+                <state relative-caret-position="892">
                   <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
                   <folding>
                     <element signature="e#392#412#0" expanded="true" />
@@ -232,7 +184,6 @@
         <option value="$PROJECT_DIR$/parser.c" />
         <option value="$PROJECT_DIR$/expressions.c" />
         <option value="$PROJECT_DIR$/ial.h" />
-        <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/garbage_collector.c" />
         <option value="$PROJECT_DIR$/testing/syntax01.ifj" />
         <option value="$PROJECT_DIR$/testing/syntax02.ifj" />
@@ -242,6 +193,7 @@
         <option value="$PROJECT_DIR$/testing/tests.c" />
         <option value="$PROJECT_DIR$/tests.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
@@ -327,20 +279,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ifj-59" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ifj-59" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ifj-59" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="testing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -459,21 +397,7 @@
       <workItem from="1480278911351" duration="657000" />
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
-      <workItem from="1480711996503" duration="18938000" />
-    </task>
-    <task id="LOCAL-00150" summary="[MODIFY] 0.6. - smazani zakomentovaneho initTree pri startu programu">
-      <created>1480248297184</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1480248297184</updated>
-    </task>
-    <task id="LOCAL-00151" summary="[MODIFY] 0.6. - uprava main.h">
-      <created>1480248378139</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1480248378139</updated>
+      <workItem from="1480711996503" duration="19283000" />
     </task>
     <task id="LOCAL-00152" summary="[MODIFY] 0.6. - uprava main.h a odebrani fStack a generator souboru">
       <created>1480248399039</created>
@@ -804,11 +728,25 @@
       <option name="project" value="LOCAL" />
       <updated>1480781022209</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="[MODIFY] 0.6 - pridany testy">
+      <created>1480781074836</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1480781074836</updated>
+    </task>
+    <task id="LOCAL-00200" summary="[MODIFY] 0.6 - uprava main">
+      <created>1480781226099</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1480781226099</updated>
+    </task>
+    <option name="localTasksCounter" value="201" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214628000" />
+    <option name="totallyTimeSpent" value="214973000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -823,13 +761,13 @@
     <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32217574" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46757323" sideWeight="0.48958334" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.54375" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294979" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294979" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -874,7 +812,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.6 - IFJ pokusné odevzdávání funkční verze" />
     <MESSAGE value="[MODIFY] 0.6 - IFJ pokusné odevzdávání funkční verze - lex 100%, parser 60%, zbytek 0% - nenapojen interpret" />
     <MESSAGE value="[MODIFY] 0.6 - uprava while, na radku 1046, uprava ktere instrukce pouzijeme" />
     <MESSAGE value="[MODIFY] 0.6 - uprava find algoritmu, spusteni debug aplikace" />
@@ -899,7 +836,8 @@
     <MESSAGE value="[MODIFY] 0.6 - syntax testy a test pro sort" />
     <MESSAGE value="[MODIFY] 0.6 - uprava testu" />
     <MESSAGE value="[MODIFY] 0.6 - pridany testy" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - pridany testy" />
+    <MESSAGE value="[MODIFY] 0.6 - uprava main" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - uprava main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1068,16 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/expressions.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-          <folding>
-            <element signature="e#396#415#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9296">
@@ -1192,37 +1120,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ial.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="21" selection-end-column="26" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/instrstack.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1506">
-          <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
-          <folding>
-            <element signature="e#392#412#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1242,10 +1144,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/instrstack.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="892">
+          <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
+          <folding>
+            <element signature="e#392#412#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/expressions.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="463" column="0" selection-start-line="463" selection-start-column="0" selection-end-line="463" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ial.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="196" column="28" selection-start-line="196" selection-start-column="28" selection-end-line="196" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-122">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        <state relative-caret-position="374">
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
         </state>
       </provider>

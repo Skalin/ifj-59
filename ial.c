@@ -194,8 +194,7 @@ String repairHeap(String str) {
 
 // samotny heapsort
 String sort(String str) {
-	String helpString;
-    helpString = str;
+	String helpString = str;
 
 	int length = strLength(helpString);
     while (length) {
