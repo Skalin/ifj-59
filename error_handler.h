@@ -12,6 +12,8 @@
 #ifndef ERROR_HANDLER
 #define ERROR_HANDLER
 
+#define DEBUG 1
+
 /*
  * Ukonci program a jako navratovou chybu pouzije prvni parametr
  * @param errorNumber cislo chyboveho stavu

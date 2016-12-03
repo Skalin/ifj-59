@@ -108,6 +108,8 @@ int find(String str, String search) {
 
 	if (others == 0) {
 		return 0;
+	} else if (strLength(str) < strLength(search)) {
+		return found;
 	}
 
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
@@ -129,6 +131,7 @@ int find(String str, String search) {
 	while (found == -1 || str[stop] != '\0' || str[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
 		stop += shiftValue;
 		for (i = others-1, j = 0; i >= 0 && j <= others-1; i--, j++) {
+			shiftValue = getShiftValue(&(Table), search[i]);
 			if (str[stop-j] != search[i]) { // pokud se nam dva znaky ve stringu neshoduji, vyskocime z jednoho cyklu a posuneme se shiftem
 				break;
 			}
@@ -136,7 +139,6 @@ int find(String str, String search) {
 				found = stop-others+1;
 				break;
 			}
-			shiftValue = getShiftValue(&(Table), search[i]);
 		}
 	}
 
