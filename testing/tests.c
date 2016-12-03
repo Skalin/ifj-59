@@ -20,5 +20,6 @@ int main (int argc, char *argv) {
 	sort(testString4);
 	printf(testString4);
 
+	return 0;
 
 }
