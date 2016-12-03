@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "garbage_collector.h"
 #include "error_handler.h"
+#include "ial.h"
 
 // Globální proměnná
 struct tGlobal global;
@@ -61,8 +62,9 @@ void globalInit() {
 	global.funcCnt = 0;
 	global.DEBUG = 0;
 	global.wholeList = malloc(sizeof(struct GarbageList));
-	if(global.wholeList == NULL)
+	if (global.wholeList == NULL) {
 		throwException(99, 0, 0);
+	}
 
 	global.wholeList->nextPtr = NULL;
 
@@ -70,19 +72,18 @@ void globalInit() {
 	global.wholeList->dataPointer = NULL;
 
 	global.mTree = malloc(sizeof(struct MTree));
-	if (global.mTree == NULL)
+	if (global.mTree == NULL) {
 		throwException(99, 0, 0);
+	}
 
-	global.mTree->root = NULL;
-	global.mTree->actClass = NULL;
-	global.mTree->actFunction = NULL;
+	initTree(global.mTree);
 
 	global.iStack = malloc(sizeof(struct instructionStack));
-	if (global.iStack == NULL)
+	if (global.iStack == NULL) {
 		throwException(99, 0, 0);
-	global.iStack->dataInstr = NULL;
-	global.iStack->count = 0;
-	global.iStack->alloc = 0;
+	}
+
+	instrStackInit(global.iStack);
 }
 
 void plusFree(void * memoryPtr) {
