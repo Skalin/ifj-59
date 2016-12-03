@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "ial.h"
 
-int main(int argc, char *argv) {
+int main(int argc, char *argv[]) {
 
 	String testString = "kokot";
 	String testString2 = "vysortovat";
