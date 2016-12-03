@@ -61,11 +61,11 @@
           <file leaf-file-name="parser.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/parser.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+                <state relative-caret-position="295">
+                  <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
                   <folding>
                     <element signature="e#391#410#0" expanded="true" />
-                    <marker date="1480770386180" expanded="true" signature="11038:11040" ph="{...}" />
+                    <marker date="1480770484015" expanded="true" signature="11038:11040" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -112,8 +112,8 @@
           <file leaf-file-name="typedef.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/typedef.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="205">
-                  <caret line="182" column="13" selection-start-line="182" selection-start-column="13" selection-end-line="182" selection-end-column="13" />
+                <state relative-caret-position="220">
+                  <caret line="183" column="46" selection-start-line="183" selection-start-column="46" selection-end-line="183" selection-end-column="46" />
                   <folding />
                 </state>
               </provider>
@@ -384,14 +384,7 @@
       <workItem from="1480278911351" duration="657000" />
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
-      <workItem from="1480711996503" duration="9969000" />
-    </task>
-    <task id="LOCAL-00126" summary="[MODIFY] 0.5 - smazani typedef.c">
-      <created>1479931517827</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1479931517827</updated>
+      <workItem from="1480711996503" duration="10116000" />
     </task>
     <task id="LOCAL-00127" summary="[MODIFY] 0.5 - reset makefile">
       <created>1479931996514</created>
@@ -729,11 +722,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480769828071</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="[MODIFY] 0.6 - var_init pro inicializovane nody ve stromu">
+      <created>1480770412084</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1480770412084</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205659000" />
+    <option name="totallyTimeSpent" value="205806000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -799,7 +799,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.6. - odsazeni TAB" />
     <MESSAGE value="[MODIFY] 0.6. - uprava TAB a mezer" />
     <MESSAGE value="[MODIFY] 0.6. - uprava include pres main.h" />
     <MESSAGE value="[MODIFY] 0.6. - smazani zakomentovaneho initTree pri startu programu" />
@@ -824,7 +823,8 @@
     <MESSAGE value="[MODIFY] 0.6 - expressions uprava global.iStack na radku 247" />
     <MESSAGE value="[MODIFY] 0.6 - expressions uprava global.iStack na radku 248" />
     <MESSAGE value="[MODIFY] 0.6 - uprava kopirovani stacku do localstacku" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - uprava kopirovani stacku do localstacku" />
+    <MESSAGE value="[MODIFY] 0.6 - var_init pro inicializovane nody ve stromu" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - var_init pro inicializovane nody ve stromu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1150,14 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/typedef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="182" column="13" selection-start-line="182" selection-start-column="13" selection-end-line="182" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ial.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -1170,12 +1162,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state relative-caret-position="295">
+          <caret line="104" column="46" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
           <folding>
             <element signature="e#391#410#0" expanded="true" />
-            <marker date="1480770386180" expanded="true" signature="11038:11040" ph="{...}" />
+            <marker date="1480770484015" expanded="true" signature="11038:11040" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typedef.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="183" column="46" selection-start-line="183" selection-start-column="46" selection-end-line="183" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>

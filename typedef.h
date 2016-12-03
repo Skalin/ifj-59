@@ -181,7 +181,7 @@ typedef enum {
 	var_double,
 	var_string,
 	var_void,
-	var_init = 10,
+	var_null = 10, // specialni typ pro classy
 } varType;
 
 // Hodnota promenne, union zajišťuje, že v paměti zabírá místo pouze největší hodnota z nich
