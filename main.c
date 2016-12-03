@@ -15,7 +15,6 @@ int main(int argc, char* argv[]) {
 	if(argc < 2) {
 		throwException(99, 0, 0);
 	} else {
-
  		if (argc > 3) {
  			throwException(99, 0, 0);
  		} else if (argc == 3) {
@@ -34,26 +33,68 @@ int main(int argc, char* argv[]) {
 			// Inicializace globalni promenne v pripade nedebug verze aplikace
 			globalInit();
 		};
+		if (global.DEBUG == 0) { // normalni funkce programu
+			// Otevreni souboru
+			global.file = fopen(global.fileName = argv[1], "r");
+			if (global.file == NULL) {
+				throwException(99, 0, 0);
+			}
 
-		// Otevreni souboru 
-		global.file = fopen(global.fileName = argv[1], "r");
-		if (global.file == NULL) {
-		    throwException(99, 0, 0);
+
+			// Parser
+			pParse();
+
+
+			// Interpret
+			semCheck(global.iStack);
+			interpretMainCore(global.iStack);
+
+
+			// Uvolneni pameti a ukonceni programu
+			finalFree();
+		} else {
+
+
+		// IAL testy
+			// test stringu a jejich sortovani
+			String testString = "kokot";
+			String testString2 = "vysortovat";
+			String testString3 = "posun";
+			String testString4 = "boyle-moore";
+			String printedString;
+
+			printedString = sort(testString);
+			printf(printedString);
+
+			printedString = sort(testString2);
+			printf(printedString);
+
+			printedString = sort(testString3);
+			printf(printedString);
+
+			printedString = sort(testString4);
+			printf(printedString);
+
+			// test vyhledavani
+			String hledej = "kot";
+			String hledej2 = "vat";
+			String hledej3 = "n";
+			String hledej4 = "";
+			String hledej5 = "ajfkaojfkaljflka";
+
+			int where = 0;
+
+			where = find(testString, hledej);
+			printf("%d", where);
+			where = find(testString2, hledej2);
+			printf("%d", where);
+			where = find(testString3, hledej3);
+			printf("%d", where);
+			where = find(testString4, hledej4);
+			printf("%d", where);
+			where = find(testString, hledej5);
+			printf("%d", where);
 		}
-		
-
-		// Parser 
-		pParse();
-		
-
-		// Interpret 
-		semCheck(global.iStack);
-		interpretMainCore(global.iStack);
-		
-
-		// Uvolneni pameti a ukonceni programu
-		finalFree();
-	
 	}
 }
 
