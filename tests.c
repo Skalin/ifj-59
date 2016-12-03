@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "./../ial.h"
+#include "ial.h"
 
 int main(int argc, char *argv) {
 
