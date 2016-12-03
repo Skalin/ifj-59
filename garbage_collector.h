@@ -47,6 +47,8 @@ struct tGlobal{
     
     // Proměnné pro expressions
     int funcCnt;
+
+	struct iStack *instrStack;
 };
 
 extern struct tGlobal global;
