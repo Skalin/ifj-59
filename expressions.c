@@ -460,11 +460,7 @@ int compareString(String str1, String str2) {
 
 int strLength(String str) {
 	//vrátí délku řetězce (počet znaků) zadaného jedním parametrem str
-	int length = 0;
-
-	while (str[length] != '\0' || str[length] != EOF) {
-		length++;
-	}
+	int length = strlen(str);
 	return length;
 }
 
