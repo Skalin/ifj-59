@@ -160,7 +160,7 @@ typedef struct mmtItem{
  * Jednosmerny seznam polozek mmtItem alias mismatch tabulka
  */
 
-typedef struct {
+typedef struct MTable{
 	mismatchTableItem First;
 	mismatchTableItem Act;
 } mismatchTable;
