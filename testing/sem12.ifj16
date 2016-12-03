@@ -1,0 +1,9 @@
+/* Semanticka aritmetická chyba */
+class Main {
+	static void run() {
+	int a;
+	String s;
+
+	s = a * s;
+	}
+}

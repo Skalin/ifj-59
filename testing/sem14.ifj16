@@ -1,0 +1,14 @@
+/* Semanticka komparační chyba */
+class Main {
+	static void run() {
+		int a;
+		String s;
+		a = 10;
+		s = "ahoj";
+		if(s >= a) {
+
+		} else {
+
+		}
+	}
+}

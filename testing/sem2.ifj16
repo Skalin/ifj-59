@@ -1,0 +1,11 @@
+/* Sem. chyba, do int vkládám součet int a stringu */
+class Main {
+	static void run() {
+		int a;
+		int b;
+		String s;
+		a= 10;
+		s= "Ahoj";
+		b = s + a; 
+	}
+}

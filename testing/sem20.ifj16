@@ -1,0 +1,13 @@
+/* Semanticka komparační chyba, chybejici else */
+class Main {
+	static void run() {
+		int a;
+		int b;
+		a = 10;
+		b = 20;
+		s = "ahoj";
+		if(b= a) {
+
+		}
+	}
+}

@@ -1,0 +1,7 @@
+/* Sem. chyba, do a dávám string */
+class Main {
+	static void run() {
+		int a;
+		a= "Ahoj";
+	}
+}

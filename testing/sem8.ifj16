@@ -1,0 +1,9 @@
+/* Semanticka aritmetická chyba, pokus odečíst int a string */
+class Main {
+	static void run() {
+	int a;
+	String s;
+
+	a = a - s;
+	}
+}

@@ -1,0 +1,8 @@
+/* Semanticka chyba, spatne parametry vestavene fce*/
+class Main {
+	static void run() {
+		int a;
+		String s;
+		a= ifj16.find(s);
+	}
+}

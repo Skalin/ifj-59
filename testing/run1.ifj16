@@ -1,0 +1,10 @@
+/* SBěhová chyba 9, dělení nulou */
+class Main {
+	static void run() {
+		double a;
+		double b;
+		a= 10.0;
+		b= 0.0;
+		a = a/b;
+	}
+}

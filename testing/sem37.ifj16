@@ -1,0 +1,9 @@
+/* Semanticka chyba, spatne parametry vestavene fce*/
+class Main {
+	static void run() {
+		double d;
+		int a;
+		String s;
+		s = ifj16.readInt();
+	}
+}

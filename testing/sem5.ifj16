@@ -1,0 +1,10 @@
+/* Semanticka chyba, nedefinovaná třída */
+class Main {
+	static void run() {
+	}
+}
+Trida {
+	static void funkce() {
+
+	}
+}

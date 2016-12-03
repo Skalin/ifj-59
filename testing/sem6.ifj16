@@ -1,0 +1,9 @@
+/* Semanticka chyba, pokus o redefinici funkce */
+class Main {
+	static void run() {
+	int a;
+	}
+	static void run() {
+
+	}
+}

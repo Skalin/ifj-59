@@ -1,0 +1,6 @@
+/* Semanticka chyba, nedefinovaná proměnná třídy */
+class Main {
+	static void run() {
+		Trida.x = 10;
+	}
+}

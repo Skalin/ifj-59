@@ -1,0 +1,9 @@
+/* Semanticka chyba, pokus o redefinici třídy */
+class Main {
+	static void run() {
+	int a;
+	}
+}
+class Main {
+
+}

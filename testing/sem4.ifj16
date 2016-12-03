@@ -1,0 +1,6 @@
+/* Semanticka chyba, nedefinovaná proměnná */
+class Main {
+	static void run() {
+		x = 10;
+	}
+}
