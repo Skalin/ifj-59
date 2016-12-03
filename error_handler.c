@@ -16,8 +16,8 @@
 #include "garbage_collector.h"
 void throwException(int errorNumber, int row, int column) {
 
-    if (DEBUG == 1) {
-        fprintf(stdout, "%d", errorNumber);
+    if (global.DEBUG == 1) {
+        printf("%d\n", errorNumber);
     } else {
 
         fprintf(stderr, "=========================================================================\n" );

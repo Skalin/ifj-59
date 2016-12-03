@@ -41,6 +41,8 @@ struct tGlobal{
 	FILE *file; // FILE
 	char *fileName; // globalni nazev souboru
 
+	int DEBUG; // debugovaci promenna, slouzi k spusteni prekladace v debugovacim modu
+
 	//promene pro parsing - kontrola zda program ma class Main a method run
 	bool hasMain;
 	bool hasRun;

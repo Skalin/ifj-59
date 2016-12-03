@@ -10,11 +10,30 @@ void printToken(tToken *token) {
 /*
 int main(int argc, char* argv[]) {
 	// Pokud se program spousti se spatnym poctem parametru, ukonci se
-	if(argc != 2) {
+	if(argc < 2) {
 		throwException(99, 0, 0);
 	} else {
-		// Inicializace globalni promenne 
-		globalInit();
+
+ 		if (argc > 3) {
+ 			throwException(99, 0, 0);
+ 		} else if (argc == 3) {
+			if (strcmp(argv[2], "NONDEBUG") == 0) {
+			// Inicializace globalni promenne v pripade nedebug verze aplikace
+				globalInit();
+				global.DEBUG = 0;
+			} else if (strcmp(argv[2], "DEBUG") == 0) {
+			// Inicializace globalni promenne v pripade debug verze aplikace
+				globalInit();
+				global.DEBUG = 1;
+			} else {
+				// navrat chyby ve stavu kdy jako treti parameter dorazi blbost
+				throwException(99, 0, 0);
+			}
+		} else {
+			// Inicializace globalni promenne v pripade nedebug verze aplikace
+			globalInit();
+			global.DEBUG = 0;
+		};
 
 		// Otevreni souboru 
 		global.file = fopen(global.fileName = argv[1], "r");
