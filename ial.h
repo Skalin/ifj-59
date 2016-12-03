@@ -21,7 +21,7 @@
 /*
  * Structures
  */
-
+// struktury presunuty do typedef.h
 
 
 /*
@@ -32,18 +32,59 @@
  * IAL FUNKCE!
  */
 
-void initMismatchTable(mismatchTable *);
-void disposeMismatchTable(mismatchTable *);
-int findChar(mismatchTable *, char c);
-void updateShift(mismatchTable *, char c, int shiftValue);
-void insertNext(mismatchTable *, char c, int shiftValue);
 
+/*
+ * Funkce provede inicializaci mismatch tabulky (tabulky neshodnych znaku) pro Boyer-Moore algoritmsu
+ * @param *Table Ukazatel na inicializovanou mismatch tabulku
+ */
+void initMismatchTable(mismatchTable *Table);
 
+/*
+ * Funkce provede kompletni "zniceni" mismatch tabulky (tabulky neshodnych znaku) pro Boyer-Moore algoritmus
+ * @param *Table Ukazatel na rusenou mismatch tabulku
+ */
+void disposeMismatchTable(mismatchTable *Table);
+
+/*
+ * Funkce vrati pozici na ktere je znak c v MismatchTabulce
+ * @param *Table Mismatch Tabulka
+ * @param * c Znak, podle ktereho hledame pozici v tabulce
+ */
+int findChar(mismatchTable *Table, char c);
+
+/*
+ * Funkce vrati hodnotu shiftu dle znaku, ktery tabulce predame
+ * @param *Table Tabukla neshodnych znaku
+ * @param c Znak, podle ktereho hledame shiftValue
+ */
+int getShiftValue(mismatchTable *Table, char c);
+
+/*
+ * Funkce zaktualizuje hodnotu "shiftValue" v tabulce MismatchValue, pokud jiz dany prvek obsahuje
+ * @param *Table Mismatch Tabulka
+ * @param c znak podle ktereho vyhledavame v tabulce
+ * @param shiftValue hodnota, kterou upravime
+ */
+void updateShift(mismatchTable *Table, char c, int shiftValue);
+
+/*
+ * Funkce vlozi dalsi prvek do tabulky neshod (Mismatch table), prvek ma znak c a hodnotu shiftValue
+ * @param *Table Tabulka mismatch hodnot
+ * @param c vkladany znak
+ * @param shiftValue vkladana hodnota shiftvalue
+ */
+void insertNext(mismatchTable *Table, char c, int shiftValue);
+
+/*
+ * Funkce provede vyhledavani stringu dle Boyer-Moore algoritmu, viz dokumentace
+ * @param str String ve kterem vyhledavame
+ * @param search Vyhledavane slovo
+ */
 int find(String str, String search);
 
 /*
- * heapsort
- * @param str string (pole charu), kazdy znak stringu je razen dle ordinalni hodnoty vzestupne
+ * Funkce sort, ktera za pomoci heapsort algoritmu seradi znaky ve stringu vzestupne dle ordinalni hodnoty
+ * @param str String (pole charu)
  */
 String sort(String str);
 
@@ -54,14 +95,14 @@ String sort(String str);
 /*
  * Funkce kontroluje delitelnost dvema, pokud prvek neni delitelny dvema, pricte mu jednicku.
  * Funkce slouzi k zjednoduseni vypoctu pozice prvku v repairHeap fci
- * @param i vstupni parametr
+ * @param i Sudovane cislo
  */
 int makeEven(int i);
 
 /*
  * Funkce provadi vymenu hodnot a a b
- * @param *a prvek a, pres ktery vratime hodnotu b
- * @param *b prvek b, pres ktery vratime hodnotu a
+ * @param *a Znak a, pres ktery vratime hodnotu b
+ * @param *b Znak b, pres ktery vratime hodnotu a
  */
 void swap(char *a, char *b);
 

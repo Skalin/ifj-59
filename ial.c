@@ -13,7 +13,7 @@
 
 // find a sort dle zadani
 
-// pomocne fce pro find
+// pomocne fce pro find, tedy funkce pro MismatchTabulku
 
 void initMismatchTable(mismatchTable *Table) {
 	Table->First = NULL;
