@@ -50,6 +50,7 @@ struct tGlobal{
     // Proměnné pro expressions
     int funcCnt;
 
+	struct mainTree *mTree;
 	struct iStack *instrStack;
 };
 
