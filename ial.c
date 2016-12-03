@@ -241,27 +241,27 @@ BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
     if(mTree->root != NULL) {
 
     } else {
-        if (start == NULL)
+        if (start == NULL) {
             start = mTree->root;
-        else {
-            // Pokud nalezneme klic
-            if(strcmp(key, start->key) == 0) {
-                // Pokud je to typ ktery jsme hledali, vratime ho
-                if (start->nodeType == nodeType)
-                    return start;
-            }
-            // Pokud mame hledat v pravem podstromu
-            else if(strcmp(key, start->key) > 0) {
-                return start->rptr == NULL ?  NULL : searchForNode(key, nodeType, start->rptr);
-            }
-            // Pokud mame hledat v levem podstromu
-            else if (strcmp(key, start->key) < 0)
-                return start->lptr == NULL ?  NULL : searchForNode(key, nodeType, start->lptr);
-            // V ostatnich pripadech (Chuck norris on STDin?) se jedna o chybu
-            else
-                throwException(99,0,0);
-        }
-    }
+		}
+
+		// Pokud nalezneme klic
+		if(strcmp(key, start->key) == 0) {
+			// Pokud je to typ ktery jsme hledali, vratime ho
+			if (start->nodeType == nodeType)
+				return start;
+		}
+		// Pokud mame hledat v pravem podstromu
+		else if(strcmp(key, start->key) > 0) {
+			return start->rptr == NULL ?  NULL : searchForNode(key, nodeType, start->rptr);
+		}
+		// Pokud mame hledat v levem podstromu
+		else if (strcmp(key, start->key) < 0)
+			return start->lptr == NULL ?  NULL : searchForNode(key, nodeType, start->lptr);
+		// V ostatnich pripadech (Chuck norris on STDin?) se jedna o chybu
+		else
+			throwException(99,0,0);
+	}
     return NULL;
 }
 
