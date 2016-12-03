@@ -1,4 +1,4 @@
-#include "../main.h"
+#include "../ial.h"
 #include <stdio.h>
 
 int main (int argc, char *argv) {
@@ -9,16 +9,16 @@ int main (int argc, char *argv) {
 	String testString4 = "boyle-moore";
 
 	sort(testString);
-	print(testString);
+	printf(testString);
 
 	sort(testString2);
-	print(testString2);
+	printf(testString2);
 
 	sort(testString3);
-	print(testString3);
+	printf(testString3);
 
 	sort(testString4);
-	print(testString4);
+	printf(testString4);
 
 
 }

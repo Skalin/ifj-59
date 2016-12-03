@@ -81,7 +81,7 @@
             <entry file="file://$PROJECT_DIR$/testing/tests.c">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
-                  <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+                  <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -414,14 +414,7 @@
       <workItem from="1480278911351" duration="657000" />
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
-      <workItem from="1480711996503" duration="17309000" />
-    </task>
-    <task id="LOCAL-00139" summary="[MODIFY] 0.5 - uprava string">
-      <created>1480022746893</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1480022746893</updated>
+      <workItem from="1480711996503" duration="17399000" />
     </task>
     <task id="LOCAL-00140" summary="[MODIFY] 0.5 - uprava string">
       <created>1480022840576</created>
@@ -759,11 +752,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480779304767</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="[MODIFY] 0.6 - uprava testu">
+      <created>1480779449157</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1480779449157</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212999000" />
+    <option name="totallyTimeSpent" value="213089000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -829,7 +829,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.6. - rever temp. upravy a uprava podminky poctu argumentu" />
     <MESSAGE value="[MODIFY] 0.6. - revert všeho" />
     <MESSAGE value="[MODIFY] 0.6 - IFJ pokusné odevzdávání funkční verze" />
     <MESSAGE value="[MODIFY] 0.6 - IFJ pokusné odevzdávání funkční verze - lex 100%, parser 60%, zbytek 0% - nenapojen interpret" />
@@ -854,7 +853,8 @@
     <MESSAGE value="[MODIFY] 0.6 - uprava globalInit" />
     <MESSAGE value="[MODIFY] 0.6 - uprava finalFree" />
     <MESSAGE value="[MODIFY] 0.6 - syntax testy a test pro sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - syntax testy a test pro sort" />
+    <MESSAGE value="[MODIFY] 0.6 - uprava testu" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - uprava testu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1204,7 +1204,7 @@
     <entry file="file://$PROJECT_DIR$/testing/tests.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
           <folding />
         </state>
       </provider>
