@@ -71,17 +71,7 @@ void globalInit() {
 	global.listLast = global.wholeList;
 	global.wholeList->dataPointer = NULL;
 
-	global.mTree = malloc(sizeof(struct MTree));
-	if (global.mTree == NULL) {
-		throwException(99, 0, 0);
-	}
-
 	initTree(global.mTree);
-
-	global.iStack = malloc(sizeof(struct instructionStack));
-	if (global.iStack == NULL) {
-		throwException(99, 0, 0);
-	}
 
 	instrStackInit(global.iStack);
 }
