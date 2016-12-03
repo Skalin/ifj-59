@@ -16,6 +16,7 @@
 #include "garbage_collector.h"
 #include "error_handler.h"
 #include "lexical_analyzer.h"
+#include "ial.h"
 
 //pomocne info o tokenu
 tokenType tempType;

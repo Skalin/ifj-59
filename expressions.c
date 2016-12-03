@@ -17,7 +17,7 @@
 #include <ctype.h>
 #include "garbage_collector.h"
 #include "expressions.h"
-#include "error_handler.h"-
+#include "error_handler.h"
 #include "stack.h"
 #include "ial.h"
 #include "instrstack.h"
@@ -92,7 +92,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
     stackPop(stack);
 
     // Pravidlo E -> id
-    if ((i == 1) && (isIdent(&handle[0]->dataIt))) {
+    if ((i == 1) && (isIdent(handle[0]->dataIt))) {
         handle[0]->typeIt = EXPR;
         stackPush(stack,handle[0]);
     }
