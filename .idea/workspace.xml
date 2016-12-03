@@ -15,6 +15,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.c" afterPath="$PROJECT_DIR$/lexical_analyzer.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical_analyzer.h" afterPath="$PROJECT_DIR$/lexical_analyzer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,11 +37,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="10" selection-end-column="1" />
+                <state relative-caret-position="30">
+                  <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -50,7 +51,7 @@
             <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="486">
-                  <caret line="628" column="0" selection-start-line="628" selection-start-column="0" selection-end-line="628" selection-end-column="30" />
+                  <caret line="633" column="0" selection-start-line="633" selection-start-column="0" selection-end-line="633" selection-end-column="0" />
                   <folding>
                     <element signature="e#435#453#0" expanded="true" />
                   </folding>
@@ -58,11 +59,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="lexical_analyzer.h" pinned="false" current-in-tab="true">
+          <file leaf-file-name="lexical_analyzer.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="540">
-                  <caret line="149" column="27" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
+                <state relative-caret-position="303">
+                  <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -214,9 +215,9 @@
         <option value="$PROJECT_DIR$/parser.c" />
         <option value="$PROJECT_DIR$/expressions.c" />
         <option value="$PROJECT_DIR$/ial.c" />
-        <option value="$PROJECT_DIR$/main.c" />
-        <option value="$PROJECT_DIR$/lexical_analyzer.c" />
         <option value="$PROJECT_DIR$/lexical_analyzer.h" />
+        <option value="$PROJECT_DIR$/lexical_analyzer.c" />
+        <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
@@ -419,14 +420,7 @@
       <workItem from="1480278911351" duration="657000" />
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
-      <workItem from="1480711996503" duration="19995000" />
-    </task>
-    <task id="LOCAL-00157" summary="[MODIFY] 0.6. - rever temp. upravy a uprava podminky poctu argumentu">
-      <created>1480260567621</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1480260567621</updated>
+      <workItem from="1480711996503" duration="20058000" />
     </task>
     <task id="LOCAL-00158" summary="[MODIFY] 0.6. - revert všeho">
       <created>1480279059040</created>
@@ -764,11 +758,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480781962924</updated>
     </task>
-    <option name="localTasksCounter" value="206" />
+    <task id="LOCAL-00206" summary="[MODIFY] 0.6 - uprava printToken">
+      <created>1480782132115</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1480782132116</updated>
+    </task>
+    <option name="localTasksCounter" value="207" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215685000" />
+    <option name="totallyTimeSpent" value="215748000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -781,11 +782,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32217574" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32217574" sideWeight="0.46302083" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46757323" sideWeight="0.48958334" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22698745" sideWeight="0.54375" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
@@ -1174,14 +1175,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="10" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parser.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1192,20 +1185,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
-          <caret line="628" column="0" selection-start-line="628" selection-start-column="0" selection-end-line="628" selection-end-column="30" />
+          <caret line="633" column="0" selection-start-line="633" selection-start-column="0" selection-end-line="633" selection-end-column="0" />
           <folding>
             <element signature="e#435#453#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
+    <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="149" column="27" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>
