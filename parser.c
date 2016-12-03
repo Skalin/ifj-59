@@ -540,22 +540,31 @@ void pWhile(){
 	// instrukce endwhile
 }
 
-varType tempToVar(tokenType temp){
-	switch(temp){
+varType tempToVar(tokenType temp) {
+	varType type = var_null;
+	switch (temp) {
 		case t_kw_int:
-			return var_int;
+			type = var_int;
+			break;
 		case t_kw_double:
-			return var_double;
+			type = var_double;
+			break;
 		case t_kw_string:
-			return var_string;
+			type = var_string;
+			break;
 		case t_kw_void:
-			return var_void;
+			type = var_void;
+			break;
 		default:
 			// pro jistotu
-			throwException(99,0,0);
-	
+			throwException(99, 0, 0);
+			break;
 	}
-	
 
+	if (type == var_null) {
+		throwException(99, 0, 0);
+	}
+	return type;
 }
+
 
