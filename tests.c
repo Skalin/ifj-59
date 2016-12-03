@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include <stdio.h>
 #include "ial.h"
 
@@ -8,7 +7,7 @@ int main(int argc, char *argv[]) {
 	String testString2 = "vysortovat";
 	String testString3 = "posun";
 	String testString4 = "boyle-moore";
-	String printedString = "\0";
+	String printedString;
 
 	printedString = sort(testString);
 	printf(printedString);
