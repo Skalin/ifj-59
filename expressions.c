@@ -245,7 +245,7 @@ void expression(BTSNode *targetId, tExpType expType) {
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
     instrStack *localIStack = global.iStack;
-    if ((mTree->actFunction != NULL) || (mTree->actFunction->Key != "run")) {
+    if ((global.mTree->actFunction != NULL) || (global.mTree->actFunction->key != "run")) {
         localIStack = mTree->actFunction->iStack; // Zatím neexistuje ale bude
     }
     
