@@ -11,10 +11,15 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.6 - dokumentace funkci pro find">
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/syntax02.ifj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/syntax03.ifj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/syntax04.ifj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/syntax05.ifj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/tests.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ifj-59.iml" afterPath="$PROJECT_DIR$/.idea/ifj-59.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ial.c" afterPath="$PROJECT_DIR$/ial.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ial.h" afterPath="$PROJECT_DIR$/ial.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/syntax01.ifj" afterPath="$PROJECT_DIR$/testing/syntax01.ifj" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,135 +38,46 @@
     <favorites_list name="ifj-59" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.43333334">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="expressions.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/expressions.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-168">
-                  <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-                  <folding>
-                    <element signature="e#396#415#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/garbage_collector.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-                  <folding>
-                    <element signature="e#401#420#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ial.c" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/ial.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="206">
-                  <caret line="224" column="12" selection-start-line="224" selection-start-column="12" selection-end-line="224" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="lexical_analyzer.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="9296">
-                  <caret line="622" column="0" selection-start-line="622" selection-start-column="0" selection-end-line="622" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#435#453#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="lexical_analyzer.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="356">
-                  <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ial.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ial.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="407">
-                  <caret line="73" column="48" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
-                  <folding>
-                    <element signature="e#435#459#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="instrstack.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/instrstack.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1590">
-                  <caret line="106" column="78" selection-start-line="106" selection-start-column="78" selection-end-line="107" selection-end-column="68" />
-                  <folding>
-                    <element signature="e#392#412#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="interpret.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/interpret.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#385#404#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="interpret.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/interpret.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="203">
-                  <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-                  <folding>
-                    <element signature="e#441#461#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="instrstack.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/instrstack.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-                  <folding>
-                    <element signature="e#425#445#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="870">
-                  <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
-                  <folding />
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="17" />
+                  <folding>
+                    <marker date="1480771894876" expanded="true" signature="758:826" ph="{...}" />
+                    <marker date="1480771894876" expanded="true" signature="861:1888" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ial.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ial.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2526">
+                  <caret line="261" column="35" selection-start-line="261" selection-start-column="35" selection-end-line="261" selection-end-column="35" />
+                  <folding>
+                    <marker date="1480775046023" expanded="true" signature="536:589" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="639:781" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="845:1214" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="1259:1432" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="1482:1661" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="1726:1912" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="1966:3420" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="3471:3516" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="3603:3651" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="3754:4358" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="4405:4972" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="5093:5195" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="5270:6012" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="6061:7199" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="7283:9142" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="9185:9642" ph="{...}" />
+                    <marker date="1480775046023" expanded="true" signature="9693:10053" ph="{...}" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -176,35 +92,93 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="typedef.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/typedef.h">
+          <file leaf-file-name="instrstack.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/instrstack.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="205">
-                  <caret line="182" column="4" selection-start-line="182" selection-start-column="4" selection-end-line="182" selection-end-column="4" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="parser.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/parser.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1215">
-                  <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+                <state relative-caret-position="1506">
+                  <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
                   <folding>
-                    <marker date="1480532442322" expanded="true" signature="642:720" ph="/**...*/" />
+                    <marker date="1480769682837" expanded="true" signature="401:463" ph="..." />
+                    <marker date="1480769682837" expanded="true" signature="513:709" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="735:1105" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="1151:1236" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="1281:1392" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="1446:1765" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="1807:2053" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="2187:2489" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="2715:2735" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="2884:2999" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="3038:3085" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="3124:3147" ph="{...}" />
+                    <marker date="1480769682837" expanded="true" signature="3190:3245" ph="{...}" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="parser.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="tests.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testing/tests.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+                  <folding>
+                    <marker date="1480779206191" expanded="true" signature="54:360" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="syntax04.ifj" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testing/syntax04.ifj">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="syntax05.ifj" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testing/syntax05.ifj">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="75">
+                  <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="parser.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/parser.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="94">
-                  <caret line="540" column="1" selection-start-line="540" selection-start-column="1" selection-end-line="540" selection-end-column="1" />
+                <state relative-caret-position="2946">
+                  <caret line="534" column="37" selection-start-line="534" selection-start-column="37" selection-end-line="534" selection-end-column="37" />
                   <folding>
-                    <element signature="e#391#410#0" expanded="true" />
+                    <marker date="1480771212933" expanded="true" signature="937:1551" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="1566:2290" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="2309:4812" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="4845:5669" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="5708:6719" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="6735:7526" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="7546:8366" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="8384:8582" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="8605:10301" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="10315:10666" ph="{...}" />
+                    <marker date="1480771212933" expanded="true" signature="10680:10821" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -248,7 +222,6 @@
         <option value="$PROJECT_DIR$/iStack.c" />
         <option value="$PROJECT_DIR$/main.h" />
         <option value="$PROJECT_DIR$/makefile" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/parser.h" />
         <option value="$PROJECT_DIR$/error_handler.h" />
         <option value="$PROJECT_DIR$/error_handler.c" />
@@ -259,11 +232,18 @@
         <option value="$PROJECT_DIR$/interpret.c" />
         <option value="$PROJECT_DIR$/interpret.h" />
         <option value="$PROJECT_DIR$/parser.c" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/expressions.c" />
-        <option value="$PROJECT_DIR$/garbage_collector.c" />
-        <option value="$PROJECT_DIR$/ial.c" />
         <option value="$PROJECT_DIR$/ial.h" />
+        <option value="$PROJECT_DIR$/ial.c" />
+        <option value="$PROJECT_DIR$/garbage_collector.c" />
+        <option value="$PROJECT_DIR$/testing/syntax01.ifj" />
+        <option value="$PROJECT_DIR$/testing/syntax02.ifj" />
+        <option value="$PROJECT_DIR$/testing/syntax03.ifj" />
+        <option value="$PROJECT_DIR$/testing/syntax04.ifj" />
+        <option value="$PROJECT_DIR$/testing/syntax05.ifj" />
+        <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/testing/tests.c" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -348,6 +328,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ifj-59" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ifj-59" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ifj-59" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -461,42 +455,7 @@
       <workItem from="1480278911351" duration="657000" />
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
-      <workItem from="1480711996503" duration="14037000" />
-    </task>
-    <task id="LOCAL-00133" summary="[MODIFY] 0.5 - test makefile">
-      <created>1479933994296</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1479933994297</updated>
-    </task>
-    <task id="LOCAL-00134" summary="[MODIFY] 0.5 - test makefile">
-      <created>1479934072638</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1479934072643</updated>
-    </task>
-    <task id="LOCAL-00135" summary="[MODIFY] 0.5 - test makefile">
-      <created>1479934851012</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1479934851012</updated>
-    </task>
-    <task id="LOCAL-00136" summary="[MODIFY] 0.5 - uprava SString na String">
-      <created>1480016178930</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1480016178930</updated>
-    </task>
-    <task id="LOCAL-00137" summary="[MODIFY] 0.5 - uprava uprava include, presun struktur do korektnich slozek">
-      <created>1480018987782</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1480018987782</updated>
+      <workItem from="1480711996503" duration="17175000" />
     </task>
     <task id="LOCAL-00138" summary="[MODIFY] 0.5 - priprava pro upravu String struktur na string char*">
       <created>1480019700721</created>
@@ -806,11 +765,46 @@
       <option name="project" value="LOCAL" />
       <updated>1480773047913</updated>
     </task>
-    <option name="localTasksCounter" value="182" />
+    <task id="LOCAL-00182" summary="[MODIFY] 0.6 - dokumentace funkci pro find">
+      <created>1480774473916</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1480774473917</updated>
+    </task>
+    <task id="LOCAL-00183" summary="[MODIFY] 0.6 - uprava searchForNode">
+      <created>1480774598708</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1480774598708</updated>
+    </task>
+    <task id="LOCAL-00184" summary="[MODIFY] 0.6 - uprava searchForNode">
+      <created>1480775055312</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1480775055312</updated>
+    </task>
+    <task id="LOCAL-00185" summary="[MODIFY] 0.6 - uprava globalInit">
+      <created>1480775423416</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1480775423416</updated>
+    </task>
+    <task id="LOCAL-00186" summary="[MODIFY] 0.6 - uprava finalFree">
+      <created>1480775531947</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1480775531947</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209727000" />
+    <option name="totallyTimeSpent" value="212865000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -823,7 +817,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
@@ -876,9 +870,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.6. - jeste uprava include" />
-    <MESSAGE value="[MODIFY] 0.6. - uprava global tree a stacku" />
-    <MESSAGE value="[MODIFY] 0.6. - temp. uprava" />
     <MESSAGE value="[MODIFY] 0.6. - rever temp. upravy a uprava podminky poctu argumentu" />
     <MESSAGE value="[MODIFY] 0.6. - revert všeho" />
     <MESSAGE value="[MODIFY] 0.6 - IFJ pokusné odevzdávání funkční verze" />
@@ -890,7 +881,6 @@
     <MESSAGE value="[MODIFY] 0.6 - global iStack" />
     <MESSAGE value="[MODIFY] 0.6 - debug aplikace" />
     <MESSAGE value="[MODIFY] 0.6 - mTree v global" />
-    <MESSAGE value="[MODIFY] 0.6 - uprava globalInit" />
     <MESSAGE value="[MODIFY] 0.6 - expressions uprava global.iStack na radku 247" />
     <MESSAGE value="[MODIFY] 0.6 - expressions uprava global.iStack na radku 248" />
     <MESSAGE value="[MODIFY] 0.6 - uprava kopirovani stacku do localstacku" />
@@ -901,7 +891,11 @@
     <MESSAGE value="[MODIFY] 0.6 - temp main" />
     <MESSAGE value="[MODIFY] 0.6 - uprava vestavenych fci" />
     <MESSAGE value="[MODIFY] 0.6 - dokumentace funkci pro find" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - dokumentace funkci pro find" />
+    <MESSAGE value="[MODIFY] 0.6 - uprava searchForNode" />
+    <MESSAGE value="[MODIFY] 0.6 - uprava globalInit" />
+    <MESSAGE value="[MODIFY] 0.6 - uprava finalFree" />
+    <MESSAGE value="[MODIFY] 0.6 - syntax testy a test pro sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.6 - syntax testy a test pro sort" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -915,48 +909,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/error_handler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5644">
-          <caret line="332" column="40" selection-start-line="332" selection-start-column="40" selection-end-line="332" selection-end-column="40" />
-          <folding>
-            <element signature="e#435#453#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3417">
-          <caret line="201" column="29" selection-start-line="201" selection-start-column="29" selection-end-line="201" selection-end-column="29" />
-          <folding>
-            <element signature="e#435#453#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
@@ -1057,14 +1009,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="70" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/expressions.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
@@ -1081,14 +1025,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testing/string.ifj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1101,16 +1037,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="e#393#411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/syntax01.ifj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1119,9 +1045,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
           <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-          <folding>
-            <element signature="e#459#477#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1129,19 +1053,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding>
-            <element signature="e#425#445#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpret.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding>
-            <element signature="e#385#404#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1149,9 +1061,85 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/expressions.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9296">
+          <caret line="622" column="0" selection-start-line="622" selection-start-column="0" selection-end-line="622" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ial.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="73" column="48" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interpret.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="148" column="23" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/instrstack.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1506">
+          <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
           <folding>
-            <element signature="e#441#461#0" expanded="true" />
+            <marker date="1480769682837" expanded="true" signature="401:463" ph="..." />
+            <marker date="1480769682837" expanded="true" signature="513:709" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="735:1105" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="1151:1236" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="1281:1392" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="1446:1765" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="1807:2053" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="2187:2489" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="2715:2735" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="2884:2999" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="3038:3085" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="3124:3147" ph="{...}" />
+            <marker date="1480769682837" expanded="true" signature="3190:3245" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typedef.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="182" column="4" selection-start-line="182" selection-start-column="4" selection-end-line="182" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1165,94 +1153,125 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/typedef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="182" column="4" selection-start-line="182" selection-start-column="4" selection-end-line="182" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parser.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="540" column="1" selection-start-line="540" selection-start-column="1" selection-end-line="540" selection-end-column="1" />
+        <state relative-caret-position="2946">
+          <caret line="534" column="37" selection-start-line="534" selection-start-column="37" selection-end-line="534" selection-end-column="37" />
           <folding>
-            <element signature="e#391#410#0" expanded="true" />
+            <marker date="1480771212933" expanded="true" signature="937:1551" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="1566:2290" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="2309:4812" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="4845:5669" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="5708:6719" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="6735:7526" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="7546:8366" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="8384:8582" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="8605:10301" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="10315:10666" ph="{...}" />
+            <marker date="1480771212933" expanded="true" signature="10680:10821" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
+    <entry file="file://$PROJECT_DIR$/testing/syntax01.ifj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+        <state relative-caret-position="165">
+          <caret line="11" column="28" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/instrstack.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1590">
-          <caret line="106" column="78" selection-start-line="106" selection-start-column="78" selection-end-line="107" selection-end-column="68" />
-          <folding>
-            <element signature="e#392#412#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-          <folding>
-            <element signature="e#401#420#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/expressions.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-          <folding>
-            <element signature="e#396#415#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9296">
-          <caret line="622" column="0" selection-start-line="622" selection-start-column="0" selection-end-line="622" selection-end-column="0" />
-          <folding>
-            <element signature="e#435#453#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ial.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="73" column="48" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
-          <folding>
-            <element signature="e#435#459#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ial.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="224" column="12" selection-start-line="224" selection-start-column="12" selection-end-line="224" selection-end-column="12" />
+        <state relative-caret-position="2526">
+          <caret line="261" column="35" selection-start-line="261" selection-start-column="35" selection-end-line="261" selection-end-column="35" />
+          <folding>
+            <marker date="1480775046023" expanded="true" signature="536:589" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="639:781" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="845:1214" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="1259:1432" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="1482:1661" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="1726:1912" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="1966:3420" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="3471:3516" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="3603:3651" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="3754:4358" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="4405:4972" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="5093:5195" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="5270:6012" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="6061:7199" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="7283:9142" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="9185:9642" ph="{...}" />
+            <marker date="1480775046023" expanded="true" signature="9693:10053" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/syntax02.ifj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/syntax03.ifj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/syntax04.ifj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/syntax05.ifj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/tests.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <marker date="1480779206191" expanded="true" signature="54:360" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="17" />
+          <folding>
+            <marker date="1480771894876" expanded="true" signature="758:826" ph="{...}" />
+            <marker date="1480771894876" expanded="true" signature="861:1888" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
           <folding />
         </state>
       </provider>
