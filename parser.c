@@ -550,6 +550,9 @@ varType tempToVar(tokenType temp){
 			return var_string;
 		case t_kw_void:
 			return var_void;
+		default:
+			// pro jistotu
+			throwException(99,0,0);
 	
 	}
 	
