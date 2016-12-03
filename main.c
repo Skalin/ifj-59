@@ -9,7 +9,7 @@ static const char *tokenTypeString[] = {
 void printToken(tToken *token) {
 	printf("%20s %25s\n",token->data,tokenTypeString[token->type]);
 }
-/*
+
 int main(int argc, char* argv[]) {
 	// Pokud se program spousti se spatnym poctem parametru, ukonci se
 	if(argc < 2) {
@@ -47,8 +47,8 @@ int main(int argc, char* argv[]) {
 		
 
 		// Interpret 
-		semCheck(&iStack);
-		interpretMainCore(&iStack);
+		semCheck(global.iStack);
+		interpretMainCore(global.iStack);
 		
 
 		// Uvolneni pameti a ukonceni programu
@@ -56,43 +56,44 @@ int main(int argc, char* argv[]) {
 	
 	}
 }
-*/
+
 
 
 /* TESTOVÁNÍ EXPRESSIONS - prosím nemazat jen zakomentovat */
+/*
 int main(int argc, char* argv[]) {
 
-    /* Inicializace globalni promenne */
+    // Inicializace globalni promenne
     globalInit();
     global.fileName = "testing/fac_rec.ifj";
 
-	/* Otevreni souboru */
+	// Otevreni souboru
 	global.file = fopen(global.fileName, "r");
 	if (global.file == NULL) {
 	    throwException(99, 0, 0);
 	}
 
 
-	/* Inicializace hlavnich struktur prekladace */
+	// Inicializace hlavnich struktur prekladace
 	
 	initTree(&mTree);
 	instrStack iStack;
 	instrStackInit(&iStack);
-		/* */
 
-		/* Parser */
+
+		// Parser
 	pParse();
-		/* */
+		//
 
-		/* Interpret */
+		// Interpret
 	semCheck(&iStack);
 	interpretMainCore(&iStack);
-		/* */
+		//
 
-		/* Uvolneni pameti a ukonceni programu*/
+		// Uvolneni pameti a ukonceni programu
 	finalFree();
-		/* */
+		//
 	
 }
 
-
+*/
