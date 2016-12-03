@@ -8,18 +8,19 @@ int main(int argc, char *argv) {
 	String testString2 = "vysortovat";
 	String testString3 = "posun";
 	String testString4 = "boyle-moore";
+	String printedString = "\0";
 
-	sort(testString);
-	printf(testString);
+	printedString = sort(testString);
+	printf(printedString);
 
-	sort(testString2);
-	printf(testString2);
+	printedString = sort(testString2);
+	printf(printedString);
 
-	sort(testString3);
-	printf(testString3);
+	printedString = sort(testString3);
+	printf(printedString);
 
-	sort(testString4);
-	printf(testString4);
+	printedString = sort(testString4);
+	printf(printedString);
 
 	return 0;
 
