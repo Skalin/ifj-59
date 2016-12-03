@@ -16,7 +16,6 @@
 
 #include "typedef.h"
 #include "instrstack.h"
-//přesunuto do iStacku
 
 //Prototypy
 

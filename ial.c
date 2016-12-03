@@ -10,10 +10,6 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 #include "ial.h"
-#include "garbage_collector.h"
-#include <stdlib.h>
-#include <string.h>
-#include "error_handler.h"
 
 // find a sort dle zadani
 
