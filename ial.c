@@ -26,13 +26,13 @@ void disposeMismatchTable(mismatchTable *Table) {
 	while (Table->First != NULL) {
 		pom = Table->First;
 		Table->First = Table->First->next;
-		free(pom);
+		plusFree(pom);
 	}
 }
 
 void insertNext(mismatchTable *Table, char c, int shiftValue) {
 
-	mismatchTableItem pom = malloc(sizeof(mismatchTableItem));
+	mismatchTableItem pom = plusMalloc(sizeof(struct mmtItem));
 
 	if (pom != NULL) {
 		if (Table == NULL) {
