@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 extern mainTree mTree;
 
@@ -46,8 +47,6 @@ int main(int argc, char* argv[]) {
 			finalFree();
 		} else {
 
-
-		// IAL testy
 			// test stringu a jejich sortovani
 			String testString = "kokot";
 			String testString2 = "vysortovat";
@@ -86,8 +85,65 @@ int main(int argc, char* argv[]) {
 
 			printedString = sort(testString4);
 			printf(printedString);
+/*
+			globalInit();
+			// IAL testy
+			String lex = "./testing/lex";
+			String syntax = "./testing/synt";
+			String sem = "./testing/sem";
+			String help;
+
+
+			// lex test
+			int i = 1;
+			String id;
+			help = lex;
+			strcat(help, "01.ifj16");
+			global.file = fopen(global.fileName = lex, "r");
+			if (global.file == NULL) {
+				throwException(99, 0, 0);
+			} // jasna chyba programu, soubor "lex" neexistuje, mel by program skoncit
+
+
+			globalInit();
+			global.file = fopen(global.fileName = help, "r");
+			if (global.file == NULL) {
+				throwException(99, 0, 0);
+			}
+			// chyba by nemela nastat, soubor existuje
+
+			pParse(); // chyba by mela nastat zde, dojde k lex chybe
+
+			// syntax testy
+			globalInit();
+			help = syntax;
+			while (i < 8) {
+				if (i != 1) {
+					globalInit;
+				}
+				help = syntax;
+				sprintf(id, "%d", i);
+				strcat(help, id);
+				strcat(help, ".ifj16");
+				global.file = fopen(global.fileName = help, "r");
+				printf("FILE: %s", global.fileName);
+				pParse(); //melo by navratit chybu 2, vzdy
+				i++;
+			}
+
+			// semantika testy
+
+			globalInit();
+			help = sem;
+			i = 1;
+			while (i < 47) {
+
+				i++;
+			}
+
 
 			finalFree();
+			*/
 		}
 	}
 }
