@@ -26,6 +26,7 @@ while [ $semtests -le 46 ]; do
 
 
     printf $?;
+    echo "\n";
 
 done
 
