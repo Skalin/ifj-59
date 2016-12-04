@@ -183,6 +183,8 @@ int main(int argc, char* argv[]) {
 
 			finalFree();
 			*/
+
+			return 0;
 		}
 	}
 }
