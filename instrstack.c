@@ -16,15 +16,17 @@
 #include "instrstack.h"
 
 
-instrStack * instrStackInit (instrStack *stc ) {
+void instrStackInit (instrStack *stc) {
 
     //Inicializace polozek stacku
-    stc = plusMalloc(sizeof(instrStack));
-    stc->dataInstr = plusMalloc(sizeof(instrStack) * 30);
-    stc->alloc = 30;
-    stc->count = 0;
-
-    return stc;
+	stc->count = -1;
+    	stc->alloc = 30;
+	stc->dataInstr = plusMalloc(sizeof(Instr) * 30);
+	
+	if(stc->dataInstr != NULL) {
+		throwException(99,0,0); //chyba alokace paměti
+		}
+	
 }
 
 Instr *instrItemInit () {
