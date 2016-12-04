@@ -39,7 +39,8 @@ void pParse(){
 	global.hasRun = FALSE;
 
 	tToken * token;
-	token = getToken();printToken(token);
+	token = getToken();
+	//printToken(token);
 	
 		// no main.run
 	if (token->type == t_eof){
@@ -60,12 +61,14 @@ void pParse(){
 
 	pClass();
 
-	token = getToken();printToken(token);
+	token = getToken();
+	//printToken(token);
 
 	while (token->type == t_kw_class){
 		
 		pClass();
-		token = getToken();printToken(token);
+		token = getToken();
+		//printToken(token);
 	}
 
 	if(token->type != t_eof) {
@@ -95,7 +98,8 @@ void pClass(){
  *
  */
 	tToken * token;
-	token = getToken();printToken(token);
+	token = getToken();
+	//printToken(token);
 
 	if (token->type != t_simple_ident){
 		throwException(2,0,0);
@@ -123,7 +127,8 @@ void pClass(){
 	// vytvorit tridu v tabulce symbolu
 	createNewNode(token->data, class, var_null, 0);	// TODO  status??
 
-	token = getToken();printToken(token);    
+	token = getToken();
+	//printToken(token);
 
 	if(token->type != t_brace_l){
 		throwException(2,0,0);
@@ -144,12 +149,14 @@ void pClassBody(){
 **/
 
 	tToken * token;
-	token = getToken();printToken(token);
+	token = getToken();
+	//printToken(token);
 
 	if (token->type == t_kw_static){       // funkce nebo globalni promena
 		 //static
 
-		token = getToken();printToken(token);
+		token = getToken();
+		//printToken(token);
 
 		// pokud je dalsi token datovy typ ( boolean jsem tam nedal, kdyztak doplnit jestli budem delat rozsireni (Kappa))
 		if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double || token->type == t_kw_void ){
@@ -160,7 +167,8 @@ void pClassBody(){
 
 			
 			// static dataType - musi nasledovat identifikator
-			token = getToken();printToken(token);
+			token = getToken();
+			//printToken(token);
 
 			if (token->type != t_simple_ident){
 				throwException(2,0,0);
@@ -173,7 +181,8 @@ void pClassBody(){
 			 tempData = token->data;
 			
 
-			token = getToken();printToken(token); // nacist dalsi token, bud zavorka - funkce, jinak promena
+			token = getToken();
+			//printToken(token); // nacist dalsi token, bud zavorka - funkce, jinak promena
 
 			if (token->type == t_bracket_l) {
 				
@@ -294,7 +303,8 @@ void pVar(tToken *token, int dataType){
 	// parametr je posledni nacteny token3
 
 	if (token == NULL) {
-		token = getToken();printToken(token);
+		token = getToken();
+		//printToken(token);
 	}
 
 	//musime vytvorit uzel
@@ -348,7 +358,8 @@ void pParams(){
  */
 
   tToken * token;
-  token = getToken();printToken(token);
+  token = getToken();
+	//printToken(token);
 
   // leva zavorka uz nactena v pClass
 
@@ -367,7 +378,8 @@ void pParams(){
     tempStatic = 0;
 
     //nacist identifikator
-    token = getToken();printToken(token);
+    token = getToken();
+	  //printToken(token);
     if (token->type != t_simple_ident) {
       throwException(2,0,0);
 		if (global.DEBUG == 1) {
@@ -402,7 +414,8 @@ void pParamsNext(){
 */
 	tToken * token;
 
-	token = getToken();printToken(token);
+	token = getToken();
+	//printToken(token);
 
 	if (token->type == t_bracket_r) {
 		// uzaviraci zavorka, zadny dalsi parametr
@@ -410,7 +423,8 @@ void pParamsNext(){
 	} else if (token->type == t_comma) {
 		// carka, nasleduje dalsi parametr
 		
-		token = getToken();printToken(token);
+		token = getToken();
+		//printToken(token);
 
 		if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
 			tempType = token->type;
@@ -418,7 +432,8 @@ void pParamsNext(){
 			
 
 			//nacist identifikator
-			token = getToken();printToken(token);
+			token = getToken();
+			//printToken(token);
 			if (token->type != t_simple_ident) {
 				throwException(2,0,0);
 				if (global.DEBUG == 1) {
@@ -454,7 +469,8 @@ void pCommands(){
  * <L curly brace> <commands> <R curly brace>
  */
 	tToken * token;
-	token = getToken();printToken(token);
+	token = getToken();
+	//printToken(token);
 
 	if (token->type != t_brace_l){   
 		throwException(2,0,0);
@@ -471,7 +487,8 @@ void pCommands(){
 void pSingleCommand(){
 
 	tToken * token;
-	token = getToken();printToken(token);
+	token = getToken();
+	//printToken(token);
 
 	switch(token->type){
 
@@ -494,10 +511,12 @@ void pSingleCommand(){
 			// RETURN statement
 			// asi rovnou volam precedencni TODO
 			//DELETE THIS
-			token = getToken();printToken(token);
+			token = getToken();
+			//printToken(token);
 			while (token->type != t_semicolon) {
 				
-			token = getToken();printToken(token);
+			token = getToken();
+				//printToken(token);
 			}
 			// END OF DELETE BLOCK
 			break;
@@ -508,7 +527,8 @@ void pSingleCommand(){
 			// prirazeni hodnoty promene, volam funkci,
 			tempData = token->data;
 			
-			token = getToken();printToken(token);
+			token = getToken();
+			//printToken(token);
 
 			if (token->type == t_assignment) {
 				// a =
@@ -547,7 +567,8 @@ void pSingleCommand(){
 			
 
 
-			token = getToken();printToken(token);
+			token = getToken();
+			//printToken(token);
 			if (token->type != t_simple_ident) {
 				throwException(2,0,0);
 				if (global.DEBUG == 1) {

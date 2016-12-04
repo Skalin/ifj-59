@@ -163,7 +163,7 @@ int main(int argc, char* argv[]) {
 			char id[2];
 			strcpy(help,lex);
 			strcat(help, "01.ifj16");
-			global.file = fopen("testing/lex1.ifj16", "r");
+			global.file = fopen("./testing/lex1", "r");
 			if (global.file == NULL) {
 				printf("Expected: 99, got: ");
 				throwException(99, 0, 0);
