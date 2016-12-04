@@ -9,6 +9,7 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+
 #include <string.h>
 #include "ial.h"
 #include "error_handler.h"
@@ -56,7 +57,6 @@ void insertNext(mismatchTable *Table, char c, int shiftValue) {
 		}
 	} else {
 		throwException(99, 0, 0);
-		return;
 	}
 }
 
@@ -158,6 +158,10 @@ int find(char str[], char search[]) {
 	}
 
 	disposeMismatchTable(&Table);
+
+	if (Table.First == NULL) {
+		printf("Tabulka je prazdna\n");
+	}
 
 	return found;
 

@@ -56,13 +56,13 @@ int main(int argc, char* argv[]) {
 			// DEBUG aplikace s testy
 
 			// test stringu a jejich sortovani
-			char testString[] = "kokot";
+			char testString[] = "ultrasupermegasupersonicstring";
 			char testString2[] = "vysortovat";
 			char testString3[] = "posun";
 			char testString4[] = "boyle-moore";
 			char testString5[] = "Barbora";
 			// test vyhledavani
-			char hledej[] = "kot";
+			char hledej[] = "as";
 			char hledej1[] = "bor";
 			char hledej2[] = "vat";
 			char hledej3[] = "n";

@@ -78,60 +78,60 @@ int stackFull (const tStack *s );
  * @param vkládaná data
  * @return
  */
-void stackPush ( tStack *stack, void *data);
+void stackPush(tStack *stack, void *data);
 
 /*
  * Funkce navrátí ukazatel na vrchol zásobníku
  * @param zásobník
  * @return ukazatel na vrchol zasobniku
  */
-tStackIt * stackTop (tStack *stack);
+tStackIt * stackTop(tStack *stack);
 
 /*
  * Funkce popne data z vrcholu zásobníku
  * @param zásobník
  * @return
  */
-tStackIt * stackPop (tStack *stack );
+tStackIt * stackPop(tStack *stack);
 
 /*
  * Funkce navrátí hodnotu velikosti zásobníku
  * @param zásobník
  * @return velikost zásobníku
  */
-int stackSize (tStack *stack);
+int stackSize(tStack *stack);
 
 /*
  * Inicializujeme prvek na zásobníku
  * @return inicializovaný prvek zásobníku
  */
-tStackIt *itemInit ();
+tStackIt *itemInit();
 
 /*
  * Uvolnění paměti na zásobníku
  * @param zásobník
  */
-void stackDestroy (tStack *stc);
+void stackDestroy(tStack *stc);
 
 /*
  * Zničí prvky na zásobníku
  * @param prvek zásobníku
  */
-void itemDestroy (tStackIt *data);
+void itemDestroy(tStackIt *data);
 
 /*
  * Funkce sloužící k přemístění prvků z jednoho zásobníku na zásobník druhý
  * @param První zásobník 
  * @param Druhý zásobník
  */
-void exprShift (tStack *stc1, tStack *stc2);
+void exprShift(tStack *stc1, tStack *stc2);
 
 /*
  * Zjištění zda je první prvek terminálem
  * @param zásobník
  * @return nejvyšší terminál na zásobníku
  */
-tToken *topTerm (tStack *stc);
+tToken *topTerm(tStack *stc);
 
 	
 
