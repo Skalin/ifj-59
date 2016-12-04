@@ -50,8 +50,8 @@
           <file leaf-file-name="test.sh" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/testing/test.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+                <state relative-caret-position="270">
+                  <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -552,14 +552,7 @@
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
       <workItem from="1480711996503" duration="28574000" />
-      <workItem from="1480871331149" duration="14677000" />
-    </task>
-    <task id="LOCAL-00183" summary="[MODIFY] 0.6 - uprava searchForNode">
-      <created>1480774598708</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1480774598708</updated>
+      <workItem from="1480871331149" duration="14722000" />
     </task>
     <task id="LOCAL-00184" summary="[MODIFY] 0.6 - uprava searchForNode">
       <created>1480775055312</created>
@@ -897,11 +890,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480888721332</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <task id="LOCAL-00232" summary="[MODIFY] 0.7 - uprava testu, pracuji na bash scriptu pro test">
+      <created>1480888781516</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1480888781516</updated>
+    </task>
+    <option name="localTasksCounter" value="233" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238941000" />
+    <option name="totallyTimeSpent" value="238986000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1291,8 +1291,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testing/test.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        <state relative-caret-position="270">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
           <folding />
         </state>
       </provider>
