@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
 			finalFree();
 		} else {
 			// DEBUG aplikace s testy vestavenych funkci
-
+/*
 			// test stringu a jejich sortovani
 			char testString[] = "ultrasupermegasupersonicstring";
 			char testString2[] = "vysortovat";
@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
 			printedString = testString5;
 			printf("Originalni string \"%s\" ", testString5);
 			printedString = sort(printedString);
-			printf("Vysortovany string \"%s\"\n", printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);*/
 			fprintf(stderr, "==========================================================================\n" );
 			fprintf(stderr, "========================== PROBEHNE HLAVNI TEST ==========================\n" );
 			fprintf(stderr, "======================= TEST JEDNOTLIVYCH SOUBORU! =======================\n\n" );

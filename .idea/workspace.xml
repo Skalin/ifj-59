@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/test.sh" afterPath="$PROJECT_DIR$/testing/test.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +47,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="test.sh" pinned="false" current-in-tab="true">
+          <file leaf-file-name="test.sh" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/testing/test.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" column="67" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
+                <state relative-caret-position="405">
+                  <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -81,11 +81,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="256">
-                  <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+                <state relative-caret-position="331">
+                  <caret line="142" column="67" selection-start-line="142" selection-start-column="67" selection-end-line="142" selection-end-column="67" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -221,8 +221,8 @@
         <option value="$PROJECT_DIR$/parser.c" />
         <option value="$PROJECT_DIR$/error_handler.c" />
         <option value="$PROJECT_DIR$/ial.c" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/testing/test.sh" />
+        <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
@@ -538,14 +538,7 @@
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
       <workItem from="1480711996503" duration="28574000" />
-      <workItem from="1480871331149" duration="15212000" />
-    </task>
-    <task id="LOCAL-00186" summary="[MODIFY] 0.6 - uprava finalFree">
-      <created>1480775531947</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1480775531947</updated>
+      <workItem from="1480871331149" duration="15289000" />
     </task>
     <task id="LOCAL-00187" summary="[MODIFY] 0.6 - syntax testy a test pro sort">
       <created>1480779304702</created>
@@ -883,11 +876,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480889222066</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="[MODIFY] 0.7 - uprava testu, pracuji na bash scriptu pro test">
+      <created>1480889318224</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1480889318224</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="239476000" />
+    <option name="totallyTimeSpent" value="239553000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1255,6 +1255,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testing/test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/error_handler.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1267,19 +1275,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state relative-caret-position="331">
+          <caret line="142" column="67" selection-start-line="142" selection-start-column="67" selection-end-line="142" selection-end-column="67" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/test.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="67" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
