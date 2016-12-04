@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 			// Uvolneni pameti a ukonceni programu
 			finalFree();
 		} else {
-
+			// DEBUG aplikace s testy
 
 			// test stringu a jejich sortovani
 			char testString[] = "kokot";
