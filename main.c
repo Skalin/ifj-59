@@ -144,6 +144,7 @@ int main(int argc, char* argv[]) {
 			printf("Vysortovany string \"%s\"\n", printedString);
 
 			globalInit();
+			global.DEBUG = 1;
 			// IAL testy
 			char lex[] = "./testing/lex";
 			char syntax[] = "./testing/synt";
@@ -169,6 +170,7 @@ int main(int argc, char* argv[]) {
 			sleep(3);
 
 			globalInit();
+			global.DEBUG = 1;
 			global.file = fopen(global.fileName = help, "r");
 			if (global.file == NULL) {
 				throwException(99, 0, 0);
@@ -180,10 +182,12 @@ int main(int argc, char* argv[]) {
 			sleep(3);
 			// syntax testy
 			globalInit();
+			global.DEBUG = 1;
 			help = syntax;
 			while (i < 8) {
 				if (i != 1) {
 					globalInit();
+					global.DEBUG = 1;
 				}
 				help = syntax;
 				sprintf(id, "%d", i);
@@ -198,6 +202,7 @@ int main(int argc, char* argv[]) {
 			// semantika testy
 
 			globalInit();
+			global.DEBUG = 1;
 			help = sem;
 			i = 1;
 			while (i < 47) {
