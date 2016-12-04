@@ -3,6 +3,7 @@
 #include "garbage_collector.h"
 #include "parser.h"
 #include "interpret.h"
+#include "expressions.h"
 #include <unistd.h>
 
 
@@ -149,25 +150,26 @@ int main(int argc, char* argv[]) {
 			char lex[] = "./testing/lex";
 			char syntax[] = "./testing/synt";
 			char sem[] = "./testing/sem";
-			char *help;
+			char help[30];
 
-			sleep(3);
-
+			sleep(1);
+			printf("=========================\n\n");
+			printf("Nyni probehne testovani return kodu!\n");
+			printf("=========================\n\n");
+			sleep(1);
 
 			// lex test
 			int i = 1;
-			char *id = '\0';
-			help = lex;
+			char id[2];
+			strcpy(help,lex);
 			strcat(help, "01.ifj16");
-			sleep(3);
-			global.file = fopen(global.fileName = "lex", "r");
+			global.file = fopen("testing/lex1.ifj16", "r");
 			if (global.file == NULL) {
+				printf("Expected: 99, got: ");
 				throwException(99, 0, 0);
 			} // jasna chyba programu, soubor "lex" neexistuje, mel by program skoncit
-			printf("vracim se z exceptionu c.1");
-
-			sleep(3);
-
+			sleep(20);
+/*
 			globalInit();
 			global.DEBUG = 1;
 			global.file = fopen(global.fileName = help, "r");
@@ -176,9 +178,11 @@ int main(int argc, char* argv[]) {
 			}
 			// chyba by nemela nastat, soubor existuje
 
+			printf("Expected 1, got: ");
 			pParse(); // chyba by mela nastat zde, dojde k lex chybe
 
-			sleep(3);
+			sleep(3);*/
+			/*
 			// syntax testy
 			globalInit();
 			global.DEBUG = 1;
@@ -197,16 +201,32 @@ int main(int argc, char* argv[]) {
 				pParse(); //melo by navratit chybu 2, vzdy
 				i++;
 			}
-
+*/
 			// semantika testy
 
-			globalInit();
-			global.DEBUG = 1;
-			help = sem;
+
 			i = 1;
 			while (i < 47) {
-
+				globalInit();
+				global.DEBUG = 1;
+				//printf("prosel jsem globalInitem\n");
+				copyString(help, sem);
+				//printf("help je sem\n");
+				sprintf(id, "%d", i);
+				//printf("vlozil jsem do id cislo\n");
+				strcat(help, id);
+				//printf("konkatenoval jsem help a id\n");
+				strcat(help, ".ifj16");
+				global.file = fopen(global.fileName = help, "r");
+				if (global.file == NULL) {
+					printf("Didn't expect this! Error in testing\n");
+					throwException(99, 0, 0);
+				}
+				printf("FILE: %s\n", global.fileName);
+				printf("Expected 3, got: ");
+				pParse(); //melo by navratit chybu 3, vzdy
 				i++;
+				sleep(1);
 			}
 
 

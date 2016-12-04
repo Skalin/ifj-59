@@ -434,11 +434,7 @@ char *substr(char str[], int i, int n) {
 }
 
 void copyString(char str1[], char str2[]) {
-	int i = 0;
-	while (str1[i] != '\0' || str1[i] != EOF || str2[i] != EOF) {
-		str2[i] = str1[i];
-		i++;
-	}
+	strcpy(str1, str2);
 }
 
 int compareString(char str1[], char str2[]) {

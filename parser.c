@@ -44,10 +44,16 @@ void pParse(){
 		// no main.run
 	if (token->type == t_eof){
 		throwException(3,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 
 	if(token->type != t_kw_class){
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 
 	
@@ -64,11 +70,17 @@ void pParse(){
 
 	if(token->type != t_eof) {
 		throwException(2,0,0);    // TODO syntax?
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 	
 
 	if ((global.hasMain && global.hasRun) == FALSE) {   // program nema bud tridu main nebo metodu run - semanticka chyba
 		throwException(3,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 	
 	//completeInstr();  //TODO
@@ -87,6 +99,9 @@ void pClass(){
 
 	if (token->type != t_simple_ident){
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 
 	if (strcmp(token->data, "Main") == 0){   // nasli jsme tridu main
@@ -100,6 +115,9 @@ void pClass(){
 	if (node != NULL){
 		// pokus o definici tridy se stejnym jmenem
 		throwException(3,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 	
 	// vytvorit tridu v tabulce symbolu
@@ -109,6 +127,9 @@ void pClass(){
 
 	if(token->type != t_brace_l){
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 	  
 
@@ -143,6 +164,9 @@ void pClassBody(){
 
 			if (token->type != t_simple_ident){
 				throwException(2,0,0);
+				if (global.DEBUG == 1) {
+					return;
+				}
 			}
 
 			 // ulozime si identifikator
@@ -166,6 +190,9 @@ void pClassBody(){
 					// navratovy typ run musi byt void
 						if (isInMain){
 							throwException(3,0,0);
+							if (global.DEBUG == 1) {
+								return;
+							}
 						}
 					}
 				}
@@ -180,6 +207,9 @@ void pClassBody(){
 		} else {
 			// syntax error za keyword 'static' musi nasledovat datatype
 			throwException(2,0,0);
+			if (global.DEBUG == 1) {
+				return;
+			}
 		}
 			// end  if (token->type == t_kw_static)
 	} /*else if (token->type == t_kw_int || token->type == t_kw_string || token->type == t_kw_double) {
@@ -212,6 +242,9 @@ void pClassBody(){
 	} else {
 	// token neni ani kw 'static', ani zavorka na konec funkce - syntax error
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 
 } // end function
@@ -233,6 +266,9 @@ void pFunction(){
 	if (node != NULL){
 		// pokus o definici funkce se stejnym jmenem //pokud na to neprijdem tak tady echame throwexception
 		throwException(3,0,0);                // TADY SE MUSI Nejak vyresit pokus uz ji vytvoril Martin, doplnit data,oddelat exceptin
+		if (global.DEBUG == 1) {
+			return;
+		}
 	} else {
 	// ulozit do tab. symbolu
 	
@@ -270,6 +306,9 @@ void pVar(tToken *token, int dataType){
 		//inicializace promene, uzel nemuze existovat, vytvorime novy
 		if (node != NULL){
 			throwException(3,0,0);
+			if (global.DEBUG == 1) {
+				return;
+			}
 		}
 		createNewNode(tempData, var, tempToVar(tempType), tempStatic);  // TODO status??
 		node = searchForNode(tempData, var, NULL);
@@ -277,6 +316,9 @@ void pVar(tToken *token, int dataType){
 		//prirazeni, uzel musi existovat
 		if (node == NULL){
 			throwException(3,0,0);
+			if (global.DEBUG == 1) {
+				return;
+			}
 		}
 		
 	}
@@ -293,6 +335,9 @@ void pVar(tToken *token, int dataType){
 	}
 	else {
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 
 }
@@ -313,6 +358,9 @@ void pParams(){
     if (isInRun == TRUE){
 	// run nemuze mit parametry    
     	throwException(6,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
     }	  
     
     tempType = token->type;
@@ -322,6 +370,9 @@ void pParams(){
     token = getToken();printToken(token);
     if (token->type != t_simple_ident) {
       throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
     }
     tempData = token->data;
     
@@ -338,6 +389,9 @@ void pParams(){
   }
   else {
     throwException(2,0,0);
+	  if (global.DEBUG == 1) {
+		  return;
+	  }
   }
 
 }
@@ -367,6 +421,9 @@ void pParamsNext(){
 			token = getToken();printToken(token);
 			if (token->type != t_simple_ident) {
 				throwException(2,0,0);
+				if (global.DEBUG == 1) {
+					return;
+				}
 			}
 			tempData = token->data;
 			
@@ -378,10 +435,16 @@ void pParamsNext(){
 		} else {
 			// carka a pak neco jineho nez datatype
 			throwException(2,0,0);
+			if (global.DEBUG == 1) {
+				return;
+			}
 		}
 	} else {
 		// ani carka ani zavorka
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 
 }
@@ -395,6 +458,9 @@ void pCommands(){
 
 	if (token->type != t_brace_l){   
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 	
 
@@ -463,7 +529,10 @@ void pSingleCommand(){
 			}
 			else {
 				// ident musi nasledovat prirazeni nebo volani fce
-				throwException(2,0,0); 
+				throwException(2,0,0);
+				if (global.DEBUG == 1) {
+					return;
+				}
 			}
 		break;
 
@@ -481,6 +550,9 @@ void pSingleCommand(){
 			token = getToken();printToken(token);
 			if (token->type != t_simple_ident) {
 				throwException(2,0,0);
+				if (global.DEBUG == 1) {
+					return;
+				}
 			}
 
 			tempData = token->data;
@@ -494,6 +566,9 @@ void pSingleCommand(){
 		default:
 			// neocekavany vstup
 			throwException(2,0,0);
+			if (global.DEBUG == 1) {
+				return;
+			}
 
 	} //end switch
 
@@ -518,6 +593,9 @@ void pIf(){
 	token = getToken();printToken(token);
 	if (token->type != t_kw_else){   // else
 		throwException(2,0,0);
+		if (global.DEBUG == 1) {
+			return;
+		}
 	}
 	// instrukce endif , else 
 
