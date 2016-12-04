@@ -5,6 +5,10 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
-echo $1;
+
+if [ "$1" == "./ifj16"];then
+    echo "Je treba spustit program nad prekladacem ifj16!";
+    exit 1
+fi
 
 exit 0
