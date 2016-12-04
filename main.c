@@ -25,11 +25,16 @@ int main(int argc, char* argv[]) {
 				throwException(99, 0, 0);
 			}
 		} else {
-			// Inicializace globalni promenne v pripade nedebug verze aplikace
-			globalInit();
-		};
+			// nic
+		}
+
+		//printf("dostal jsem se az k podmince mezi testem a normalnim prekladacem");
+
 		if (global.DEBUG == 0) { // normalni funkce programu
+			globalInit();
+			//printf("dostal jsem se za globalinit");
 			// Otevreni souboru
+			//printf("%s", argv[1]);
 			global.file = fopen(global.fileName = argv[1], "r");
 			if (global.file == NULL) {
 				throwException(99, 0, 0);
@@ -57,8 +62,8 @@ int main(int argc, char* argv[]) {
 			char testString4[] = "boyle-moore";
 			char testString5[] = "Barbora";
 			// test vyhledavani
-			char hledej1[] = "bor";
 			char hledej[] = "kot";
+			char hledej1[] = "bor";
 			char hledej2[] = "vat";
 			char hledej3[] = "n";
 			char hledej4[] = "\0";

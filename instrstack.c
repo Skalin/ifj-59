@@ -23,7 +23,7 @@ void instrStackInit(instrStack *stc) {
 	stc->alloc = 30;
 	stc->dataInstr = plusMalloc(sizeof(Instr) * 30);
 	
-	if(stc->dataInstr != NULL) {
+	if(stc->dataInstr == NULL) {
 		throwException(99,0,0); //chyba alokace paměti
 	}
 	

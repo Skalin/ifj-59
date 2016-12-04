@@ -62,10 +62,13 @@ void * plusRealloc(void * destPtr,unsigned int length) {
 void globalInit() {
 	global.funcCnt = 0;
 	global.DEBUG = 0;
+	global.file = NULL;
+	global.fileName = '\0';
 	global.wholeList = malloc(sizeof(struct GarbageList));
 	if (global.wholeList == NULL) {
 		throwException(99, 0, 0);
 	}
+	//printf("naalokoval jsem wholelist\n");
 
 	global.wholeList->nextPtr = NULL;
 
@@ -76,15 +79,20 @@ void globalInit() {
 	if (global.mTree == NULL) {
 		throwException(99, 0, 0);
 	}
+	//printf("naalokoval jsem mTree\n");
 
 	initTree(global.mTree);
+	//printf("nainitoval jsem mTree\n");
 
 	global.iStack = malloc(sizeof(struct instructionStack));
 	if (global.iStack == NULL) {
 		throwException(99, 0, 0);
 	}
+	//printf("naalokoval jsem iStack\n");
 
 	instrStackInit(global.iStack);
+
+	//printf("nainitoval jsem iStack\n");
 }
 
 void plusFree(void * memoryPtr) {
