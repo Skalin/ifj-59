@@ -15,7 +15,6 @@
 #include "error_handler.h"
 #include "garbage_collector.h"
 void throwException(int errorNumber, int row, int column) {
-	printf("Global.DEBUG je: %d\n", global.DEBUG);
     if (global.DEBUG == 1) {
         printf("%d", errorNumber);
 		switch(errorNumber) {

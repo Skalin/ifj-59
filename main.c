@@ -159,9 +159,8 @@ int main(int argc, char* argv[]) {
 			char *id = '\0';
 			help = lex;
 			strcat(help, "01.ifj16");
-			printf("%s", help);
 			sleep(3);
-			global.file = fopen(global.fileName = lex, "r");
+			global.file = fopen(global.fileName = "lex", "r");
 			if (global.file == NULL) {
 				throwException(99, 0, 0);
 			} // jasna chyba programu, soubor "lex" neexistuje, mel by program skoncit
