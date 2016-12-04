@@ -17,7 +17,7 @@ extension=".ifj16"
 semstring="sem"
 semtests=1
 while [ $semtests -le 46 ]; do
-    semtest=$sem$semtests
+    semtest=$semstring$semtests
     semtest="$runtest $semtest$extension"
     semtests=$((semttests + 1))
 

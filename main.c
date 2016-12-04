@@ -141,6 +141,32 @@ int main(int argc, char* argv[]) {
 			printf("Originalni string \"%s\" ", testString5);
 			printedString = sort(printedString);
 			printf("Vysortovany string \"%s\"\n", printedString);
+			fprintf(stderr, "==========================================================================\n" );
+			fprintf(stderr, "========================== PROBEHNE HLAVNI TEST ==========================\n" );
+			fprintf(stderr, "======================= TEST JEDNOTLIVYCH SOUBORU! =======================\n\n" );
+
+
+			globalInit();
+			//printf("dostal jsem se za globalinit");
+			// Otevreni souboru
+			//printf("%s", argv[1]);
+			global.file = fopen(global.fileName = argv[1], "r");
+			if (global.file == NULL) {
+				throwException(99, 0, 0);
+			}
+
+
+			// Parser
+			pParse();
+
+
+			// Interpret
+			semCheck(global.iStack);
+			interpretMainCore(global.iStack);
+
+
+			// Uvolneni pameti a ukonceni programu
+			finalFree();
 
 			return 0;
 		}
