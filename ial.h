@@ -15,7 +15,6 @@
 #ifndef IFJ_59_TABLE_H_
 #define IFJ_59_TABLE_H_
 
-#include "expressions.h"
 #include "typedef.h"
 
 /*
@@ -80,13 +79,13 @@ void insertNext(mismatchTable *Table, char c, int shiftValue);
  * @param str String ve kterem vyhledavame
  * @param search Vyhledavane slovo
  */
-int find(String str, String search);
+int find(char str[], char search[]);
 
 /*
  * Funkce sort, ktera za pomoci heapsort algoritmu seradi znaky ve stringu vzestupne dle ordinalni hodnoty
  * @param str String (pole charu)
  */
-String sort(String str);
+char *sort(char str[]);
 
 /*
  * pomocne fce pro sort
@@ -110,7 +109,7 @@ void swap(char *a, char *b);
  * Funkce ziska z argumentu str string, ktery pote zpracuje za ucelem upravy haldy na spravny format
  * @param str string se kterym se pracuje
  */
-String repairHeap(String str);
+char *repairHeap(char str[], int length);
 
 // FUNKCE NAD BINÁRNÍM STROMEM
 

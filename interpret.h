@@ -14,8 +14,7 @@
 #ifndef IFJ_59_INTERPRET_H
 #define IFJ_59_INTERPRET_H
 
-#include "typedef.h"
-#include "instrstack.h"
+#include "ial.h"
 
 //Prototypy
 

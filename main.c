@@ -1,7 +1,9 @@
-#include "main.h"
-#include <stdlib.h>
+#include <string.h>
+#include "error_handler.h"
+#include "garbage_collector.h"
+#include "parser.h"
+#include "interpret.h"
 
-extern mainTree mTree;
 
 int main(int argc, char* argv[]) {
 	// Pokud se program spousti se spatnym poctem parametru, ukonci se
@@ -47,44 +49,81 @@ int main(int argc, char* argv[]) {
 			finalFree();
 		} else {
 
+
 			// test stringu a jejich sortovani
-			String testString = "kokot";
-			String testString2 = "vysortovat";
-			String testString3 = "posun";
-			String testString4 = "boyle-moore";
-			String printedString;
+			char testString[] = "kokot";
+			char testString2[] = "vysortovat";
+			char testString3[] = "posun";
+			char testString4[] = "boyle-moore";
+			char testString5[] = "Barbora";
 			// test vyhledavani
-			String hledej = "kot";
-			String hledej2 = "vat";
-			String hledej3 = "n";
-			String hledej4 = "";
-			String hledej5 = "ajfkaojfkaljflka";
+			char hledej1[] = "bor";
+			char hledej[] = "kot";
+			char hledej2[] = "vat";
+			char hledej3[] = "n";
+			char hledej4[] = "\0";
+			char hledej5[] = "ajfkaojfkaljflkaafafaafa";
 
 			int where = 0;
 
+			where = find(testString5, hledej1);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej1, testString5, where);
 			where = find(testString, hledej);
-			printf("%d", where);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej, testString, where);
 			where = find(testString2, hledej2);
-			printf("%d", where);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej2, testString2, where);
 			where = find(testString3, hledej3);
-			printf("%d", where);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej3, testString3, where);
 			where = find(testString4, hledej4);
-			printf("%d", where);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej4, testString4, where);
 			where = find(testString, hledej5);
-			printf("%d", where);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej5, testString, where);
 
 
-			printedString = sort(testString);
-			printf(printedString);
+			char *printedString = testString;
+			printf("Originalni string \"%s\" ", testString);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString2;
+			printf("Originalni string \"%s\" ", testString2);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString3;
+			printf("Originalni string \"%s\" ", testString3);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString4;
+			printf("Originalni string \"%s\" ", testString4);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString5;
+			printf("Originalni string \"%s\" ", testString5);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			/*
+				where = find(testString, hledej);
+				printf("%d", where);
+				where = find(testString2, hledej2);
+				printf("%d", where);
+				where = find(testString3, hledej3);
+				printf("%d", where);
+				where = find(testString4, hledej5);
+				printf("Pozice substringu je: %d\n", where);
+				where = find(testString, hledej5);
+				printf("%d", where);
 
-			printedString = sort(testString2);
-			printf(printedString);
 
-			printedString = sort(testString3);
-			printf(printedString);
+				printedString = sort(testString);
+				printf(printedString);
 
-			printedString = sort(testString4);
-			printf(printedString);
+				printedString = sort(testString2);
+				printf(printedString);
+
+				printedString = sort(testString3);
+				printf(printedString);
+
+				printedString = sort(testString4);
+				printf(printedString);*/
 /*
 			globalInit();
 			// IAL testy

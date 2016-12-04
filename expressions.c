@@ -10,18 +10,14 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
-#include <string.h>
 #include <ctype.h>
-#include "garbage_collector.h"
+#include <string.h>
+#include <stdlib.h>
 #include "expressions.h"
 #include "error_handler.h"
-#include "stack.h"
-#include "ial.h"
-#include "instrstack.h"
 #include "lexical_analyzer.h"
+#include "ial.h"
 
 #define STR_ERROR   0
 #define STR_SUCCESS 1
@@ -421,9 +417,9 @@ void completeInstr() {
     }*/
 }
 
-String substr(String str, int i, int n) {
+char *substr(char str[], int i, int n) {
 
-	String realString = '\0';
+	char *realString = '\0';
 	int j = 0;
 
     while (i <= (i + n)) {
@@ -437,7 +433,7 @@ String substr(String str, int i, int n) {
 	return realString;
 }
 
-void copyString(String str1, String str2) {
+void copyString(char str1[], char str2[]) {
 	int i = 0;
 	while (str1[i] != '\0' || str1[i] != EOF || str2[i] != EOF) {
 		str2[i] = str1[i];
@@ -445,7 +441,7 @@ void copyString(String str1, String str2) {
 	}
 }
 
-int compareString(String str1, String str2) {
+int compareString(char str1[], char str2[]) {
    //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
 	int result = strcmp(str1, str2);
 	if (result < 0) {
@@ -458,18 +454,18 @@ int compareString(String str1, String str2) {
 
 }
 
-int strLength(String str) {
+int strLength(char str[]) {
 	//vrátí délku řetězce (počet znaků) zadaného jedním parametrem str
 	int length = strlen(str);
 	return length;
 }
 
-int strEqual(String str1, String str2) {
+int strEqual(char str1[], char str2[]) {
 	int equal = !strcmp(str1, str2);
 	return equal;
 }
 
-void strClear(String str) {
+void strClear(char str[]) {
 	// funkce sloužící k vymazání řetězce
 	int length = strLength(str);
 	while (length != 0) {
@@ -479,9 +475,9 @@ void strClear(String str) {
 }
 
 
-String readString(){
+char *readString(){
 	int c = getchar();
-	String str = '\0';
+	char *str = '\0';
 	int i = 0;
 
 
@@ -493,7 +489,7 @@ String readString(){
 	return str;
 }
 
-void print(String string) {
+void print(char string[]) {
 	// nejaka podminka kvuli typu vstupu..
 	printf("%s", string);
 
@@ -501,7 +497,7 @@ void print(String string) {
 
 
 int readInt() {
-	String str = readString();
+	char *str = readString();
 	int number = 0;
 	int i = 0;
 
@@ -518,7 +514,7 @@ int readInt() {
 }
 
 double readDouble(){
-	String str = readString();
+	char *str = readString();
 	char *end;
 	double doubleNumber = strtod(str, &end);
 

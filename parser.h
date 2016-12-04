@@ -13,6 +13,8 @@
 #ifndef IFJ_59_PARSER_H
 #define IFJ_59_PARSER_H
 
+#include "typedef.h"
+
 
 /**
 HLAVIČKY FUNKCÍ

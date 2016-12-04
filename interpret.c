@@ -12,8 +12,10 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include "error_handler.h"
 #include "interpret.h"
 #include "expressions.h"
+#include "instrstack.h"
 
 void semCheck(instrStack *interpretStack) {
     // Vytvoreni pomocneho stacku

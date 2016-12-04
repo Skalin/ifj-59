@@ -11,6 +11,7 @@
  */
 
 #include <stdlib.h>
+#include "instrstack.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
 #include "ial.h"
@@ -20,22 +21,22 @@ struct tGlobal global;
 
 //Funkce alokuje paměť a zařadí nově alokovanou položku do listu
 void * plusMalloc(unsigned int length) {
-    // Pokud existuje nějaký prvek
-    if (global.wholeList->dataPointer != NULL || global.wholeList != global.listLast ) {
-        global.listLast->nextPtr = malloc(sizeof(struct GarbageList));
-        //Pokud došlo k chybě při alokaci, vyhoď vyjímku
-        if(global.listLast->nextPtr == NULL)
-            throwException(99,0,0);
-        global.listLast = global.listLast->nextPtr;
-    }
-    void * newItem = (global.listLast->dataPointer = malloc(length));
-    // Pokud došlo k chybě při alokaci, vyhoď vyjímku
-    if(newItem == NULL)
-        throwException(99,0,0);
-    global.listLast->nextPtr = NULL;
+	// Pokud existuje nějaký prvek
+	if (global.wholeList->dataPointer != NULL || global.wholeList != global.listLast ) {
+		global.listLast->nextPtr = malloc(sizeof(struct GarbageList));
+		//Pokud došlo k chybě při alokaci, vyhoď vyjímku
+		if(global.listLast->nextPtr == NULL)
+			throwException(99,0,0);
+		global.listLast = global.listLast->nextPtr;
+	}
+	void * newItem = (global.listLast->dataPointer = malloc(length));
+	// Pokud došlo k chybě při alokaci, vyhoď vyjímku
+	if(newItem == NULL)
+		throwException(99,0,0);
+	global.listLast->nextPtr = NULL;
 
-    // Vrať ukazatel na nově alokovanou paměť
-    return newItem;
+	// Vrať ukazatel na nově alokovanou paměť
+	return newItem;
 }
 
 void * plusRealloc(void * destPtr,unsigned int length) {

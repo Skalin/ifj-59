@@ -29,18 +29,9 @@
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
-#include <ctype.h>
-#include "garbage_collector.h"
-#include "expressions.h"
-#include "error_handler.h"
-#include "stack.h"
-#include "ial.h"
 #include "instrstack.h"
-#include "lexical_analyzer.h"
+#include "garbage_collector.h"
+#include "stack.h"
 
 #define STR_ERROR   0
 #define STR_SUCCESS 1
@@ -54,14 +45,14 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]);
 void reduceExp(BTSNode *targetId, tStackIt *handle[3], instrStack *iStack);
 void expression(BTSNode *targetId, tExpType expType);
 void completeInstr();
-int strEqual(String str1, String str2);
+int strEqual(char str1[], char str2[]);
 
 
 
 /*
  *
  */
-String readString();
+char *readString();
 
 
 /*
@@ -79,48 +70,48 @@ double readDouble();
 /*
  *
  */
-void print(String string);
+void print(char string[]);
 
 
 /*
  *
  */
-String substr(String str, int i, int n);
+char *substr(char str[], int i, int n);
 
 
 /*
  *
  */
-int addCharacter(String str, char c);
+int addCharacter(char str[], char c);
 
 
 /*
  *
  */
-void copyString(String str1, String str2);
+void copyString(char str1[], char str2[]);
 
 
 /*
  *
  */
-int compareString(String str1, String str2);
+int compareString(char str1[], char str2[]);
 
 
 /*
  *
  */
-int strLength(String str);
+int strLength(char str[]);
 
 
 /*
  *
  */
-void strClear(String str);
+void strClear(char str[]);
 
 
 /*
  *
  */
-void destroyString(String str);
+void destroyString(char str[]);
 
 #endif

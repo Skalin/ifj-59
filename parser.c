@@ -14,6 +14,7 @@
 #include "typedef.h"
 #include "parser.h"
 #include "garbage_collector.h"
+#include "expressions.h"
 #include "error_handler.h"
 #include "lexical_analyzer.h"
 #include "ial.h"

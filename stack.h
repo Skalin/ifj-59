@@ -29,7 +29,7 @@ typedef struct {
 
 
 //Struktura zásobníku
-typedef struct {
+typedef struct{
     tStackIt **data;
     int counter;
     int allocated;

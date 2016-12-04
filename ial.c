@@ -9,7 +9,11 @@
  *              Martin Hons, xhonsm00@stud.fit.vutbr.cz
  *              David Hél, xhelda00@stud.fit.vutbr.cz
  */
+#include <string.h>
 #include "ial.h"
+#include "error_handler.h"
+#include "garbage_collector.h"
+#include "expressions.h"
 
 // find a sort dle zadani
 
@@ -36,10 +40,10 @@ void disposeMismatchTable(mismatchTable *Table) {
 
 void insertNext(mismatchTable *Table, char c, int shiftValue) {
 
-	mismatchTableItem pom = plusMalloc(sizeof(struct mmtItem));
+	mismatchTableItem pom = plusMalloc(sizeof(mismatchTableItem));
 
 	if (pom != NULL) {
-		if (Table == NULL) {
+		if (Table->First == NULL) {
 			pom->c = c;
 			pom->shiftValue = shiftValue;
 			pom->next = NULL;
@@ -51,7 +55,8 @@ void insertNext(mismatchTable *Table, char c, int shiftValue) {
 			Table->First = pom;
 		}
 	} else {
-		throwException(99,0,0);
+		throwException(99, 0, 0);
+		return;
 	}
 }
 
@@ -59,52 +64,45 @@ int findChar(mismatchTable *Table, char c) {
 	int i = -1;
 	Table->Act = Table->First;
 	while (Table->Act != NULL) {
-		i++;
 		if (c == Table->Act->c) {
-			break;
+			i++;
+			return (i);
 		}
 		Table->Act = Table->Act->next;
 	}
-
-	return (i);
+	return i;
 }
 
 int getShiftValue(mismatchTable *Table, char c) {
-	int i = 0;
-	int position = findChar(Table, c);
 
 	Table->Act = Table->First;
-	while (i < position) {
+
+	while (Table->Act->c != c) {
 		Table->Act = Table->Act->next;
-		i++;
 	}
 	return Table->Act->shiftValue;
 }
 
 void updateShift(mismatchTable *Table, char c, int shiftValue) {
-	int i = 0;
-	int position = findChar(Table, c);
-	Table->Act = Table->First;
-	while (i < position) {
-		Table->Act = Table->Act->next;
-		i++;
-	}
 
+	Table->Act = Table->First;
+
+	while (Table->Act->c != c) {
+		Table->Act = Table->Act->next;
+	}
 	Table->Act->shiftValue = shiftValue;
 
 }
 
 // samotny find
-int find(String str, String search) {
+int find(char str[], char search[]) {
 
-	int i = 0, j = 0;
+	int i = 0;
+	char item;
 	int found = -1;
 	int others = strLength(search);
-	int textLength = strLength(str);
 	int stop = -1; // zarazka
 	int shiftValue = others; // prvotni nastaveni shiftu
-	mismatchTable Table;
-	initMismatchTable(&Table);
 
 	if (others == 0) {
 		return 0;
@@ -112,34 +110,51 @@ int find(String str, String search) {
 		return found;
 	}
 
+	mismatchTable Table;
+	initMismatchTable(&Table);
+	//printf("mismatch table inicializovana\n");
 	// cyklus naplni mismatch Tabulku znaky ze stringu "search"
-	while (search[i] != '\0' || search[i] != EOF) {
-			if (findChar(&Table, search[i]) < 0) {
-				if (search[i+1] != '\0') { // pokud toto neni posledni prvek
-					insertNext(&Table, search[i], strLength(search) - i - 1);
-				} else { // jinak nastavime shift posledniho prvku dle boyer-moore algoritmu
-					insertNext(&Table, search[i], others);
-				}
-			} else {
-				updateShift(&Table, search[i], (strLength(search)-i-1));
+	while (i < strLength(search)) {
+		item = search[i];
+		//printf("%d znak: %c\n", i, item);
+
+		//printf("Je novy znak v tabulce? -1 = ne: %d\n", findChar(&Table, item));
+		if (findChar(&Table, item) == -1) {
+			if (search[i+1] != '\0') { // pokud toto neni posledni prvek
+				insertNext(&(Table), item, strLength(search) - i - 1);
+			} else { // jinak nastavime shift posledniho prvku dle boyer-moore algoritmu
+				insertNext(&(Table), item, others);
 			}
-			i++;
+			//printf("Je znak v tabulce na pozici 0? Pokud ano, je tam: %d\n", findChar(&Table, item));
+		} else {
+			updateShift(&(Table), item, (strLength(search)-i-1));
+		}
+		i++;
 	}
 
 	i = 0; // jen pro jistotu
 
-	while (found == -1 || str[stop] != '\0' || str[i] != EOF || stop > textLength) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
+	//printf("Tabulka byla naplnena, nyni provedeme vyhledavani\n");
+	while ((found == -1) && (stop < strLength(str))) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
 		stop += shiftValue;
-		for (i = others-1, j = 0; i >= 0 && j <= others-1; i--, j++) {
-			shiftValue = getShiftValue(&(Table), search[i]);
-			if (str[stop-j] != search[i]) { // pokud se nam dva znaky ve stringu neshoduji, vyskocime z jednoho cyklu a posuneme se shiftem
-				break;
-			}
-			if (str[stop-others+1] == search[0]) {
-				found = stop-others+1;
+		//printf("Hodnota zarazky? %d\n", stop);
+
+		for (i = 0; i < others; i++) {
+			if (str[stop-i] == search[others-i-1]) {
+				if (str[stop-others+1] == search[0]) {
+					found = stop-others+1;
+					break;
+				}
+			} else {
+				if (findChar(&Table, str[stop-i]) == -1) {
+					shiftValue = others;
+				} else {
+					shiftValue = getShiftValue(&(Table), str[stop-i]);
+				}
 				break;
 			}
 		}
+
 	}
 
 	disposeMismatchTable(&Table);
@@ -150,9 +165,10 @@ int find(String str, String search) {
 
 // swap pro heapsort
 void swap(char *a, char *b) {
-    char c = *a;
-    *a = *b;
-    *b = c;
+	//printf("Bude prohozen znak %c a %c \n", *a, *b);
+	char c = *a;
+	*a = *b;
+	*b = c;
 }
 
 // pomocna funkce makeEven pro zjednoduseni vypoctu pozice prvku
@@ -164,46 +180,73 @@ int makeEven(int i) {
 }
 
 // fce pro korektni nastaveni pozice nejvetsiho prvku na zacatek haldy
-String repairHeap(String str) {
+char *repairHeap(char str[], int length) {
 
-	int i = 0, j = 0;
-	for (i = strLength(str)-1; i > 0; --i) {
-		j = 0;
+	int i = 0, isBiggestNotAtTop = 1;
+
+	char biggestChar = '\0';
+	int strlength = length;
+
+	while (strlength) {
+		if (str[i] > biggestChar) {
+			biggestChar = str[i];
+		}
+		i++;
+		strlength--;
+	}
+
+	i = 0;
+	for (i = length-1; i >= 0; i--) {
+
+
+		isBiggestNotAtTop = 0;
+		//printf("Slovo str nyni vypada takto: %s\n", str);
+		//printf("Znak na pozici %d je %c\n",i,str[i]);
+
+		if (biggestChar == str[0]) {
+			return str;
+		}
+
+
 		if ((i % 2) == 0) {
 			if ((str[i] > str[(makeEven(i)/2)-1]) && (str[i-1] > str[(makeEven(i)/2)-1])) {
-				j = 1;
+				isBiggestNotAtTop = 1;
 				if (str[i] >= str[i-1]) {
 					swap(&str[i], &str[(makeEven(i)/2)-1]);
 				} else {
 					swap(&str[i-1], &str[(makeEven(i)/2)-1]);
 				}
+				//printf("SUDE I: I je: %d a zesudele I je: %d\n", i, makeEven(i));
 			}
 			if (str[i] > str[(makeEven(i)/2)-1]) {
-				j = 1;
+				isBiggestNotAtTop = 1;
 				swap(&str[i], &str[(makeEven(i)/2)-1]);
+				//printf("SUDE II: I je: %d a zesudele I je: %d\n", i, makeEven(i));
 			}
 		} else {
 			if (str[i] > str[(makeEven(i)/2)-1]) {
-				j = 1;
+				isBiggestNotAtTop = 1;
 				swap(&str[i], &str[(makeEven(i)/2)-1]);
 			}
+			//printf("LICHE I: I je: %d a zesudele I je: %d\n", i, makeEven(i));
 		}
 	}
-	if (j == 1)
-		repairHeap(str);
+
+	if (isBiggestNotAtTop == 1)
+		repairHeap(str, length);
 
 	return str;
 }
 
 
 // samotny heapsort
-String sort(String str) {
-	String helpString = str;
+char * sort(char str[]) {
+	char *helpString = str;
 
 	int length = strLength(helpString);
-    while (length) {
+	while (length) {
 
-		repairHeap(helpString);
+		repairHeap(helpString, length);
 
 /*
  * zbytecne, protoze biggest number bude prvni
@@ -214,12 +257,12 @@ String sort(String str) {
             biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
         }
   */
-        swap(&helpString[0], &helpString[length-1]);
-        
-        length--;
-    }
+		swap(&helpString[0], &helpString[length-1]);
 
-    return helpString;
+		length--;
+	}
+
+	return helpString;
 }
 
 

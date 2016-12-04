@@ -12,11 +12,6 @@
 
 #ifndef MAIN
 #define MAIN
-#include "lexical_analyzer.h"
-#include "garbage_collector.h"
-#include "instrstack.h"
-#include "error_handler.h"
-#include "parser.h"
-#include "interpret.h"
-#include "ial.h"
+#include <string.h>
+#include <stdlib.h>
 #endif //MAIN

@@ -115,10 +115,6 @@ typedef enum {
 	t_print
 } tokenType;
 
-/*
- * Datovy typ string
- */
-typedef char* String;
 
 /*
  * Struktura tokenu
@@ -127,7 +123,7 @@ typedef char* String;
 
 typedef struct{
 	tokenType type;  // Typ tokenu
-	String attribute;
+	char *attribute;
 	unsigned int length; // Délka, počet charů
 	unsigned int allocated; // Status, jestli byl alokován
 	char data[]; // Data, která obshahuje
