@@ -13,8 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.c" afterPath="$PROJECT_DIR$/garbage_collector.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/instrstack.c" afterPath="$PROJECT_DIR$/instrstack.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="ifj-59.iws" />
@@ -60,8 +58,8 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+            <state relative-caret-position="285">
+              <caret line="187" column="2" selection-start-line="187" selection-start-column="2" selection-end-line="187" selection-end-column="2" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -489,14 +487,7 @@
       <workItem from="1480282605360" duration="685000" />
       <workItem from="1480445151968" duration="3277000" />
       <workItem from="1480711996503" duration="28574000" />
-      <workItem from="1480871331149" duration="6129000" />
-    </task>
-    <task id="LOCAL-00167" summary="[MODIFY] 0.6 - expressions: uprava dereference, parser: uprava include">
-      <created>1480762822397</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1480762822397</updated>
+      <workItem from="1480871331149" duration="6209000" />
     </task>
     <task id="LOCAL-00168" summary="[MODIFY] 0.6 - global iStack">
       <created>1480762961050</created>
@@ -834,11 +825,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480874887766</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="[MODIFY] 0.7 - oprava funkce instrStackInit, debug garbage">
+      <created>1480880234979</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1480880234979</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230393000" />
+    <option name="totallyTimeSpent" value="230473000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -904,7 +902,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.6 - mTree v global" />
     <MESSAGE value="[MODIFY] 0.6 - expressions uprava global.iStack na radku 247" />
     <MESSAGE value="[MODIFY] 0.6 - expressions uprava global.iStack na radku 248" />
     <MESSAGE value="[MODIFY] 0.6 - uprava kopirovani stacku do localstacku" />
@@ -929,7 +926,8 @@
     <MESSAGE value="[MODIFY] 0.6 - uprava testu" />
     <MESSAGE value="[MODIFY] 0.7 - oprava include, windows prelozitelne" />
     <MESSAGE value="[MODIFY] 0.7 - uprava ukonceni debug aplikace" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.7 - uprava ukonceni debug aplikace" />
+    <MESSAGE value="[MODIFY] 0.7 - oprava funkce instrStackInit, debug garbage" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.7 - oprava funkce instrStackInit, debug garbage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1213,8 +1211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+        <state relative-caret-position="285">
+          <caret line="187" column="2" selection-start-line="187" selection-start-column="2" selection-end-line="187" selection-end-column="2" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

@@ -185,9 +185,9 @@ int main(int argc, char* argv[]) {
 				i++;
 			}
 
-
+*/
 			finalFree();
-			*/
+
 
 			return 0;
 		}
