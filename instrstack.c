@@ -16,7 +16,7 @@
 #include "instrstack.h"
 
 
-instrStack * instrStackInit (instrStack *stc) {
+void instrStackInit (instrStack *stc) {
 
     //Inicializace polozek stacku
 	stc->count = -1;
@@ -26,7 +26,7 @@ instrStack * instrStackInit (instrStack *stc) {
 	if(stc->dataInstr != NULL) {
 		throwException(99,0,0); //chyba alokace paměti
 		}
-
+	
 }
 
 Instr *instrItemInit () {
