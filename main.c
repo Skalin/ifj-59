@@ -3,8 +3,6 @@
 #include "garbage_collector.h"
 #include "parser.h"
 #include "interpret.h"
-#include "expressions.h"
-#include <unistd.h>
 
 
 int main(int argc, char* argv[]) {
@@ -55,7 +53,7 @@ int main(int argc, char* argv[]) {
 			// Uvolneni pameti a ukonceni programu
 			finalFree();
 		} else {
-			// DEBUG aplikace s testy
+			// DEBUG aplikace s testy vestavenych funkci
 
 			// test stringu a jejich sortovani
 			char testString[] = "ultrasupermegasupersonicstring";
@@ -143,97 +141,6 @@ int main(int argc, char* argv[]) {
 			printf("Originalni string \"%s\" ", testString5);
 			printedString = sort(printedString);
 			printf("Vysortovany string \"%s\"\n", printedString);
-
-			globalInit();
-			global.DEBUG = 1;
-			// IAL testy
-			char lex[] = "./testing/lex";
-			char syntax[] = "./testing/synt";
-			char sem[] = "./testing/sem";
-			char help[30];
-
-			sleep(1);
-			printf("=========================\n\n");
-			printf("Nyni probehne testovani return kodu!\n");
-			printf("=========================\n\n");
-			sleep(1);
-
-			// lex test
-			int i = 1;
-			char id[2];
-			strcpy(help,lex);
-			strcat(help, "01.ifj16");
-			global.file = fopen("./testing/lex1", "r");
-			if (global.file == NULL) {
-				printf("Expected: 99, got: ");
-				throwException(99, 0, 0);
-			} // jasna chyba programu, soubor "lex" neexistuje, mel by program skoncit
-			sleep(20);
-/*
-			globalInit();
-			global.DEBUG = 1;
-			global.file = fopen(global.fileName = help, "r");
-			if (global.file == NULL) {
-				throwException(99, 0, 0);
-			}
-			// chyba by nemela nastat, soubor existuje
-
-			printf("Expected 1, got: ");
-			pParse(); // chyba by mela nastat zde, dojde k lex chybe
-
-			sleep(3);*/
-			/*
-			// syntax testy
-			globalInit();
-			global.DEBUG = 1;
-			help = syntax;
-			while (i < 8) {
-				if (i != 1) {
-					globalInit();
-					global.DEBUG = 1;
-				}
-				help = syntax;
-				sprintf(id, "%d", i);
-				strcat(help, id);
-				strcat(help, ".ifj16");
-				global.file = fopen(global.fileName = help, "r");
-				printf("FILE: %s", global.fileName);
-				pParse(); //melo by navratit chybu 2, vzdy
-				i++;
-			}
-*/
-			// semantika testy
-
-
-			i = 1;
-			while (i < 47) {
-				globalInit();
-				global.DEBUG = 1;
-				//printf("prosel jsem globalInitem\n");
-				copyString(help, sem);
-				//printf("help je sem\n");
-				sprintf(id, "%d", i);
-				//printf("vlozil jsem do id cislo\n");
-				strcat(help, id);
-				//printf("konkatenoval jsem help a id\n");
-				strcat(help, ".ifj16");
-				global.file = fopen(global.fileName = help, "r");
-				if (global.file == NULL) {
-					printf("Didn't expect this! Error in testing\n");
-					throwException(99, 0, 0);
-				}
-				printf("FILE: %s\n", global.fileName);
-				printf("Expected 3, got: ");
-				pParse(); //melo by navratit chybu 3, vzdy
-				i++;
-				sleep(1);
-			}
-
-
-			sleep(3);
-
-			finalFree();
-
 
 			return 0;
 		}
