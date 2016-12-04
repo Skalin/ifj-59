@@ -19,7 +19,7 @@ semtests=1
 while [ $semtests -le 46 ]; do
     semtest=$sem$semtests
     semtest="$runtest $semtest$extension"
-    $semttests+1
+    semtests=$((semttests + 1))
 
     $semtest;
 
