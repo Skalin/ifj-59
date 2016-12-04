@@ -17,7 +17,7 @@
 void throwException(int errorNumber, int row, int column) {
 
     if (global.DEBUG == 1) {
-        printf("%d\n", errorNumber);
+        printf("%d", errorNumber);
 		switch(errorNumber) {
 			case 1:
 				printf("\tlex\n");

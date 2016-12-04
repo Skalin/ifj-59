@@ -3,6 +3,7 @@
 #include "garbage_collector.h"
 #include "parser.h"
 #include "interpret.h"
+#include <unistd.h>
 
 
 int main(int argc, char* argv[]) {
@@ -62,7 +63,7 @@ int main(int argc, char* argv[]) {
 			char testString4[] = "boyle-moore";
 			char testString5[] = "Barbora";
 			// test vyhledavani
-			char hledej[] = "as";
+			char hledej[] = "onic";
 			char hledej1[] = "bor";
 			char hledej2[] = "vat";
 			char hledej3[] = "n";
@@ -105,49 +106,67 @@ int main(int argc, char* argv[]) {
 			printf("Originalni string \"%s\" ", testString5);
 			printedString = sort(printedString);
 			printf("Vysortovany string \"%s\"\n", printedString);
-			/*
-				where = find(testString, hledej);
-				printf("%d", where);
-				where = find(testString2, hledej2);
-				printf("%d", where);
-				where = find(testString3, hledej3);
-				printf("%d", where);
-				where = find(testString4, hledej5);
-				printf("Pozice substringu je: %d\n", where);
-				where = find(testString, hledej5);
-				printf("%d", where);
 
 
-				printedString = sort(testString);
-				printf(printedString);
+			where = find(testString5, hledej1);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej1, testString5, where);
+			where = find(testString, hledej);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej, testString, where);
+			where = find(testString2, hledej2);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej2, testString2, where);
+			where = find(testString3, hledej3);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej3, testString3, where);
+			where = find(testString4, hledej4);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej4, testString4, where);
+			where = find(testString, hledej5);
+			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej5, testString, where);
 
-				printedString = sort(testString2);
-				printf(printedString);
 
-				printedString = sort(testString3);
-				printf(printedString);
+			printedString = testString;
+			printf("Originalni string \"%s\" ", testString);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString2;
+			printf("Originalni string \"%s\" ", testString2);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString3;
+			printf("Originalni string \"%s\" ", testString3);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString4;
+			printf("Originalni string \"%s\" ", testString4);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
+			printedString = testString5;
+			printf("Originalni string \"%s\" ", testString5);
+			printedString = sort(printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);
 
-				printedString = sort(testString4);
-				printf(printedString);*/
-/*
 			globalInit();
 			// IAL testy
-			String lex = "./testing/lex";
-			String syntax = "./testing/synt";
-			String sem = "./testing/sem";
-			String help;
+			char lex[] = "./testing/lex";
+			char syntax[] = "./testing/synt";
+			char sem[] = "./testing/sem";
+			char *help;
+
+			sleep(3);
 
 
 			// lex test
 			int i = 1;
-			String id;
+			char *id = '\0';
 			help = lex;
 			strcat(help, "01.ifj16");
+			printf("%s", help);
+			sleep(3);
 			global.file = fopen(global.fileName = lex, "r");
 			if (global.file == NULL) {
 				throwException(99, 0, 0);
 			} // jasna chyba programu, soubor "lex" neexistuje, mel by program skoncit
+			printf("vracim se z exceptionu c.1");
 
+			sleep(3);
 
 			globalInit();
 			global.file = fopen(global.fileName = help, "r");
@@ -158,12 +177,13 @@ int main(int argc, char* argv[]) {
 
 			pParse(); // chyba by mela nastat zde, dojde k lex chybe
 
+			sleep(3);
 			// syntax testy
 			globalInit();
 			help = syntax;
 			while (i < 8) {
 				if (i != 1) {
-					globalInit;
+					globalInit();
 				}
 				help = syntax;
 				sprintf(id, "%d", i);
@@ -185,7 +205,9 @@ int main(int argc, char* argv[]) {
 				i++;
 			}
 
-*/
+
+			sleep(3);
+
 			finalFree();
 
 

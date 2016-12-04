@@ -159,8 +159,8 @@ int find(char str[], char search[]) {
 
 	disposeMismatchTable(&Table);
 
-	if (Table.First == NULL) {
-		printf("Tabulka je prazdna\n");
+	if (Table.First == NULL && Table.Act == NULL) {
+		//printf("Tabulka je prazdna\n");
 	}
 
 	return found;
