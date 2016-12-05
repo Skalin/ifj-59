@@ -481,7 +481,7 @@ void pSingleCommand(){
 				
 				//mozna tady musim vytvorit NODE pokud neexistuje
 				
-				expression(node, expArg); //TODO? je exp arg spravne?
+				expression(token, expArg); //TODO? je exp arg spravne?
 				
 
 				// sem pridat check na strednik pokud to bude potreba

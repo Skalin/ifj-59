@@ -136,7 +136,7 @@ void reduceExp(tToken *targetToken, tStackIt *handle[3], instrStack *iStack, tSt
         return;
     }
     //DELETE THIS
-    printf("  redukujeme\n");
+    //printf("  redukujeme\n");
     //END DELETE
     
     Instr *instr = NULL;
