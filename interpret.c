@@ -21,7 +21,7 @@ void semCheck(instrStack *interpretStack) {
     // Vytvoreni pomocneho stacku
     instrStack tmpiStack;
     instrStackInit(&tmpiStack);
-    tmpiStack = *interpretStack;
+    instrStackCopy(interpretStack, &tmpiStack);
 
     struct Instr *instr;
 
@@ -226,10 +226,16 @@ void semCheck(instrStack *interpretStack) {
                 break;
             case insAssignment:
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
-                    // Lze porovnavat pouze int a double hodnoty viz zadani
-                    if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                    // Pokud prirazujeme spatne typy
+                    if(instr->Id1->data.type != instr->Id2->data.type) {
                         throwException(4,0,0);
                     }
+                    if(instr->Id1->data.type == var_int)
+                        instr->Id3->data.value.intValue = instr->Id1->data.value.intValue;
+                    else if (instr->Id1->data.type == var_double)
+                        instr->Id3->data.value.doubleValue = instr->Id1->data.value.doubleValue;
+                    else
+                        instr->Id3->data.value.stringValue = instr->Id1->data.value.stringValue;
                 } else
                     throwException(8,0,0);
                 break;
@@ -531,6 +537,22 @@ void interpretMainCore(instrStack *interpretStack) {
     while((instruction = instrStackTop(interpretStack)) != NULL) {
         // Switch pro jednotlive typy instrukci
         switch (instruction->type) {
+            // ASSIGNMENT
+            case insAssignment:
+                if(instruction->Id1->inc == 1 && instruction->Id2->inc == 1) {
+                    // Pokud prirazujeme spatne typy
+                    if(instruction->Id1->data.type != instruction->Id2->data.type) {
+                        throwException(4,0,0);
+                    }
+                    if(instruction->Id1->data.type == var_int)
+                        instruction->Id3->data.value.intValue = instruction->Id1->data.value.intValue;
+                    else if (instruction->Id1->data.type == var_double)
+                        instruction->Id3->data.value.doubleValue = instruction->Id1->data.value.doubleValue;
+                    else
+                        instruction->Id3->data.value.stringValue = instruction->Id1->data.value.stringValue;
+                } else
+                    throwException(8,0,0);
+                break;
             // BUILT-IN FUNCTIONS
             // Pokud se jedna o volani funkce int readInt();
             case  insIfj16readInt:
