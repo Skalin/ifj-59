@@ -31,7 +31,20 @@ int main(int argc, char* argv[]) {
 		//printf("dostal jsem se az k podmince mezi testem a normalnim prekladacem");
 
 		if (global.DEBUG == 0) { // normalni funkce programu
+
+			printf("Jsem pred initem");
 			globalInit();
+
+			printf("Jsem po initu");
+			createNewNode("kokotina", var, var_string, 1);
+			printf("Jsem po prvni node");
+			createNewNode("kokotina2", var, var_int, 1);
+			printf("Jsem po druhe node");
+			createNewNode("kokotina3", var, var_int, 1);
+			createNewNode("asdf", var, var_double, 1);
+
+			searchForNode("kokotina", var, global.mTree->root);
+			/*
 			//printf("dostal jsem se za globalinit");
 			// Otevreni souboru
 			//printf("%s", argv[1]);
@@ -50,7 +63,7 @@ int main(int argc, char* argv[]) {
 			interpretMainCore(global.iStack);
 
 
-			// Uvolneni pameti a ukonceni programu
+			// Uvolneni pameti a ukonceni programu*/
 			finalFree();
 		} else {
 			// DEBUG aplikace s testy vestavenych funkci
