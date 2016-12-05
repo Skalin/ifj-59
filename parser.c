@@ -541,7 +541,7 @@ void pIf(){
 	instr->Id1 = NULL;
 	instr->type = insCond;
 
-	instrStackPush(iStack,instr);
+	instrStackPush(global.iStack,instr);
 	
 	instr = instrItemInit(instr);
 
@@ -550,7 +550,7 @@ void pIf(){
 	instr->Id1 = NULL;
 	instr->type = insIf;
 
-	instrStackPush(iStack,instr);*/
+	instrStackPush(global.iStackk,instr);*/
 	
 	expression(NULL, expCond); //TODO
 
@@ -568,7 +568,7 @@ void pIf(){
 	instr->Id1 = NULL;
 	instr->type = insIfEnd;
 
-	instrStackPush(iStack,instr);
+	instrStackPush(global.iStack,instr);
 	
 	instr = instrItemInit(instr);
 
@@ -577,7 +577,7 @@ void pIf(){
 	instr->Id1 = NULL;
 	instr->type = insElse;
 
-	instrStackPush(iStack,instr);*/
+	instrStackPush(global.iStack,instr);*/
 
 	// block of code for else
 	pCommands();
@@ -590,7 +590,7 @@ void pIf(){
 	instr->Id1 = NULL;
 	instr->type = insCondEnd;
 
-	instrStackPush(iStack,instr);*/
+	instrStackPush(global.iStack,instr);*/
 
 }
 void pWhile(){
@@ -607,7 +607,7 @@ void pWhile(){
 	instr->Id1 = NULL;
 	instr->type = insWhile;
 
-	instrStackPush(iStack,instr);*/
+	instrStackPush(global.iStack,instr);*/
 	
 	expression(NULL, expCond); //TODO
 	
@@ -623,7 +623,7 @@ void pWhile(){
 	instr->Id1 = NULL;
 	instr->type = insEndWhile;
 
-	instrStackPush(iStack,instr);*/
+	instrStackPush(global.iStack,instr);*/
 }
 
 varType tempToVar(tokenType temp) {
