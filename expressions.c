@@ -67,12 +67,14 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
     if (isIdent(inToken) || isConst(inToken)) {
         inTokenNum = 14;
     }
-    printf("posilam [%d][%d]\n",stackTokenNum,inTokenNum);
+    //DELETE THIS
+    printf("getPrecChar: [%2d][%2d] \'%c\'\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum]);
+    //END DELETE
     return precTable[stackTokenNum][inTokenNum];
 }
 
 
-tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
+tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
     int i = 0;
 
     // Čteme ze zásobníku dokud nenarazíme na NONTERM
@@ -80,7 +82,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
         i++;
         // Pokud je handle větší než 3, vyvoláme syntaktickou chybu
         if (i > 3) throwException(2,0,0);
-        handle[i] = stackTop(stack);
+        handle[i-1] = stackTop(stack);
         stackPop(stack);
     }
     
@@ -88,7 +90,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
     stackPop(stack);
 
     // Pravidlo E -> id
-    if ((i == 1) && (isIdent(handle[0]->dataIt))) {
+    if ((i == 1) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
         handle[0]->typeIt = EXPR;
         stackPush(stack,handle[0]);
     }
@@ -97,6 +99,12 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
         stackPush(stack,handle[1]);
     }
 
+    // DELETE THIS
+    for (int i = 0; i < stack->counter; i++) {
+      //  printf( "položka na pozici %d je %d\n", i, stack[i]->typeIt );
+    }
+    //END DELETE
+
     return handle;
 }
 
@@ -104,17 +112,20 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[]) {
 void reduceExp(BTSNode *targetId, tStackIt *handle[3], instrStack *iStack) {
     Instr *instr = NULL;
     instr = instrItemInit();
-    BTSNode *start = NULL; // TODO global.mTree->actFunction;
+    instr->Id3 = targetId;
+    BTSNode *start = global.mTree->actFunction;
     
     if (start != NULL) {
-       // TODO start = global.mTree->actClass;
+       start = global.mTree->actClass;
     }
 
     // Jedná se o argument ne/definované funkce
     if (instr->Id3 == NULL) {       
-        // Vytvořím nový uzel typu param s klíčem targetId + argNum
+        // TODO Vytvořit nový uzel typu param s klíčem targetId + argNum
         argNum++;
     }
+    
+    // TODO pokud se jedná o konstantu, musí se zde vytvořit speciální uzel
 
     // Pokud se jedná se o aritmetickou nebo porovnávací instrukci
     if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
@@ -241,9 +252,9 @@ void expression(BTSNode *targetId, tExpType expType) {
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
     instrStack *localIStack = global.iStack;
-    if ((global.mTree->actFunction != NULL) || (strcmp(global.mTree->actFunction->key, "run") != 0)) {
-		instrStackCopy(localIStack, global.mTree->actFunction->iStack); // Zatím neexistuje ale bude
-    }
+    /* TODO if ((global.mTree->actFunction != NULL) || (strcmp(global.mTree->actFunction->key, "run") != 0)) {
+		instrStackCopy(localIStack, global.mTree->actFunction->iStack); 
+    }*/
     
     // Inicializujeme zásobník a vložíme na něj znak ';'
     tStack *stack = NULL;
@@ -331,7 +342,7 @@ void expression(BTSNode *targetId, tExpType expType) {
             break;
         }
         // Syntaktická chyba
-        else if (token->type <= t_string) {
+        else if (token->type > t_string) {
             throwException(2,0,0);
         }
 

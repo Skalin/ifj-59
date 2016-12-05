@@ -46,7 +46,16 @@ int main(int argc, char* argv[]) {
 			// Parser
 			pParse();
 
-
+            //DELETE THIS
+                // Vytiskne obsah globálního stacku
+                char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus"," insMinus"," insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
+                printf("Obsah globálního iStacku:\n");
+                for (int i = 1; i<=global.iStack->count; i++) {
+                    Instr *instr = instrStackDataAt (global.iStack,i);
+                    printf("  id3=%p id2=%p id1=%p typ=%s \n",instr->Id3,instr->Id2,instr->Id1,instrukce[instr->type]);
+                }
+            //END DELETE
+            
 			// Interpret
 			semCheck(global.iStack);
 			interpretMainCore(global.iStack);
