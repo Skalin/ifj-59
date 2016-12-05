@@ -615,7 +615,7 @@ void pWhile(){
 
 	pCommands();
 	// instrukce endwhile
-	/*Instr *instr = NULL;
+	/*
 	instr = instrItemInit(instr);
 
 	instr->Id3 = NULL;
