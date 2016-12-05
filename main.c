@@ -31,7 +31,20 @@ int main(int argc, char* argv[]) {
 		//printf("dostal jsem se az k podmince mezi testem a normalnim prekladacem");
 
 		if (global.DEBUG == 0) { // normalni funkce programu
+
+			//printf("Jsem pred initem\n");
 			globalInit();
+/*
+			printf("Jsem po initu\n");
+			createNewNode("blbost", var, var_string, 1, 1);
+			printf("Jsem po prvni node\n");
+			createNewNode("blbost2", var, var_int, 1, 1);
+			printf("Jsem po druhe node\n");
+			createNewNode("blbost3", var, var_int, 1, 1);
+			createNewNode("asdf", var, var_double, 1, 1);
+
+			searchForNode("kokotina", var, global.mTree->root);
+			*/
 			//printf("dostal jsem se za globalinit");
 			// Otevreni souboru
 			//printf("%s", argv[1]);
