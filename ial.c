@@ -349,7 +349,7 @@ void addNode(BTSNode *newItem, BTSNode *start) {
         throwException(99,0,0);
 }
 
-void createNewNode(char *id, NodeType nodeType, varType variableType, int status) {
+void createNewNode(char *id, NodeType nodeType, varType variableType, int status, int inc) {
     if(argNo != 0)
         argNo = 0;
 
@@ -357,7 +357,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
     BTSNode *newNode = plusMalloc(sizeof(BTSNode));
     newNode->key = id;
     newNode->nodeType = nodeType;
-	newNode->inc = 0;
+    newNode->inc = inc;
     newNode->lptr = NULL;
     newNode->rptr = NULL;
 

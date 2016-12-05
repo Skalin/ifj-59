@@ -54,6 +54,7 @@ void throwException(int errorNumber, int row, int column) {
 				break;
 		}
         finalFree();
+		exit(errorNumber);
     } else {
 
         fprintf(stderr, "=========================================================================\n" );
