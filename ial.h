@@ -131,7 +131,7 @@ void addNode(BTSNode *newItem, BTSNode *start);
 /*
  * Funkce vytvoří nový uzel, inicializuje ho a přidá ho do stromu
  */
-void createNewNode(char *id, NodeType nodeType, varType variableType, int status);
+void createNewNode(char *id, NodeType nodeType, varType variableType, int status, int inc);
 
 
 /*

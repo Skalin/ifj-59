@@ -107,7 +107,7 @@ void pClass(){
 	}
 	
 	// vytvorit tridu v tabulce symbolu
-	createNewNode(token->data, class, var_null, 0);	// TODO  status??
+	createNewNode(token->data, class, var_null, 0, 0);	// TODO  status??
 
 	token = getToken();
 	//printToken(token);
@@ -245,7 +245,7 @@ void pFunction(){
 	} else {
 	// ulozit do tab. symbolu
 	
-	createNewNode(tempData, function, tempToVar(tempType), 1); //TODO INT STATUS
+	createNewNode(tempData, function, tempToVar(tempType), 1, 0); //TODO INT STATUS
 	}
 
 	pParams();  // parse parametru
@@ -281,7 +281,7 @@ void pVar(tToken *token, int dataType){
 		if (node != NULL){
 			throwException(3,0,0);
 		}
-		createNewNode(tempData, var, tempToVar(tempType), tempStatic);  // TODO status??
+		createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);  // TODO status??
 		node = searchForNode(tempData, var, NULL);
 	} else {
 		//prirazeni, uzel musi existovat
@@ -533,6 +533,25 @@ void pIf(){
 	tToken * token;
 
 	//vytvorit instrukce pro condition, if
+	/*Instr *instr = NULL;
+	instr = instrItemInit(instr);
+
+	instr->Id3 = NULL;
+	instr->Id2 = NULL;
+	instr->Id1 = NULL;
+	instr->type = insCond;
+
+	instrStackPush(global.iStack,instr);
+	
+	instr = instrItemInit(instr);
+
+	instr->Id3 = NULL;
+	instr->Id2 = NULL;
+	instr->Id1 = NULL;
+	instr->type = insIf;
+
+	instrStackPush(global.iStack,instr);*/
+	
 	expression(NULL, expCond); //TODO
 
 	pCommands();
@@ -542,11 +561,36 @@ void pIf(){
 		throwException(2,0,0);
 	}
 	// instrukce endif , else 
+	/*instr = instrItemInit(instr);
+
+	instr->Id3 = NULL;
+	instr->Id2 = NULL;
+	instr->Id1 = NULL;
+	instr->type = insIfEnd;
+
+	instrStackPush(global.iStack,instr);
+	
+	instr = instrItemInit(instr);
+
+	instr->Id3 = NULL;
+	instr->Id2 = NULL;
+	instr->Id1 = NULL;
+	instr->type = insElse;
+
+	instrStackPush(global.iStack,instr);*/
 
 	// block of code for else
 	pCommands();
 	
 	//instrukce endcond
+	/*instr = instrItemInit(instr);
+
+	instr->Id3 = NULL;
+	instr->Id2 = NULL;
+	instr->Id1 = NULL;
+	instr->type = insCondEnd;
+
+	instrStackPush(global.iStack,instr);*/
 
 }
 void pWhile(){
@@ -555,12 +599,31 @@ void pWhile(){
 */
 
 	// instrukce while
+	/*Instr *instr = NULL;
+	instr = instrItemInit(instr);
+
+	instr->Id3 = NULL;
+	instr->Id2 = NULL;
+	instr->Id1 = NULL;
+	instr->type = insWhile;
+
+	instrStackPush(global.iStack,instr);*/
+	
 	expression(NULL, expCond); //TODO
 	
 
 
 	pCommands();
 	// instrukce endwhile
+	/*
+	instr = instrItemInit(instr);
+
+	instr->Id3 = NULL;
+	instr->Id2 = NULL;
+	instr->Id1 = NULL;
+	instr->type = insEndWhile;
+
+	instrStackPush(global.iStack,instr);*/
 }
 
 varType tempToVar(tokenType temp) {
