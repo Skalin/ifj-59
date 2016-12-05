@@ -107,7 +107,7 @@ void pClass(){
 	}
 	
 	// vytvorit tridu v tabulce symbolu
-	createNewNode(token->data, class, var_null, 0);	// TODO  status??
+	createNewNode(token->data, class, var_null, 0, 0);	// TODO  status??
 
 	token = getToken();
 	//printToken(token);
@@ -245,7 +245,7 @@ void pFunction(){
 	} else {
 	// ulozit do tab. symbolu
 	
-	createNewNode(tempData, function, tempToVar(tempType), 1); //TODO INT STATUS
+	createNewNode(tempData, function, tempToVar(tempType), 1, 0); //TODO INT STATUS
 	}
 
 	pParams();  // parse parametru
@@ -281,7 +281,7 @@ void pVar(tToken *token, int dataType){
 		if (node != NULL){
 			throwException(3,0,0);
 		}
-		createNewNode(tempData, var, tempToVar(tempType), tempStatic);  // TODO status??
+		createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);  // TODO status??
 		node = searchForNode(tempData, var, NULL);
 	} else {
 		//prirazeni, uzel musi existovat
