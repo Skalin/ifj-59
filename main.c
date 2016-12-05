@@ -194,7 +194,7 @@ int main(int argc, char* argv[]) {
 
     // Inicializace globalni promenne
     globalInit();
-    global.fileName = "testing/fac_rec.ifj";
+    global.fileName = "tests/fac_rec.ifj";
 
 	// Otevreni souboru
 	global.file = fopen(global.fileName, "r");
