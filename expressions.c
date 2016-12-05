@@ -315,6 +315,7 @@ void expression(tToken *targetToken, tExpType expType) {
             else if (expType == expArg) {
                 // Zpracování dalšího argumentu
                 if (token->type == t_comma) {
+                    argNum++;
                     expression(targetToken, expArg);
                 }
                 else if (token->type == t_bracket_r) {
