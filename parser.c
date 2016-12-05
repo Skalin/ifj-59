@@ -550,7 +550,7 @@ void pIf(){
 	instr->Id1 = NULL;
 	instr->type = insIf;
 
-	instrStackPush(global.iStackk,instr);*/
+	instrStackPush(global.iStack,instr);*/
 	
 	expression(NULL, expCond); //TODO
 
