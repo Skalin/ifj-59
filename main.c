@@ -3,8 +3,6 @@
 #include "garbage_collector.h"
 #include "parser.h"
 #include "interpret.h"
-#include "expressions.h"
-#include <unistd.h>
 
 
 int main(int argc, char* argv[]) {
@@ -33,7 +31,20 @@ int main(int argc, char* argv[]) {
 		//printf("dostal jsem se az k podmince mezi testem a normalnim prekladacem");
 
 		if (global.DEBUG == 0) { // normalni funkce programu
+
+			//printf("Jsem pred initem\n");
 			globalInit();
+/*
+			printf("Jsem po initu\n");
+			createNewNode("blbost", var, var_string, 1, 1);
+			printf("Jsem po prvni node\n");
+			createNewNode("blbost2", var, var_int, 1, 1);
+			printf("Jsem po druhe node\n");
+			createNewNode("blbost3", var, var_int, 1, 1);
+			createNewNode("asdf", var, var_double, 1, 1);
+
+			searchForNode("kokotina", var, global.mTree->root);
+			*/
 			//printf("dostal jsem se za globalinit");
 			// Otevreni souboru
 			//printf("%s", argv[1]);
@@ -46,16 +57,7 @@ int main(int argc, char* argv[]) {
 			// Parser
 			pParse();
 
-            //DELETE THIS
-                // Vytiskne obsah globálního stacku
-                char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus"," insMinus"," insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
-                printf("Obsah globálního iStacku:\n");
-                for (int i = 0; i<=global.iStack->count; i++) {
-                    Instr *instr = instrStackDataAt (global.iStack,i);
-                    printf("  id3=%c id1=%c typ=%s id2=%c\n",instr->Id3,instr->Id1,instrukce[instr->type],instr->Id2);
-                }
-            //END DELETE
-            
+
 			// Interpret
 			semCheck(global.iStack);
 			interpretMainCore(global.iStack);
@@ -64,8 +66,8 @@ int main(int argc, char* argv[]) {
 			// Uvolneni pameti a ukonceni programu
 			finalFree();
 		} else {
-			// DEBUG aplikace s testy
-
+			// DEBUG aplikace s testy vestavenych funkci
+/*
 			// test stringu a jejich sortovani
 			char testString[] = "ultrasupermegasupersonicstring";
 			char testString2[] = "vysortovat";
@@ -151,98 +153,33 @@ int main(int argc, char* argv[]) {
 			printedString = testString5;
 			printf("Originalni string \"%s\" ", testString5);
 			printedString = sort(printedString);
-			printf("Vysortovany string \"%s\"\n", printedString);
+			printf("Vysortovany string \"%s\"\n", printedString);*/
+			fprintf(stderr, "==========================================================================\n" );
+			fprintf(stderr, "========================== PROBEHNE HLAVNI TEST ==========================\n" );
+			fprintf(stderr, "======================= TEST JEDNOTLIVYCH SOUBORU! =======================\n\n" );
+
 
 			globalInit();
-			global.DEBUG = 1;
-			// IAL testy
-			char lex[] = "./testing/lex";
-			char syntax[] = "./testing/synt";
-			char sem[] = "./testing/sem";
-			char help[30];
-
-			sleep(1);
-			printf("=========================\n\n");
-			printf("Nyni probehne testovani return kodu!\n");
-			printf("=========================\n\n");
-			sleep(1);
-
-			// lex test
-			int i = 1;
-			char id[2];
-			strcpy(help,lex);
-			strcat(help, "01.ifj16");
-			global.file = fopen("./testing/lex1", "r");
-			if (global.file == NULL) {
-				printf("Expected: 99, got: ");
-				throwException(99, 0, 0);
-			} // jasna chyba programu, soubor "lex" neexistuje, mel by program skoncit
-			sleep(20);
-/*
-			globalInit();
-			global.DEBUG = 1;
-			global.file = fopen(global.fileName = help, "r");
+			//printf("dostal jsem se za globalinit");
+			// Otevreni souboru
+			//printf("%s", argv[1]);
+			global.file = fopen(global.fileName = argv[1], "r");
 			if (global.file == NULL) {
 				throwException(99, 0, 0);
 			}
-			// chyba by nemela nastat, soubor existuje
-
-			printf("Expected 1, got: ");
-			pParse(); // chyba by mela nastat zde, dojde k lex chybe
-
-			sleep(3);*/
-			/*
-			// syntax testy
-			globalInit();
-			global.DEBUG = 1;
-			help = syntax;
-			while (i < 8) {
-				if (i != 1) {
-					globalInit();
-					global.DEBUG = 1;
-				}
-				help = syntax;
-				sprintf(id, "%d", i);
-				strcat(help, id);
-				strcat(help, ".ifj16");
-				global.file = fopen(global.fileName = help, "r");
-				printf("FILE: %s", global.fileName);
-				pParse(); //melo by navratit chybu 2, vzdy
-				i++;
-			}
-*/
-			// semantika testy
 
 
-			i = 1;
-			while (i < 47) {
-				globalInit();
-				global.DEBUG = 1;
-				//printf("prosel jsem globalInitem\n");
-				copyString(help, sem);
-				//printf("help je sem\n");
-				sprintf(id, "%d", i);
-				//printf("vlozil jsem do id cislo\n");
-				strcat(help, id);
-				//printf("konkatenoval jsem help a id\n");
-				strcat(help, ".ifj16");
-				global.file = fopen(global.fileName = help, "r");
-				if (global.file == NULL) {
-					printf("Didn't expect this! Error in testing\n");
-					throwException(99, 0, 0);
-				}
-				printf("FILE: %s\n", global.fileName);
-				printf("Expected 3, got: ");
-				pParse(); //melo by navratit chybu 3, vzdy
-				i++;
-				sleep(1);
-			}
+			// Parser
+			pParse();
 
 
-			sleep(3);
+			// Interpret
+			semCheck(global.iStack);
+			interpretMainCore(global.iStack);
 
+
+			// Uvolneni pameti a ukonceni programu
 			finalFree();
-
 
 			return 0;
 		}
