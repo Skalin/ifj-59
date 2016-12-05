@@ -80,6 +80,8 @@ int stackFull (const tStack *s );
  */
 void stackPush(tStack *stack, void *data);
 
+void stackShift(tStack *stack, void *data);
+
 /*
  * Funkce navrátí ukazatel na vrchol zásobníku
  * @param zásobník
