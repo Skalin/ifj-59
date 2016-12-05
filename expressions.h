@@ -42,8 +42,8 @@ bool isIdent(tToken *token);
 bool isConst(tToken *token);
 char getPrecChar(tToken *stackToken, tToken *inToken);
 tStackIt **chnToExp(tStack *stack, tStackIt *handle[]);
-void reduceExp(BTSNode *targetId, tStackIt *handle[3], instrStack *iStack);
-void expression(BTSNode *targetId, tExpType expType);
+void reduceExp(tToken *targetToken, tStackIt *handle[3], instrStack *iStack, tStack *stack);
+void expression(tToken *targetToken, tExpType expType);
 void completeInstr();
 int strEqual(char str1[], char str2[]);
 

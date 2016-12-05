@@ -52,7 +52,7 @@ Instr *instrItemInit () {
 
 int instrStackEmpty (const instrStack* stc) {
 
-    return(stc->count == 0 ? 1 : 0); // Pokud je vrchol zasobniku mensi jak nula
+    return(stc->count == -1 ? 1 : 0); // Pokud je vrchol zasobniku mensi jak nula
 }
 
 int instrStackFull (const instrStack* stc) {

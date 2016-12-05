@@ -81,10 +81,10 @@ void exprShift (tStack *stc1, tStack *stc2) {
 
 
 tToken *topTerm (tStack *stc) {
-
-	while ((stc->data[stc->counter])->typeIt == EXPR || (stc->data[stc->counter])->typeIt == NONTERM)
-		stc->counter--;
-		return (stc->data[stc->counter]->dataIt);
+    int tmpCnt = stc->counter;
+	while ((stc->data[tmpCnt])->typeIt == EXPR || (stc->data[tmpCnt])->typeIt == NONTERM)
+		tmpCnt--;
+		return (stc->data[tmpCnt]->dataIt);
 }
 
 
@@ -101,7 +101,6 @@ int stackFull (const tStack* s) {
 }
 
 void stackPush (tStack *stack, void *data) {
-
 	// Pokud uz neni dostatek alokovane pameti, provede se realloc
 	if(stackFull(stack)) {
 		stack->data = plusRealloc(stack->data, (sizeof(void *) * (stack->allocated+30)));
@@ -138,5 +137,34 @@ tStackIt * stackPop (tStack *stack) {
 int stackSize (tStack *stack) {
 
 	return stack->counter;
+}
+
+void stackShift(tStack *stack, void *data) {
+	// Pokud uz neni dostatek alokovane pameti, provede se realloc
+	if(stackFull(stack)) {
+		stack->data = plusRealloc(stack->data, (sizeof(void *) * (stack->allocated+30)));
+		stack->allocated += 30;
+	}
+	
+	// Záloha počítadla (plus 1 pro novou položku)
+    int tmpCnt = stack->counter + 1;
+    
+    // Zjistíme pozici topTermu
+    while (stackTop(stack)->typeIt != TERM) {
+        stack->counter--;
+    }
+    
+    // Zazálohujeme položku o jednu pozici nad topTermem a na její místo vložíme novou položku
+    stack->counter++;
+    tStackIt *tmpItem = stackTop(stack);
+	stack->data[stack->counter] = data;
+    
+    
+    while (stack->counter < tmpCnt) {
+        stack->counter++;
+        tStackIt *tmpItem2 = stackTop(stack);
+        stack->data[stack->counter] = tmpItem;
+        tmpItem = tmpItem2;
+    }
 }
 
