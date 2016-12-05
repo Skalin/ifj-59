@@ -11,16 +11,34 @@ if [ "$1" != "./../ifj" ];then
     exit 1
 fi
 
-runtest=$1
-extension=".ifj16"
-syntstring="synt"
-synttests=1
+
 date=`date +%y-%m-%d-%H-%M`
 fileName="test_$date"
 fileName="$fileName.txt"
 
-	echo "=============================\n" > $fileName 
-	echo "====== TEST RET HODNOT ======\n" > $fileName
+
+	echo "=============================" >> $fileName;
+        echo "====== TEST RET HODNOT ======" >> $fileName;
+
+runtest=$1
+extension=".ifj16"
+FILE="lex1$extension"
+	
+lexttest="$runtest $FILE";
+
+	$lexttest 2>/dev/null;
+
+	testResult=$?
+	testResult=$((testResult+0))
+	echo -e "FILE: $FILE" >> $fileName;
+	if [ $testResult -eq 99 ]; then
+		echo -e "RETVAL: $testResult; Test $FILE passed" >> $fileName;
+	else 
+		echo -e "RETVAL: $testResult; Test $FILE failed" >> $fileName;
+	fi
+
+syntstring="synt"
+synttests=1
 
 while [ $synttests -le 7 ]; do
 	synttest=$syntstring$synttests
@@ -68,5 +86,7 @@ while [ $semtests -le 46 ]; do
     semtests=$((semtests + 1))
 
 done
+
+echo "Vysledek testy byl ulozen do $fileName, pro vypis jeho obsahu pouzijte prikaz cat $fileName";
 
 exit 0
