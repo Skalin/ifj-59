@@ -361,6 +361,8 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
     newNode->lptr = NULL;
     newNode->rptr = NULL;
 
+	printf("jsem po initu zakladnich hodnot\n");
+
     // Urceni zacatku podle typu uzlu
     BTSNode *start = NULL;
     switch(newNode->nodeType) {
@@ -384,6 +386,8 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 			start= mTree->root;
 			break;
     }
+
+	printf("jsem za switchem\n");
 
     // Pokud neexistuje korenovy uzel a jedna se o classu
     if (newNode ->nodeType == class && mTree->root == NULL) {
