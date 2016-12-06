@@ -364,26 +364,26 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 	printf("jsem po initu zakladnich hodnot\n");
 
     // Urceni zacatku podle typu uzlu
-    struct tBTSNode *start = NULL;
+    struct tBTSNode start = NULL;
     switch(newNode->nodeType) {
 		case var:
 			newNode->data.type = variableType;
 			newNode->variables = NULL; // Neni potrebne u promenne
 
 			if (status)
-				start = mTree->actClass->variables;
+				start = *mTree->actClass->variables;
 			else
-				start = mTree->actFunction->variables;
+				start = *mTree->actFunction->variables;
 			break;
 		case function:
 			newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
 			newNode->variables = NULL;
-			start= mTree->actClass->functions;
+			start = *mTree->actClass->functions;
 			break;
 		case class:
 			newNode->functions = NULL;
 			newNode->variables = NULL;
-			start= mTree->root;
+			start = *mTree->root;
 			break;
     }
 
