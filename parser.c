@@ -483,6 +483,11 @@ void pSingleCommand(){
 				
 				expression(token, expArg); //TODO? je exp arg spravne?
 				
+				token=getToken();
+				if (token->type != t_semicolon){
+					throwException(2,0,0);
+				}
+				
 
 				// sem pridat check na strednik pokud to bude potreba
 			}
