@@ -402,7 +402,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
             mTree->actFunction = newNode;
     }
     // Pokud ve tride neexistuji zadne staticke promenne
-    else if (newNode->nodeType == var && mTree->actClass->variables == NULL && status) {
+    else if (newNode->nodeType == var && mTree->actClass->variables == NULL && mTree->actFunction == NULL && status == 1) {
         mTree->actClass->variables = newNode;
     }
     // Pokud ve funkci neexistuji zadne promenne
