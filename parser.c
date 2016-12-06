@@ -664,7 +664,9 @@ void pWhile(){
 /**
 * while ( <expr> ) { <commands> }
 */
-
+	tToken * token;
+	BTSNode * node;
+	
 	// instrukce while
 	/*Instr *instr = NULL;
  -	instr = instrItemInit(instr);
@@ -675,8 +677,65 @@ void pWhile(){
  -	instr->type = insWhile;
  -
  -	instrStackPush(global.iStack,instr);*/
-	expression(NULL, expCond); //TODO
 	
+	//expression(NULL, expCond); //TODO
+	/*//begin
+	instr = instrItemInit(instr);
+	instr->Id3 = NULL;
+	
+	token = getToken();
+	if (token->type != t_bracket_l){
+		throwException(2,0,0);
+	}
+	//prvni clen
+	token = getToken();
+	if (token->type == t_simple_ident || token->type == t_complete_ident){		
+		node = searchForNode(token->data, var, NULL);
+		if (node == NULL) {
+			//promena neni ve strome
+			throwException(3,0,0);
+		}		
+		
+	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
+		//konstanta
+	
+	} else {
+		throwException(2,0,0);
+	}
+	instr->Id1 = node;
+	//druhy clen
+	token = getToken();
+	if (token->type == t_comparasion)		{instr->type =insEqual; }
+	else if (token->type == t_comparasion_ne)	{instr->type =insNotEqual; }
+	else if (token->type == t_greater)		{instr->type =insGreater; }
+	else if (token->type == t_greater_eq)		{instr->type =insGreaterOrEqual; }
+	else if (token->type == t_less)			{instr->type =insLess; }
+	else if (token->type == t_less_eq)		{instr->type =insLessOrEqual; }
+	else {throwException(2,0,0);}
+	
+	//treti clen
+	token = getToken();
+	if (token->type == t_simple_ident || token->type == t_complete_ident){
+		node = searchForNode(token->data, var, NULL);
+		if (node == NULL) {
+			//promena neni ve strome
+			throwException(3,0,0);
+		}		
+		
+	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
+		//konstanta		
+	
+	} else {
+		throwException(2,0,0);
+	}
+	instr->Id2 = node;
+	
+	token = getToken();
+	if (token->type != t_bracket_r){
+		throwException(2,0,0);
+	}
+	instrStackPush(global.iStack,instr);
+	*///end
 
 
 	pCommands();
