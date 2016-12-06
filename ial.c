@@ -364,7 +364,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 	printf("jsem po initu zakladnich hodnot\n");
 
     // Urceni zacatku podle typu uzlu
-    BTSNode *start = plusMalloc(sizeof(BTSNode));
+    BTSNode *start = NULL;
 	if (start == NULL) {
 		throwException(99, 0, 0);
 	}
@@ -375,15 +375,15 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 			newNode->variables = NULL; // Neni potrebne u promenne
 			printf("Datatype a variables jsou ulozeny\n");
 			if (status)
-				start = mTree->actClass->variables;
+				start = mTree->actClass;
 			else
-				start = mTree->actFunction->variables;
+				start = mTree->actFunction;
 			printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
 			break;
 		case function:
 			newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
 			newNode->variables = NULL;
-			start = mTree->actClass->functions;
+			start = mTree->actClass;
 			break;
 		case class:
 			newNode->functions = NULL;
