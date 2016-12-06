@@ -394,19 +394,23 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 
     // Pokud neexistuje korenovy uzel a jedna se o classu
     if (newNode->nodeType == class && mTree->root == NULL) {
+		printf("Nepridal jsem nodu, koncim na sigsegv\n");
         mTree->root = newNode;
         mTree->actClass = newNode;
     } // Pokud ve tride neexistuji funkce
     else if (newNode->nodeType == function && mTree->actClass->functions == NULL) {
-            mTree->actClass->functions = newNode;
-            mTree->actFunction = newNode;
+		printf("Nepridal jsem nodu, koncim na sigsegv\n");
+		mTree->actClass->functions = newNode;
+		mTree->actFunction = newNode;
     }
     // Pokud ve tride neexistuji zadne staticke promenne
     else if (newNode->nodeType == var && mTree->actClass->variables == NULL && mTree->actFunction == NULL && status == 1) {
-        mTree->actClass->variables = newNode;
+		printf("Nepridal jsem nodu, koncim na sigsegv\n");
+		mTree->actClass->variables = newNode;
     }
     // Pokud ve funkci neexistuji zadne promenne
     else if (newNode->nodeType == var && mTree->actFunction->variables == NULL && mTree->actFunction != NULL && status != 1) {
+		printf("Nepridal jsem nodu, koncim na sigsegv\n");
         mTree->actFunction->variables = newNode;
     }
     // Jinak se klasicky prida uzel
