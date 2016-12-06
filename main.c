@@ -32,9 +32,9 @@ int main(int argc, char* argv[]) {
 
 		if (global.DEBUG == 0) { // normalni funkce programu
 
-			//printf("Jsem pred initem\n");
+			printf("Jsem pred initem\n");
 			globalInit();
-/*
+
 			printf("Jsem po initu\n");
 			createNewNode("blbost", var, var_string, 1, 1);
 			printf("Jsem po prvni node\n");
@@ -44,8 +44,8 @@ int main(int argc, char* argv[]) {
 			createNewNode("asdf", var, var_double, 1, 1);
 
 			searchForNode("kokotina", var, global.mTree->root);
-			*/
-			//printf("dostal jsem se za globalinit");
+
+			printf("dostal jsem se za globalinit");
 			// Otevreni souboru
 			//printf("%s", argv[1]);
 			global.file = fopen(global.fileName = argv[1], "r");
