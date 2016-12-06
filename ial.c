@@ -364,7 +364,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 	printf("jsem po initu zakladnich hodnot\n");
 
     // Urceni zacatku podle typu uzlu
-    BTSNode *start = NULL;
+    struct tBTSNode *start = NULL;
     switch(newNode->nodeType) {
 		case var:
 			newNode->data.type = variableType;
