@@ -393,16 +393,16 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 	printf("jsem za switchem\n");
 
     // Pokud neexistuje korenovy uzel a jedna se o classu
-    if (newNode ->nodeType == class && mTree->root == NULL) {
+    if (newNode->nodeType == class && mTree->root == NULL) {
         mTree->root = newNode;
         mTree->actClass = newNode;
     } // Pokud ve tride neexistuji funkce
-    else if (newNode ->nodeType == function && mTree->actClass->functions == NULL) {
+    else if (newNode->nodeType == function && mTree->actClass->functions == NULL) {
             mTree->actClass->functions = newNode;
             mTree->actFunction = newNode;
     }
     // Pokud ve tride neexistuji zadne staticke promenne
-    else if (newNode ->nodeType == var && mTree->actClass->variables == NULL && status) {
+    else if (newNode->nodeType == var && mTree->actClass->variables == NULL && status) {
         mTree->actClass->variables = newNode;
     }
     // Pokud ve funkci neexistuji zadne promenne
@@ -412,6 +412,8 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
     // Jinak se klasicky prida uzel
     else
         addNode(newNode, start);
+
+	printf("Neskocil jsem do funkce, koncim na sigsegv\n");
 }
 
 void addArgument(char *id, varType type) {
