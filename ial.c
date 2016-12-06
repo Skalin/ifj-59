@@ -132,7 +132,6 @@ int find(char str[], char search[]) {
 		i++;
 	}
 
-	i = 0; // jen pro jistotu
 
 	//printf("Tabulka byla naplnena, nyni provedeme vyhledavani\n");
 	while ((found == -1) && (stop < strLength(str))) { // dokud neni string nalezen nebo neni konec stringu nebo neni eof, hledam
@@ -199,7 +198,6 @@ char *repairHeap(char str[], int length) {
 		strlength--;
 	}
 
-	i = 0;
 	for (i = length-1; i >= 0; i--) {
 
 
@@ -316,37 +314,39 @@ BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
 
 void addNode(BTSNode *newItem, BTSNode *start) {
     if(start != NULL) {
-        if(strcmp(newItem->key, start->key) > 0) {
-            // Pokud nemame uzel kam vlozit
-            if(start->rptr != NULL) {
-                addNode(newItem, start->rptr);
-            }
-            // Pokud ho mame kam vlozit
-            else
-                start->rptr = newItem;
-                if(newItem->nodeType == function)
-                    mTree->actFunction = newItem;
-                if(newItem->nodeType == class)
-                    mTree->actClass = newItem;
+		if (strcmp(newItem->key, start->key) > 0) {
+			// Pokud nemame uzel kam vlozit
+			if (start->rptr != NULL) {
+				addNode(newItem, start->rptr);
+			}
+				// Pokud ho mame kam vlozit
+			else
+				start->rptr = newItem;
+			if (newItem->nodeType == function)
+				mTree->actFunction = newItem;
+			if (newItem->nodeType == class)
+				mTree->actClass = newItem;
 
-        } else if (strcmp(newItem->key, start->key) < 0) {
-            // Pokud nemame uzel kam vlozit
-            if(start->lptr != NULL) {
-                addNode(newItem, start->lptr);
-            }
-                // Pokud ho mame kam vlozit
-            else
-                start->lptr = newItem;
-            if(newItem->nodeType == function)
-                mTree->actFunction = newItem;
-            if(newItem->nodeType == class)
-                mTree->actClass = newItem;
+		} else if (strcmp(newItem->key, start->key) < 0) {
+			// Pokud nemame uzel kam vlozit
+			if (start->lptr != NULL) {
+				addNode(newItem, start->lptr);
+			}
+				// Pokud ho mame kam vlozit
+			else
+				start->lptr = newItem;
+			if (newItem->nodeType == function)
+				mTree->actFunction = newItem;
+			if (newItem->nodeType == class)
+				mTree->actClass = newItem;
 
-        // If there is anything else throw error
-        } else
-            throwException(99,0,0);
-    }   else
-        throwException(99,0,0);
+			// If there is anything else throw error
+		} else {
+			throwException(99, 0, 0);
+		}
+	} else {
+		throwException(99, 0, 0);
+	}
 }
 
 void createNewNode(char *id, NodeType nodeType, varType variableType, int status, int inc) {
@@ -364,25 +364,25 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
     // Urceni zacatku podle typu uzlu
     BTSNode *start = NULL;
     switch(newNode->nodeType) {
-    case var:
-        newNode->data.type = variableType;
-        newNode->variables = NULL; // Neni potrebne u promenne
+		case var:
+			newNode->data.type = variableType;
+			newNode->variables = NULL; // Neni potrebne u promenne
 
-        if (status == 1)
-            start = mTree->actClass->variables;
-        else
-            start = mTree->actFunction->variables;
-        break;
-    case function:
-        newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
-        newNode->variables = NULL;
-        start= mTree->actClass->functions;
-        break;
-    case class:
-        newNode->functions = NULL;
-        newNode->variables = NULL;
-        start= mTree->root;
-        break;
+			if (status)
+				start = mTree->actClass->variables;
+			else
+				start = mTree->actFunction->variables;
+			break;
+		case function:
+			newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
+			newNode->variables = NULL;
+			start= mTree->actClass->functions;
+			break;
+		case class:
+			newNode->functions = NULL;
+			newNode->variables = NULL;
+			start= mTree->root;
+			break;
     }
 
     // Pokud neexistuje korenovy uzel a jedna se o classu
@@ -399,7 +399,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
         mTree->actClass->variables = newNode;
     }
     // Pokud ve funkci neexistuji zadne promenne
-    else if (newNode->nodeType == var && mTree->actFunction->variables == NULL && mTree->actFunction != NULL) {
+    else if (newNode->nodeType == var && mTree->actFunction->variables == NULL && mTree->actFunction != NULL && status != 1) {
         mTree->actFunction->variables = newNode;
     }
     // Jinak se klasicky prida uzel
