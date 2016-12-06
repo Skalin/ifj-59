@@ -560,7 +560,49 @@ void pIf(){
  -	instr->type = insIf;
  -
  -	instrStackPush(global.iStack,instr);*/
-	expression(NULL, expCond); //TODO
+	
+	//expression(NULL, expCond); 
+	//begin
+	instr = instrItemInit(instr);
+	
+	token = getToken();
+	if (token->type != t_bracket_l){
+		throwException(2,0,0);
+	}
+	//prvni clen
+	token = getToken();
+	if (token->type == t_simple_ident || token->type == t_complete_ident){
+		
+	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
+	
+	} else {
+		throwException(2,0,0);
+	}
+	//druhy clen
+	token = getToken();
+	if (token->type == t_comparasion)		{instr->type =insEqual }
+	else if (token->type == t_comparasion_ne)	{instr->type =insNotEqual }
+	else if (token->type == t_greater)		{instr->type =insGreater }
+	else if (token->type == t_greater_eq)		{instr->type =insGreaterOrEqual }
+	else if (token->type == t_less)			{instr->type =insLess }
+	else if (token->type == t_less_eq)		{instr->type =insLessOrEqual }
+	else {throwException(2,0,0);}
+	
+	//treti clen
+	token = getToken();
+	if (token->type == t_simple_ident || token->type == t_complete_ident){
+		
+	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
+	
+	} else {
+		throwException(2,0,0);
+	}
+	
+	token = getToken();
+	if (token->type != t_bracket_r){
+		throwException(2,0,0);
+	}
+	//end
 
 	pCommands();
 
