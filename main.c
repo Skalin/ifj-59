@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
 			globalInit();
 
 			printf("Jsem po initu\n");
-			createNewNode("blbost", var, var_string, 1, 1);
+			createNewNode("blbost", var, var_string, 1, 0);
 			printf("Jsem po prvni node\n");
 			createNewNode("blbost2", var, var_int, 1, 1);
 			printf("Jsem po druhe node\n");
