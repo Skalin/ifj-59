@@ -365,9 +365,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 
     // Urceni zacatku podle typu uzlu
     BTSNode *start = NULL;
-	if (start == NULL) {
-		throwException(99, 0, 0);
-	}
+
 	printf("Naalokoval jsem pamet pro start\n");
     switch(newNode->nodeType) {
 		case var:
