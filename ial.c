@@ -368,15 +368,17 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 	if (start == NULL) {
 		throwException(99, 0, 0);
 	}
+	printf("Naalokoval jsem pamet pro start\n");
     switch(newNode->nodeType) {
 		case var:
 			newNode->data.type = variableType;
 			newNode->variables = NULL; // Neni potrebne u promenne
-
+			printf("Datatype a variables jsou ulozeny\n");
 			if (status)
 				start = mTree->actClass->variables;
 			else
 				start = mTree->actFunction->variables;
+			printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
 			break;
 		case function:
 			newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
