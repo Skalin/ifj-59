@@ -411,6 +411,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
     }
     // Jinak se klasicky prida uzel
     else
+		printf("Nepridal jsem nodu, koncim na sigsegv\n");
         addNode(newNode, start);
 
 	printf("Neskocil jsem do funkce, koncim na sigsegv\n");
