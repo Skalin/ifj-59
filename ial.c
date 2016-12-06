@@ -364,7 +364,7 @@ void createNewNode(char *id, NodeType nodeType, varType variableType, int status
 	printf("jsem po initu zakladnich hodnot\n");
 
     // Urceni zacatku podle typu uzlu
-    tBTSNodePtr start = plusMalloc(sizeof(BTSNode));
+    BTSNode *start = plusMalloc(sizeof(BTSNode));
 	if (start == NULL) {
 		throwException(99, 0, 0);
 	}
