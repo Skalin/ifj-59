@@ -542,6 +542,24 @@ void pIf(){
 	tToken * token;
 
 	//vytvorit instrukce pro condition, if
+	/*Instr *instr = NULL;
+ -	instr = instrItemInit(instr);
+ -
+ -	instr->Id3 = NULL;
+ -	instr->Id2 = NULL;
+ -	instr->Id1 = NULL;
+ -	instr->type = insCond;
+ -
+ -	instrStackPush(global.iStack,instr);
+ -	
+ -	instr = instrItemInit(instr);
+ -
+ -	instr->Id3 = NULL;
+ -	instr->Id2 = NULL;
+ -	instr->Id1 = NULL;
+ -	instr->type = insIf;
+ -
+ -	instrStackPush(global.iStack,instr);*/
 	expression(NULL, expCond); //TODO
 
 	pCommands();
@@ -551,11 +569,36 @@ void pIf(){
 		throwException(2,0,0);
 	}
 	// instrukce endif , else 
+	/*instr = instrItemInit(instr);
+ -
+ -	instr->Id3 = NULL;
+ -	instr->Id2 = NULL;
+ -	instr->Id1 = NULL;
+ -	instr->type = insIfEnd;
+ -
+ -	instrStackPush(global.iStack,instr);
+ -	
+ -	instr = instrItemInit(instr);
+ -
+ -	instr->Id3 = NULL;
+ -	instr->Id2 = NULL;
+ -	instr->Id1 = NULL;
+ -	instr->type = insElse;
+ -
+ -	instrStackPush(global.iStack,instr);*/
 
 	// block of code for else
 	pCommands();
 	
 	//instrukce endcond
+	/*instr = instrItemInit(instr);
+ -
+ -	instr->Id3 = NULL;
+ -	instr->Id2 = NULL;
+ -	instr->Id1 = NULL;
+ -	instr->type = insCondEnd;
+ -
+ -	instrStackPush(global.iStack,instr);*/
 
 }
 void pWhile(){
@@ -564,12 +607,30 @@ void pWhile(){
 */
 
 	// instrukce while
+	/*Instr *instr = NULL;
+ -	instr = instrItemInit(instr);
+ -
+ -	instr->Id3 = NULL;
+ -	instr->Id2 = NULL;
+ -	instr->Id1 = NULL;
+ -	instr->type = insWhile;
+ -
+ -	instrStackPush(global.iStack,instr);*/
 	expression(NULL, expCond); //TODO
 	
 
 
 	pCommands();
 	// instrukce endwhile
+	/*
+ -	instr = instrItemInit(instr);
+ -
+ -	instr->Id3 = NULL;
+ -	instr->Id2 = NULL;
+ -	instr->Id1 = NULL;
+ -	instr->type = insEndWhile;
+ -
+ -	instrStackPush(global.iStack,instr);*/
 }
 
 varType tempToVar(tokenType temp) {
