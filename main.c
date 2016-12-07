@@ -1,8 +1,11 @@
 #include <string.h>
+#include <malloc.h>
 #include "error_handler.h"
 #include "garbage_collector.h"
 #include "parser.h"
 #include "interpret.h"
+
+mainTree mTree;
 
 
 int main(int argc, char* argv[]) {
@@ -33,8 +36,14 @@ int main(int argc, char* argv[]) {
 		if (global.DEBUG == 0) { // normalni funkce programu
 
 			printf("Jsem pred initem\n");
-			globalInit();
+			initTree(&mTree);
 
+			mTree.root = malloc(sizeof(BTSNode));
+			mTree.root = NULL;
+			mTree.actFunction = malloc(sizeof(BTSNode));
+			mTree.actClass = malloc(sizeof(BTSNode));
+	//kde to pada?
+			createNewNode("main", class, var_null, 1, 0);
 			printf("Jsem po initu\n");
 			createNewNode("blbost", var, var_string, 1, 0);
 			printf("Jsem po prvni node\n");
@@ -43,7 +52,7 @@ int main(int argc, char* argv[]) {
 			createNewNode("blbost3", var, var_int, 1, 1);
 			createNewNode("asdf", var, var_double, 1, 1);
 
-			searchForNode("kokotina", var, global.mTree->root);
+			searchForNode("asdf", var, mTree.root);
 
 			printf("dostal jsem se za globalinit");
 			// Otevreni souboru

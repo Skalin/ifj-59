@@ -119,6 +119,11 @@ char *repairHeap(char str[], int length);
 void initTree(mainTree *tree);
 
 /*
+ * Funkce inicializuje jednu nodu
+ */
+void initNode(BTSNode *node);
+
+/*
  * Funkce prohledá binární strom a najde příslušný uzel
  */
 BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start);
@@ -131,7 +136,7 @@ void addNode(BTSNode *newItem, BTSNode *start);
 /*
  * Funkce vytvoří nový uzel, inicializuje ho a přidá ho do stromu
  */
-void createNewNode(char *id, NodeType nodeType, varType variableType, int status, int inc);
+BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int status, int inc);
 
 
 /*

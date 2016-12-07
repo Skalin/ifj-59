@@ -162,7 +162,7 @@ typedef struct {
 } mismatchTable;
 
 // Klic binarniho vyhledavani (název funkce, třídy nebo proměnné)
-typedef char *tableName;
+typedef char* tableName;
 
 // Typ uzlu (ve stromu pozname, jestli se jedna o funkci, třídu nebo proměnnou
 typedef enum{
@@ -220,6 +220,8 @@ typedef struct MTree{
 	BTSNode *actClass; // Jaká třída je právě aktivní, resp. v jaké třídě se nacházíme
 	BTSNode *actFunction; // Jaká funkce je aktivní, resp. v jaké funkci se nacházíme
 } mainTree;
+
+extern mainTree mTree;
 
 typedef enum {
 	// BUILT-IN FUNCTIONS

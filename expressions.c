@@ -142,10 +142,10 @@ void reduceExp(tToken *targetToken, tStackIt *handle[3], instrStack *iStack, tSt
     Instr *instr = NULL;
     instr = instrItemInit();
     instr->Id3 = targetToken->data[0];// TODO searchForNode(targetToken->data,var,NULL);
-    BTSNode *start = global.mTree->actFunction;
+    BTSNode *start = mTree.actFunction;
     
     if (start != NULL) {
-       start = global.mTree->actClass;
+       start = mTree.actClass;
     }
 
     // Jedná se o argument ne/definované funkce

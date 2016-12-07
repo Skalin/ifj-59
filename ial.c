@@ -11,10 +11,14 @@
  */
 
 #include <string.h>
+#include <malloc.h>
+#include "typedef.h"
 #include "ial.h"
 #include "error_handler.h"
 #include "garbage_collector.h"
 #include "expressions.h"
+
+mainTree mTree;
 
 // find a sort dle zadani
 
@@ -242,7 +246,7 @@ char *repairHeap(char str[], int length) {
 
 
 // samotny heapsort
-char * sort(char str[]) {
+char *sort(char str[]) {
 	char *helpString = str;
 
 	int length = strLength(helpString);
@@ -250,15 +254,6 @@ char * sort(char str[]) {
 
 		repairHeap(helpString, length);
 
-/*
- * zbytecne, protoze biggest number bude prvni
-        for (int i = 0; i < helpString->length; i++) {
-            if ((i+1) == helpString->length) {
-                break;
-            }
-            biggestNumber = (helpString->data[i] > helpString->data[i+1] ? helpString->data[i] : helpString->data[i+1]);
-        }
-  */
 		swap(&helpString[0], &helpString[length-1]);
 
 		length--;
@@ -272,42 +267,41 @@ char * sort(char str[]) {
 //Uzel BT
 tBTSNodePtr symbolTable;
 
-// Hlavní strom
-mainTree *mTree;
 
 int argNo = 0;
 
 
+
 void initTree(mainTree *tree) {
-    mTree = tree;
-    mTree->root= NULL;
-    mTree->actClass= NULL;
-    mTree->actFunction = NULL;
+	tree = NULL;
 }
 
 BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
-    if(mTree->root == NULL) {
-
+    if(mTree.root == NULL) {
+		return NULL;
     } else {
-        if (start == NULL)
-            start = mTree->root;
+		if (start == NULL)
+			start = mTree.root;
 
-		// Pokud nalezneme klic
-		if(strcmp(key, start->key) == 0) {
-			// Pokud je to typ ktery jsme hledali, vratime ho
-			if (start->nodeType == nodeType)
-				return start;
+        if (start != NULL) {
+
+			// Pokud nalezneme klic
+			if ((strcmp(key, start->key)) == 0) {
+				// Pokud je to typ ktery jsme hledali, vratime ho
+				if (start->nodeType == nodeType)
+					return start;
+			}
+				// Pokud mame hledat v pravem podstromu
+			else if (strcmp(key, start->key) > 0) {
+				return start->rptr == NULL ? NULL : searchForNode(key, nodeType, start->rptr);
+			}
+				// Pokud mame hledat v levem podstromu
+			else if (strcmp(key, start->key) < 0)
+				return start->lptr == NULL ? NULL : searchForNode(key, nodeType, start->lptr);
+				// V ostatnich pripadech (Chuck norris on STDin?) se jedna o chybu
+			else
+				throwException(99, 0, 0);
 		}
-		// Pokud mame hledat v pravem podstromu
-		else if(strcmp(key, start->key) > 0) {
-			return start->rptr == NULL ?  NULL : searchForNode(key, nodeType, start->rptr);
-		}
-		// Pokud mame hledat v levem podstromu
-		else if (strcmp(key, start->key) < 0)
-			return start->lptr == NULL ?  NULL : searchForNode(key, nodeType, start->lptr);
-		// V ostatnich pripadech (Chuck norris on STDin?) se jedna o chybu
-		else
-			throwException(99,0,0);
     }
     return NULL;
 }
@@ -323,9 +317,9 @@ void addNode(BTSNode *newItem, BTSNode *start) {
 			else
 				start->rptr = newItem;
 			if (newItem->nodeType == function)
-				mTree->actFunction = newItem;
+				mTree.actFunction = newItem;
 			if (newItem->nodeType == class)
-				mTree->actClass = newItem;
+				mTree.actClass = newItem;
 
 		} else if (strcmp(newItem->key, start->key) < 0) {
 			// Pokud nemame uzel kam vlozit
@@ -336,9 +330,9 @@ void addNode(BTSNode *newItem, BTSNode *start) {
 			else
 				start->lptr = newItem;
 			if (newItem->nodeType == function)
-				mTree->actFunction = newItem;
+				mTree.actFunction = newItem;
 			if (newItem->nodeType == class)
-				mTree->actClass = newItem;
+				mTree.actClass = newItem;
 
 			// If there is anything else throw error
 		} else {
@@ -349,76 +343,88 @@ void addNode(BTSNode *newItem, BTSNode *start) {
 	}
 }
 
-void createNewNode(char *id, NodeType nodeType, varType variableType, int status, int inc) {
+void initNode(BTSNode *node) {
+	node->key = 0;
+	node->nodeType = var;
+	node->argNo = 0;
+	node->data.value.intValue = 0;
+	node->data.value.doubleValue = 0.0;
+	node->data.value.stringValue = "";
+	node->data.type = var_null;
+	node->inc = 0;
+	node->functions = NULL;
+	node->iStack = NULL;
+	node->lptr = NULL;
+	node->rptr = NULL;
+	node->variables = NULL;
+}
+
+BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int status, int inc) {
     if(argNo != 0)
         argNo = 0;
-
+// a odkud tady vstupuje tem mtree
     // Inicializace noveho uzlu
-    BTSNode *newNode = plusMalloc(sizeof(BTSNode));
+	BTSNode *newNode;
+    newNode = malloc(sizeof(BTSNode));
+	initNode(newNode);
     newNode->key = id;
     newNode->nodeType = nodeType;
     newNode->inc = inc;
-    newNode->lptr = NULL;
-    newNode->rptr = NULL;
 
-	printf("jsem po initu zakladnich hodnot\n");
+	//printf("jsem po initu zakladnich hodnot\n");
 
-    // Urceni zacatku podle typu uzlu
-    BTSNode *start = NULL;
+	// Urceni zacatku podle typu uzlu
+	BTSNode *start = malloc(sizeof(BTSNode)); // Kde mas alokaci mista pro ten start? taky jsem zkousel, spadlo, sraka nealokuje
+	initNode(start);
 
-	printf("Naalokoval jsem pamet pro start\n");
     switch(newNode->nodeType) {
 		case var:
 			newNode->data.type = variableType;
 			newNode->variables = NULL; // Neni potrebne u promenne
-			printf("Datatype a variables jsou ulozeny\n");
-			if (status)
-				start = mTree->actClass;
-			else
-				start = mTree->actFunction;
-			printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
+			//printf("Datatype a variables jsou ulozeny\n");
+			if (status) {
+				//printf("pred nastavenim startu");
+				start = mTree.actClass->variables;
+			} else {
+				start = mTree.actFunction->variables;
+			}
+			//printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
 			break;
 		case function:
 			newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
 			newNode->variables = NULL;
-			start = mTree->actClass;
+			start = mTree.actClass->functions;
 			break;
 		case class:
 			newNode->functions = NULL;
 			newNode->variables = NULL;
-			start = mTree->root;
+			start = mTree.root;
 			break;
     }
 
-	printf("jsem za switchem\n");
+	//printf("jsem za switchem\n");
 
-    // Pokud neexistuje korenovy uzel a jedna se o classu
-    if (newNode->nodeType == class && mTree->root == NULL) {
-		printf("Nepridal jsem nodu, koncim na sigsegv\n");
-        mTree->root = newNode;
-        mTree->actClass = newNode;
-    } // Pokud ve tride neexistuji funkce
-    else if (newNode->nodeType == function && mTree->actClass->functions == NULL) {
-		printf("Nepridal jsem nodu, koncim na sigsegv\n");
-		mTree->actClass->functions = newNode;
-		mTree->actFunction = newNode;
-    }
-    // Pokud ve tride neexistuji zadne staticke promenne
-    else if (newNode->nodeType == var && mTree->actClass->variables == NULL && mTree->actFunction == NULL && status == 1) {
-		printf("Nepridal jsem nodu, koncim na sigsegv\n");
-		mTree->actClass->variables = newNode;
-    }
-    // Pokud ve funkci neexistuji zadne promenne
-    else if (newNode->nodeType == var && mTree->actFunction->variables == NULL && mTree->actFunction != NULL && status != 1) {
-		printf("Nepridal jsem nodu, koncim na sigsegv\n");
-        mTree->actFunction->variables = newNode;
-    }
-    // Jinak se klasicky prida uzel
-    else
-		printf("Nepridal jsem nodu, koncim na sigsegv\n");
-        addNode(newNode, start);
+    if (newNode->nodeType == class && mTree.root == NULL) { // Pokud neexistuje korenovy uzel a jedna se o classu
+		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
+        mTree.root = newNode;
+        mTree.actClass = newNode;
+    } else if (newNode->nodeType == function && mTree.actClass->functions == NULL) { // Pokud ve tride neexistuji funkce
+		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
+		mTree.actClass->functions = newNode;
+		mTree.actFunction = newNode;
+    } else if (newNode->nodeType == var && mTree.actClass->variables == NULL && status == 1) { // Pokud ve tride neexistuji zadne staticke promenne
+		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
+		mTree.actClass->variables = newNode;
+    } else if (newNode->nodeType == var && mTree.actFunction->variables == NULL && mTree.actFunction != NULL) { // Pokud ve funkci neexistuji zadne promenne
+		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
+		mTree.actFunction->variables = newNode;
+	} else { // Jinak se klasicky prida uzel
+		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
+		addNode(newNode, start);
+	}
 
-	printf("Neskocil jsem do funkce, koncim na sigsegv\n");
+	//printf("Neskocil jsem do funkce, koncim na sigsegv\n");
+	return newNode;
 }
 
 void addArgument(char *id, varType type) {
@@ -431,12 +437,12 @@ void addArgument(char *id, varType type) {
 
     argNo++;
     argument->argNo = argNo;
-    mTree->actFunction->data.value.intValue = argNo;
+    mTree.actFunction->data.value.intValue = argNo;
 
-    if (mTree->actFunction->variables != NULL)
-        addNode(argument, mTree->actFunction->variables);
+    if (mTree.actFunction->variables != NULL)
+        addNode(argument, mTree.actFunction->variables);
     else
-        mTree->actFunction->variables = argument;
+        mTree.actFunction->variables = argument;
 }
 
 BTSNode *findArgument(BTSNode *start, int argNo) {

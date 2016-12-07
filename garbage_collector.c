@@ -81,7 +81,6 @@ void globalInit() {
 	}
 	//printf("naalokoval jsem mTree\n");
 
-	initTree(global.mTree);
 	//printf("nainitoval jsem mTree\n");
 
 	global.iStack = malloc(sizeof(struct instructionStack));
