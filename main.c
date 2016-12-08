@@ -39,12 +39,10 @@ int main(int argc, char* argv[]) {
 			printf("Jsem pred initem\n");
 			initTree(&mTree);
 
-			mTree.root = plusMalloc(sizeof(BTSNode));
-			initNode(mTree.root);
-			mTree.actFunction = plusMalloc(sizeof(BTSNode));
-			initNode(mTree.actFunction);
-			mTree.actClass = plusMalloc(sizeof(BTSNode));
-			initNode(mTree.actClass);
+			mTree.root = malloc(sizeof(BTSNode));
+			mTree.root = NULL;
+			mTree.actFunction = malloc(sizeof(BTSNode));
+			mTree.actClass = malloc(sizeof(BTSNode));
 	//kde to pada?
 			createNewNode("main", class, var_null, 1, 0);
 			printf("Jsem po initu\n");
@@ -102,9 +100,7 @@ int main(int argc, char* argv[]) {
 			char hledej3[] = "n";
 			char hledej4[] = "\0";
 			char hledej5[] = "ajfkaojfkaljflkaafafaafa";
-
 			int where = 0;
-
 			where = find(testString5, hledej1);
 			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej1, testString5, where);
 			where = find(testString, hledej);
@@ -117,8 +113,6 @@ int main(int argc, char* argv[]) {
 			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej4, testString4, where);
 			where = find(testString, hledej5);
 			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej5, testString, where);
-
-
 			char *printedString = testString;
 			printf("Originalni string \"%s\" ", testString);
 			printedString = sort(printedString);
@@ -139,8 +133,6 @@ int main(int argc, char* argv[]) {
 			printf("Originalni string \"%s\" ", testString5);
 			printedString = sort(printedString);
 			printf("Vysortovany string \"%s\"\n", printedString);
-
-
 			where = find(testString5, hledej1);
 			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej1, testString5, where);
 			where = find(testString, hledej);
@@ -153,8 +145,6 @@ int main(int argc, char* argv[]) {
 			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej4, testString4, where);
 			where = find(testString, hledej5);
 			printf("Substring \"%s\" byl nalezen ve slove \"%s\" na pozici: %d\n", hledej5, testString, where);
-
-
 			printedString = testString;
 			printf("Originalni string \"%s\" ", testString);
 			printedString = sort(printedString);
@@ -212,38 +202,29 @@ int main(int argc, char* argv[]) {
 /* TESTOVÁNÍ EXPRESSIONS - prosím nemazat jen zakomentovat */
 /*
 int main(int argc, char* argv[]) {
-
     // Inicializace globalni promenne
     globalInit();
     global.fileName = "tests/fac_rec.ifj";
-
 	// Otevreni souboru
 	global.file = fopen(global.fileName, "r");
 	if (global.file == NULL) {
 	    throwException(99, 0, 0);
 	}
-
-
 	// Inicializace hlavnich struktur prekladace
 	
 	initTree(&mTree);
 	instrStack iStack;
 	instrStackInit(&iStack);
-
-
 		// Parser
 	pParse();
 		//
-
 		// Interpret
 	semCheck(&iStack);
 	interpretMainCore(&iStack);
 		//
-
 		// Uvolneni pameti a ukonceni programu
 	finalFree();
 		//
 	
 }
-
 */
