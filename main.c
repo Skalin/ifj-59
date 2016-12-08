@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
 				throwException(99, 0, 0);
 			}
 		} else {
+			globalInit();
 			// nic
 		}
 
