@@ -4,6 +4,7 @@
 #include "garbage_collector.h"
 #include "parser.h"
 #include "interpret.h"
+#include "instrstack.h"
 
 mainTree mTree;
 
@@ -40,11 +41,11 @@ int main(int argc, char* argv[]) {
 			initTree(&mTree);
 
 			mTree.root = plusMalloc(sizeof(BTSNode));
-			initNode(mTree.root);
+			mTree.root = NULL;
 			mTree.actFunction = plusMalloc(sizeof(BTSNode));
-			initNode(mTree.actFunction);
+			mTree.actFunction = NULL;
 			mTree.actClass = plusMalloc(sizeof(BTSNode));
-			initNode(mTree.actClass);
+			mTree.actClass = NULL;
 	//kde to pada?
 			createNewNode("main", class, var_null, 1, 0);
 			printf("Jsem po initu\n");
@@ -75,7 +76,7 @@ int main(int argc, char* argv[]) {
                 char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
                 printf("\nObsah globálního iStacku:\n");
                 for (int i = 0; i<=global.iStack->count; i++) {
-                    Instr *instr = instrStackDataAt (global.iStack,i);
+                    Instr *instr = instrStackDataAt(global.iStack,i);
                     printf("  id3=%p id1=%p id2=%p typ=%s\n",instr->Id3,instr->Id1,instr->Id2,instrukce[instr->type]);
                 }
             //END DELETE
