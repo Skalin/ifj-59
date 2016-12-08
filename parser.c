@@ -303,7 +303,7 @@ void pVar(tToken *token, int dataType){
         fillToken(testtoken, t_simple_ident);
         updateToken(testtoken,"VYSL");
         //END DELETE
-		expression(testtoken, expAssign); // TODO  NODE
+		expression(node, expAssign); // TODO  NODE
 	
 	}
 	else {
@@ -540,215 +540,37 @@ void pIf(){
  */
 
 	tToken * token;
-	BTSNode * node;
+    getToken();
 
 	//vytvorit instrukce pro condition, if
-	/*Instr *instr = NULL;
- -	instr = instrItemInit(instr);
- -
- -	instr->Id3 = NULL;
- -	instr->Id2 = NULL;
- -	instr->Id1 = NULL;
- -	instr->type = insCond;
- -
- -	instrStackPush(global.iStack,instr);
- -	
- -	instr = instrItemInit(instr);
- -
- -	instr->Id3 = NULL;
- -	instr->Id2 = NULL;
- -	instr->Id1 = NULL;
- -	instr->type = insIf;
- -
- -	instrStackPush(global.iStack,instr);*/
-	
-	//expression(NULL, expCond); 
-	/*//begin
-	instr = instrItemInit(instr);
-	instr->Id3 = NULL;
-	
-	token = getToken();
-	if (token->type != t_bracket_l){
-		throwException(2,0,0);
-	}
-	//prvni clen
-	token = getToken();
-	if (token->type == t_simple_ident || token->type == t_complete_ident){		
-		node = searchForNode(token->data, var, NULL);
-		if (node == NULL) {
-			//promena neni ve strome
-			throwException(3,0,0);
-		}		
-		
-	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
-		//konstanta
-	
-	} else {
-		throwException(2,0,0);
-	}
-	instr->Id1 = node;
-	//druhy clen
-	token = getToken();
-	if (token->type == t_comparasion)		{instr->type =insEqual; }
-	else if (token->type == t_comparasion_ne)	{instr->type =insNotEqual; }
-	else if (token->type == t_greater)		{instr->type =insGreater; }
-	else if (token->type == t_greater_eq)		{instr->type =insGreaterOrEqual; }
-	else if (token->type == t_less)			{instr->type =insLess; }
-	else if (token->type == t_less_eq)		{instr->type =insLessOrEqual; }
-	else {throwException(2,0,0);}
-	
-	//treti clen
-	token = getToken();
-	if (token->type == t_simple_ident || token->type == t_complete_ident){
-		node = searchForNode(token->data, var, NULL);
-		if (node == NULL) {
-			//promena neni ve strome
-			throwException(3,0,0);
-		}		
-		
-	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
-		//konstanta		
-	
-	} else {
-		throwException(2,0,0);
-	}
-	instr->Id2 = node;
-	
-	token = getToken();
-	if (token->type != t_bracket_r){
-		throwException(2,0,0);
-	}
-	instrStackPush(global.iStack,instr);
-	*///end
+	expression(NULL, expCond); //TODO
 
 	pCommands();
 
-	token = getToken();
+	token = getToken();printToken(token);
 	if (token->type != t_kw_else){   // else
 		throwException(2,0,0);
 	}
 	// instrukce endif , else 
-	/*instr = instrItemInit(instr);
- -
- -	instr->Id3 = NULL;
- -	instr->Id2 = NULL;
- -	instr->Id1 = NULL;
- -	instr->type = insIfEnd;
- -
- -	instrStackPush(global.iStack,instr);
- -	
- -	instr = instrItemInit(instr);
- -
- -	instr->Id3 = NULL;
- -	instr->Id2 = NULL;
- -	instr->Id1 = NULL;
- -	instr->type = insElse;
- -
- -	instrStackPush(global.iStack,instr);*/
 
 	// block of code for else
 	pCommands();
 	
 	//instrukce endcond
-	/*instr = instrItemInit(instr);
- -
- -	instr->Id3 = NULL;
- -	instr->Id2 = NULL;
- -	instr->Id1 = NULL;
- -	instr->type = insCondEnd;
- -
- -	instrStackPush(global.iStack,instr);*/
 
 }
 void pWhile(){
 /**
 * while ( <expr> ) { <commands> }
 */
-	tToken * token;
-	BTSNode * node;
-	
+
 	// instrukce while
-	/*Instr *instr = NULL;
- -	instr = instrItemInit(instr);
- -
- -	instr->Id3 = NULL;
- -	instr->Id2 = NULL;
- -	instr->Id1 = NULL;
- -	instr->type = insWhile;
- -
- -	instrStackPush(global.iStack,instr);*/
+	expression(NULL, expCond); //TODO
 	
-	//expression(NULL, expCond); //TODO
-	/*//begin
-	instr = instrItemInit(instr);
-	instr->Id3 = NULL;
-	
-	token = getToken();
-	if (token->type != t_bracket_l){
-		throwException(2,0,0);
-	}
-	//prvni clen
-	token = getToken();
-	if (token->type == t_simple_ident || token->type == t_complete_ident){		
-		node = searchForNode(token->data, var, NULL);
-		if (node == NULL) {
-			//promena neni ve strome
-			throwException(3,0,0);
-		}		
-		
-	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
-		//konstanta
-	
-	} else {
-		throwException(2,0,0);
-	}
-	instr->Id1 = node;
-	//druhy clen
-	token = getToken();
-	if (token->type == t_comparasion)		{instr->type =insEqual; }
-	else if (token->type == t_comparasion_ne)	{instr->type =insNotEqual; }
-	else if (token->type == t_greater)		{instr->type =insGreater; }
-	else if (token->type == t_greater_eq)		{instr->type =insGreaterOrEqual; }
-	else if (token->type == t_less)			{instr->type =insLess; }
-	else if (token->type == t_less_eq)		{instr->type =insLessOrEqual; }
-	else {throwException(2,0,0);}
-	
-	//treti clen
-	token = getToken();
-	if (token->type == t_simple_ident || token->type == t_complete_ident){
-		node = searchForNode(token->data, var, NULL);
-		if (node == NULL) {
-			//promena neni ve strome
-			throwException(3,0,0);
-		}		
-		
-	} else if (token->type == t_int || token->type == t_double || token->type == t_double_e){
-		//konstanta		
-	
-	} else {
-		throwException(2,0,0);
-	}
-	instr->Id2 = node;
-	
-	token = getToken();
-	if (token->type != t_bracket_r){
-		throwException(2,0,0);
-	}
-	instrStackPush(global.iStack,instr);
-	*///end
 
 
 	pCommands();
 	// instrukce endwhile
-	/*
- -	instr = instrItemInit(instr);
- -
- -	instr->Id3 = NULL;
- -	instr->Id2 = NULL;
- -	instr->Id1 = NULL;
- -	instr->type = insEndWhile;
- -
- -	instrStackPush(global.iStack,instr);*/
 }
 
 varType tempToVar(tokenType temp) {

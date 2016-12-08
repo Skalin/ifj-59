@@ -296,8 +296,10 @@ BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
 				return (start->rptr == NULL ? NULL : searchForNode(key, nodeType, start->rptr));
 			}
 				// Pokud mame hledat v levem podstromu
-			else if (strcmp(key, start->key) < 0)
-				return (start->lptr == NULL ? NULL : searchForNode(key, nodeType, start->lptr));
+			else if (strcmp(key, start->key) < 0){
+				return start->lptr == NULL ? NULL : searchForNode(key, nodeType, start->lptr);
+
+            }
 				// V ostatnich pripadech (Chuck norris on STDin?) se jedna o chybu
 			else
 				throwException(99, 0, 0);
@@ -308,7 +310,9 @@ BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
 
 void addNode(BTSNode *newItem, BTSNode *start) {
     if(start != NULL) {
+
 		if (strcmp(newItem->key, start->key) > 0) {
+
 			// Pokud nemame uzel kam vlozit
 			if (start->rptr != NULL) {
 				addNode(newItem, start->rptr);
@@ -400,6 +404,16 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 			newNode->variables = NULL;
 			start = mTree.root;
 			break;
+        case temp:
+			newNode->data.type = variableType;
+			newNode->variables = NULL; // Neni potrebne u promenne
+			if (status) {
+				start = mTree.actClass->variables;
+			} else {
+				start = mTree.actFunction->variables;
+			}
+			//printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
+            break;
     }
 
 	//printf("jsem za switchem\n");
@@ -408,6 +422,7 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
         mTree.root = newNode;
         mTree.actClass = newNode;
+        return newNode;
     } else if (newNode->nodeType == function && mTree.actClass->functions == NULL) { // Pokud ve tride neexistuji funkce
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actClass->functions = newNode;
@@ -462,6 +477,48 @@ BTSNode *findArgument(BTSNode *start, int argNo) {
     } else
         return NULL;
 }
+
+
+void Print_tree2(BTSNode *TempTree, char* sufix, char fromdir)
+/* vykresli sktrukturu binarniho stromu */
+
+{
+     if (TempTree != NULL)
+     {
+	char* suf2 = (char*) malloc(strlen(sufix) + 4);
+	strcpy(suf2, sufix);
+        if (fromdir == 'L')
+	{
+	   suf2 = strcat(suf2, "  |");
+	   printf("%s\n", suf2);
+	}
+	else
+	   suf2 = strcat(suf2, "   ");
+	Print_tree2(TempTree->rptr, suf2, 'R');
+        printf("%s  +-[%c,%s]\n", sufix, TempTree->key, nodePrint(TempTree));
+	strcpy(suf2, sufix);
+        if (fromdir == 'R')
+	   suf2 = strcat(suf2, "  |");
+	else
+	   suf2 = strcat(suf2, "   ");
+	Print_tree2(TempTree->lptr, suf2, 'L');
+	if (fromdir == 'R') printf("%s\n", suf2);
+	free(suf2);
+    }
+}
+
+void Print_tree(BTSNode *TempTree)
+{
+  printf("Struktura binarniho stromu:\n");
+  printf("\n");
+  if (TempTree != NULL)
+     Print_tree2(TempTree, "", 'X');
+  else
+     printf("strom je prazdny\n");
+  printf("\n");
+  printf("=================================================\n");
+}
+
 
 /*
  * POZOR! JE TŘEBA VYUŽÍVAT SString struktury tedy postup pro uložení struktury doporučuji následující
