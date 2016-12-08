@@ -6,6 +6,8 @@ class Main
         int a;
         int b;
         int c;
-        int h = a * b - c;
+        //int h = sd + g*h - f/8;
+        //if(a+b>c){}else{}
+        foo(a+b,c);
     }
 }

@@ -24,33 +24,35 @@
 #define STR_ALLOCATION_SIZE 8  // Udává, kolik bude alokováno na začátku paměti. Pokud načítáme po jednom znaku, dojde k alokaci na násobky tohoto čísla
 
 // TODO zkontrolovat správnost tabulky
-char precTable[15][15] = {
-  //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ;   ID
-    {'<','=','<','<','<','<','<','<','<','<','<','<','<','F','<'}, // (
-    {'F','>','>','>','>','>','>','>','>','>','>','>','>','>','F'}, // )
-    {'<','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // /
-    {'<','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // *
-    {'<','>','<','<','>','>','>','>','>','>','>','>','>','>','<'}, // +
-    {'<','>','<','<','>','>','>','>','>','>','>','>','>','>','<'}, // -
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // ==
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // !=
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // <
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // >
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // <=
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','<'}, // >=
-    {'=','>','>','>','>','>','>','>','>','>','>','>','>','F','<'}, // !
-    {'<','F','<','<','<','<','<','<','<','<','<','<','F','F','<'}, // ;
-    {'F','>','>','>','>','>','>','>','>','>','>','>','F','>','F'}  // ID
+char precTable[16][16] = {
+  //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
+    {'<','=','<','<','<','<','<','<','<','<','<','<','<','=','F','<'}, // (
+    {'F','>','>','>','>','>','>','>','>','>','>','>','>','>','>','F'}, // )
+    {'<','>','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // /
+    {'<','>','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // *
+    {'<','>','<','<','>','>','>','>','>','>','>','>','>','>','>','<'}, // +
+    {'<','>','<','<','>','>','>','>','>','>','>','>','>','>','>','<'}, // -
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // ==
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // !=
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // <
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // >
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // <=
+    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // >=
+    {'=','>','>','>','>','>','>','>','>','>','>','>','>','>','F','<'}, // !
+    {'<','=','<','<','<','<',' ',' ',' ',' ',' ',' ',' ','=','F','<'}, // ,
+    {'<','F','<','<','<','<','<','<','<','<','<','<','F','=','F','<'}, // ;
+    {'F','>','>','>','>','>','>','>','>','>','>','>','F','>','>','F'}  // ID
 };
 
 mainTree mTree;
 int tempNodeCounter = 0;
 int constCounter = 0;
+int argCounter = 0;
 
 //DELETE THIS
 void stackPrint(tStack *stack) {
     for (int i = 1; i <= stack->counter; i++) {
-       // printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
+        printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
     }
     //printf("  Stack counter=%d\n",stack->counter);
 }
@@ -62,6 +64,12 @@ char* nodePrint(BTSNode *node) {
     return node->key;
 }
 //END DELETE
+
+char *addIntToStr(char *str, int integer) {
+    char buffer[12];
+    sprintf(buffer, "arg%d", 5); 
+    return buffer;
+}
 
 bool isIdent(tToken *token) {
     if ((token->type >= t_simple_ident) && (token->type <= t_complete_ident))
@@ -80,13 +88,13 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
     int inTokenNum = inToken->type;
     
     if (isIdent(stackToken) || isConst(stackToken)) {
-        stackTokenNum = 14;
+        stackTokenNum = 15;
     }
     if (isIdent(inToken) || isConst(inToken)) {
-        inTokenNum = 14;
+        inTokenNum = 15;
     }
     //DELETE THIS
-   // printf("getPrecChar: [%2d][%2d] \'%c\'  vstupní token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
+    printf("getPrecChar: [%2d][%2d] \'%c\'  vstupní token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
     //END DELETE
     return precTable[stackTokenNum][inTokenNum];
 }
@@ -104,7 +112,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
         // Pokud je handle větší než 3, vyvoláme syntaktickou chybu
         if (i > 3) throwException(2,0,0);
         handle[i-1] = item;
-     //   printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
+        printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
         stackPop(stack);
     }
     printf("\n");
@@ -179,7 +187,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
         
         
         // DELETE THIS
-       // printf(" \x1B[32m Vytvoření instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
+        printf(" \x1B[32m Vytvoření instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
         // END DELETE
         tempNodeCounter++;
         
@@ -245,7 +253,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @param ukazatel na cílový uzel 
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
-tToken *expression(BTSNode *targetNode, tExpType expType) {
+tToken *expression(BTSNode *targetNode, int isArg) {
    /* printf("\n");
     
     BTSNode *pokusnode = createNewNode("AHOJ",var,var_int,0,1);
@@ -278,23 +286,40 @@ tToken *expression(BTSNode *targetNode, tExpType expType) {
     
     while (TRUE) {
         if (topTerm(stack)->type == t_semicolon) {
+           /* if (isArg) {
+                if (token->type == t_bracket_r) {
+                    printf("---poslední argument\n");
+                    break;
+                }
+                else if (token->type == t_comma) {
+                    printf("---další argument\n");
+                    break;
+                }
+                else if (token->type > t_string) {return
+                    throwException(2,0,0);
+                }
+            }*/
             // Jsme na konci podmínky
-            if ((targetNode == NULL) && (token->type == t_bracket_r)){ 
-                printf("  jsme na konci podminky!!\n");
+            if (!isArg && (targetNode == NULL) && (token->type == t_bracket_r)){ 
+                printf("  jsme na konci podminky nebo funkce!!\n");
                 break;
             }
             // Jsme na konci výrazu
-            else if (token->type == t_semicolon) {
-             //   printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
+            else if ((token->type == t_semicolon) || ((isArg) && ((token->type == t_bracket_r) || token->type == t_comma))){
+                printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
                 instr->Id3 = targetNode;
                 instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,NULL);
                 instr->Id2 = NULL;
                 instr->type = insAssignment;
                 instrStackPush(localIStack,instr);
+                if (isArg){
+                    argCounter++;
+                    printf("vytvořím nový target\n");
+                   //BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+                   // expression(node,1);
+                }
                 break;
             }
-            
-            //TODO Co když je teď načtený token roven ','?
         } 
         // Jedná se o funkci uvnitř výrazu
         else if ((isIdent(topTerm(stack))) && (token->type == t_bracket_l)) {            
@@ -369,28 +394,21 @@ tToken *expression(BTSNode *targetNode, tExpType expType) {
     stackDestroy(stack); 
 }
 
-void functionCall(BTSNode *targetNode) {
+void functionCall(BTSNode *targetNode, BTSNode *functionNode) {
     // TODO když funkce nemá argumenty, id2 instrukce functioncall je NULL
     Instr *instr = instrItemInit();
-    
-    if (targetNode == NULL) {
-        // TODO jedná se o void funkci
-        int out = expression('F',expArg);
-        
-        //DELETE THIS
-        int i = 0;
-        //END DELETE
-        while (out == 0) {
-            //TODO BTSNode *node = createNewNode("arg" + argCounter,arg,var_int,0,1);
-            expression('F',expArg);
-        }
-    }
-    else {
-        //createNewNode("arg" + argCounter,arg,var_int,0,1);
-        expression('F',expArg);
-    }
     instr->Id3 = targetNode;
-    instr->type = insFunctionCall;
+    instr->type = insFunctionCall;       
+   
+    argCounter++;
+    BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+    expression(node,1);
+    /*node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+    expression(node,1);
+    node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+    expression(node,1);*/
+
+    
     //instrStackPush(iStack,instr);
 }
 
