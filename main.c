@@ -66,7 +66,17 @@ int main(int argc, char* argv[]) {
 
 			// Parser
 			pParse();
-
+            
+            /*
+            //DELETE THIS
+                // Vytiskne obsah globálního stacku
+                char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
+                printf("\nObsah globálního iStacku:\n");
+                for (int i = 0; i<=global.iStack->count; i++) {
+                    Instr *instr = instrStackDataAt (global.iStack,i);
+                    printf("  id3=%c id1=%c id2=%c typ=%s\n",instr->Id3,instr->Id1,instr->Id2,instrukce[instr->type]);
+                }
+            //END DELETE*/
 
 			// Interpret
 			semCheck(global.iStack);
@@ -182,17 +192,7 @@ int main(int argc, char* argv[]) {
 			// Parser
 			pParse();
             
-            /*
-            //DELETE THIS
-                // Vytiskne obsah globálního stacku
-                char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
-                printf("\nObsah globálního iStacku:\n");
-                for (int i = 0; i<=global.iStack->count; i++) {
-                    Instr *instr = instrStackDataAt (global.iStack,i);
-                    printf("  id3=%c id1=%c id2=%c typ=%s\n",instr->Id3,instr->Id1,instr->Id2,instrukce[instr->type]);
-                }
-            //END DELETE*/
-
+        
 			// Interpret
 			semCheck(global.iStack);
 			interpretMainCore(global.iStack);
