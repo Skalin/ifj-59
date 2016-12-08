@@ -422,7 +422,6 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
         mTree.root = newNode;
         mTree.actClass = newNode;
-        return newNode;
     } else if (newNode->nodeType == function && mTree.actClass->functions == NULL) { // Pokud ve tride neexistuji funkce
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actClass->functions = newNode;
