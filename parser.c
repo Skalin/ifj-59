@@ -107,7 +107,7 @@ void pClass(){
 	}
 	
 	// vytvorit tridu v tabulce symbolu
-	createNewNode(token->data, class, var_null, 0, 1);	// TODO  status??
+	createNewNode(token->data, class, var_null, 1, 1);	
 
 	token = getToken();
 	//printToken(token);
@@ -303,7 +303,7 @@ void pVar(tToken *token, int dataType){
         fillToken(testtoken, t_simple_ident);
         updateToken(testtoken,"VYSL");
         //END DELETE
-		expression(node, expAssign); // TODO  NODE
+		expression(node, 0); // TODO  NODE
 	
 	}
 	else {
@@ -481,7 +481,7 @@ void pSingleCommand(){
 				
 				//mozna tady musim vytvorit NODE pokud neexistuje
 				
-				expression(token, expArg); //TODO? je exp arg spravne?
+				functionCall(NULL,node); //TODO? je exp arg spravne?
 				
 				token=getToken();
 				if (token->type != t_semicolon){
@@ -543,7 +543,7 @@ void pIf(){
     getToken();
 
 	//vytvorit instrukce pro condition, if
-	expression(NULL, expCond); //TODO
+	expression(NULL, 0); //TODO
 
 	pCommands();
 
@@ -565,7 +565,7 @@ void pWhile(){
 */
 
 	// instrukce while
-	expression(NULL, expCond); //TODO
+	expression(NULL, 0); //TODO
 	
 
 

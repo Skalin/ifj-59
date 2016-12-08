@@ -48,6 +48,7 @@ typedef enum {
 
 	// Oddìlovaèe
 	
+    t_comma,            // ,
 	t_semicolon,        // ;  
 
 	// Identifikátory
@@ -80,7 +81,6 @@ typedef enum {
 
 	// Other
 	t_eof,
-    t_comma,            // ,
 
 	// Keywords
 	t_kw_class,
