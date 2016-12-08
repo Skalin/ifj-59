@@ -55,6 +55,10 @@ int main(int argc, char* argv[]) {
 
 			searchForNode("asdf", var, mTree.root);
 
+            printf("\x1B[35mROOT: %p\n",mTree.root);
+            printf("ROOT->lprt: %p\n",mTree.root->lptr);
+            printf("ROOT->rprt: %p\n\x1B[0m",mTree.root->rptr);
+            
 			printf("dostal jsem se za globalinit");
 			// Otevreni souboru
 			//printf("%s", argv[1]);
@@ -66,16 +70,20 @@ int main(int argc, char* argv[]) {
 			// Parser
 			pParse();
             
-            
+            /*
             //DELETE THIS
                 // Vytiskne obsah globálního stacku
                 char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
                 printf("\nObsah globálního iStacku:\n");
                 for (int i = 0; i<=global.iStack->count; i++) {
                     Instr *instr = instrStackDataAt (global.iStack,i);
-                    printf("  id3=%s id1=%p id2=%p typ=%s\n",nodePrint(instr->Id3),instr->Id1,instr->Id2,instrukce[instr->type]);
+                    printf("  id3=%4s  id1=%4s  id2=%4s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
                 }
             //END DELETE
+            */
+            
+            // TISK STROMU
+            Print_tree(mTree);
 
 			// Interpret
 			semCheck(global.iStack);

@@ -59,7 +59,6 @@ char* nodePrint(BTSNode *node) {
     if (node == NULL)
         return "NULL";
 
-
     return node->key;
 }
 //END DELETE
@@ -87,7 +86,7 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
         inTokenNum = 14;
     }
     //DELETE THIS
-    printf("getPrecChar: [%2d][%2d] \'%c\'  vstupní token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
+   // printf("getPrecChar: [%2d][%2d] \'%c\'  vstupní token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
     //END DELETE
     return precTable[stackTokenNum][inTokenNum];
 }
@@ -105,7 +104,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
         // Pokud je handle větší než 3, vyvoláme syntaktickou chybu
         if (i > 3) throwException(2,0,0);
         handle[i-1] = item;
-        printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
+     //   printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
         stackPop(stack);
     }
     printf("\n");
@@ -131,7 +130,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
         stackPush(stack,handle[0]);
         handle[0] = NULL;
         // DELETE THIS
-        printf("  redukce E->id\n");
+      //  printf("  redukce E->id\n");
         // END DELETE
     }
     // Pravidlo E -> (E)
@@ -147,7 +146,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
     // Pokud byl výraz zredukován již v chnToExpr, neděláme nic
     if (handle[0] == NULL) {
         //DELETE THIS
-            printf("  nedelame nic\n");
+         //   printf("  nedelame nic\n");
         //END DELETE
         return;
     }
@@ -180,7 +179,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
         
         
         // DELETE THIS
-        printf(" \x1B[32m Vytvoření instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
+       // printf(" \x1B[32m Vytvoření instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
         // END DELETE
         tempNodeCounter++;
         
@@ -286,7 +285,7 @@ tToken *expression(BTSNode *targetNode, tExpType expType) {
             }
             // Jsme na konci výrazu
             else if (token->type == t_semicolon) {
-                printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
+             //   printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
                 instr->Id3 = targetNode;
                 instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,NULL);
                 instr->Id2 = NULL;
