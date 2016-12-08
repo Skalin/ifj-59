@@ -400,6 +400,16 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 			newNode->variables = NULL;
 			start = mTree.root;
 			break;
+        case temp:
+			newNode->data.type = variableType;
+			newNode->variables = NULL; // Neni potrebne u promenne
+			if (status) {
+				start = mTree.actClass->variables;
+			} else {
+				start = mTree.actFunction->variables;
+			}
+			//printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
+            break;
     }
 
 	//printf("jsem za switchem\n");

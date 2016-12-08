@@ -298,12 +298,8 @@ void pVar(tToken *token, int dataType){
 	}
 
 	if (token->type == t_assignment) {
-        // DELETE THIS
-        tToken *testtoken = initToken(); 
-        fillToken(testtoken, t_simple_ident);
-        updateToken(testtoken,"VYSL");
-        //END DELETE
-		expression(testtoken, expAssign); // TODO  NODE
+
+		expression(node, expAssign); // TODO  NODE
 	
 	}
 	else {
