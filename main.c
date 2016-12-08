@@ -1,5 +1,4 @@
 #include <string.h>
-#include <malloc.h>
 #include "error_handler.h"
 #include "garbage_collector.h"
 #include "parser.h"
@@ -78,7 +77,7 @@ int main(int argc, char* argv[]) {
                 char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
                 printf("\nObsah globálního iStacku:\n");
                 for (int i = 0; i<=global.iStack->count; i++) {
-                    Instr *instr = instrStackDataAt (global.iStack,i);
+                    Instr *instr = instrStackDataAt(global.iStack,i);
                     printf("  id3=%4s  id1=%4s  id2=%4s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
                 }
             //END DELETE
