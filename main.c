@@ -39,10 +39,12 @@ int main(int argc, char* argv[]) {
 			printf("Jsem pred initem\n");
 			initTree(&mTree);
 
-			mTree.root = malloc(sizeof(BTSNode));
-			mTree.root = NULL;
-			mTree.actFunction = malloc(sizeof(BTSNode));
-			mTree.actClass = malloc(sizeof(BTSNode));
+			mTree.root = plusMalloc(sizeof(BTSNode));
+			initNode(mTree.root);
+			mTree.actFunction = plusMalloc(sizeof(BTSNode));
+			initNode(mTree.actFunction);
+			mTree.actClass = plusMalloc(sizeof(BTSNode));
+			initNode(mTree.actClass);
 	//kde to pada?
 			createNewNode("main", class, var_null, 1, 0);
 			printf("Jsem po initu\n");
