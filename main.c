@@ -3,6 +3,7 @@
 #include "garbage_collector.h"
 #include "parser.h"
 #include "interpret.h"
+#include "instrstack.h"
 
 mainTree mTree;
 
@@ -44,23 +45,8 @@ int main(int argc, char* argv[]) {
 			mTree.actFunction = NULL;
 			mTree.actClass = plusMalloc(sizeof(BTSNode));
 			mTree.actClass = NULL;
-	//kde to pada?
-			createNewNode("main", class, var_null, 1, 0);
-			printf("Jsem po prvni node\n");
-			createNewNode("blbost", var, var_string, 1, 0);
-			printf("Jsem po druhe node\n");
-			createNewNode("blbost2", var, var_int, 1, 1);
-			printf("Jsem po treti node\n");
-			createNewNode("blbost3", var, var_int, 1, 1);
-			createNewNode("asdf", var, var_double, 1, 1);
-
-			searchForNode("asdf", var, mTree.root);
-
-            printf("\x1B[35mROOT: %p\n",mTree.root);
-            printf("ROOT->lprt: %p\n",mTree.root->lptr);
-            printf("ROOT->rprt: %p\n\x1B[0m",mTree.root->rptr);
-
-			printf("dostal jsem se za globalinit");
+			// globalni init
+			globalInit();
 			// Otevreni souboru
 			//printf("%s", argv[1]);
 			global.file = fopen(global.fileName = argv[1], "r");
