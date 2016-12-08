@@ -247,13 +247,13 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
 tToken *expression(BTSNode *targetNode, tExpType expType) {
-    printf("\n");
+   /* printf("\n");
     
     BTSNode *pokusnode = createNewNode("AHOJ",var,var_int,0,1);
     pokusnode =searchForNode("AHOJ", var, NULL);
     printf("node=|%s|\n",nodePrint(pokusnode));
     
-    printf("\n-----------------------------------\n");
+    printf("\n-----------------------------------\n");*/
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
     instrStack *localIStack = global.iStack;
