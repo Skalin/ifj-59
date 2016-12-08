@@ -1,5 +1,4 @@
 #include <string.h>
-#include <malloc.h>
 #include "error_handler.h"
 #include "garbage_collector.h"
 #include "parser.h"
@@ -47,11 +46,11 @@ int main(int argc, char* argv[]) {
 			mTree.actClass = NULL;
 	//kde to pada?
 			createNewNode("main", class, var_null, 1, 0);
-			printf("Jsem po initu\n");
-			createNewNode("blbost", var, var_string, 1, 0);
 			printf("Jsem po prvni node\n");
-			createNewNode("blbost2", var, var_int, 1, 1);
+			createNewNode("blbost", var, var_string, 1, 0);
 			printf("Jsem po druhe node\n");
+			createNewNode("blbost2", var, var_int, 1, 1);
+			printf("Jsem po treti node\n");
 			createNewNode("blbost3", var, var_int, 1, 1);
 			createNewNode("asdf", var, var_double, 1, 1);
 

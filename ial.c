@@ -369,7 +369,7 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 // a odkud tady vstupuje tem mtree
     // Inicializace noveho uzlu
 	BTSNode *newNode;
-    newNode = malloc(sizeof(BTSNode));
+    newNode = plusMalloc(sizeof(BTSNode));
 	initNode(newNode);
     newNode->key = id;
     newNode->nodeType = nodeType;
@@ -378,8 +378,8 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 	//printf("jsem po initu zakladnich hodnot\n");
 
 	// Urceni zacatku podle typu uzlu
-	BTSNode *start = malloc(sizeof(BTSNode)); // Kde mas alokaci mista pro ten start? taky jsem zkousel, spadlo, sraka nealokuje
-	initNode(start);
+	BTSNode *start = plusMalloc(sizeof(BTSNode)); // Kde mas alokaci mista pro ten start? taky jsem zkousel, spadlo, sraka nealokuje
+	start = NULL;
 
     switch(newNode->nodeType) {
 		case var:
@@ -430,7 +430,7 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
     } else if (newNode->nodeType == var && mTree.actClass->variables == NULL && status == 1) { // Pokud ve tride neexistuji zadne staticke promenne
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actClass->variables = newNode;
-    } else if (newNode->nodeType == var && mTree.actFunction->variables == NULL && mTree.actFunction != NULL) { // Pokud ve funkci neexistuji zadne promenne
+    } else if (newNode->nodeType == var && mTree.actFunction->variables == NULL && mTree.actFunction != NULL && !status) { // Pokud ve funkci neexistuji zadne promenne
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actFunction->variables = newNode;
 	} else { // Jinak se klasicky prida uzel
