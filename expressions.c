@@ -50,7 +50,7 @@ int constCounter = 0;
 //DELETE THIS
 void stackPrint(tStack *stack) {
     for (int i = 1; i <= stack->counter; i++) {
-        printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
+       // printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
     }
     //printf("  Stack counter=%d\n",stack->counter);
 }
@@ -167,21 +167,20 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
     // Jedná se o aritmetickou nebo porovnávací instrukci
     if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
 
-        instr->Id1 = handle[2]->dataIt->data[0];//TODO searchForNode(handle[2]->dataIt->data,var,NULL);
-        instr->Id2 = handle[0]->dataIt->data[0];//TODO searchForNode(handle[0]->dataIt->data,var,NULL);
+        instr->Id1 = searchForNode(handle[2]->dataIt->data,var,NULL);
+        instr->Id2 = searchForNode(handle[0]->dataIt->data,var,NULL);
         
         
         // TODO vytvořit tempnode, jeho pointer přiřadit do id3 a pushnout jeho název na stack
-        // Id3 = createNewNode("temp" + tempNodeCounter,tempVar,var_int,0,1);
-        tToken *token = initToken();
-        updateToken(token,"0123456789"+tempNodeCounter); 
+        /*instr->Id3 = createNewNode("temp",temp,var_int,0,1);
+        tToken *token = initToken();/*
+        updateToken(token,tempNodeCounter); 
         tStackIt *item = itemInit(token);
         item->typeIt = EXPR;
-        stackPush(stack,item);
-        instr->Id3 = token->data[0];
+        stackPush(stack,item);*/
         
         // DELETE THIS
-        printf(" \x1B[32m Vytvoření instrukce: \x1B[0mTEMP%d = %c operace %c\n",tempNodeCounter,instr->Id1,instr->Id2);
+        //printf(" \x1B[32m Vytvoření instrukce: \x1B[0mTEMP%d = %c operace %c\n",tempNodeCounter,instr->Id1,instr->Id2);
         // END DELETE
         tempNodeCounter++;
         

@@ -169,6 +169,7 @@ typedef enum{
 	var,
 	function,
 	class,
+    temp
 } NodeType;
 
 //Vycet moznych typu (pouze u proměnných a funkcí). U proměnných je to jejich typ, u funkcí značí jejich návratový typ
