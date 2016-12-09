@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
             printf("root->rptr%p\n",mTree.root->rptr);
     
 
-			/*
+			
 			// Parser
 			pParse();
             
@@ -83,7 +83,7 @@ int main(int argc, char* argv[]) {
                     printf("  id3=%4s  id1=%4s  id2=%4s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
                 }
             //END DELETE
-*/
+
             
             // TISK STROMU
             Print_tree(mTree);

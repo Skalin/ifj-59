@@ -6,8 +6,8 @@ class Main
         int a;
         int b;
         int c;
-        int h = a + b;
-        //if(a+b>c){}else{}
-        //foo(a+b,c);
+        //int h = a + b*c;
+        if(a+b>c){}else{}
+        foo(a+b,c,a+b*c);
     }
 }
