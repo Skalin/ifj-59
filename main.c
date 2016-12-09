@@ -22,6 +22,7 @@ int main(int argc, char* argv[]) {
 		if (global.file == NULL) {
 			throwException(99, 0, 0);
 		}
+		printf("%s", argv[1]);
 
 		printf("Jsem pred initem stromu\n");
 		initTree(&mTree);
