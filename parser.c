@@ -99,7 +99,7 @@ void pClass(){
 	}
 	// zkontrolovat jestli identifikator tridy uz neexistuje
 	BTSNode * node;
-	node = searchForNode(token->data, class, NULL); //TODO start??
+	node = searchForNode(token->data, class, NULL); 
 	
 	if (node != NULL){
 		// pokus o definici tridy se stejnym jmenem
@@ -239,7 +239,7 @@ void pFunction(){
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	BTSNode * node;
-	node = searchForNode(tempData, function, mTree.actClass); //TODO start??
+	node = searchForNode(tempData, function, mTree.actClass->functions); //TODO start??
 	
 	
 	if (node != NULL){
