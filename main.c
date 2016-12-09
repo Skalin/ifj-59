@@ -51,6 +51,7 @@ int main(int argc, char* argv[]) {
             printf("root->lprt%p\n",mTree.root->lptr);
             printf("root->rptr%p\n",mTree.root->rptr);
     
+		printf("Jsem pred parserem\n");
 
 			
 			// Parser
