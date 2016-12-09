@@ -28,14 +28,14 @@ int main(int argc, char* argv[]) {
 				throwException(99, 0, 0);
 			}
 		} else {
-			globalInit();
 			// nic
 		}
 
 		//printf("dostal jsem se az k podmince mezi testem a normalnim prekladacem");
 
 		if (global.DEBUG == 0) { // normalni funkce programu
-
+			
+			globalInit();
 			printf("Jsem pred initem\n");
 			initTree(&mTree);
 
