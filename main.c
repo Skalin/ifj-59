@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
 
 		printf("Jsem pred initem stromu\n");
 		initTree(&mTree);
+		printf("Jsem za initem stromu\n");
 
 		mTree.root = plusMalloc(sizeof(BTSNode));
 		mTree.root = NULL;
@@ -35,6 +36,7 @@ int main(int argc, char* argv[]) {
 		mTree.actClass = NULL;
 		// globalni init
 
+		printf("Jsem za alokaci mTree prvku stromu\n");
 		printf("\n");
 
             BTSNode *pokusnode = createNewNode("trida",class,var_null,1,1);
