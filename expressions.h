@@ -47,6 +47,7 @@ tToken *expression(BTSNode *targetNode, int isArg);
 void functionCall(BTSNode *targetNode, BTSNode *functionNode);
 void completeInstr();
 int strEqual(char str1[], char str2[]);
+char* nodePrint(BTSNode *node);
 
 
 

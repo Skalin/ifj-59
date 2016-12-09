@@ -254,7 +254,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
 tToken *expression(BTSNode *targetNode, int isArg) {
-   /* printf("\n");
+    /*printf("\n");
     
     BTSNode *pokusnode = createNewNode("AHOJ",var,var_int,0,1);
     pokusnode =searchForNode("AHOJ", var, NULL);
@@ -313,6 +313,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
                 instr->type = insAssignment;
                 instrStackPush(localIStack,instr);
                 if (isArg){
+                    BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
                     argCounter++;
                     printf("vytvořím nový target\n");
                    //BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
@@ -400,8 +401,7 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode) {
     instr->Id3 = targetNode;
     instr->type = insFunctionCall;       
    
-    argCounter++;
-    BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+    BTSNode *node = createNewNode("volani" + argCounter,temp,var_null,0,1);
     expression(node,1);
     /*node = createNewNode("argument" + argCounter,temp,var_null,0,1);
     expression(node,1);

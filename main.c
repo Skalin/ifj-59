@@ -54,6 +54,22 @@ int main(int argc, char* argv[]) {
 				throwException(99, 0, 0);
 			}
 
+			printf("\n");
+    
+            BTSNode *pokusnode = createNewNode("trida",class,var_null,1,1);
+            pokusnode = createNewNode("funkce",function,var_int,0,1);
+            pokusnode = createNewNode("promena",var,var_int,0,1);
+            pokusnode =searchForNode("trida", class, NULL);
+            
+            
+            printf("node=|%s|\n",nodePrint(pokusnode));
+            
+            printf("root %p\n",mTree.root);
+            printf("root->lprt%p\n",mTree.root->lptr);
+            printf("root->rptr%p\n",mTree.root->rptr);
+    
+
+			/*
 			// Parser
 			pParse();
             
@@ -67,7 +83,7 @@ int main(int argc, char* argv[]) {
                     printf("  id3=%4s  id1=%4s  id2=%4s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
                 }
             //END DELETE
-
+*/
             
             // TISK STROMU
             Print_tree(mTree);
