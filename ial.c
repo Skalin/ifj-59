@@ -438,7 +438,7 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 	printf("uzel pridame vzdy\n");
 	addNode(newNode, start);
 
-	//printf("Neskocil jsem do funkce, koncim na sigsegv\n");
+	printf("Jsem za uzlem\n");
 	return newNode;
 }
 
