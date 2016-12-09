@@ -239,7 +239,7 @@ void pFunction(){
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	BTSNode * node;
-	node = searchForNode(tempData, function, NULL); //TODO start??
+	node = searchForNode(tempData, function, mTree.actClass); //TODO start??
 	
 	
 	if (node != NULL){
@@ -277,8 +277,9 @@ void pVar(tToken *token, int dataType){
 	//musime vytvorit uzel
 	// kontrolovat jestli uz neexistuje
 	BTSNode * node;
-	node = searchForNode(tempData, var, NULL); //TODO start??
-	
+	node = searchForNode(tempData, var, mTree.actFunction);
+    createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);
+	/*
 	if (dataType == 1) {
 		//inicializace promene, uzel nemuze existovat, vytvorime novy
 		if (node != NULL){
@@ -292,7 +293,7 @@ void pVar(tToken *token, int dataType){
 			throwException(3,0,0);
 		}
 		
-	}
+	}*/
 
 	
 
@@ -480,11 +481,14 @@ void pSingleCommand(){
 				// volani funkce
 				//vytvorit uzel nebo najit
 				BTSNode * node;
-				node = searchForNode(tempData, function, NULL); //TODO start??
+				node = searchForNode(tempData, function, mTree.actClass); //TODO start??
+                if (node == NULL){
+                    throwException(3,0,0);
+                }
 				
 				//mozna tady musim vytvorit NODE pokud neexistuje
 				
-				functionCall(NULL,node); //TODO? je exp arg spravne?
+				functionCall(NULL,node);
 				
 				token=getToken();
 				if (token->type != t_semicolon){
