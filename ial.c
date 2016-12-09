@@ -429,11 +429,12 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
     } else if (newNode->nodeType == var && mTree.actClass->variables == NULL && status == 1) { // Pokud ve tride neexistuji zadne staticke promenne
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actClass->variables = newNode;
-    } else if (newNode->nodeType == var && mTree.actFunction->variables == NULL && mTree.actFunction != NULL && !status) { // Pokud ve funkci neexistuji zadne promenne
+    } else if (newNode->nodeType == var && mTree.actFunction != NULL && mTree.actFunction->variables == NULL && !status) { // Pokud ve funkci neexistuji zadne promenne
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actFunction->variables = newNode;
 	} else { // Jinak se klasicky prida uzel
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
+	addNode(newNode, start);
 	}
 	printf("uzel pridame vzdy\n");
 	addNode(newNode, start);
