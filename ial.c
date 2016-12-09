@@ -348,7 +348,7 @@ void addNode(BTSNode *newItem, BTSNode *start) {
 }
 
 void initNode(BTSNode *node) {
-	node->key = 0;
+	node->key = NULL;
 	node->nodeType = var;
 	node->argNo = 0;
 	node->data.value.intValue = 0;
@@ -434,8 +434,9 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 		mTree.actFunction->variables = newNode;
 	} else { // Jinak se klasicky prida uzel
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
-		addNode(newNode, start);
 	}
+	//uzel pridame vzdy
+	addNode(newNode, start);
 
 	//printf("Neskocil jsem do funkce, koncim na sigsegv\n");
 	return newNode;
