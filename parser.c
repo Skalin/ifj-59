@@ -181,6 +181,9 @@ void pClassBody(){
 				pFunction();
 			} else {
 				
+				if (tempType == t_kw_void){
+					throwException(2,0,0);
+				}
 				pVar(token, 1);
 			}
 
