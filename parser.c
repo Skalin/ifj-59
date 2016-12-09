@@ -30,6 +30,7 @@ char *tempData;
 int isInMain = FALSE;
 //nabyva true pri parsovnani metody run
 int isInRun = FALSE;
+int isInFunc = 0;
 
 // TODO TODO TODO naplneni help structure vsude kde je potreba
 // kontrola semanticke chyby 8, natavit na 1 pri inicializaci rpomene
@@ -235,7 +236,7 @@ void pFunction(){
 	// funkci to zavola po obdrzeni <static> <dataType> (  ---- nasleduji parametry
 	// hned volame funkci na zpracovani parametru
 
-	
+	isInFunc = 1;
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	BTSNode * node;
@@ -256,6 +257,7 @@ void pFunction(){
 	pCommands(); // parse tela funkce
 	//vystupujeme z funkce
 	isInRun = FALSE;
+	isInFunc = 0;
 
 }
 void pVar(tToken *token, int dataType){
@@ -277,23 +279,28 @@ void pVar(tToken *token, int dataType){
 	//musime vytvorit uzel
 	// kontrolovat jestli uz neexistuje
 	BTSNode * node;
-	node = searchForNode(tempData, var, mTree.actFunction);
-    createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);
-	/*
+	
 	if (dataType == 1) {
 		//inicializace promene, uzel nemuze existovat, vytvorime novy
+		if (isInFunc == 1)
+			node = searchForNode(tempData, var, mTree.actFunction->variables);
+		else
+			node = searchForNode(tempData, var, mTree.actClass->variables);
+		
 		if (node != NULL){
 			throwException(3,0,0);
 		}
-		createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);  // TODO status??
-		node = searchForNode(tempData, var, NULL);
+		node = createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);
+		
 	} else {
 		//prirazeni, uzel musi existovat
+		node = searchForNode(tempData, var, mTree.actFunction->variables); //TODO zatim jen lokalni
+		
 		if (node == NULL){
 			throwException(3,0,0);
 		}
 		
-	}*/
+	}
 
 	
 
@@ -482,9 +489,9 @@ void pSingleCommand(){
 				//vytvorit uzel nebo najit
 				BTSNode * node;
 				node = searchForNode(tempData, function, mTree.actClass); //TODO start??
-                if (node == NULL){
-                    throwException(3,0,0);
-                }
+              			 if (node == NULL){
+                 		   throwException(3,0,0);
+             			  }
 				
 				//mozna tady musim vytvorit NODE pokud neexistuje
 				
@@ -547,14 +554,14 @@ void pIf(){
  */
 
 	tToken * token;
-    getToken();
+        getToken();
 
 	//vytvorit instrukce pro condition, if
 	expression(NULL, 0); //TODO
 
 	pCommands();
 
-	token = getToken();printToken(token);
+	token = getToken();
 	if (token->type != t_kw_else){   // else
 		throwException(2,0,0);
 	}
