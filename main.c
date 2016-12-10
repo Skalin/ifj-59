@@ -17,16 +17,12 @@ int main(int argc, char* argv[]) {
 
 
 		// Otevreni souboru
-		//printf("%s", argv[1]);
-		/*global.file = fopen(global.fileName = argv[1], "r");
+		global.file = fopen(global.fileName = argv[1], "r");
 		if (global.file == NULL) {
 			throwException(99, 0, 0);
 		}
-		printf("%s", argv[1]);*/
 
-		printf("Jsem pred initem stromu\n");
 		initTree(&mTree);
-		printf("Jsem za initem stromu\n");
 
 		mTree.root = plusMalloc(sizeof(BTSNode));
 		mTree.root = NULL;
@@ -36,34 +32,11 @@ int main(int argc, char* argv[]) {
 		mTree.actClass = NULL;
 		// globalni init
 
-
-        BTSNode *pokusnode = createNewNode("trida",class,var_null,1,1);
-        BTSNode *pokusnode2 = createNewNode("promena",var,var_int,1,1);
-        BTSNode *pokusnode6 = createNewNode("funkce",function,var_int,1,1);
-        BTSNode *pokusnode7 = createNewNode("promenafunkce1",var,var_int,0,1);
-        BTSNode *pokusnode8 = createNewNode("promenafunkce2",var,var_int,0,1);
-        BTSNode *pokusnode9 = createNewNode("promenafunkce3",var,var_int,0,1);
-        BTSNode *pokusnode10 = createNewNode("promenafunkce4",var,var_int,0,1);
-        BTSNode *pokusnode11 = createNewNode("promenafunkce5",var,var_int,0,1);
-        BTSNode *pokusnode4 = createNewNode("trida2",class,var_null,1,1);
-        BTSNode *pokusnode3 = createNewNode("promena2",var,var_int,1,1);
-        pokusnode =searchForNode("promennafunkce5", var, mTree.actFunction->variables);
-            
-            
-            //printf("node=|%s|\n",nodePrint(pokusnode));
-            
-            printf("root %s\n",mTree.root->key);
-        printf("root->rptr%s\n",mTree.root->rptr->key);
-            printf("root->actClass %s\n",mTree.actClass->key);
-    
-		printf("Jsem pred parserem\n");
-
-			
-			// Parser
-			pParse();
+        // Parser
+        pParse();
             
 
-            //DELETE THIS
+            /*DELETE THIS
                 // Vytiskne obsah globálního stacku
                 char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv"," insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
                 printf("\nObsah globálního iStacku:\n");
@@ -71,16 +44,11 @@ int main(int argc, char* argv[]) {
                     Instr *instr = instrStackDataAt(global.iStack,i);
                     //printf("  id3=%4s  id1=%4s  id2=%4s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
                 }
-            //END DELETE
-
-            
-            // TISK STROMU
-            //Print_tree(mTree);
+            */
 
 			// Interpret
 			semCheck(global.iStack);
 			interpretMainCore(global.iStack);
-
 
 			// Uvolneni pameti a ukonceni programu
 			finalFree();
