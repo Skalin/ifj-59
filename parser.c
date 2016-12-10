@@ -584,7 +584,7 @@ void pIf(){
 		throwException(2,0,0);
 	}
 	// instrukce endif , else 
--	/*instr = instrItemInit(instr);
+	/*instr = instrItemInit(instr);
 
  	instr->Id3 = NULL;
  	instr->Id2 = NULL;
