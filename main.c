@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
             //DELETE THIS
                 // Vytiskne obsah globálního stacku
                 char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv","insPlusTmp","insMinusTmp","insMuxTmp","insDivTmp","insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
-                printf("\nObsah globálního iStacku:\n");
+                printf("\nObsah globalniho iStacku:\n");
                 for (int i = 0; i<=global.iStack->count; i++) {
                     Instr *instr = instrStackDataAt(global.iStack,i);
                     printf("  id3=%8s  id1=%8s  id2=%8s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);

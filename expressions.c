@@ -96,7 +96,7 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
 		inTokenNum = 15;
 	}
 	//DELETE THIS
-	printf("getPrecChar: [%2d][%2d] \'%c\'  vstupní token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
+	printf("getPrecChar: [%2d][%2d] \'%c\'  vstupni token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
 	//END DELETE
 	return precTable[stackTokenNum][inTokenNum];
 }
