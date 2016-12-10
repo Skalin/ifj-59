@@ -254,7 +254,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
 tToken *expression(BTSNode *targetNode, int isArg) {
-   /* printf("\n");
+    /*printf("\n");
     
     BTSNode *pokusnode = createNewNode("AHOJ",var,var_int,0,1);
     pokusnode =searchForNode("AHOJ", var, NULL);
@@ -264,7 +264,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
     instrStack *localIStack = global.iStack;
-    if ((mTree.actFunction != NULL) || (strcmp(mTree.actFunction->key, "run") != 0)) {
+    if ((mTree.actFunction != NULL) && (strcmp(mTree.actFunction->key, "run") != 0)) {
 		instrStackCopy(localIStack, mTree.actFunction->iStack); 
     }
     
@@ -312,11 +312,12 @@ tToken *expression(BTSNode *targetNode, int isArg) {
                 instr->Id2 = NULL;
                 instr->type = insAssignment;
                 instrStackPush(localIStack,instr);
-                if (isArg){
+                // Pokud zpracováváme argument a není poslední, tak zpracováváme dál
+                if ((isArg) && (token->type == t_comma)) {
+                    BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+                    // TODO targetNode->pointerNaDalsiArgument = node;
                     argCounter++;
-                    printf("vytvořím nový target\n");
-                   //BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
-                   // expression(node,1);
+                    expression(node,1);
                 }
                 break;
             }
@@ -398,10 +399,10 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode) {
     // TODO když funkce nemá argumenty, id2 instrukce functioncall je NULL
     Instr *instr = instrItemInit();
     instr->Id3 = targetNode;
+    instr->Id2 = functionCall;
     instr->type = insFunctionCall;       
-   
-    argCounter++;
-    BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+    
+    BTSNode *node = createNewNode("volani" + argCounter,temp,var_null,0,1);
     expression(node,1);
     /*node = createNewNode("argument" + argCounter,temp,var_null,0,1);
     expression(node,1);

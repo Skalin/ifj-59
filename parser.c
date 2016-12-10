@@ -30,6 +30,7 @@ char *tempData;
 int isInMain = FALSE;
 //nabyva true pri parsovnani metody run
 int isInRun = FALSE;
+int isInFunc = 0;
 
 // TODO TODO TODO naplneni help structure vsude kde je potreba
 // kontrola semanticke chyby 8, natavit na 1 pri inicializaci rpomene
@@ -99,7 +100,7 @@ void pClass(){
 	}
 	// zkontrolovat jestli identifikator tridy uz neexistuje
 	BTSNode * node;
-	node = searchForNode(token->data, class, NULL); //TODO start??
+	node = searchForNode(token->data, class, NULL); 
 	
 	if (node != NULL){
 		// pokus o definici tridy se stejnym jmenem
@@ -181,6 +182,9 @@ void pClassBody(){
 				pFunction();
 			} else {
 				
+				if (tempType == t_kw_void){
+					throwException(2,0,0);
+				}
 				pVar(token, 1);
 			}
 
@@ -232,11 +236,11 @@ void pFunction(){
 	// funkci to zavola po obdrzeni <static> <dataType> (  ---- nasleduji parametry
 	// hned volame funkci na zpracovani parametru
 
-	
+	isInFunc = 1;
 
 	//kontorla jestli uz ta funkce neexistuje nebo jestli to neni vestavena fce
 	BTSNode * node;
-	node = searchForNode(tempData, function, NULL); //TODO start??
+	node = searchForNode(tempData, function, mTree.actClass->functions); //TODO start??
 	
 	
 	if (node != NULL){
@@ -253,6 +257,7 @@ void pFunction(){
 	pCommands(); // parse tela funkce
 	//vystupujeme z funkce
 	isInRun = FALSE;
+	isInFunc = 0;
 
 }
 void pVar(tToken *token, int dataType){
@@ -274,17 +279,23 @@ void pVar(tToken *token, int dataType){
 	//musime vytvorit uzel
 	// kontrolovat jestli uz neexistuje
 	BTSNode * node;
-	node = searchForNode(tempData, var, NULL); //TODO start??
 	
 	if (dataType == 1) {
 		//inicializace promene, uzel nemuze existovat, vytvorime novy
+		if (isInFunc == 1)
+			node = searchForNode(tempData, var, mTree.actFunction->variables);
+		else
+			node = searchForNode(tempData, var, mTree.actClass->variables);
+		
 		if (node != NULL){
 			throwException(3,0,0);
 		}
-		createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);  // TODO status??
-		node = searchForNode(tempData, var, NULL);
+		node = createNewNode(tempData, var, tempToVar(tempType), tempStatic, 1);
+		
 	} else {
 		//prirazeni, uzel musi existovat
+		node = searchForNode(tempData, var, mTree.actFunction->variables); //TODO zatim jen lokalni
+		
 		if (node == NULL){
 			throwException(3,0,0);
 		}
@@ -477,11 +488,14 @@ void pSingleCommand(){
 				// volani funkce
 				//vytvorit uzel nebo najit
 				BTSNode * node;
-				node = searchForNode(tempData, function, NULL); //TODO start??
+				node = searchForNode(tempData, function, mTree.actClass); //TODO start??
+              			 if (node == NULL){
+                 		   throwException(3,0,0);
+             			  }
 				
 				//mozna tady musim vytvorit NODE pokud neexistuje
 				
-				functionCall(NULL,node); //TODO? je exp arg spravne?
+				functionCall(NULL,node);
 				
 				token=getToken();
 				if (token->type != t_semicolon){
@@ -540,23 +554,66 @@ void pIf(){
  */
 
 	tToken * token;
-    getToken();
+        getToken();
 
 	//vytvorit instrukce pro condition, if
+ 	/*Instr *instr = NULL;
+ 	instr = instrItemInit(instr);
+ 
+ 	instr->Id3 = NULL;
+ 	instr->Id2 = NULL;
+ 	instr->Id1 = NULL;
+ 	instr->type = insCond;
+ 
+ 	instrStackPush(global.iStack,instr);
+ 	
+ 	instr = instrItemInit(instr);
+ 
+ 	instr->Id3 = NULL;
+ 	instr->Id2 = NULL;
+ 	instr->Id1 = NULL;
+ 	instr->type = insIf;
+ 
+ 	instrStackPush(global.iStack,instr);*/
 	expression(NULL, 0); //TODO
 
 	pCommands();
 
-	token = getToken();printToken(token);
+	token = getToken();
 	if (token->type != t_kw_else){   // else
 		throwException(2,0,0);
 	}
 	// instrukce endif , else 
+-	/*instr = instrItemInit(instr);
+
+ 	instr->Id3 = NULL;
+ 	instr->Id2 = NULL;
+ 	instr->Id1 = NULL;
+ 	instr->type = insIfEnd;
+ 
+ 	instrStackPush(global.iStack,instr);
+ 	
+ 	instr = instrItemInit(instr);
+ 
+ 	instr->Id3 = NULL;
+ 	instr->Id2 = NULL;
+ 	instr->Id1 = NULL;
+ 	instr->type = insElse;
+ 
+ 	instrStackPush(global.iStack,instr);*/
 
 	// block of code for else
 	pCommands();
 	
 	//instrukce endcond
+ 	/*instr = instrItemInit(instr);
+ 
+ 	instr->Id3 = NULL;
+ 	instr->Id2 = NULL;
+ 	instr->Id1 = NULL;
+ 	instr->type = insCondEnd;
+ 
+ 	instrStackPush(global.iStack,instr);*/
 
 }
 void pWhile(){
@@ -565,12 +622,30 @@ void pWhile(){
 */
 
 	// instrukce while
+ 	/*Instr *instr = NULL;
+ 	instr = instrItemInit(instr);
+ 
+ 	instr->Id3 = NULL;
+ 	instr->Id2 = NULL;
+ 	instr->Id1 = NULL;
+ 	instr->type = insWhile;
+ 
+ 	instrStackPush(global.iStack,instr);*/
 	expression(NULL, 0); //TODO
 	
 
 
 	pCommands();
 	// instrukce endwhile
+ 	/*
+ 	instr = instrItemInit(instr);
+ 
+ 	instr->Id3 = NULL;
+ 	instr->Id2 = NULL;
+ 	instr->Id1 = NULL;
+ 	instr->type = insEndWhile;
+ 
+ 	instrStackPush(global.iStack,instr);*/
 }
 
 varType tempToVar(tokenType temp) {
