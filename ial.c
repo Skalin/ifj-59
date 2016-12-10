@@ -423,6 +423,9 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actClass->functions = newNode;
 		mTree.actFunction = newNode;
+		instrStack stc;
+		instrStackInit(&stc);
+		mTree.actFunction->iStack = &stc;
     } else if (newNode->nodeType == var && mTree.actClass->variables == NULL && status == 1) { // Pokud ve tride neexistuji zadne staticke promenne
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actClass->variables = newNode;
@@ -430,10 +433,10 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
 		mTree.actFunction->variables = newNode;
     } else if (newNode->nodeType == class){
-	        mTree.actClass = newNode;
+		mTree.actClass = newNode;
 	} else { // Jinak se klasicky prida uzel
 		//printf("Nepridal jsem nodu, koncim na sigsegv\n");
-	addNode(newNode, start);
+		addNode(newNode, start);
 	}
 
 	printf("Jsem za uzlem\n");
