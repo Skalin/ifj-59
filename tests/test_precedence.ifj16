@@ -3,11 +3,12 @@ class Main
 {
     static void run ()
     {
-        int a;
-        int b;
-        int c;
+        int x;
+        int y;
+        int z;
+        int q = x + y * z;
         //int h = a + b*c;
-        if(a+b>c){}else{}
-        foo(a+b,c,a+b*c);
+        //if(a+b>c){}else{}
+        //foo(a+b,c,a+b*c);
     }
 }

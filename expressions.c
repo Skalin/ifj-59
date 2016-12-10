@@ -181,8 +181,15 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
         stackPush(stack,item);
         
         // Najdeme uzly
-        instr->Id1 = searchForNode(handle[2]->dataIt->data,var,NULL);
-        instr->Id2 = searchForNode(handle[0]->dataIt->data,var,NULL);
+        instr->Id1 = searchForNode(handle[2]->dataIt->data,var,mTree.actFunction->variables);
+        instr->Id2 = searchForNode(handle[0]->dataIt->data,var,mTree.actFunction->variables);
+        
+        if (instr->Id1 == NULL) {
+            instr->Id1 = searchForNode(handle[2]->dataIt->data,temp,mTree.actFunction->variables);
+        }
+        if (instr->Id2 == NULL) {
+            instr->Id2 = searchForNode(handle[0]->dataIt->data,temp,mTree.actFunction->variables);
+        }
         
         
         
@@ -308,7 +315,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
             else if ((token->type == t_semicolon) || ((isArg) && ((token->type == t_bracket_r) || token->type == t_comma))){
                 printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
                 instr->Id3 = targetNode;
-                instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,NULL);
+                instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,mTree.actFunction->variables);
                 instr->Id2 = NULL;
                 instr->type = insAssignment;
                 instrStackPush(localIStack,instr);
