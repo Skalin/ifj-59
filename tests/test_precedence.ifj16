@@ -3,10 +3,15 @@ class Main
 {
     static void run ()
     {
-        int x;
+       /* int x;
         int y;
         int z;
-        int q = x + y * z;
+        int q = x + y * z;*/
+        
+        
+        int x = 0;
+        int y = 10;
+        int z = y/x;
         //int h = a + b*c;
         //if(a+b>c){}else{}
         //foo(a+b,c,a+b*c);

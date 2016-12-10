@@ -39,7 +39,7 @@ char precTable[16][16] = {
     {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // <=
     {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // >=
     {'=','>','>','>','>','>','>','>','>','>','>','>','>','>','F','<'}, // !
-    {'<','=','<','<','<','<',' ',' ',' ',' ',' ',' ',' ','=','F','<'}, // ,
+    {'<','=','<','<','<','<','F','F','F','F','F','F','F','=','F','<'}, // ,
     {'<','F','<','<','<','<','<','<','<','<','<','<','F','=','F','<'}, // ;
     {'F','>','>','>','>','>','>','>','>','>','>','>','F','>','>','F'}  // ID
 };
@@ -123,7 +123,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
     if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
         if (isConst(handle[0]->dataIt)) {
             //TODO vytvořit nový node a jeho název vložit do handle[0]
-            // createNewNode("const" + constCounter,tempVar,var_int,0,1); - typ konstanty je v tokenu 
+            createNewNode("MNOPQ" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu 
             
             // DELETE THIS
             tToken *token = initToken();
