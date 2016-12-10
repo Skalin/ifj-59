@@ -17,6 +17,7 @@
 #include "error_handler.h"
 #include "garbage_collector.h"
 #include "expressions.h"
+#include "instrstack.h"
 
 mainTree mTree;
 

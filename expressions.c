@@ -18,6 +18,7 @@
 #include "error_handler.h"
 #include "lexical_analyzer.h"
 #include "ial.h"
+#include "instrstack.h"
 
 #define STR_ERROR   0
 #define STR_SUCCESS 1
