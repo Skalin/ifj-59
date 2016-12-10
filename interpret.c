@@ -754,6 +754,9 @@ void interpretMainCore(instrStack *interpretStack) {
                     throwException(2,0,0);
                 // Nactu podminku ifu
                 instruction = instrStackTop(interpretStack);
+                if(!(instruction->type == insPlus || instruction->type == insMinus || instruction->type == insMux || instruction->type == insDiv || instruction->type == insPlusTmp || instruction->type == insMinusTmp ||
+                        instruction->type == insMuxTmp || instruction->type == insDivTmp))
+                    throwException(4,0,0);
 
                 cond = compareInstruction(instruction->Id1,instruction->Id2,instruction->type);
                 // Pokud plati vyraz z podminky
@@ -1037,6 +1040,9 @@ void interpretMainCore(instrStack *interpretStack) {
             // WHILE
             case insWhile :
                 instruction = instrStackTop(interpretStack);
+                if(!(instruction->type == insPlus || instruction->type == insMinus || instruction->type == insMux || instruction->type == insDiv || instruction->type == insPlusTmp || instruction->type == insMinusTmp ||
+                     instruction->type == insMuxTmp || instruction->type == insDivTmp))
+                    throwException(4,0,0);
                 cond = compareInstruction(instruction->Id1, instruction->Id2, instruction->type);
                 whileCondPos = instrStackSize(interpretStack);
 
