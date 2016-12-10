@@ -80,12 +80,14 @@ void throwException(int errorNumber, int row, int column) {
                 fprintf(stderr, "|Syntax error| Wrong program syntax\n");
                 exit_code = 2;
                 break;
-            // 3 - sémantická chyba v programu – nedefinovaná třída/funkce/proměnná, pokus o re-definici třídy/funkce/proměnné, atd.
+            // 3 - sémantická chyba v programu – nedefinovaná třída/funkce/proměnná,
+                // pokus o re-definici třídy/funkce/proměnné, atd.
             case 3:
                 fprintf(stderr, "|Semantic error| Class/function/variable is not defined or you are attempting to re-define class/function/variable\n");
                 exit_code = 3;
                 break;
-            // 4 - sémantická chyba typové kompatibility v aritmetických,řetězcových a relačních výrazech, příp. špatný počet či typ parametrů u volání funkce.
+            // 4 - sémantická chyba typové kompatibility v aritmetických,řetězcových a relačních výrazech,
+                // příp. špatný počet či typ parametrů u volání funkce.
             case 4:
                 fprintf(stderr, "|Semantic error| Wrong type compability in expressions or wrong number/type of arguments while calling function\n");
                 exit_code = 4;

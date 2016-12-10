@@ -24,18 +24,18 @@
 
 
 typedef enum {  
-/*****TYPY TOKENÙ POUÍVANÉ VE VİRAZECH********/
-	// Závorky
+/*****TYPY TOKENï¿½ POUï¿½ï¿½VANï¿½ VE Vï¿½RAZECH********/
+	// Zï¿½vorky
 	t_bracket_l,        // (
 	t_bracket_r,        // )
 
-	// Operátory
+	// Operï¿½tory
 	t_div,              // /
 	t_multi,            // *    
 	t_plus,             // +
 	t_minus,            // - 
 
-	// Porovnávací operátory
+	// Porovnï¿½vacï¿½ operï¿½tory
 	t_comparasion,      // ==
 	t_comparasion_ne,   // !=
 	t_greater,          // >
@@ -46,16 +46,16 @@ typedef enum {
 	// Negace
 	t_excl_mark,        // !
 
-	// Oddìlovaèe
+	// Oddï¿½lovaï¿½e
 	
     t_comma,            // ,
 	t_semicolon,        // ;  
 
-	// Identifikátory
+	// Identifikï¿½tory
 	t_simple_ident,     // 15
 	t_complete_ident,   // 16    
 
-	// Datové typy
+	// Datovï¿½ typy
 	t_int,              // 17
 	t_double,           // 18
 	t_double_e,         // 19
@@ -241,6 +241,10 @@ typedef enum {
 	insMinus, // OdeÄÃ­tÃ¡nÃ­
 	insMux, // NÃ¡sobenÃ­
 	insDiv, // DÄ›lenÃ­
+	insPlusTmp, // SÄÃ­tÃ¡nÃ­
+	insMinusTmp, // OdeÄÃ­tÃ¡nÃ­
+	insMuxTmp, // NÃ¡sobenÃ­
+	insDivTmp, // DÄ›lenÃ­
 	//
 	//COMPARE
 	insEqual, // Je rovno
