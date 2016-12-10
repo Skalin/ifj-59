@@ -624,7 +624,10 @@ void pWhile(){
 /**
 * while ( <expr> ) { <commands> }
 */
-
+	
+	tToken * token;
+        getToken();
+	
 	// instrukce while
  	Instr *instr = NULL;
  	instr = instrItemInit(instr);
@@ -635,6 +638,7 @@ void pWhile(){
  	instr->type = insWhile;
  
  	instrStackPush(global.iStack,instr);
+	
 	expression(NULL, 0); //TODO
 	
 
