@@ -109,7 +109,8 @@ int find(char str[], char search[]) {
 	int shiftValue = others; // prvotni nastaveni shiftu
 
 	if (others == 0) {
-		return 0;
+		found++;
+		return found;
 	} else if (strLength(str) < strLength(search)) {
 		return found;
 	}
@@ -161,10 +162,6 @@ int find(char str[], char search[]) {
 	}
 
 	disposeMismatchTable(&Table);
-
-	if (Table.First == NULL && Table.Act == NULL) {
-		//printf("Tabulka je prazdna\n");
-	}
 
 	return found;
 
