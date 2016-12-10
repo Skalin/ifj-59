@@ -488,7 +488,7 @@ void pSingleCommand(){
 				// volani funkce
 				//vytvorit uzel nebo najit
 				BTSNode * node;
-				node = searchForNode(tempData, function, mTree.actClass); //TODO start??
+				node = searchForNode(tempData, function, mTree.actClass->functions); 
               			 if (node == NULL){
                  		   throwException(3,0,0);
              			  }
