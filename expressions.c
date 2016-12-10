@@ -66,9 +66,9 @@ char* nodePrint(BTSNode *node) {
 //END DELETE
 
 char *addIntToStr(char *str, int integer) {
-    char buffer[12];
-    sprintf(buffer, "arg%d", 5); 
-    return buffer;
+    /*char buffer[512];
+                    sprintf(buffer, "%d", Id2->data.value.intValue);
+                    strncat(Id3->data.value.stringValue, buffer, 512);*/
 }
 
 bool isIdent(tToken *token) {
