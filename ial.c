@@ -419,9 +419,11 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
         //printf("Nepridal jsem nodu, koncim na sigsegv\n");
         mTree.root = newNode;
         mTree.actClass = newNode;
-    } else if (newNode->nodeType == function && mTree.actClass->functions == NULL) { // Pokud ve tride neexistuji funkce
+    } else if (newNode->nodeType == function) { // Pokud ve tride neexistuji funkce
         //printf("Nepridal jsem nodu, koncim na sigsegv\n");
-        mTree.actClass->functions = newNode;
+        if (mTree.actClass->functions == NULL){
+            mTree.actClass->functions = newNode;
+        }
         mTree.actFunction = newNode;
         instrStack stc;
         instrStackInit(&stc);
@@ -432,8 +434,8 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
     } else if (newNode->nodeType == var && mTree.actFunction != NULL && mTree.actFunction->variables == NULL && !status) { // Pokud ve funkci neexistuji zadne promenne
         //printf("Nepridal jsem nodu, koncim na sigsegv\n");
         mTree.actFunction->variables = newNode;
-    } else if (newNode->nodeType == class){
-        mTree.actClass = newNode;
+   // } else if (newNode->nodeType == class){
+   //     mTree.actClass = newNode;
     } else { // Jinak se klasicky prida uzel
         //printf("Nepridal jsem nodu, koncim na sigsegv\n");
         addNode(newNode, start);
