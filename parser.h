@@ -81,6 +81,11 @@ void pWhile();
 * @param temp prevadeny tokenType
 */
 varType tempToVar(tokenType temp);
+/**
+* kontrola zda se jedna o vestavenou funkci
+* @param name Id funkce
+*/
+int isBuiltIn(char * name);
 
 #endif //IFJ_59_PARSER_H
 
