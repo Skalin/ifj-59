@@ -488,18 +488,18 @@ void pSingleCommand(){
 				// volani funkce
 				//vytvorit uzel nebo najit
 				BTSNode * node;
-
-			
-
-				node = searchForNode(tempData, function, mTree.actClass->functions); 
-
-              			 if (node == NULL){
-                 		   throwException(3,0,0);
-             			  }
 				
-				//mozna tady musim vytvorit NODE pokud neexistuje
+				//neni vestavena
+				if (isBuiltIn(tempData) == 0){
+					node = searchForNode(tempData, function, mTree.actClass->functions); 
+					if (node == NULL){
+                 		   		throwException(3,0,0);
+             			  	}
+					functionCall(NULL, node, tempData);
+				}
+				//je vestavena
+				functionCall(NULL, NULL, tempData);
 				
-				functionCall(NULL,node);
 				
 				token=getToken();
 				if (token->type != t_semicolon){
@@ -677,6 +677,40 @@ varType tempToVar(tokenType temp) {
 		throwException(99, 0, 0);
 	}
 	return type;
+}
+
+int isBuiltIn(char * name){
+	
+    int status = 0;
+	
+    if (strcmp(name, "readInt") == 0) {
+	    status = 1;
+    }
+    else if (name, "readDouble") == 0) {
+        status = 1;
+    }
+    else if (name, "readString") == 0) {
+        status = 1;
+    }
+    else if (name, "length") == 0) {
+        status = 1;
+    }
+    else if (name, "substr") == 0) {
+       status = 1;
+    }
+    else if (name, "compare") == 0) {
+       status = 1;
+    }
+    else if (name, "find") == 0) {
+       status = 1;
+    }
+    else if (name, "sort") == 0) {
+       status = 1;
+    }
+    else if (name, "print") == 0) {
+       status = 1;
+    }
+    return status;
 }
 
 
