@@ -489,7 +489,7 @@ void pSingleCommand(){
 				//vytvorit uzel nebo najit
 				BTSNode * node;
 
-				node = searchForNode(tempData, function, mTree.actClass->functions); //TODO start??
+			
 
 				node = searchForNode(tempData, function, mTree.actClass->functions); 
 
