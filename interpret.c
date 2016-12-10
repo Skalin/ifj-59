@@ -28,6 +28,7 @@ void semCheck(instrStack *interpretStack) {
 		throwException(99, 0, 0);
 	}
 
+
     while((instr = instrStackTop(&tmpStack)) != NULL) {
         switch (instr->type) {
             case insIfj16readInt:
