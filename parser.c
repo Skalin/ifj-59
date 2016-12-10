@@ -686,28 +686,28 @@ int isBuiltIn(char * name){
     if (strcmp(name, "readInt") == 0) {
 	    status = 1;
     }
-    else if (name, "readDouble") == 0) {
+    else if (strcmp(name, "readDouble") == 0) {
         status = 1;
     }
-    else if (name, "readString") == 0) {
+    else if (strcmp(name, "readString") == 0) {
         status = 1;
     }
-    else if (name, "length") == 0) {
+    else if (strcmp(name, "length") == 0) {
         status = 1;
     }
-    else if (name, "substr") == 0) {
+    else if (strcmp(name, "substr") == 0) {
        status = 1;
     }
-    else if (name, "compare") == 0) {
+    else if (strcmp(name, "compare") == 0) {
        status = 1;
     }
-    else if (name, "find") == 0) {
+    else if (strcmp(name, "find") == 0) {
        status = 1;
     }
-    else if (name, "sort") == 0) {
+    else if (strcmp(name, "sort") == 0) {
        status = 1;
     }
-    else if (name, "print") == 0) {
+    else if (strcmp(name, "print") == 0) {
        status = 1;
     }
     return status;
