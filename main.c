@@ -4,6 +4,7 @@
 #include "parser.h"
 #include "interpret.h"
 #include "instrstack.h"
+#include "expressions.h"
 
 mainTree mTree;
 
