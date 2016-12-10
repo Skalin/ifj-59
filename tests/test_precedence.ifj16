@@ -1,19 +1,16 @@
-/* Program 2: Vypocet faktorialu (rekurzivne) */
 class Main
 {
+    static void foo(int a, int b) 
+    {
+        a = 40;
+    }
+    
     static void run ()
     {
-       /* int x;
-        int y;
-        int z;
-        int q = x + y * z;*/
-        
-        
-        int x = 0;
-        int y = 10;
-        int z = y/x;
-        //int h = a + b*c;
-        //if(a+b>c){}else{}
-        //foo(a+b,c,a+b*c);
-    }
+        int x = 10;
+        int y = 20;
+        foo(x+4,y);
+        //if (x==y){}else{}
+
+    }   
 }

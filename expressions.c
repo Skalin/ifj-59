@@ -66,9 +66,10 @@ char* nodePrint(BTSNode *node) {
 //END DELETE
 
 char *addIntToStr(char *str, int integer) {
-    /*char buffer[512];
-                    sprintf(buffer, "%d", Id2->data.value.intValue);
-                    strncat(Id3->data.value.stringValue, buffer, 512);*/
+    char buffer[512];
+    sprintf(buffer, "%d", 1);
+    strncat(str, buffer, 512);
+    return buffer;
 }
 
 bool isIdent(tToken *token) {
@@ -123,11 +124,11 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
     if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
         if (isConst(handle[0]->dataIt)) {
             //TODO vytvořit nový node a jeho název vložit do handle[0]
-            createNewNode("MNOPQ" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu 
+            createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu 
             
             // DELETE THIS
             tToken *token = initToken();
-            updateToken(token,"MNOPQ"+constCounter); 
+            updateToken(token,"ABCDEFGH"+constCounter); 
             tStackIt *item = itemInit(token);
             item->typeIt = EXPR;
             handle[0] = item;
@@ -137,8 +138,9 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
         handle[0]->typeIt = EXPR;
         stackPush(stack,handle[0]);
         handle[0] = NULL;
+        stackPrint(stack);
         // DELETE THIS
-      //  printf("  redukce E->id\n");
+       // printf("  redukce E->id\n");
         // END DELETE
     }
     // Pravidlo E -> (E)
@@ -173,9 +175,9 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
         
         
         // TODO vytvořit tempnode, jeho pointer přiřadit do id3 a pushnout jeho název na stack
-        instr->Id3 = createNewNode("temp"+tempNodeCounter,temp,var_null,0,1);
+        instr->Id3 = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
         tToken *token = initToken();
-        updateToken(token,"temp"+tempNodeCounter); 
+        updateToken(token,"abcdefgh"+tempNodeCounter); 
         tStackIt *item = itemInit(token);
         item->typeIt = EXPR;
         stackPush(stack,item);
@@ -261,13 +263,6 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
 tToken *expression(BTSNode *targetNode, int isArg) {
-    /*printf("\n");
-    
-    BTSNode *pokusnode = createNewNode("AHOJ",var,var_int,0,1);
-    pokusnode =searchForNode("AHOJ", var, NULL);
-    printf("node=|%s|\n",nodePrint(pokusnode));
-    
-    printf("\n-----------------------------------\n");*/
     /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
      * V opačném případě na instruční stack aktuální funkce */ 
     instrStack *localIStack = global.iStack;
@@ -293,35 +288,23 @@ tToken *expression(BTSNode *targetNode, int isArg) {
     
     while (TRUE) {
         if (topTerm(stack)->type == t_semicolon) {
-           /* if (isArg) {
-                if (token->type == t_bracket_r) {
-                    printf("---poslední argument\n");
-                    break;
-                }
-                else if (token->type == t_comma) {
-                    printf("---další argument\n");
-                    break;
-                }
-                else if (token->type > t_string) {return
-                    throwException(2,0,0);
-                }
-            }*/
             // Jsme na konci podmínky
             if (!isArg && (targetNode == NULL) && (token->type == t_bracket_r)){ 
-                printf("  jsme na konci podminky nebo funkce!!\n");
                 break;
             }
             // Jsme na konci výrazu
             else if ((token->type == t_semicolon) || ((isArg) && ((token->type == t_bracket_r) || token->type == t_comma))){
                 printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
                 instr->Id3 = targetNode;
-                instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,mTree.actFunction->variables);
+                instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,var,mTree.actFunction->variables);
+                if (instr->Id1 == NULL)
+                    instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,mTree.actFunction->variables);
                 instr->Id2 = NULL;
                 instr->type = insAssignment;
                 instrStackPush(localIStack,instr);
                 // Pokud zpracováváme argument a není poslední, tak zpracováváme dál
                 if ((isArg) && (token->type == t_comma)) {
-                    BTSNode *node = createNewNode("argument" + argCounter,temp,var_null,0,1);
+                    BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
                     // TODO targetNode->pointerNaDalsiArgument = node;
                     argCounter++;
                     expression(node,1);
@@ -331,28 +314,8 @@ tToken *expression(BTSNode *targetNode, int isArg) {
         } 
         // Jedná se o funkci uvnitř výrazu
         else if ((isIdent(topTerm(stack))) && (token->type == t_bracket_l)) {            
-            /* Vytvořím instrukci, kde: 
-             *   - id3 je proměnná v aktuální funkci
-             *   - id1 je řetězec s id volané funkce
-             *   - id2 je pole argumentů
-             *   - type je insFunctionCall
-             */
-            //instr->Id3 = targetId; 
-            /* TODO tady budu muset najít uzel s klíčem nejvyššího terminálu, pokud neexistuje tak ho vytvořit a pointer na něj dát do id2
-            instr->Id1 = searchForNode(topTerm(stack)->data,function,start);
-            if (instr->Id1 == NULL) {
-                instr->Id1 = Nově vytvořený uzel
-            }
-            */
-            instr->type = insFunctionCall;
-            
-            /* TODO Vytvořit uzel, nahrát do něj všechny argumenty
-             * instrukci vložit do stacku a pokračovat dál ve zpracovávání výrazu.
-             * Pokud uzel nemá argumenty zrušit ho, do id2 dát NULL (funcCnt by se v tomho případě asi nemusela inkrementovat)
-             * a pokračovat ve zpravocání výrazu
-                instr->Id2 = createNewNode(funcCnt); 
-                expression(funcCnt, expArg);
-                instrStackPush(iStack,instr);*/
+            /* TODO Pokud funkce neexistuje -> semError
+             * jinak fazoval functionCall(target,nodefunkce)*/
         }
         // Pokud token do výrazu nepatří, jedná se o syntaktickou chybu
         else if (token->type > t_string) {
@@ -406,18 +369,15 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode) {
     // TODO když funkce nemá argumenty, id2 instrukce functioncall je NULL
     Instr *instr = instrItemInit();
     instr->Id3 = targetNode;
-    instr->Id2 = functionCall;
+    instr->Id2 = functionNode;
     instr->type = insFunctionCall;       
     
-    BTSNode *node = createNewNode("volani" + argCounter,temp,var_null,0,1);
+    BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
+    argCounter++;
     expression(node,1);
-    /*node = createNewNode("argument" + argCounter,temp,var_null,0,1);
-    expression(node,1);
-    node = createNewNode("argument" + argCounter,temp,var_null,0,1);
-    expression(node,1);*/
 
     
-    //instrStackPush(iStack,instr);
+   // TODO  instrStackPush(functionNode->iStack,instr);
 }
 
 char *substr(char str[], int i, int n) {

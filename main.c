@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
                 printf("\nObsah globálního iStacku:\n");
                 for (int i = 0; i<=global.iStack->count; i++) {
                     Instr *instr = instrStackDataAt(global.iStack,i);
-                    printf("  id3=%4s  id1=%4s  id2=%4s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
+                    printf("  id3=%8s  id1=%8s  id2=%8s  typ=%s\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
                 }
             //END DELETE
 
