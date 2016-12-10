@@ -559,7 +559,7 @@ void pIf(){
  */
 
 	tToken * token;
-        getToken();
+	getToken();
 
 	//vytvorit instrukce pro condition, if
  	Instr *instr = NULL;
@@ -626,8 +626,7 @@ void pWhile(){
 * while ( <expr> ) { <commands> }
 */
 
-	tToken * token;
-        getToken();
+	getToken();
 
 	// instrukce while
  	Instr *instr = NULL;

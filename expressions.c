@@ -71,6 +71,7 @@ char *addIntToStr(char *str, int integer) {
 	sprintf(buffer, "%d", 1);
 	strncat(str, buffer, 512);
 	return buffer;*/
+	return '\0';
 }
 
 bool isIdent(tToken *token) {
@@ -364,6 +365,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 		}
 	}
 	stackDestroy(stack);
+	return NULL;
 }
 
 void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName) {
