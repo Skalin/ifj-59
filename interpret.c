@@ -15,7 +15,6 @@
 #include "error_handler.h"
 #include "interpret.h"
 #include "expressions.h"
-#include "instrstack.h"
 
 void semCheck(instrStack *interpretStack) {
     // Vytvoreni pomocneho stacku
@@ -28,6 +27,9 @@ void semCheck(instrStack *interpretStack) {
     while((instr = instrStackTop(&tmpiStack)) != NULL) {
         switch (instr->type) {
             case insIfj16readInt:
+                // Pokud je spatny pocet parametru
+                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
+                    throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
                     // Pokud neni typ int, jedna se o chybu 4
                     if (instr->Id3->data.type != var_int)
@@ -37,6 +39,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insIfj16readDouble:
+                // Pokud je spatny pocet parametru
+                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
+                    throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
                     // Pokud neni typ double, jedna se o chybu 4
                     if (instr->Id3->data.type != var_double)
@@ -46,6 +51,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insIfj16readString:
+                // Pokud je spatny pocet parametru
+                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
+                    throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
                     // Pokud neni typ int, jedna se o chybu 4
                     if (instr->Id3->data.type != var_string)
@@ -55,18 +63,32 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insIfj16lenght:
-                if(instr->Id3->inc == 1 && instr->Id1->inc == 1) {
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id3 == NULL || instr->Id1 != NULL)
+                    throwException(4,0,0);
+                if(instr->Id2->inc == 1 && instr->Id1->inc == 1) {
                     // Pokud neni narvatovy typ int a parametr 1 neni string, jedna se o chybu 4
-                    if (instr->Id3->data.type != var_int && instr->Id1->data.type != var_string)
+                    if (instr->Id3->data.type != var_int && instr->Id2->data.type != var_string)
                         throwException(4,0,0);
                     // Pokud neni promenna kam se ulozi vysledke inicializovan
                 } else
                     throwException(8,0,0);
                 break;
             case insIfj16substr:
-                // TODO Je treba se dohodnout co s tim. 3 parametry a navratova hodnota se do 3adresne struktury nevleze
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id3 == NULL || instr->Id1 == NULL || instr->Id2->variables == NULL)
+                    throwException(4,0,0);
+                // Pokud je nektery parametr neinicializovany
+                if(instr->Id2->inc == 0 || instr->Id3->inc == 0 || instr->Id1->inc == 0 || instr->Id2->variables->inc == 0)
+                    throwException(4,0,0);
+                // Pokud je spatny typ parametru
+                if(instr->Id2->data.type !=  var_int|| instr->Id2->variables->data.type !=  var_string || instr->Id1->data.type !=  var_int || instr->Id3->data.type !=  var_string)
+                    throwException(4,0,0);
                 break;
             case insIfj16compare:
+                // Pokud je spatny pocet parametru
+                if(instr->Id3 == NULL || instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(4,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Pokud neni narvatovy typ int a parametr 1 neni string a parametr 2 neni take sring, jedna se o chybu 4
                     if (instr->Id3->data.type != var_int && instr->Id1->data.type != var_string && instr->Id2->data.type != var_string)
@@ -76,6 +98,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insIfj16find:
+                // Pokud je spatny pocet parametru
+                if(instr->Id3 == NULL || instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(4,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Pokud neni narvatovy typ int a parametr 1 neni string a parametr 2 neni take sring, jedna se o chybu 4
                     if (instr->Id3->data.type != var_int && instr->Id1->data.type != var_string && instr->Id2->data.type != var_string)
@@ -85,24 +110,33 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insIfj16sort:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id3 == NULL || instr->Id1 != NULL)
+                    throwException(4,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1) {
                     // Pokud neni narvatovy typ string a parametr 1 neni string, jedna se o chybu 4
-                    if (instr->Id3->data.type != var_string && instr->Id1->data.type != var_string)
+                    if (instr->Id3->data.type != var_string && instr->Id2->data.type != var_string)
                         throwException(4,0,0);
                     // Pokud neni promenna kam se ulozi vysledke inicializovan
                 } else
                     throwException(8,0,0);
                 break;
             case insIfj16print:
+                // Pokud je spatny pocet parametru
+                if(instr->Id3 != NULL || instr->Id2 == NULL || instr->Id1 != NULL)
+                    throwException(4,0,0);
                 if(instr->Id1->inc == 1) {
                     // Pokud neni jediny parametr string, jedna se o chybu 4
-                    if (instr->Id1->data.type != var_string)
+                    if (instr->Id2->data.type != var_string)
                         throwException(4,0,0);
                     // Pokud neni promenna kam se ulozi vysledke inicializovan
                 } else
                     throwException(8,0,0);
                 break;
             case insPlus:
+                // Pokud je spatny pocet parametru
+                if(instr->Id3 == NULL || instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Pokud je konecny operand int, musi se jedna o int = int + int
                     if(instr->Id3->data.type == var_int) {
@@ -118,6 +152,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insMinus:
+                // Pokud je spatny pocet parametru
+                if(instr->Id3 == NULL || instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Nelze odecitat stringy a ani do stringu ukladat
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string || instr->Id3->data.type == var_string)
@@ -134,6 +171,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insMux:
+                // Pokud je spatny pocet parametru
+                if(instr->Id3 == NULL || instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Nelze operovat se stringy
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string || instr->Id3->data.type == var_string)
@@ -148,6 +188,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insDiv:
+                // Pokud je spatny pocet parametru
+                if(instr->Id3 == NULL || instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Nelze operovat se stringy
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string || instr->Id3->data.type == var_string)
@@ -171,6 +214,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insEqual:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Lze porovnavat pouze int a double hodnoty viz zadani
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
@@ -180,6 +226,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insNotEqual:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Lze porovnavat pouze int a double hodnoty viz zadani
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
@@ -189,6 +238,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insLess:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Lze porovnavat pouze int a double hodnoty viz zadani
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
@@ -198,6 +250,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insLessOrEqual:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Lze porovnavat pouze int a double hodnoty viz zadani
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
@@ -207,6 +262,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insGreater:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Lze porovnavat pouze int a double hodnoty viz zadani
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
@@ -216,6 +274,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insGreaterOrEqual:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 == NULL || instr->Id1 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Lze porovnavat pouze int a double hodnoty viz zadani
                     if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
@@ -225,6 +286,9 @@ void semCheck(instrStack *interpretStack) {
                     throwException(8,0,0);
                 break;
             case insAssignment:
+                // Pokud je spatny pocet parametru
+                if(instr->Id2 != NULL || instr->Id1 == NULL || instr->Id3 == NULL)
+                    throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
                     // Pokud prirazujeme spatne typy
                     if(instr->Id1->data.type != instr->Id2->data.type) {
@@ -595,7 +659,7 @@ void interpretMainCore(instrStack *interpretStack) {
             case insIfj16print:
                 if(instruction->Id1->inc == 1) {
                     if(instruction->Id3->data.type == var_string) {
-                        print(instruction->Id1->data.value.stringValue);
+                        print(instruction->Id2->data.value.stringValue);
                     } else {
                         throwException(4,0,0);
                     }
@@ -604,9 +668,9 @@ void interpretMainCore(instrStack *interpretStack) {
                 }
                 break;
             case insIfj16lenght:
-                if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
-                    if(instruction->Id3->data.type == var_int && instruction->Id1->data.type == var_string) {
-                        instruction->Id3->data.value.intValue = strLength(instruction->Id1->data.value.stringValue);
+                if(instruction->Id2->inc == 1 && instruction->Id3->inc == 1) {
+                    if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string) {
+                        instruction->Id3->data.value.intValue = strLength(instruction->Id2->data.value.stringValue);
                     } else {
                         throwException(4,0,0);
                     }
@@ -615,12 +679,12 @@ void interpretMainCore(instrStack *interpretStack) {
                 }
                 break;
             case insIfj16substr:
-                //TODO
+                instruction->Id3->data.value.stringValue = substr(instruction->Id2->variables->data.value.stringValue,instruction->Id2->data.value.intValue, instruction->Id1->data.value.intValue);
                 break;
             case insIfj16compare:
                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                        instruction->Id3->data.value.intValue = strcmp(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                        instruction->Id3->data.value.intValue = strcmp(instruction->Id2->data.value.stringValue,instruction->Id1->data.value.stringValue);
                     } else {
                         throwException(4,0,0);
                     }
@@ -631,7 +695,7 @@ void interpretMainCore(instrStack *interpretStack) {
             case insIfj16find:
                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                        instruction->Id3->data.value.intValue = find(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                        instruction->Id3->data.value.intValue = find(instruction->Id2->data.value.stringValue, instruction->Id1->data.value.stringValue);
                     } else {
                         throwException(4,0,0);
                     }
@@ -642,7 +706,7 @@ void interpretMainCore(instrStack *interpretStack) {
             case insIfj16sort:
                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
                     if(instruction->Id3->data.type == var_string && instruction->Id1->data.type == var_string) {
-                        instruction->Id3->data.value.stringValue = sort(instruction->Id1->data.value.stringValue);
+                        instruction->Id3->data.value.stringValue = sort(instruction->Id2->data.value.stringValue);
                     } else {
                         throwException(4,0,0);
                     }
@@ -652,14 +716,26 @@ void interpretMainCore(instrStack *interpretStack) {
                 break;
             // END BUILT-IN FUNCTIONS
             // MATH
+            case insPlusTmp:
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                break;
             case insPlus:
                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                break;
+            case insMinusTmp:
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                 break;
             case insMinus:
                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                 break;
+            case insMuxTmp:
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                break;
             case insMux:
                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                break;
+            case insDivTmp:
+                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                 break;
             case insDiv:
                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
@@ -739,12 +815,12 @@ void interpretMainCore(instrStack *interpretStack) {
                                 }
                                 break;
                             case insIfj16substr:
-                                //TODO
+                                instruction->Id3->data.value.stringValue = substr(instruction->Id2->variables->data.value.stringValue,instruction->Id2->data.value.intValue, instruction->Id1->data.value.intValue);
                                 break;
                             case insIfj16compare:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.intValue = strcmp(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                                        instruction->Id3->data.value.intValue = strcmp(instruction->Id2->data.value.stringValue,instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -755,7 +831,7 @@ void interpretMainCore(instrStack *interpretStack) {
                             case insIfj16find:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.intValue = find(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                                        instruction->Id3->data.value.intValue = find(instruction->Id2->data.value.stringValue, instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -766,7 +842,7 @@ void interpretMainCore(instrStack *interpretStack) {
                             case insIfj16sort:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
                                     if(instruction->Id3->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.stringValue = sort(instruction->Id1->data.value.stringValue);
+                                        instruction->Id3->data.value.stringValue = sort(instruction->Id2->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -776,18 +852,31 @@ void interpretMainCore(instrStack *interpretStack) {
                                 break;
                                 // END BUILT-IN FUNCTIONS
                                 // MATH
+                            case insPlusTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                                break;
                             case insPlus:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                                break;
+                            case insMinusTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                                 break;
                             case insMinus:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                                 break;
+                            case insMuxTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                                break;
                             case insMux:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                                break;
+                            case insDivTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                                 break;
                             case insDiv:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                                 break;
+                                //END MATH
                             default:
                                 break;
                         }
@@ -869,12 +958,12 @@ void interpretMainCore(instrStack *interpretStack) {
                                 }
                                 break;
                             case insIfj16substr:
-                                //TODO
+                                instruction->Id3->data.value.stringValue = substr(instruction->Id2->variables->data.value.stringValue,instruction->Id2->data.value.intValue, instruction->Id1->data.value.intValue);
                                 break;
                             case insIfj16compare:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.intValue = strcmp(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                                        instruction->Id3->data.value.intValue = strcmp(instruction->Id2->data.value.stringValue,instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -885,7 +974,7 @@ void interpretMainCore(instrStack *interpretStack) {
                             case insIfj16find:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.intValue = find(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                                        instruction->Id3->data.value.intValue = find(instruction->Id2->data.value.stringValue, instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -896,7 +985,7 @@ void interpretMainCore(instrStack *interpretStack) {
                             case insIfj16sort:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
                                     if(instruction->Id3->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.stringValue = sort(instruction->Id1->data.value.stringValue);
+                                        instruction->Id3->data.value.stringValue = sort(instruction->Id2->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -906,18 +995,31 @@ void interpretMainCore(instrStack *interpretStack) {
                                 break;
                                 // END BUILT-IN FUNCTIONS
                                 // MATH
+                            case insPlusTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                                break;
                             case insPlus:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                                break;
+                            case insMinusTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                                 break;
                             case insMinus:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                                 break;
+                            case insMuxTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                                break;
                             case insMux:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                                break;
+                            case insDivTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                                 break;
                             case insDiv:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                                 break;
+                                //END MATH
                             default:
                                 break;
                         }
@@ -999,12 +1101,12 @@ void interpretMainCore(instrStack *interpretStack) {
                                 }
                                 break;
                             case insIfj16substr:
-                                //TODO
+                                instruction->Id3->data.value.stringValue = substr(instruction->Id2->variables->data.value.stringValue,instruction->Id2->data.value.intValue, instruction->Id1->data.value.intValue);
                                 break;
                             case insIfj16compare:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.intValue = strcmp(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                                        instruction->Id3->data.value.intValue = strcmp(instruction->Id2->data.value.stringValue,instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -1015,7 +1117,7 @@ void interpretMainCore(instrStack *interpretStack) {
                             case insIfj16find:
                                 if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1 && instruction->Id2->inc == 1) {
                                     if(instruction->Id3->data.type == var_int && instruction->Id2->data.type == var_string && instruction->Id1->data.type == var_string) {
-                                        instruction->Id3->data.value.intValue = find(instruction->Id1->data.value.stringValue,instruction->Id2->data.value.stringValue);
+                                        instruction->Id3->data.value.intValue = find(instruction->Id2->data.value.stringValue, instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
                                     }
@@ -1036,18 +1138,31 @@ void interpretMainCore(instrStack *interpretStack) {
                                 break;
                                 // END BUILT-IN FUNCTIONS
                                 // MATH
+                            case insPlusTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                                break;
                             case insPlus:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'+');
+                                break;
+                            case insMinusTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                                 break;
                             case insMinus:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'-');
                                 break;
+                            case insMuxTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                                break;
                             case insMux:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'*');
+                                break;
+                            case insDivTmp:
+                                mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                                 break;
                             case insDiv:
                                 mathInstruction(instruction->Id1,instruction->Id2,instruction->Id3,'/');
                                 break;
+                                //END MATH
                             default:
                                 break;
                         }
