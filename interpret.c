@@ -18,13 +18,17 @@
 
 void semCheck(instrStack *interpretStack) {
     // Vytvoreni pomocneho stacku
-    instrStack tmpiStack;
-    instrStackInit(&tmpiStack);
-    instrStackCopy(interpretStack, &tmpiStack);
+	instrStack tmpStack;
+	instrStackInit(&tmpStack);
+	instrStackCopy(interpretStack, &tmpStack);
 
-    struct Instr *instr;
+	struct Instr *instr;
+	instr = plusMalloc(sizeof(Instr));
+	if (instr == NULL) {
+		throwException(99, 0, 0);
+	}
 
-    while((instr = instrStackTop(&tmpiStack)) != NULL) {
+    while((instr = instrStackTop(&tmpStack)) != NULL) {
         switch (instr->type) {
             case insIfj16readInt:
                 // Pokud je spatny pocet parametru
