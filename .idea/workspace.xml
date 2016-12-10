@@ -11,12 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.7 - uprava initu root, actClass a actFunction v mainu">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/error_handler.c" afterPath="$PROJECT_DIR$/error_handler.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interpret.c" afterPath="$PROJECT_DIR$/interpret.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typedef.h" afterPath="$PROJECT_DIR$/typedef.h" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,74 +32,61 @@
     <favorites_list name="ifj-59" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7494019">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="typedef.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/typedef.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="241" column="23" lean-forward="false" selection-start-line="241" selection-start-column="23" selection-end-line="241" selection-end-column="23" />
-                  <folding>
-                    <marker date="1481399281562" expanded="true" signature="4758:5475" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="interpret.c" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/interpret.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="403">
-                  <caret line="142" column="96" lean-forward="false" selection-start-line="142" selection-start-column="96" selection-end-line="142" selection-end-column="96" />
-                  <folding>
-                    <element signature="e#385#404#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ial.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ial.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3216">
-                  <caret line="438" column="44" lean-forward="false" selection-start-line="438" selection-start-column="44" selection-end-line="438" selection-end-column="44" />
-                  <folding>
-                    <element signature="e#389#408#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="expressions.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/expressions.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-184">
-                  <caret line="365" column="1" lean-forward="false" selection-start-line="365" selection-start-column="1" selection-end-line="365" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#396#413#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="error_handler.c" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/error_handler.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="89" column="19" lean-forward="false" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="typedef.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/typedef.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="241" column="23" lean-forward="false" selection-start-line="241" selection-start-column="23" selection-end-line="241" selection-end-column="23" />
+              <folding>
+                <marker date="1481399281562" expanded="true" signature="4758:5475" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="interpret.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/interpret.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="287" column="26" lean-forward="false" selection-start-line="287" selection-start-column="20" selection-end-line="287" selection-end-column="26" />
+              <folding>
+                <element signature="e#385#404#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ial.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ial.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3216">
+              <caret line="438" column="44" lean-forward="false" selection-start-line="438" selection-start-column="44" selection-end-line="438" selection-end-column="44" />
+              <folding>
+                <element signature="e#389#408#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="expressions.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/expressions.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-184">
+              <caret line="365" column="1" lean-forward="false" selection-start-line="365" selection-start-column="1" selection-end-line="365" selection-end-column="1" />
+              <folding>
+                <element signature="e#396#413#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>assign</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -844,7 +828,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301227000" />
+    <option name="totallyTimeSpent" value="301406000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1360,8 +1344,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interpret.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="142" column="96" lean-forward="false" selection-start-line="142" selection-start-column="96" selection-end-line="142" selection-end-column="96" />
+        <state relative-caret-position="177">
+          <caret line="287" column="26" lean-forward="false" selection-start-line="287" selection-start-column="20" selection-end-line="287" selection-end-column="26" />
           <folding>
             <element signature="e#385#404#0" expanded="true" />
           </folding>

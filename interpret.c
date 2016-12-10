@@ -289,7 +289,7 @@ void semCheck(instrStack *interpretStack) {
                 // Pokud je spatny pocet parametru
                 if(instr->Id2 != NULL || instr->Id1 == NULL || instr->Id3 == NULL)
                     throwException(3,0,0);
-                if(instr->Id1->inc == 1 && instr->Id2->inc == 1) {
+                if(instr->Id1->inc == 1 && instr->Id3->inc == 1) {
                     // Pokud prirazujeme spatne typy
                     if(instr->Id1->data.type != instr->Id2->data.type) {
                         throwException(4,0,0);
@@ -603,7 +603,7 @@ void interpretMainCore(instrStack *interpretStack) {
         switch (instruction->type) {
             // ASSIGNMENT
             case insAssignment:
-                if(instruction->Id1->inc == 1 && instruction->Id2->inc == 1) {
+                if(instruction->Id1->inc == 1 && instruction->Id3->inc == 1) {
                     // Pokud prirazujeme spatne typy
                     if(instruction->Id1->data.type != instruction->Id2->data.type) {
                         throwException(4,0,0);
