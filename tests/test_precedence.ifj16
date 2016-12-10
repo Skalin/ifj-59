@@ -1,0 +1,16 @@
+class Main
+{
+    static void foo(int a, int b) 
+    {
+        a = 40;
+    }
+    
+    static void run ()
+    {
+        int x = 10;
+        int y = 20;
+        foo(x+4,y);
+        //if (x==y){}else{}
+
+    }   
+}
