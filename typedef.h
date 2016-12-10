@@ -21,8 +21,6 @@
 #define TRUE 1
 #define FALSE 0 // jen pro poradek, aby tu ta druha hodnota byla, hh
 
-
-
 typedef enum {  
 /*****TYPY TOKEN� POU��VAN� VE V�RAZECH********/
 	// Z�vorky
@@ -222,7 +220,6 @@ typedef struct MTree{
 	BTSNode *actFunction; // Jaká funkce je aktivní, resp. v jaké funkci se nacházíme
 } mainTree;
 
-extern mainTree mTree;
 
 typedef enum {
 	// BUILT-IN FUNCTIONS
@@ -278,5 +275,7 @@ typedef struct instructionStack{
 	int count;
 	int alloc;
 }instrStack;
+
+extern mainTree mTree;
 
 #endif
