@@ -25,23 +25,23 @@
 
 // TODO zkontrolovat správnost tabulky
 char precTable[16][16] = {
-  //  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
-    {'<','=','<','<','<','<','<','<','<','<','<','<','<','=','F','<'}, // (
-    {'F','>','>','>','>','>','>','>','>','>','>','>','>','>','>','F'}, // )
-    {'<','>','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // /
-    {'<','>','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // *
-    {'<','>','<','<','>','>','>','>','>','>','>','>','>','>','>','<'}, // +
-    {'<','>','<','<','>','>','>','>','>','>','>','>','>','>','>','<'}, // -
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // ==
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // !=
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // <
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // >
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // <=
-    {'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // >=
-    {'=','>','>','>','>','>','>','>','>','>','>','>','>','>','F','<'}, // !
-    {'<','=','<','<','<','<','F','F','F','F','F','F','F','=','F','<'}, // ,
-    {'<','F','<','<','<','<','<','<','<','<','<','<','F','=','F','<'}, // ;
-    {'F','>','>','>','>','>','>','>','>','>','>','>','F','>','>','F'}  // ID
+		//  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
+		{'<','=','<','<','<','<','<','<','<','<','<','<','<','=','F','<'}, // (
+		{'F','>','>','>','>','>','>','>','>','>','>','>','>','>','>','F'}, // )
+		{'<','>','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // /
+		{'<','>','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // *
+		{'<','>','<','<','>','>','>','>','>','>','>','>','>','>','>','<'}, // +
+		{'<','>','<','<','>','>','>','>','>','>','>','>','>','>','>','<'}, // -
+		{'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // ==
+		{'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // !=
+		{'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // <
+		{'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // >
+		{'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // <=
+		{'<','>','<','<','<','<','>','>','>','>','>','>','>','>','>','<'}, // >=
+		{'=','>','>','>','>','>','>','>','>','>','>','>','>','>','F','<'}, // !
+		{'<','=','<','<','<','<','F','F','F','F','F','F','F','=','F','<'}, // ,
+		{'<','F','<','<','<','<','<','<','<','<','<','<','F','=','F','<'}, // ;
+		{'F','>','>','>','>','>','>','>','>','>','>','>','F','>','>','F'}  // ID
 };
 
 mainTree mTree;
@@ -51,333 +51,375 @@ int argCounter = 0;
 
 //DELETE THIS
 void stackPrint(tStack *stack) {
-    for (int i = 1; i <= stack->counter; i++) {
-        printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
-    }
-    //printf("  Stack counter=%d\n",stack->counter);
+	for (int i = 1; i <= stack->counter; i++) {
+		printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
+	}
+	//printf("  Stack counter=%d\n",stack->counter);
 }
 
 char* nodePrint(BTSNode *node) {
-    if (node == NULL)
-        return "NULL";
+	if (node == NULL)
+		return "NULL";
 
-    return node->key;
+	return node->key;
 }
 //END DELETE
 
 char *addIntToStr(char *str, int integer) {
-    char buffer[512];
-    sprintf(buffer, "%d", 1);
-    strncat(str, buffer, 512);
-    return buffer;
+	/*char buffer[512];
+	sprintf(buffer, "%d", 1);
+	strncat(str, buffer, 512);
+	return buffer;*/
 }
 
 bool isIdent(tToken *token) {
-    if ((token->type >= t_simple_ident) && (token->type <= t_complete_ident))
-        return true;
-    return false;
+	if ((token->type >= t_simple_ident) && (token->type <= t_complete_ident))
+		return true;
+	return false;
 }
 
 bool isConst(tToken *token) {
-    if ((token->type >= t_int) && (token->type <= t_string))
-        return true;
-    return false;    
+	if ((token->type >= t_int) && (token->type <= t_string))
+		return true;
+	return false;
 }
 
 char getPrecChar(tToken *stackToken, tToken *inToken) {
-    int stackTokenNum = stackToken->type;
-    int inTokenNum = inToken->type;
-    
-    if (isIdent(stackToken) || isConst(stackToken)) {
-        stackTokenNum = 15;
-    }
-    if (isIdent(inToken) || isConst(inToken)) {
-        inTokenNum = 15;
-    }
-    //DELETE THIS
-    printf("getPrecChar: [%2d][%2d] \'%c\'  vstupní token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
-    //END DELETE
-    return precTable[stackTokenNum][inTokenNum];
+	int stackTokenNum = stackToken->type;
+	int inTokenNum = inToken->type;
+
+	if (isIdent(stackToken) || isConst(stackToken)) {
+		stackTokenNum = 15;
+	}
+	if (isIdent(inToken) || isConst(inToken)) {
+		inTokenNum = 15;
+	}
+	//DELETE THIS
+	printf("getPrecChar: [%2d][%2d] \'%c\'  vstupní token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
+	//END DELETE
+	return precTable[stackTokenNum][inTokenNum];
 }
 
 
 tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
-    //DELETE THIS
-        stackPrint(stack);
-    //END DELETE
-    int i = 0;
-    tStackIt *item = NULL;
-    // Čteme ze zásobníku dokud nenarazíme na NONTERM
-    while ((item = stackTop(stack))->typeIt != NONTERM) {
-        i++;
-        // Pokud je handle větší než 3, vyvoláme syntaktickou chybu
-        if (i > 3) throwException(2,0,0);
-        handle[i-1] = item;
-        printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
-        stackPop(stack);
-    }
-    printf("\n");
-    // Odstraníme ze zásobníku začátek handle '<'
-    stackPop(stack);
+	//DELETE THIS
+	stackPrint(stack);
+	//END DELETE
+	int i = 0;
+	tStackIt *item = NULL;
+	// Čteme ze zásobníku dokud nenarazíme na NONTERM
+	while ((item = stackTop(stack))->typeIt != NONTERM) {
+		i++;
+		// Pokud je handle větší než 3, vyvoláme syntaktickou chybu
+		if (i > 3) throwException(2,0,0);
+		handle[i-1] = item;
+		printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
+		stackPop(stack);
+	}
+	printf("\n");
+	// Odstraníme ze zásobníku začátek handle '<'
+	stackPop(stack);
 
-    // Pravidlo E -> id
-    if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
-        if (isConst(handle[0]->dataIt)) {
-            //TODO vytvořit nový node a jeho název vložit do handle[0]
-            createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu 
-            
-            // DELETE THIS
-            tToken *token = initToken();
-            updateToken(token,"ABCDEFGH"+constCounter); 
-            tStackIt *item = itemInit(token);
-            item->typeIt = EXPR;
-            handle[0] = item;
-            //END DELETE
-            constCounter++;
-        }
-        handle[0]->typeIt = EXPR;
-        stackPush(stack,handle[0]);
-        handle[0] = NULL;
-        stackPrint(stack);
-        // DELETE THIS
-       // printf("  redukce E->id\n");
-        // END DELETE
-    }
-    // Pravidlo E -> (E)
-    else if ((i == 3) && (handle[0]->dataIt->type == t_bracket_r) && (handle[1]->typeIt==EXPR) && (handle[2]->dataIt->type == t_bracket_l)) { 
-        stackPush(stack,handle[1]);
-        handle[0] = NULL;
-    }
-    return handle;
+	// Pravidlo E -> id
+	if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
+		if (isConst(handle[0]->dataIt)) {
+			//TODO vytvořit nový node a jeho název vložit do handle[0]
+			createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu
+
+			// DELETE THIS
+			tToken *token = initToken();
+			updateToken(token,"ABCDEFGH"+constCounter);
+			tStackIt *item = itemInit(token);
+			item->typeIt = EXPR;
+			handle[0] = item;
+			//END DELETE
+			constCounter++;
+		}
+		handle[0]->typeIt = EXPR;
+		stackPush(stack,handle[0]);
+		handle[0] = NULL;
+		stackPrint(stack);
+		// DELETE THIS
+		// printf("  redukce E->id\n");
+		// END DELETE
+	}
+		// Pravidlo E -> (E)
+	else if ((i == 3) && (handle[0]->dataIt->type == t_bracket_r) && (handle[1]->typeIt==EXPR) && (handle[2]->dataIt->type == t_bracket_l)) {
+		stackPush(stack,handle[1]);
+		handle[0] = NULL;
+	}
+	return handle;
 }
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
 void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tStack *stack) {
-    // Pokud byl výraz zredukován již v chnToExpr, neděláme nic
-    if (handle[0] == NULL) {
-        //DELETE THIS
-         //   printf("  nedelame nic\n");
-        //END DELETE
-        return;
-    }
-    
-    Instr *instr = NULL;
-    instr = instrItemInit();
-    BTSNode *start = mTree.actFunction;
-    
-    if (start != NULL) {
-       start = mTree.actClass;
-    }
-    
-    // Jedná se o aritmetickou nebo porovnávací instrukci
-    if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
+	// Pokud byl výraz zredukován již v chnToExpr, neděláme nic
+	if (handle[0] == NULL) {
+		//DELETE THIS
+		//   printf("  nedelame nic\n");
+		//END DELETE
+		return;
+	}
 
-        
-        
-        // TODO vytvořit tempnode, jeho pointer přiřadit do id3 a pushnout jeho název na stack
-        instr->Id3 = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
-        tToken *token = initToken();
-        updateToken(token,"abcdefgh"+tempNodeCounter); 
-        tStackIt *item = itemInit(token);
-        item->typeIt = EXPR;
-        stackPush(stack,item);
-        
-        // Najdeme uzly
-        instr->Id1 = searchForNode(handle[2]->dataIt->data,var,mTree.actFunction->variables);
-        instr->Id2 = searchForNode(handle[0]->dataIt->data,var,mTree.actFunction->variables);
-        
-        if (instr->Id1 == NULL) {
-            instr->Id1 = searchForNode(handle[2]->dataIt->data,temp,mTree.actFunction->variables);
-        }
-        if (instr->Id2 == NULL) {
-            instr->Id2 = searchForNode(handle[0]->dataIt->data,temp,mTree.actFunction->variables);
-        }
-        
-        
-        
-        // DELETE THIS
-        printf(" \x1B[32m Vytvoření instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
-        // END DELETE
-        tempNodeCounter++;
-        
-        switch (handle[1]->dataIt->type) {
-            case t_plus: ;// E -> E+E
-                instr->type = insPlus;
-                instrStackPush(iStack,instr);
-                break;
-            case t_minus: // E -> E-E
-                instr->type = insMinus;
-                instrStackPush(iStack,instr);
-                break;
-            case t_multi: // E -> E*E
-                instr->type = insMux;
-                instrStackPush(iStack,instr);
-                break;
-            case t_div: // E -> E/E
-                instr->type = insDiv;
-                instrStackPush(iStack,instr);
-                break;
-            case t_comparasion: // E -> E==E
-                instr->type = insEqual;
-                instr->Id3 = NULL;
-                instrStackPush(iStack,instr);
-                break;
-            case t_comparasion_ne: // E -> E!=E
-                instr->type = insNotEqual;
-                instr->Id3 = NULL;
-                instrStackPush(iStack,instr);
-                break;
-            case t_less: // E -> E<E
-                instr->type = insLess;
-                instr->Id3 = NULL;
-                instrStackPush(iStack,instr);
-                break;
-            case t_less_eq: // E -> E<=E
-                instr->type = insLessOrEqual;
-                instr->Id3 = NULL;
-                instrStackPush(iStack,instr);
-                break;
-            case t_greater: // E -> E>E
-                instr->type = insGreater;
-                instr->Id3 = NULL;
-                instrStackPush(iStack,instr);
-                break;
-            case t_greater_eq: // E -> E>=E
-                instr->type = insGreaterOrEqual;
-                instr->Id3 = NULL;
-                instrStackPush(iStack,instr);
-                break;
-            default: // Syntaktická chyba
-                throwException(2,0,0);
-                break;
-        }
-    }
-    else { // TODO je to tu vůbec potřeba?
-        printf("\x1B[31m ANO!! ten id tam byl potřeba :-)\x1B[0m\n");
-        throwException(2,0,0);
-    }
+	Instr *instr = NULL;
+	instr = instrItemInit();
+	BTSNode *start = mTree.actFunction;
+
+	if (start != NULL) {
+		start = mTree.actClass;
+	}
+
+	// Jedná se o aritmetickou nebo porovnávací instrukci
+	if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
+
+
+
+		// TODO vytvořit tempnode, jeho pointer přiřadit do id3 a pushnout jeho název na stack
+		instr->Id3 = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
+		tToken *token = initToken();
+		updateToken(token,"abcdefgh"+tempNodeCounter);
+		tStackIt *item = itemInit(token);
+		item->typeIt = EXPR;
+		stackPush(stack,item);
+
+		// Najdeme uzly
+		instr->Id1 = searchForNode(handle[2]->dataIt->data,var,mTree.actFunction->variables);
+		instr->Id2 = searchForNode(handle[0]->dataIt->data,var,mTree.actFunction->variables);
+
+		if (instr->Id1 == NULL) {
+			instr->Id1 = searchForNode(handle[2]->dataIt->data,temp,mTree.actFunction->variables);
+		}
+		if (instr->Id2 == NULL) {
+			instr->Id2 = searchForNode(handle[0]->dataIt->data,temp,mTree.actFunction->variables);
+		}
+
+
+
+		// DELETE THIS
+		printf(" \x1B[32m Vytvoření instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
+		// END DELETE
+		tempNodeCounter++;
+
+		switch (handle[1]->dataIt->type) {
+			case t_plus: ;// E -> E+E
+				instr->type = insPlusTmp;
+				instrStackPush(iStack,instr);
+				break;
+			case t_minus: // E -> E-E
+				instr->type = insMinusTmp;
+				instrStackPush(iStack,instr);
+				break;
+			case t_multi: // E -> E*E
+				instr->type = insMuxTmp;
+				instrStackPush(iStack,instr);
+				break;
+			case t_div: // E -> E/E
+				instr->type = insDivTmp;
+				instrStackPush(iStack,instr);
+				break;
+			case t_comparasion: // E -> E==E
+				instr->type = insEqual;
+				instr->Id3 = NULL;
+				instrStackPush(iStack,instr);
+				break;
+			case t_comparasion_ne: // E -> E!=E
+				instr->type = insNotEqual;
+				instr->Id3 = NULL;
+				instrStackPush(iStack,instr);
+				break;
+			case t_less: // E -> E<E
+				instr->type = insLess;
+				instr->Id3 = NULL;
+				instrStackPush(iStack,instr);
+				break;
+			case t_less_eq: // E -> E<=E
+				instr->type = insLessOrEqual;
+				instr->Id3 = NULL;
+				instrStackPush(iStack,instr);
+				break;
+			case t_greater: // E -> E>E
+				instr->type = insGreater;
+				instr->Id3 = NULL;
+				instrStackPush(iStack,instr);
+				break;
+			case t_greater_eq: // E -> E>=E
+				instr->type = insGreaterOrEqual;
+				instr->Id3 = NULL;
+				instrStackPush(iStack,instr);
+				break;
+			default: // Syntaktická chyba
+				throwException(2,0,0);
+				break;
+		}
+	}
+	else { // TODO je to tu vůbec potřeba?
+		printf("\x1B[31m ANO!! ten id tam byl potřeba :-)\x1B[0m\n");
+		throwException(2,0,0);
+	}
 }
 
 /* Funkce provádí Zpracování aritmetických výrazů
- * @param ukazatel na cílový uzel 
+ * @param ukazatel na cílový uzel
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
 tToken *expression(BTSNode *targetNode, int isArg) {
-    /* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack. 
-     * V opačném případě na instruční stack aktuální funkce */ 
-    instrStack *localIStack = global.iStack;
-    if ((mTree.actFunction != NULL) && (strcmp(mTree.actFunction->key, "run") != 0)) {
-		instrStackCopy(localIStack, mTree.actFunction->iStack); 
-    }
-    
-    // Inicializujeme zásobník a vložíme na něj terminál ';'
-    tStack *stack = NULL;
-    stack = stackInit(stack);
+	/* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack.
+	 * V opačném případě na instruční stack aktuální funkce */
+	instrStack *localIStack = global.iStack;
+	if ((mTree.actFunction != NULL) && (strcmp(mTree.actFunction->key, "run") != 0)) {
+		instrStackCopy(localIStack, mTree.actFunction->iStack);
+	}
 
-    tToken *token = initToken();
-    fillToken(token, t_semicolon);
+	// Inicializujeme zásobník a vložíme na něj terminál ';'
+	tStack *stack = NULL;
+	stack = stackInit(stack);
 
-    tStackIt *item = itemInit(token);
-    item->typeIt = TERM;
-    stackPush(stack,item);
+	tToken *token = initToken();
+	fillToken(token, t_semicolon);
 
-    token = getToken();
-    Instr *instr = NULL;
-    instr = instrItemInit(instr);
-       
-    
-    while (TRUE) {
-        if (topTerm(stack)->type == t_semicolon) {
-            // Jsme na konci podmínky
-            if (!isArg && (targetNode == NULL) && (token->type == t_bracket_r)){ 
-                break;
-            }
-            // Jsme na konci výrazu
-            else if ((token->type == t_semicolon) || ((isArg) && ((token->type == t_bracket_r) || token->type == t_comma))){
-                printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
-                instr->Id3 = targetNode;
-                instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,var,mTree.actFunction->variables);
-                if (instr->Id1 == NULL)
-                    instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,mTree.actFunction->variables);
-                instr->Id2 = NULL;
-                instr->type = insAssignment;
-                instrStackPush(localIStack,instr);
-                // Pokud zpracováváme argument a není poslední, tak zpracováváme dál
-                if ((isArg) && (token->type == t_comma)) {
-                    BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
-                    // TODO targetNode->pointerNaDalsiArgument = node;
-                    argCounter++;
-                    expression(node,1);
-                }
-                break;
-            }
-        } 
-        // Jedná se o funkci uvnitř výrazu
-        else if ((isIdent(topTerm(stack))) && (token->type == t_bracket_l)) {            
-            /* TODO Pokud funkce neexistuje -> semError
-             * jinak fazoval functionCall(target,nodefunkce)*/
-        }
-        // Pokud token do výrazu nepatří, jedná se o syntaktickou chybu
-        else if (token->type > t_string) {
-            throwException(2,0,0);
-        }
-        
-        switch (getPrecChar(topTerm(stack),token)) {
-            case '<': ; // Tento středník tu musí být jinak to řve error :-)
-                // Vloží znak '<' za topTerm
-                tToken *lessToken = initToken();
-                fillToken(lessToken, t_less);
-                item = itemInit(lessToken);
-                item->typeIt = NONTERM;
-                stackShift(stack,item);
+	tStackIt *item = itemInit(token);
+	item->typeIt = TERM;
+	stackPush(stack,item);
 
-                // Vloží aktuální token na zásobník
-                item = itemInit(token);
-                item->typeIt = TERM;
-                stackPush(stack,item);
-                stackPrint(stack);
+	token = getToken();
+	Instr *instr = NULL;
+	instr = instrItemInit(instr);
 
-                //Načte nový token
-                token = getToken();
-                break;
-            case '=':
-                // Vloží aktuální token na zásobník
-                item = itemInit(token);
-                item->typeIt = TERM;
-                //stack->counter++;
-                stackPush(stack,item);
-                stackPrint(stack);
 
-                //Načte nový token
-                token = getToken();
-                break;
-            case '>': ; // Stejná situace se středníkem jako v první case
-                tStackIt *handle[3];
-                chnToExp(stack,handle);
-                reduceExp(targetNode,handle,localIStack,stack);
-                break;
-            default:
-                // Syntaktická chyba
-                throwException(2,0,0);
-                break;
-        }
-    }
-    stackDestroy(stack); 
+	while (TRUE) {
+		if (topTerm(stack)->type == t_semicolon) {
+			// Jsme na konci podmínky
+			if (!isArg && (targetNode == NULL) && (token->type == t_bracket_r)){
+				break;
+			}
+				// Jsme na konci výrazu
+			else if ((token->type == t_semicolon) || ((isArg) && ((token->type == t_bracket_r) || token->type == t_comma))){
+				printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
+				instr->Id3 = targetNode;
+				instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,var,mTree.actFunction->variables);
+				if (instr->Id1 == NULL)
+					instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,mTree.actFunction->variables);
+				instr->Id2 = NULL;
+				instr->type = insAssignment;
+				instrStackPush(localIStack,instr);
+				// Pokud zpracováváme argument a není poslední, tak zpracováváme dál
+				if ((isArg) && (token->type == t_comma)) {
+					BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
+					// TODO targetNode->pointerNaDalsiArgument = node;
+					argCounter++;
+					expression(node,1);
+				}
+				break;
+			}
+		}
+			// Jedná se o funkci uvnitř výrazu
+		else if ((isIdent(topTerm(stack))) && (token->type == t_bracket_l)) {
+			/* TODO Pokud funkce neexistuje -> semError
+			 * jinak fazoval functionCall(target,nodefunkce)*/
+		}
+			// Pokud token do výrazu nepatří, jedná se o syntaktickou chybu
+		else if (token->type > t_string) {
+			throwException(2,0,0);
+		}
+
+		switch (getPrecChar(topTerm(stack),token)) {
+			case '<': ; // Tento středník tu musí být jinak to řve error :-)
+				// Vloží znak '<' za topTerm
+				tToken *lessToken = initToken();
+				fillToken(lessToken, t_less);
+				item = itemInit(lessToken);
+				item->typeIt = NONTERM;
+				stackShift(stack,item);
+
+				// Vloží aktuální token na zásobník
+				item = itemInit(token);
+				item->typeIt = TERM;
+				stackPush(stack,item);
+				stackPrint(stack);
+
+				//Načte nový token
+				token = getToken();
+				break;
+			case '=':
+				// Vloží aktuální token na zásobník
+				item = itemInit(token);
+				item->typeIt = TERM;
+				//stack->counter++;
+				stackPush(stack,item);
+				stackPrint(stack);
+
+				//Načte nový token
+				token = getToken();
+				break;
+			case '>': ; // Stejná situace se středníkem jako v první case
+				tStackIt *handle[3];
+				chnToExp(stack,handle);
+				reduceExp(targetNode,handle,localIStack,stack);
+				break;
+			default:
+				// Syntaktická chyba
+				throwException(2,0,0);
+				break;
+		}
+	}
+	stackDestroy(stack);
 }
 
-void functionCall(BTSNode *targetNode, BTSNode *functionNode) {
-    // TODO když funkce nemá argumenty, id2 instrukce functioncall je NULL
-    Instr *instr = instrItemInit();
-    instr->Id3 = targetNode;
-    instr->Id2 = functionNode;
-    instr->type = insFunctionCall;       
-    
-    BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
-    argCounter++;
-    expression(node,1);
+void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName) {
+	instrStack *localIStack = global.iStack;
+	if ((mTree.actFunction != NULL) && (strcmp(mTree.actFunction->key, "run") != 0)) {
+		instrStackCopy(localIStack, mTree.actFunction->iStack);
+	}
 
-    
-   // TODO  instrStackPush(functionNode->iStack,instr);
+	// TODO když funkce nemá argumenty, id2 instrukce functioncall je NULL
+	Instr *instr = instrItemInit();
+	instr->Id3 = targetNode;
+	instr->Id1 = functionNode;
+
+
+	BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
+	instr->Id2 = node;
+	argCounter++;
+	expression(node,1);
+
+	// Pokud se jedná o vestavěnou funkci
+	if (instr->Id1 == NULL) {
+		instr->Id1 = instr->Id2;
+		instr->Id2 = instr->Id2->variables;
+	}
+
+	if (strcmp(mTree.actFunction->key, "readInt") == 0) {
+		instr->type = insIfj16readInt;
+	}
+	else if (strcmp(mTree.actFunction->key, "readDouble") == 0) {
+		instr->type = insIfj16readDouble;
+	}
+	else if (strcmp(mTree.actFunction->key, "readString") == 0) {
+		instr->type = insIfj16readString;
+	}
+	else if (strcmp(mTree.actFunction->key, "length") == 0) {
+		instr->type = insIfj16lenght;
+	}
+	else if (strcmp(mTree.actFunction->key, "substr") == 0) {
+		instr->type = insIfj16substr;
+	}
+	else if (strcmp(mTree.actFunction->key, "compare") == 0) {
+		instr->type = insIfj16compare;
+	}
+	else if (strcmp(mTree.actFunction->key, "find") == 0) {
+		instr->type = insIfj16find;
+	}
+	else if (strcmp(mTree.actFunction->key, "sort") == 0) {
+		instr->type = insIfj16sort;
+	}
+	else if (strcmp(mTree.actFunction->key, "print") == 0) {
+		instr->type = insIfj16print;
+	}
+	else {
+		instr->type = insFunctionCall;
+	}
+
+	instrStackPush(localIStack,instr);
 }
 
 char *substr(char str[], int i, int n) {
@@ -385,14 +427,14 @@ char *substr(char str[], int i, int n) {
 	char *realString = '\0';
 	int j = 0;
 
-    while (i <= (i + n)) {
+	while (i <= (i + n)) {
 		if (str[i] == EOF || isspace(str[i])) {
 			throwException(10, 0, 0);
 		}
-        realString[j] = str[i];
+		realString[j] = str[i];
 		j++;
-        i++;
-    }
+		i++;
+	}
 	return realString;
 }
 
@@ -401,7 +443,7 @@ void copyString(char str1[], char str2[]) {
 }
 
 int compareString(char str1[], char str2[]) {
-   //porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
+	//porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
 	int result = strcmp(str1, str2);
 	if (result < 0) {
 		result = -1;
@@ -483,4 +525,3 @@ double readDouble(){
 
 	return doubleNumber;
 }
-
