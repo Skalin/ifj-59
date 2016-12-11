@@ -22,6 +22,7 @@ void semCheck(instrStack *interpretStack) {
 	instrStack tmpStack;
 	instrStackInit(&tmpStack);
 	instrStackCopy(interpretStack, &tmpStack);
+    invertStack(&tmpStack);
 
 	struct Instr *instr;
 	instr = plusMalloc(sizeof(Instr));
@@ -597,6 +598,7 @@ void interpretMainCore(instrStack *interpretStack) {
     // Pointer na instrukci
     struct Instr *instruction;
     struct Instr *instructionWhile;
+    invertStack(interpretStack);
 
     while((instruction = instrStackTop(interpretStack)) != NULL) {
         // Switch pro jednotlive typy instrukci
