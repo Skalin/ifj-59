@@ -527,17 +527,15 @@ void strClear(char str[]) {
 	}
 }
 
-
 char *readString(){
-	int c = getchar();
-	char *str = '\0';
-	int i = 0;
 
+	char buffer[257];
+	char *str;
 
-	while (c != EOF || c != '\n') {
-		str[i] = (char)c;
-		i++;
-		c = getchar();
+	if ((str = fgets(buffer, sizeof(buffer),stdin)) != NULL) {
+		str[strlen(str)-1] = '\0';
+	} else {
+		throwException(7, 0, 0);
 	}
 	return str;
 }
