@@ -29,7 +29,7 @@ void instrStackInit(instrStack *stc) {
 	
 }
 
-Instr *instrItemInit () {
+Instr *instrItemInit() {
 
 	Instr * itemNew;
 	itemNew = plusMalloc(sizeof(Instr));
