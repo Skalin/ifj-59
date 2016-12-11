@@ -35,7 +35,10 @@ int main(int argc, char* argv[]) {
 
         // Parser
         pParse();
-            
+/*
+		char *str = readString();
+		print(str);
+*/
 
             //DELETE THIS
 				void printWhichNodeType(NodeType node) {
@@ -151,6 +154,15 @@ int main(int argc, char* argv[]) {
 							printf("\n\tid1");
 							printWhichNodeType(instr->Id1->nodeType);
 							printf("\n");
+							printf("\n\tid1->val: ");
+							if (instr->Id1->data.type == var_int) {
+								printf("%d", instr->Id1->data.value.intValue);
+							} else if (instr->Id1->data.type == var_double) {
+								printf("%f", instr->Id1->data.value.doubleValue);
+							} else if (instr->Id1->data.type == var_string) {
+								printf("%s", instr->Id1->data.value.stringValue);
+							}
+							printf(";\n");
 						}
 					} else if (instr->Id1 == NULL) {
 						printf("\n\tid1: NULL;\n");
