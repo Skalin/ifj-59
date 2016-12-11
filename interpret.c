@@ -422,7 +422,7 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
                 } else {
                     char buffer[512];
                     sprintf(buffer, "%g", Id2->data.value.doubleValue);
-					copyString(&Id3->data.value.stringValue, (buffer[512]));
+                    copyBuffer(&Id3->data.value.stringValue, buffer);
                     strncat(Id3->data.value.stringValue, buffer, 512);
                 }
                 Id3->inc = 1;
@@ -434,12 +434,12 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
                 if(Id2->data.type == var_int) {
                     char buffer[512];
                     sprintf(buffer, "%d", Id1->data.value.intValue);
-                    copyString(Id3->data.value.stringValue, buffer, 512);
+                    copyBuffer(&Id3->data.value.stringValue, buffer);
                 // Pokud konkaterujeme Double + String
                 } else {
                     char buffer[512];
                     sprintf(buffer, "%g", Id1->data.value.doubleValue);
-                    copyString(Id3->data.value.stringValue, buffer, 512);
+                    copyBuffer(&Id3->data.value.stringValue, buffer);
                 }
                 // Nakonec pripojime string
                 strncat(Id3->data.value.stringValue, Id2->data.value.stringValue, 512);
