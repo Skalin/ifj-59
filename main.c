@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 */
 
             //DELETE THIS
-			if (global.DEBUG == 1) {
+		/*
 				// Vytiskne obsah globálního stacku
 				char *instrukce[] = {"insIfj16readInt", "insIfj16readDouble", "insIfj16readString", "insIfj16lenght",
 									 "insIfj16substr", "insIfj16compare", "insIfj16find", "insIfj16sort",
@@ -181,7 +181,7 @@ int main(int argc, char* argv[]) {
 						printf("\n\tid2: NULL;\n");
 					}
 				}
-			}
+			*/
             //END DELETE
 			//printStack(global.iStack);
 			invertStack(global.iStack);
@@ -192,7 +192,7 @@ int main(int argc, char* argv[]) {
 			interpretMainCore(global.iStack);
 
 			// Uvolneni pameti a ukonceni programu
-			//finalFree();
+			finalFree();
 	}
 }
 

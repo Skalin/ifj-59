@@ -85,11 +85,11 @@ void invertAllIfsAndWhiles(instrStack *stc) {
 						stc->dataInstr[j] = helpInstr;
 						previousI = i;
 						if ((l-i) < (l-previousI)) {
-							printf("i: %d, j: %d\n", i, j);
+							//printf("i: %d, j: %d\n", i, j);
 							i++;
 							j--;
 						} else {
-							printf("i: %d, j: %d\n", i, j);
+							//printf("i: %d, j: %d\n", i, j);
 							i--;
 							j++;
 						}
@@ -107,11 +107,11 @@ void invertAllIfsAndWhiles(instrStack *stc) {
 						stc->dataInstr[j] = helpInstr;
 						previousI = i;
 						if ((l-i) < (l-previousI)) {
-							printf("i: %d, j: %d\n", i, j);
+							//printf("i: %d, j: %d\n", i, j);
 							i++;
 							j--;
 						} else {
-							printf("i: %d, j: %d\n", i, j);
+							//printf("i: %d, j: %d\n", i, j);
 							i--;
 							j++;
 						}
@@ -151,7 +151,7 @@ Instr * instrStackDataAt(instrStack *stc, int n) {
 	//Pokud jsou v zasobniku data, vrat data na vrcholu
 	if (!instrStackEmpty(stc)) {
 		// pokud je pocet prvku mensi nez hledany prvek, vratim NULL, jinak vratime prvek
-		if (stc->count < n) {
+		if (stc->count <= n) {
 			return NULL;
 		} else {
 			return stc->dataInstr[n];
@@ -192,30 +192,30 @@ int instrStackSize(instrStack *stc) {
 void printStack(instrStack *stc) {
 	int i = 0;
 	if (instrStackEmpty(stc)) {
-		printf("Prazdny stack\n");
+		//printf("Prazdny stack\n");
 		return;
 	}
-	printf("Velikost stacku: %d\n", stc->count);
+	//printf("Velikost stacku: %d\n", stc->count);
 	while (i <= stc->count) {
-		printf("Pozice: %d ", i);
+		//printf("Pozice: %d ", i);
 		//printf("Key: %s ", stc->dataInstr[i]->Id1->key);
-		printf("Typ: %d\n", stc->dataInstr[i]->type);
+		//printf("Typ: %d\n", stc->dataInstr[i]->type);
 		i++;
 	}
 }
 
 void printWhichNodeType(NodeType node) {
-	printf("->nodeType: ");
+	//printf("->nodeType: ");
 	if (node == var) {
-		printf("VAR");
+		//printf("VAR");
 	} else if (node == function) {
-		printf("FUNCTION");
+		//printf("FUNCTION");
 	} else if (node == class) {
-		printf("CLASS");
+		//printf("CLASS");
 	} else {
-		printf("TEMP");
+		//printf("TEMP");
 	}
-	printf(";");
+	//printf(";");
 
 	return;
 }
@@ -233,7 +233,7 @@ void printInstrType(varType type) {
 	} else {
 		typ = "null";
 	}
-	printf("%s;", typ);
+	//printf("%s;", typ);
 	return;
 }
 
@@ -247,9 +247,5 @@ void instrStackDestroy(instrStack *stc) {
 	while (!instrStackEmpty(stc)) {
 		instrStackPop(stc);
 	}
-}
-
-void invertIfsStack(instrStack *stc) {
-
 }
 
