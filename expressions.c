@@ -198,7 +198,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
 
 
 		// DELETE THIS
-		printf(" \x1B[32m Vytvoření instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
+		printf(" \x1B[32m vytvoreni instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
 		// END DELETE
 		tempNodeCounter++;
 
