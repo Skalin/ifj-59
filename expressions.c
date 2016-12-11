@@ -490,7 +490,7 @@ char *substr(char str[], int i, int n) {
 	return realString;
 }
 
-void copyString(char str1[], char str2[]) {
+void copyString(char *str1, char *str2) {
 	strcpy(str1, str2);
 }
 
@@ -542,6 +542,7 @@ char *readString(){
 
 void print(char *string) {
 	// nejaka podminka kvuli typu vstupu..
+
 	printf("%s", string);
 
 }

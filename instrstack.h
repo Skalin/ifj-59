@@ -31,6 +31,8 @@ void instrStackCopy(instrStack *originalStc, instrStack *copiedStc);
 Instr * instrStackDataAt (instrStack *stc, int n);
 void getBackTo (instrStack *stc, int n);
 void printStack(instrStack *stc);
+void printWhichNodeType(NodeType node);
+void printInstrType(varType type);
 
 
 
