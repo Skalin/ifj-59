@@ -331,6 +331,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 					argCounter++;
 					expression(node,1);
 				}
+				targetNode->inc = 1;
 				break;
 			}
 		}
@@ -422,14 +423,22 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName
 	BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,0);
 	argCounter++;
 	expression(node,1);
-
     instr->Id2 = node;
 
-	// Pokud se jedná o vestavěnou funkci
-	if (instr->Id1 == NULL) {
-		instr->Id1 = instr->Id2;
-		instr->Id2 = instr->Id2->variables;
-	}
+    printf("hodnota %d\n",node->inc);
+	// Pokud se jedná o vestavěnou funkci 
+    if (instr->Id1 == NULL) {
+        // Volání funkce má argumenty
+        if (node->inc != 0) {
+            instr->Id1 = instr->Id2;
+            instr->Id2 = instr->Id2->variables;
+        } 
+        else {
+            instr->Id1 = NULL;
+            instr->Id2 = NULL;
+        }
+    }
+
 
 	if (strcmp(functionName, "readInt") == 0) {
 		instr->type = insIfj16readInt;
