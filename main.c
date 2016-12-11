@@ -205,6 +205,9 @@ int main(int argc, char* argv[]) {
 					}
                 }
             //END DELETE
+			printStack(global.iStack);
+			invertStack(global.iStack);
+			printStack(global.iStack);
 
 			// Interpret
 			semCheck(global.iStack);
@@ -229,7 +232,7 @@ int main(int argc, char* argv[]) {
 	    throwException(99, 0, 0);
 	}
 	// Inicializace hlavnich struktur prekladace
-	
+
 	initTree(&mTree);
 	instrStack iStack;
 	instrStackInit(&iStack);
@@ -243,6 +246,6 @@ int main(int argc, char* argv[]) {
 		// Uvolneni pameti a ukonceni programu
 	finalFree();
 		//
-	
+
 }
 */

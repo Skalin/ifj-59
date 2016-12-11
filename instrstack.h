@@ -20,6 +20,7 @@ void instrStackInit (instrStack *stc);
 Instr *instrItemInit ();
 int instrStackEmpty (const instrStack* stc);
 int instrStackFull (const instrStack* stc);
+void invertStack(instrStack *stc);
 void instrStackPush (instrStack* stc, Instr* data);
 Instr *instrStackTop (instrStack* stc);
 void instrStackPop (instrStack* stc);
@@ -29,6 +30,7 @@ void instrItemDestroy (instrStack *data);
 void instrStackCopy(instrStack *originalStc, instrStack *copiedStc);
 Instr * instrStackDataAt (instrStack *stc, int n);
 void getBackTo (instrStack *stc, int n);
+void printStack(instrStack *stc);
 
 
 

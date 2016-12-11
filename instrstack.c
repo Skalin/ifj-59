@@ -60,6 +60,15 @@ int instrStackFull(const instrStack* stc) {
     return(stc->alloc < (stc->count+1) ? 1 : 0); // Pokud se stav zasobniku rovna max kapacite, vrati se 1
 }
 
+void invertStack(instrStack *stc) {
+	int i = 0;
+	while (i <= (stc->count/2)) {
+		Instr *helpInstr = stc->dataInstr[i];
+		stc->dataInstr[i] = stc->dataInstr[stc->count-i];
+		stc->dataInstr[stc->count-i] = helpInstr;
+		i++;
+	}
+}
 
 void instrStackPush(instrStack *stc, Instr *data) {
 
@@ -76,9 +85,8 @@ void instrStackPush(instrStack *stc, Instr *data) {
 Instr * instrStackTop(instrStack *stc) {
     //Pokud jsou v zasobniku data, vrat data na vrcholu
     if (!instrStackEmpty(stc)) {
-        int counter = stc->count;
         stc->count--;
-		return stc->dataInstr[counter];
+		return stc->dataInstr[stc->count+1];
     //Jinak vrat null
     } else {
         return NULL;
@@ -126,6 +134,18 @@ void instrStackPop(instrStack *stc) {
 
 int instrStackSize(instrStack *stc) {
 	return stc->count;
+}
+
+void printStack(instrStack *stc) {
+	int i = 0;
+
+	printf("Velikost stacku: %d\n", stc->count);
+	while (i <= stc->count) {
+		printf("Pozice: %d ", i);
+		printf("Typ: %d\n", stc->dataInstr[i]->type);
+		i++;
+	}
+
 }
 
 void instrItemDestroy(instrStack *data) {
