@@ -66,12 +66,6 @@ char* nodePrint(BTSNode *node) {
 }
 //END DELETE
 
-char *addIntToStr(char *str, int integer) {
-    char buffer[100];
-    sprintf(buffer, "0temp%d", constCounter);
-	return buffer;
-}
-
 bool isIdent(tToken *token) {
 	if ((token->type >= t_simple_ident) && (token->type <= t_complete_ident))
 		return true;
@@ -123,8 +117,14 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
 	// Pravidlo E -> id
 	if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
 		if (isConst(handle[0]->dataIt)) {
+            
 			BTSNode *node = createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu
+            /* TODO
+            char buffer[20];
+            sprintf(buffer, "0const%d\0", constCounter);
+            //copyString(&node->key,&buffer);*/
 
+            
 			if (handle[0]->dataIt->type == t_int) {
 				node->data.type = var_int;
 				node->data.value.intValue = atoi(handle[0]->dataIt->data);
@@ -167,7 +167,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
 }
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
-void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tStack *stack) {
+void reduceExp(tStackIt *handle[3], instrStack *iStack, tStack *stack) {
 	// Pokud byl výraz zredukován již v chnToExpr, neděláme nic
 	if (handle[0] == NULL) {
 		//DELETE THIS
@@ -346,7 +346,7 @@ void expression(BTSNode *targetNode, int isArg) {
 				functionCall(tempNode,NULL,topTerm(stack)->data);
 				// VYPIS printf("---------------------Konec functionCall\n");
 				item->typeIt = EXPR;
-				copyString(&item->dataIt->data,&tempNode->key);
+				copyString(item->dataIt->data,&tempNode->key);
 				stackPush(stack,item);
 			}
 				// Situace kdy ifj16.print je součástí výrazu = sémantická chyba
@@ -412,7 +412,7 @@ void expression(BTSNode *targetNode, int isArg) {
 			case '>': ; // Stejná situace se středníkem jako v první case
 				tStackIt *handle[3];
 				chnToExp(stack,handle);
-				reduceExp(targetNode,handle,localIStack,stack);
+				reduceExp(handle,localIStack,stack);
 				break;
 			default:
 				// Syntaktická chyba
