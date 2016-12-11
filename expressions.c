@@ -501,8 +501,14 @@ char *substr(char str[], int i, int n) {
 	return realString;
 }
 
-void copyString(char str1[], char str2[]) {
-	strcpy(str1, str2);
+void copyString(char *str1[], char *str2[]) {
+	int i = 0;
+	str1[i] = '\0';
+	while(str2[i] != '\0') {
+		str1[i] = str2[i];
+		i++;
+	}
+	str1[i] = '\0';
 }
 
 int compareString(char str1[], char str2[]) {
@@ -538,23 +544,22 @@ void strClear(char str[]) {
 	}
 }
 
-
 char *readString(){
-	int c = getchar();
-	char *str = '\0';
-	int i = 0;
 
+	char buffer[257];
+	char *str;
 
-	while (c != EOF || c != '\n') {
-		str[i] = (char)c;
-		i++;
-		c = getchar();
+	if ((str = fgets(buffer, sizeof(buffer),stdin)) != NULL) {
+		str[strlen(str)-1] = '\0';
+	} else {
+		throwException(7, 0, 0);
 	}
 	return str;
 }
 
 void print(char *string) {
 	// nejaka podminka kvuli typu vstupu..
+
 	printf("%s", string);
 
 }
