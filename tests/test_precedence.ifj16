@@ -1,10 +1,12 @@
 class Main
 {
-
+	static void fff()
+	{
+//int a = 50+1;
+	}
 	static void run()
 	{
-	String s;
-	s = ifj16.readString();
-	ifj16.print("Vysledny string: "+ s);
+int a = 5;
 	}
+
 }

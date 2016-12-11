@@ -30,7 +30,7 @@ bool isConst(tToken *token);
 char getPrecChar(tToken *stackToken, tToken *inToken);
 tStackIt **chnToExp(tStack *stack, tStackIt *handle[]);
 void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tStack *stack);
-tToken *expression(BTSNode *targetNode, int isArg);
+void expression(BTSNode *targetNode, int isArg);
 void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName);
 void completeInstr();
 int strEqual(char str1[], char str2[]);
