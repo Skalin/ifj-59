@@ -149,6 +149,11 @@ Instr * instrStackTop(instrStack *stc) {
 // Funkce vrati instrukci na pozici n
 Instr * instrStackDataAt(instrStack *stc, int n) {
 	//Pokud jsou v zasobniku data, vrat data na vrcholu
+	if (stc->alloc < n) {
+		return NULL;
+	}
+	return stc->dataInstr[n];
+	/*
 	if (instrStackEmpty(stc) == 0) {
 		// pokud je pocet prvku mensi nez hledany prvek, vratim NULL, jinak vratime prvek
 		if (stc->count <= n) {
@@ -159,7 +164,7 @@ Instr * instrStackDataAt(instrStack *stc, int n) {
 		//Jinak vrat null
 	} else {
 		return NULL;
-	}
+	}*/
 }
 // PRO DEJVA, ZKONTROLOVAT, PRIPADNE OPRAVIT
 // FUNKCE POSUNE VRCHOL ZASOBNIKU NA NTOU HODNOTU. Kterou nejprve dostanu pomoci instrStackSize a pak se tam na tu hodnotu potrebuju vratit
@@ -192,14 +197,14 @@ int instrStackSize(instrStack *stc) {
 void printStack(instrStack *stc) {
 	int i = 0;
 	if (instrStackEmpty(stc)) {
-		//printf("Prazdny stack\n");
+		printf("Prazdny stack\n");
 		return;
 	}
-	//printf("Velikost stacku: %d\n", stc->count);
+	printf("Velikost stacku: %d\n", stc->count);
 	while (i <= stc->count) {
-		//printf("Pozice: %d ", i);
+		printf("Pozice: %d ", i);
 		//printf("Key: %s ", stc->dataInstr[i]->Id1->key);
-		//printf("Typ: %d\n", stc->dataInstr[i]->type);
+		printf("Typ: %d\n", stc->dataInstr[i]->type);
 		i++;
 	}
 }
