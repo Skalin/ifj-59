@@ -1,3 +1,4 @@
+
 class Main
 {
     static void foo(int a, int b) 
@@ -7,8 +8,7 @@ class Main
     
     static void run ()
     {
-        int a = 20;
-        int b = 50;
-        int c = a + b;
+        int c = 70;
+        ifj16.print("Promenna c je " + c);
     }   
 }
