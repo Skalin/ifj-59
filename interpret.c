@@ -422,6 +422,7 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
                 } else {
                     char buffer[512];
                     sprintf(buffer, "%g", Id2->data.value.doubleValue);
+					copyString(&Id3->data.value.stringValue, (buffer[512]));
                     strncat(Id3->data.value.stringValue, buffer, 512);
                 }
                 Id3->inc = 1;
