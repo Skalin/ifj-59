@@ -7,4 +7,4 @@ class Main {
 		b= 0.0;
 		a = a/b;
 	}
-}
+}echo

@@ -22,6 +22,7 @@ void semCheck(instrStack *interpretStack) {
 	instrStack tmpStack;
 	instrStackInit(&tmpStack);
 	instrStackCopy(interpretStack, &tmpStack);
+    invertStack(&tmpStack);
 
 	struct Instr *instr;
 	instr = plusMalloc(sizeof(Instr));
@@ -60,6 +61,8 @@ void semCheck(instrStack *interpretStack) {
                 if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
+                    if(instr->Id3->data.type == var_null)
+                        instr->Id3->data.type = var_string;
                     // Pokud neni typ int, jedna se o chybu 4
                     if (instr->Id3->data.type != var_string)
                         throwException(4,0,0);
@@ -662,6 +665,8 @@ void interpretMainCore(instrStack *interpretStack) {
     struct Instr *instruction;
     struct Instr *instructionWhile;
 
+    invertStack(interpretStack);
+
     while((instruction = instrStackTop(interpretStack)) != NULL) {
         // Switch pro jednotlive typy instrukci
         switch (instruction->type) {
@@ -696,6 +701,7 @@ void interpretMainCore(instrStack *interpretStack) {
                     throwException(8, 0, 0);
                 }
                 break;
+            //read
             case insIfj16readString:
                 if(instruction->Id3->inc == 1) {
                     if(instruction->Id3->data.type == var_string) {
