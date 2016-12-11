@@ -553,7 +553,7 @@ char *readString(){
 void print(char *string) {
 	// nejaka podminka kvuli typu vstupu..
 
-	printf("%s", string);
+	puts(string);
 
 }
 
