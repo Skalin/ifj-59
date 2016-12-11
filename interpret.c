@@ -433,12 +433,12 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
                 if(Id2->data.type == var_int) {
                     char buffer[512];
                     sprintf(buffer, "%d", Id1->data.value.intValue);
-                    strncpy(Id3->data.value.stringValue, buffer, 512);
+                    copyString(Id3->data.value.stringValue, buffer, 512);
                 // Pokud konkaterujeme Double + String
                 } else {
                     char buffer[512];
                     sprintf(buffer, "%g", Id1->data.value.doubleValue);
-                    strncpy(Id3->data.value.stringValue, buffer, 512);
+                    copyString(Id3->data.value.stringValue, buffer, 512);
                 }
                 // Nakonec pripojime string
                 strncat(Id3->data.value.stringValue, Id2->data.value.stringValue, 512);
