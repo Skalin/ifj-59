@@ -403,7 +403,7 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
             // Pokud se jedna o konkateraci dvou stringu
             } else if (Id1->data.type == var_string && Id2->data.type == var_string) {
                 Id3->data.type = var_string;
-                strcpy(Id3->data.value.stringValue, Id1->data.value.stringValue);
+                copyString(&Id3->data.value.stringValue, &Id1->data.value.stringValue);
                 strncat(Id3->data.value.stringValue, Id2->data.value.stringValue, 512);
             // Pokud je prvni operand string
             } else if (Id1->data.type == var_string) {
