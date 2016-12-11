@@ -2,17 +2,14 @@ class Main
 {
 	static void run()
 	{
-<<<<<<< HEAD
-	int b;
-	int a = b;
-	a = 5;
-=======
+
+
 	    int a = 15;
 	while(a != 17) {
 	    a = a + 1;
 	}
 
->>>>>>> 337be9e0bf9196a4a0e6ff6270d743c5af62e405
+
 	}
 
 }
