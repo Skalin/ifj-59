@@ -6,7 +6,9 @@ class Main
 	}
 	static void run()
 	{
-int a = 5;
+	int b;
+	int a = b;
+	a = 5;
 	}
 
 }
