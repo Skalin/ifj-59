@@ -338,6 +338,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 			// Jedná se o funkci uvnitř výrazu
 		else if ((isIdent(topTerm(stack))) && (token->type == t_bracket_l)) {
 			// Jedná se o vestavěnou funkci
+            printf("je to funkce!!\n");
 			if ((strcmp(topTerm(stack)->data, "ifj16.readInt") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readDouble") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readString") == 0) || (strcmp(topTerm(stack)->data, "ifj16.length") == 0) || (strcmp(topTerm(stack)->data, "ifj16.substr") == 0) || (strcmp(topTerm(stack)->data, "ifj16.compare") == 0) || (strcmp(topTerm(stack)->data, "ifj16.find") == 0) || (strcmp(topTerm(stack)->data, "ifj16.sort") == 0)) {
 				BTSNode *tempNode = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
 				tempNodeCounter++;
@@ -345,7 +346,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 				functionCall(tempNode,NULL,topTerm(stack)->data);
 				printf("---------------------Konec functionCall\n");
 				item->typeIt = EXPR;
-				copyString(item->dataIt->data,tempNode->key);
+				copyString(&item->dataIt->data,&tempNode->key);
 				stackPush(stack,item);
 			}
 				// Situace kdy ifj16.print je součástí výrazu = sémantická chyba
@@ -355,19 +356,23 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 				// Jedná se o nevestavnou funkci
 			else {
 				BTSNode *functionNode = searchForNode(topTerm(stack)->data,function,mTree.actClass->functions);
-				// Pokud funkce neexistuje
-				if (functionNode == NULL) {
+				// Pokud funkce neexistuje nebo je void
+				if ((functionNode == NULL) || (functionNode->data.type == var_null)) {
 					throwException(3,0,0); // TODO doplnit správný kód chyby
 				}
-				functionCall("", functionNode, functionNode->key); // TODO doplnit cíl
-				// TODO ošetřit void typ = sémantická chyba
+				BTSNode *tempNode = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
+				tempNodeCounter++;
+				printf("---------------------Zavolano functionCall\n");
+				functionCall(tempNode,functionNode,topTerm(stack)->data);
+				printf("---------------------Konec functionCall\n");
+				item->typeIt = EXPR;
+				copyString(&item->dataIt->data,&tempNode->key);
+				stackPush(stack,item);
 			}
-			// TODO TADY BYL BREAK
 			token = getToken();
 			if (token->type != t_semicolon) {
 				throwException(2,0,0); // TODO doplnit správný kód chyby
 			}
-			else
 				break;
 		}
 			// Pokud token do výrazu nepatří, jedná se o syntaktickou chybu

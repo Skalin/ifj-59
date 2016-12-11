@@ -1,14 +1,13 @@
 
 class Main
 {
-    static void foo(int a, int b) 
+    static int readInt(int a, int b) 
     {
        // a = 40;
     }
     
     static void run ()
     {
-        int c = 70;
-        ifj16.print("Promenna c je " + c);
+        int x = readInt(40,80);
     }   
 }
