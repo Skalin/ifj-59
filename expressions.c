@@ -26,7 +26,7 @@
 
 // TODO zkontrolovat správnost tabulky
 char precTable[16][16] = {
-		//  (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
+    //    (   )   /   *   +   -   ==  !=  <   >   <=  >=  !   ,   ;   ID
 		{'<','=','<','<','<','<','<','<','<','<','<','<','<','=','F','<'}, // (
 		{'F','>','>','>','>','>','>','>','>','>','>','>','>','>','>','F'}, // )
 		{'<','>','>','>','>','>','>','>','>','>','>','>','>','>','>','<'}, // /
@@ -71,7 +71,7 @@ char *addIntToStr(char *str, int integer) {
 	sprintf(buffer, "%d", 1);
 	strncat(str, buffer, 512);
 	return buffer;*/
-	return '\0';
+    return NULL;
 }
 
 bool isIdent(tToken *token) {
@@ -126,8 +126,24 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
 	if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
 		if (isConst(handle[0]->dataIt)) {
 			//TODO vytvořit nový node a jeho název vložit do handle[0]
-			createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu
+			BTSNode *node = createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu
 
+            if (handle[0]->dataIt->type == t_int) {
+                node->data.type = var_int;
+                node->data.value.intValue = atoi(handle[0]->dataIt->data);
+            }
+            else if (handle[0]->dataIt->type == t_double){
+                node->data.type = var_double;
+                node->data.value.doubleValue = atof(handle[0]->dataIt->data);
+            }
+            else if (handle[0]->dataIt->type == t_double_e){
+                node->data.type = var_double;
+                node->data.value.doubleValue = atof(handle[0]->dataIt->data);
+            }
+            else if (handle[0]->dataIt->type == t_string){
+                node->data.type = var_string;
+                node->data.value.stringValue = handle[0]->dataIt->data;
+            }
 			// DELETE THIS
 			tToken *token = initToken();
 			updateToken(token,"ABCDEFGH"+constCounter);
@@ -254,8 +270,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
 				break;
 		}
 	}
-	else { // TODO je to tu vůbec potřeba?
-		printf("\x1B[31m ANO!! ten id tam byl potřeba :-)\x1B[0m\n");
+	else {
 		throwException(2,0,0);
 	}
 }
@@ -301,23 +316,44 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 				instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,var,mTree.actFunction->variables);
 				if (instr->Id1 == NULL)
 					instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,temp,mTree.actFunction->variables);
+                if (instr->Id1 == NULL) {
+                    targetNode = NULL;
+                    break;
+                }
 				instr->Id2 = NULL;
 				instr->type = insAssignment;
 				instrStackPush(localIStack,instr);
 				// Pokud zpracováváme argument a není poslední, tak zpracováváme dál
 				if ((isArg) && (token->type == t_comma)) {
 					BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
-					// TODO targetNode->pointerNaDalsiArgument = node;
+					targetNode->variables = node;
+                    printf("----------------%s->variables = %s\n",nodePrint(targetNode),nodePrint(node));
 					argCounter++;
 					expression(node,1);
 				}
 				break;
 			}
 		}
-			// Jedná se o funkci uvnitř výrazu
+        // Jedná se o funkci uvnitř výrazu
 		else if ((isIdent(topTerm(stack))) && (token->type == t_bracket_l)) {
-			/* TODO Pokud funkce neexistuje -> semError
-			 * jinak fazoval functionCall(target,nodefunkce)*/
+            // Jedná se o vestavěnou funkci
+            if ((strcmp(topTerm(stack)->data, "ifj16.readInt") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readDouble") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readString") == 0) || (strcmp(topTerm(stack)->data, "ifj16.length") == 0) || (strcmp(topTerm(stack)->data, "ifj16.substr") == 0) || (strcmp(topTerm(stack)->data, "ifj16.compare") == 0) || (strcmp(topTerm(stack)->data, "ifj16.find") == 0) || (strcmp(topTerm(stack)->data, "ifj16.sort") == 0)) {
+                functionCall(targetNode,NULL,topTerm(stack)->data);
+            }
+            // Situace kdy ifj16.print je osučástí výrazu = sémantická chyba
+            else if (strcmp(topTerm(stack)->data, "ifj16.print") == 0) {
+                throwException(3,0,0); // TODO doplnit správný kód chyby
+            }
+            // Jedná se o nevestavnou funkci
+            else {
+                BTSNode *functionNode = searchForNode(topTerm(stack)->data,function,mTree.actClass->functions);
+                // Pokud funkce neexistuje
+                if (functionNode == NULL) {
+                    throwException(3,0,0); // TODO doplnit správný kód chyby
+                }
+                functionCall("", functionNode, functionNode->key); // TODO doplnit cíl
+            }
+            break;
 		}
 			// Pokud token do výrazu nepatří, jedná se o syntaktickou chybu
 		else if (token->type > t_string) {
@@ -360,12 +396,13 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 				break;
 			default:
 				// Syntaktická chyba
+
 				throwException(2,0,0);
 				break;
 		}
 	}
 	stackDestroy(stack);
-	return NULL;
+    return NULL;
 }
 
 void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName) {
@@ -374,16 +411,19 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName
 		instrStackCopy(localIStack, mTree.actFunction->iStack);
 	}
 
+
+
 	// TODO když funkce nemá argumenty, id2 instrukce functioncall je NULL
 	Instr *instr = instrItemInit();
 	instr->Id3 = targetNode;
 	instr->Id1 = functionNode;
 
 
-	BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,1);
-	instr->Id2 = node;
+	BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,0);
 	argCounter++;
 	expression(node,1);
+
+    instr->Id2 = node;
 
 	// Pokud se jedná o vestavěnou funkci
 	if (instr->Id1 == NULL) {
@@ -391,36 +431,36 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName
 		instr->Id2 = instr->Id2->variables;
 	}
 
-	if (strcmp(mTree.actFunction->key, "readInt") == 0) {
+	if (strcmp(functionName, "readInt") == 0) {
 		instr->type = insIfj16readInt;
 	}
-	else if (strcmp(mTree.actFunction->key, "readDouble") == 0) {
+	else if (strcmp(functionName, "ifj16.readDouble") == 0) {
 		instr->type = insIfj16readDouble;
 	}
-	else if (strcmp(mTree.actFunction->key, "readString") == 0) {
+	else if (strcmp(functionName, "ifj16.readString") == 0) {
 		instr->type = insIfj16readString;
 	}
-	else if (strcmp(mTree.actFunction->key, "length") == 0) {
+	else if (strcmp(functionName, "ifj16.length") == 0) {
 		instr->type = insIfj16lenght;
 	}
-	else if (strcmp(mTree.actFunction->key, "substr") == 0) {
+	else if (strcmp(functionName, "ifj16.substr") == 0) {
 		instr->type = insIfj16substr;
 	}
-	else if (strcmp(mTree.actFunction->key, "compare") == 0) {
+	else if (strcmp(functionName, "ifj16.compare") == 0) {
 		instr->type = insIfj16compare;
 	}
-	else if (strcmp(mTree.actFunction->key, "find") == 0) {
+	else if (strcmp(functionName, "ifj16.find") == 0) {
 		instr->type = insIfj16find;
 	}
-	else if (strcmp(mTree.actFunction->key, "sort") == 0) {
+	else if (strcmp(functionName, "ifj16.sort") == 0) {
 		instr->type = insIfj16sort;
 	}
-	else if (strcmp(mTree.actFunction->key, "print") == 0) {
+	else if (strcmp(functionName, "ifj16.print") == 0) {
 		instr->type = insIfj16print;
 	}
 	else {
-		instr->type = insFunctionCall;
-	}
+        instr->type = insFunctionCall;
+    }
 
 	instrStackPush(localIStack,instr);
 }
