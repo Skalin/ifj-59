@@ -338,7 +338,6 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 			// Jedná se o funkci uvnitř výrazu
 		else if ((isIdent(topTerm(stack))) && (token->type == t_bracket_l)) {
 			// Jedná se o vestavěnou funkci
-            printf("je to funkce!!\n");
 			if ((strcmp(topTerm(stack)->data, "ifj16.readInt") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readDouble") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readString") == 0) || (strcmp(topTerm(stack)->data, "ifj16.length") == 0) || (strcmp(topTerm(stack)->data, "ifj16.substr") == 0) || (strcmp(topTerm(stack)->data, "ifj16.compare") == 0) || (strcmp(topTerm(stack)->data, "ifj16.find") == 0) || (strcmp(topTerm(stack)->data, "ifj16.sort") == 0)) {
 				BTSNode *tempNode = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
 				tempNodeCounter++;

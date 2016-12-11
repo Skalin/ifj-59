@@ -9,6 +9,6 @@ class Main
     static void run ()
     {
         int c = 70;
-        int x = ifj16.intRead("Promenna c je " + c);
+        int x = ifj16.readInt("Promenna c je " + c);
     }   
 }
