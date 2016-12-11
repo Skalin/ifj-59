@@ -1,12 +1,12 @@
 class Main
 {
-	static void fff()
-	{
-//int a = 50+1;
-	}
 	static void run()
 	{
-int a = 5;
+	    int a = 15;
+	while(a != 17) {
+	    a = a + 1;
+	}
+
 	}
 
 }

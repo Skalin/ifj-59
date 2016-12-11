@@ -22,7 +22,6 @@ void semCheck(instrStack *interpretStack) {
 	instrStack tmpStack;
 	instrStackInit(&tmpStack);
 	instrStackCopy(interpretStack, &tmpStack);
-    invertStack(&tmpStack);
 
 	struct Instr *instr;
 	instr = plusMalloc(sizeof(Instr));
@@ -665,8 +664,6 @@ void interpretMainCore(instrStack *interpretStack) {
     struct Instr *instruction;
     struct Instr *instructionWhile;
 
-    invertStack(interpretStack);
-
     while((instruction = instrStackTop(interpretStack)) != NULL) {
         // Switch pro jednotlive typy instrukci
         switch (instruction->type) {
@@ -818,7 +815,7 @@ void interpretMainCore(instrStack *interpretStack) {
                     throwException(2,0,0);
                 // Nactu podminku ifu
                 instruction = instrStackTop(interpretStack);
-                if(!(instruction->type == insPlus || instruction->type == insMinus || instruction->type == insMux || instruction->type == insDiv || instruction->type == insPlusTmp || instruction->type == insMinusTmp ||
+                if((instruction->type == insPlus || instruction->type == insMinus || instruction->type == insMux || instruction->type == insDiv || instruction->type == insPlusTmp || instruction->type == insMinusTmp ||
                         instruction->type == insMuxTmp || instruction->type == insDivTmp))
                     throwException(4,0,0);
 
@@ -971,6 +968,10 @@ void interpretMainCore(instrStack *interpretStack) {
                         }
                         instruction = instrStackTop(interpretStack);
                     }
+                    instruction = instrStackTop(interpretStack);
+                    while(instruction->type != insCondEnd) {
+                        instruction = instrStackTop(interpretStack);
+                    }
                 // Pokud podminka v ifu neplati, preskoci se telo ifu a vykona se else vetev
                 } else {
                     instruction = instrStackTop(interpretStack);
@@ -982,8 +983,8 @@ void interpretMainCore(instrStack *interpretStack) {
                     if(instruction->type != insElse)
                         throwException(2,0,0);
                     // Nactu si dalsi instrukci
-                    instruction = instrStackTop(interpretStack);
 
+                    instruction = instrStackTop(interpretStack);
                     // Dokud nenarazim na konec podminkz
                     while (instruction->type != insCondEnd) {
                         switch (instruction->type) {
@@ -1026,7 +1027,7 @@ void interpretMainCore(instrStack *interpretStack) {
                                 // Pokud se jedna o volani fce void print(char *string);
                             case insIfj16print:
                                 if(instruction->Id1->inc == 1) {
-                                    if(instruction->Id3->data.type == var_string) {
+                                    if(instruction->Id1->data.type == var_string) {
                                         print(instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
@@ -1136,7 +1137,7 @@ void interpretMainCore(instrStack *interpretStack) {
             // WHILE
             case insWhile :
                 instruction = instrStackTop(interpretStack);
-                if(!(instruction->type == insPlus || instruction->type == insMinus || instruction->type == insMux || instruction->type == insDiv || instruction->type == insPlusTmp || instruction->type == insMinusTmp ||
+                if((instruction->type == insPlus || instruction->type == insMinus || instruction->type == insMux || instruction->type == insDiv || instruction->type == insPlusTmp || instruction->type == insMinusTmp ||
                      instruction->type == insMuxTmp || instruction->type == insDivTmp))
                     throwException(4,0,0);
                 cond = compareInstruction(instruction->Id1, instruction->Id2, instruction->type);
@@ -1188,7 +1189,7 @@ void interpretMainCore(instrStack *interpretStack) {
                                 // Pokud se jedna o volani fce void print(char *string);
                             case insIfj16print:
                                 if(instruction->Id1->inc == 1) {
-                                    if(instruction->Id3->data.type == var_string) {
+                                    if(instruction->Id1->data.type == var_string) {
                                         print(instruction->Id1->data.value.stringValue);
                                     } else {
                                         throwException(4,0,0);
