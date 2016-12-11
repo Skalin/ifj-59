@@ -409,7 +409,7 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
             } else if (Id1->data.type == var_string) {
                 // Do Id3 nacteme prvni string
                 Id3->data.type = var_string;
-                copyString(Id3->data.value.stringValue, Id1->data.value.stringValue);
+                copyString(&Id3->data.value.stringValue, &Id1->data.value.stringValue);
 
                 // Pokud konkaterujeme String + int
                 if(Id2->data.type == var_int) {

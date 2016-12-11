@@ -490,8 +490,14 @@ char *substr(char str[], int i, int n) {
 	return realString;
 }
 
-void copyString(char *str1, char *str2) {
-	strcpy(str1, str2);
+void copyString(char *str1[], char *str2[]) {
+	int i = 0;
+	str1[i] = '\0';
+	while(str2[i] != '\0') {
+		str1[i] = str2[i];
+		i++;
+	}
+	str1[i] = '\0';
 }
 
 int compareString(char str1[], char str2[]) {
