@@ -1,17 +1,5 @@
 class Main
 {
-<<<<<<< HEAD
-    static void foo(int a, int b) 
-    {
-       // a = 40;
-    }
-    
-    static void run ()
-    {
-        int c = 70;
-        int x = ifj16.intRead("Promenna c je " + c);
-    }   
-=======
 
 	static void run()
 	{
@@ -20,5 +8,5 @@ class Main
 
 		ifj16.print("AHOJ"+"STRING");
 	}
->>>>>>> 48fbfed60eb01184e55319ced5cfa100b2d2cd4a
+
 }
