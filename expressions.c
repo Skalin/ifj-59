@@ -528,21 +528,36 @@ void strClear(char str[]) {
 }
 
 
-char *readString(){
-	int c = getchar();
-	char *str = '\0';
+char *readString(){/*
 	int i = 0;
+	char *str = plusMalloc(sizeof(char));
+	str[0] = '\0';
 
+	char c = (char) getchar();
 
-	while (c != EOF || c != '\n') {
-		str[i] = (char)c;
+	while (c != '\n' || c != EOF) {
+		str[i] = c;
 		i++;
-		c = getchar();
+		str = (char *)plusRealloc(str, sizeof(char)*(i));
+		c = (char) getchar();
+	}
+	return str;
+
+*/
+	// rework
+
+	char buffer[257];
+	char *str;
+
+	if ((str = fgets(buffer, sizeof(buffer),stdin)) != NULL) {
+		str[strlen(str)-1] = '\0';
+	} else {
+		throwException(7, 0, 0);
 	}
 	return str;
 }
 
-void print(char string[]) {
+void print(char *string) {
 	// nejaka podminka kvuli typu vstupu..
 	printf("%s", string);
 
