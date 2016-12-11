@@ -331,6 +331,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 					argCounter++;
 					expression(node,1);
 				}
+				targetNode->inc = 1;
 				break;
 			}
 		}
@@ -422,14 +423,22 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName
 	BTSNode *node = createNewNode("01234567" + argCounter,temp,var_null,0,0);
 	argCounter++;
 	expression(node,1);
-
     instr->Id2 = node;
 
-	// Pokud se jedná o vestavěnou funkci
-	if (instr->Id1 == NULL) {
-		instr->Id1 = instr->Id2;
-		instr->Id2 = instr->Id2->variables;
-	}
+    printf("hodnota %d\n",node->inc);
+	// Pokud se jedná o vestavěnou funkci 
+    if (instr->Id1 == NULL) {
+        // Volání funkce má argumenty
+        if (node->inc != 0) {
+            instr->Id1 = instr->Id2;
+            instr->Id2 = instr->Id2->variables;
+        } 
+        else {
+            instr->Id1 = NULL;
+            instr->Id2 = NULL;
+        }
+    }
+
 
 	if (strcmp(functionName, "readInt") == 0) {
 		instr->type = insIfj16readInt;
@@ -519,31 +528,16 @@ void strClear(char str[]) {
 }
 
 
-char *readString(){/*
+char *readString(){
+	int c = getchar();
+	char *str = '\0';
 	int i = 0;
-	char *str = plusMalloc(sizeof(char));
-	str[0] = '\0';
 
-	char c = (char) getchar();
 
-	while (c != '\n' || c != EOF) {
-		str[i] = c;
+	while (c != EOF || c != '\n') {
+		str[i] = (char)c;
 		i++;
-		str = (char *)plusRealloc(str, sizeof(char)*(i));
-		c = (char) getchar();
-	}
-	return str;
-
-*/
-	// rework
-
-	char buffer[257];
-	char *str;
-
-	if ((str = fgets(buffer, sizeof(buffer),stdin)) != NULL) {
-		str[strlen(str)-1] = '\0';
-	} else {
-		throwException(7, 0, 0);
+		c = getchar();
 	}
 	return str;
 }

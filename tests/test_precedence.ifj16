@@ -1,14 +1,20 @@
 class Main
 {
-   static void run ()
+    static void foo(int a, int b) 
     {
-    	int a = 50;
-    	String s = "Ahoj";
-    	ifj16.print(s);
+       // a = 40;
+    }
+    
+    static void run ()
+    {
+        int x;
+        int y;
+        int z;
 
-        //ifj16.print();
+        //z = x * y ;
+        ifj16.print(x,y,z);
         //z = ifj16.readInt(x,y);
         //if (x+y){}else{}
 
-    }
+    }   
 }
