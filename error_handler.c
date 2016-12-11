@@ -14,48 +14,8 @@
 #include <stdlib.h>
 #include "error_handler.h"
 #include "garbage_collector.h"
+
 void throwException(int errorNumber, int row, int column) {
-    if (global.DEBUG == 1) {
-        printf("%d", errorNumber);
-		switch(errorNumber) {
-			case 1:
-				printf("\tlex\n");
-				break;
-			case 2:
-				printf("\tsyntax\n");
-				break;
-			case 3:
-				printf("\tsem\n");
-				break;
-			case 4:
-				printf("\tsem\n");
-				break;
-			case 6:
-				printf("\tsem\n");
-				break;
-			case 7:
-				printf("\trun error int from readInt\n");
-				break;
-			case 8:
-				printf("\trun error uninit var\n");
-				break;
-				// 9 - běhová chyba dělení nulou
-			case 9:
-				printf("\trun error div by zero\n");
-				break;
-			case 10:
-				printf("\tNAN - dunno what hepnd\n");
-				break;
-			case 99:
-				printf("\tinternal error\n");
-				break;
-			default:
-				printf("\twtf error internal error\n");
-				break;
-		}
-        finalFree();
-		exit(errorNumber);
-    } else {
 
         fprintf(stderr, "=========================================================================\n" );
         fprintf(stderr, "============================ PROBLEM OCCURED ============================\n" );
@@ -132,5 +92,4 @@ void throwException(int errorNumber, int row, int column) {
         fprintf(stderr, "=========================================================================\n" );
         finalFree();
         exit(exit_code);
-    }
 }

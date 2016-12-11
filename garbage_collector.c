@@ -14,7 +14,6 @@
 #include "instrstack.h"
 #include "garbage_collector.h"
 #include "error_handler.h"
-#include "ial.h"
 
 // Globální proměnná
 struct tGlobal global;
