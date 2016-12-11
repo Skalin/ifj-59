@@ -494,6 +494,16 @@ void copyString(char *str1[], char *str2[]) {
 	str1[i] = '\0';
 }
 
+void copyBuffer(char *str1[], char str2[]) {
+	int i = 0;
+	str1[i] = '\0';
+	while(str2[i] != '\0' || i < 512) {
+		str1[i] = &str2[i];
+		i++;
+	}
+	str1[i] = '\0';
+}
+
 int compareString(char str1[], char str2[]) {
 	//porovná dva zadané řetězce str1 a str2 a vrátí celočíselnou hodnotu dle toho, zda je str1 před, roven, nebo za str2
 	int result = strcmp(str1, str2);

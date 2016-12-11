@@ -79,6 +79,10 @@ int addCharacter(char str[], char c);
  */
 void copyString(char *str1[], char *str2[]);
 
+/*
+ *
+ */
+void copyBuffer(char *str1[], char str2[]);
 
 /*
  *
