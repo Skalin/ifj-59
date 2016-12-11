@@ -144,17 +144,17 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_string;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }else if(instr->Id1->data.type == var_double || instr->Id2->data.type == var_double) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insMinusTmp:
@@ -163,12 +163,12 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insMuxTmp:
@@ -177,12 +177,12 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insDivTmp:
@@ -191,12 +191,12 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insPlus:
@@ -356,6 +356,10 @@ void semCheck(instrStack *interpretStack) {
                 if(instr->Id2 != NULL || instr->Id1 == NULL || instr->Id3 == NULL)
                     throwException(3,0,0);
                 if(instr->Id1->inc == 1 && instr->Id3->inc == 1) {
+                    if(instr->Id3->data.type == var_null) {
+                        instr->Id3->data.type = instr->Id1->data.type;
+                        break;
+                    }
                     // Pokud prirazujeme spatne typy
                     if(instr->Id1->data.type != instr->Id3->data.type) {
                         throwException(4,0,0);
@@ -405,7 +409,7 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
             } else if (Id1->data.type == var_string) {
                 // Do Id3 nacteme prvni string
                 Id3->data.type = var_string;
-                strcpy(Id3->data.value.stringValue, Id1->data.value.stringValue);
+                copyString(Id3->data.value.stringValue, Id1->data.value.stringValue);
 
                 // Pokud konkaterujeme String + int
                 if(Id2->data.type == var_int) {
