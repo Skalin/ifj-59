@@ -701,6 +701,7 @@ void interpretMainCore(instrStack *interpretStack) {
                     throwException(8, 0, 0);
                 }
                 break;
+            //read
             case insIfj16readString:
                 if(instruction->Id3->inc == 1) {
                     if(instruction->Id3->data.type == var_string) {
