@@ -36,6 +36,8 @@ void semCheck(instrStack *interpretStack) {
                 if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
+                    if(instr->Id3->data.type == var_null)
+                        instr->Id3->data.type = var_int;
                     // Pokud neni typ int, jedna se o chybu 4
                     if (instr->Id3->data.type != var_int)
                         throwException(4,0,0);
@@ -48,6 +50,8 @@ void semCheck(instrStack *interpretStack) {
                 if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
+                    if(instr->Id3->data.type == var_null)
+                        instr->Id3->data.type = var_double;
                     // Pokud neni typ double, jedna se o chybu 4
                     if (instr->Id3->data.type != var_double)
                         throwException(4,0,0);
