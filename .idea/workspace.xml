@@ -11,10 +11,8 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="">
+    <list default="true" id="9b7b05ac-7f38-4c36-8a0f-aed831ae52b3" name="Default" comment="[MODIFY] 0.7 - uprava kodovani">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/error_handler.c" afterPath="$PROJECT_DIR$/error_handler.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/garbage_collector.c" afterPath="$PROJECT_DIR$/garbage_collector.c" />
     </list>
     <ignored path="ifj-59.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,10 +37,22 @@
           <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="675">
-                  <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+                <state relative-caret-position="289">
+                  <caret line="188" column="41" selection-start-line="188" selection-start-column="41" selection-end-line="188" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="main.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/main.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+                  <folding>
+                    <marker date="1481427547202" expanded="true" signature="409:441" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -51,8 +61,8 @@
           <file leaf-file-name="garbage_collector.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/garbage_collector.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-749">
-                  <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+                <state relative-caret-position="380">
+                  <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
                   <folding>
                     <element signature="e#401#420#0" expanded="true" />
                   </folding>
@@ -60,7 +70,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="error_handler.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="error_handler.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/error_handler.c">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="227">
@@ -72,11 +82,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="interpret.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="interpret.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/interpret.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="245">
-                  <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
+                <state relative-caret-position="139">
+                  <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
                   <folding>
                     <element signature="e#385#404#0" expanded="true" />
                   </folding>
@@ -87,8 +97,8 @@
           <file leaf-file-name="parser.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/parser.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="155">
-                  <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+                <state relative-caret-position="140">
+                  <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -99,16 +109,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="45">
                   <caret line="3" column="51" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="instrstack.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/instrstack.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="284">
-                  <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -127,7 +127,7 @@
           <file leaf-file-name="ial.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ial.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="155">
+                <state relative-caret-position="-1735">
                   <caret line="280" column="0" selection-start-line="280" selection-start-column="0" selection-end-line="280" selection-end-column="0" />
                   <folding />
                 </state>
@@ -137,8 +137,8 @@
           <file leaf-file-name="expressions.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/expressions.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="245">
-                  <caret line="178" column="38" selection-start-line="178" selection-start-column="38" selection-end-line="178" selection-end-column="38" />
+                <state relative-caret-position="160">
+                  <caret line="217" column="21" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
                   <folding>
                     <element signature="e#396#413#0" expanded="true" />
                   </folding>
@@ -153,8 +153,8 @@
           <file leaf-file-name="typedef.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/typedef.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1740">
-                  <caret line="276" column="12" selection-start-line="276" selection-start-column="12" selection-end-line="276" selection-end-column="12" />
+                <state relative-caret-position="335">
+                  <caret line="188" column="27" selection-start-line="188" selection-start-column="27" selection-end-line="188" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
@@ -207,7 +207,6 @@
         <option value="$PROJECT_DIR$/tests.c" />
         <option value="$PROJECT_DIR$/lexical_analyzer.h" />
         <option value="$PROJECT_DIR$/lexical_analyzer.c" />
-        <option value="$PROJECT_DIR$/main.h" />
         <option value="$PROJECT_DIR$/interpret.h" />
         <option value="$PROJECT_DIR$/parser.h" />
         <option value="$PROJECT_DIR$/stack.c" />
@@ -223,11 +222,12 @@
         <option value="$PROJECT_DIR$/typedef.h" />
         <option value="$PROJECT_DIR$/parser.c" />
         <option value="$PROJECT_DIR$/instrstack.c" />
-        <option value="$PROJECT_DIR$/expressions.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/garbage_collector.c" />
         <option value="$PROJECT_DIR$/error_handler.c" />
+        <option value="$PROJECT_DIR$/expressions.c" />
+        <option value="$PROJECT_DIR$/main.h" />
+        <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
@@ -240,9 +240,8 @@
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
     <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1066" />
+    <option name="width" value="1932" />
+    <option name="height" value="1020" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -565,28 +564,7 @@
       <workItem from="1481403161949" duration="571000" />
       <workItem from="1481403760021" duration="558000" />
       <workItem from="1481404392294" duration="1314000" />
-      <workItem from="1481407744188" duration="4736000" />
-    </task>
-    <task id="LOCAL-00227" summary="[MODIFY] 0.7 - uprava testu, pracuji na bash scriptu pro test">
-      <created>1480887443610</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
-      <option name="project" value="LOCAL" />
-      <updated>1480887443610</updated>
-    </task>
-    <task id="LOCAL-00228" summary="[MODIFY] 0.7 - uprava testu, pracuji na bash scriptu pro test">
-      <created>1480887567846</created>
-      <option name="number" value="00228" />
-      <option name="presentableId" value="LOCAL-00228" />
-      <option name="project" value="LOCAL" />
-      <updated>1480887567846</updated>
-    </task>
-    <task id="LOCAL-00229" summary="[MODIFY] 0.7 - uprava testu, pracuji na bash scriptu pro test">
-      <created>1480887651933</created>
-      <option name="number" value="00229" />
-      <option name="presentableId" value="LOCAL-00229" />
-      <option name="project" value="LOCAL" />
-      <updated>1480887651933</updated>
+      <workItem from="1481407744188" duration="10418000" />
     </task>
     <task id="LOCAL-00230" summary="[MODIFY] 0.7 - uprava testu, pracuji na bash scriptu pro test">
       <created>1480888616255</created>
@@ -910,11 +888,32 @@
       <option name="project" value="LOCAL" />
       <updated>1481415838081</updated>
     </task>
-    <option name="localTasksCounter" value="276" />
+    <task id="LOCAL-00276" summary="[MODIFY] 0.7 - čištění kodu">
+      <created>1481415981440</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1481415981442</updated>
+    </task>
+    <task id="LOCAL-00277" summary="[MODIFY] 0.7 - uprava kodovani">
+      <created>1481427418441</created>
+      <option name="number" value="00277" />
+      <option name="presentableId" value="LOCAL-00277" />
+      <option name="project" value="LOCAL" />
+      <updated>1481427418446</updated>
+    </task>
+    <task id="LOCAL-00278" summary="[MODIFY] 0.7 - ladící aplikace pro Johnyho, podle všeho nefunguje získávání int hodnoty">
+      <created>1481428243181</created>
+      <option name="number" value="00278" />
+      <option name="presentableId" value="LOCAL-00278" />
+      <option name="project" value="LOCAL" />
+      <updated>1481428243181</updated>
+    </task>
+    <option name="localTasksCounter" value="279" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308585000" />
+    <option name="totallyTimeSpent" value="314267000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -926,22 +925,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="1912" y="0" width="1932" height="1020" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38912135" sideWeight="0.34739584" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.389011" sideWeight="0.34739584" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46757323" sideWeight="0.48958334" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2541841" sideWeight="0.65260416" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32426777" sideWeight="0.45208332" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32417583" sideWeight="0.5495825" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32417583" sideWeight="0.45041755" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32845187" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.118229166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11847599" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49166667" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4843096" sideWeight="0.33125" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5087912" sideWeight="0.33507308" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -983,8 +982,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[MODIFY] 0.7 - čištění kodu" />
-    <MESSAGE value="[MODIFY] 0.7 - uprava testu" />
     <MESSAGE value="[MODIFY] 0.7 - revert testu, mrdam to, jdu pracovat s bashem" />
     <MESSAGE value="[MODIFY] 0.7 - uprava testu, pracuji na bash scriptu pro test" />
     <MESSAGE value="[MODIFY] 0.7 - test searchForNode" />
@@ -1001,25 +998,22 @@
     <MESSAGE value="[MODIFY] 0.7 - uprava return hodnoty" />
     <MESSAGE value="[MODIFY] 0.7 - uprava instrukce v semChecku" />
     <MESSAGE value="[MODIFY] 0.7 - Martinuv expressions protoze kokot CLion a Git つ ◕_◕ ༽つ Giff git gut" />
-    <MESSAGE value="[MODIFY] 0.7 - uprava kodovani" />
     <MESSAGE value="[MODIFY] 0.7 - include instrstack" />
     <MESSAGE value="[MODIFY] 0.7 - push uprav test_precedence" />
     <MESSAGE value="[MODIFY] 0.7 - uprava pozice extern struktury mainTree" />
     <MESSAGE value="[MODIFY] 0.7 - uprava return hodnoty v expression funkci a odebrani nepouzivane hodnoty u pWhile v parseru" />
     <MESSAGE value="[MODIFY] 0.7 - uprava zavorky" />
     <MESSAGE value="[MODIFY] 0.7 - uprava CMake" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.7 - uprava CMake" />
+    <MESSAGE value="[MODIFY] 0.7 - čištění kodu" />
+    <MESSAGE value="[MODIFY] 0.7 - uprava kodovani" />
+    <MESSAGE value="[MODIFY] 0.7 - ladící aplikace pro Johnyho, podle všeho nefunguje získávání int hodnoty" />
+    <option name="LAST_COMMIT_MESSAGE" value="[MODIFY] 0.7 - ladící aplikace pro Johnyho, podle všeho nefunguje získávání int hodnoty" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/parser.c</url>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/ial.c</url>
-          <line>280</line>
-          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/interpret.c</url>
@@ -1042,7 +1036,11 @@
       </default-breakpoints>
       <option name="time" value="36" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="instr" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.h">
@@ -1112,13 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1332,14 +1323,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/typedef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="276" column="12" selection-start-line="276" selection-start-column="12" selection-end-line="276" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lexical_analyzer.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -1348,13 +1331,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/expressions.c">
+    <entry file="file://$PROJECT_DIR$/error_handler.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="178" column="38" selection-start-line="178" selection-start-column="38" selection-end-line="178" selection-end-column="38" />
+        <state relative-caret-position="227">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <element signature="e#396#413#0" expanded="true" />
+            <element signature="e#393#411#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ial.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1735">
+          <caret line="280" column="0" selection-start-line="280" selection-start-column="0" selection-end-line="280" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="e#401#420#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/instrstack.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="845">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1366,66 +1375,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/instrstack.c">
+    <entry file="file://$PROJECT_DIR$/typedef.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+        <state relative-caret-position="335">
+          <caret line="188" column="27" selection-start-line="188" selection-start-column="27" selection-end-line="188" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser.c">
+    <entry file="file://$PROJECT_DIR$/expressions.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ial.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="280" column="0" selection-start-line="280" selection-start-column="0" selection-end-line="280" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interpret.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
+        <state relative-caret-position="160">
+          <caret line="217" column="21" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
           <folding>
-            <element signature="e#385#404#0" expanded="true" />
+            <element signature="e#396#413#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding>
+            <marker date="1481427547202" expanded="true" signature="409:441" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="289">
+          <caret line="188" column="41" selection-start-line="188" selection-start-column="41" selection-end-line="188" selection-end-column="41" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/garbage_collector.c">
+    <entry file="file://$PROJECT_DIR$/parser.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-749">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-          <folding>
-            <element signature="e#401#420#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="140">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/error_handler.c">
+    <entry file="file://$PROJECT_DIR$/interpret.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="139">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#393#411#0" expanded="true" />
+            <element signature="e#385#404#0" expanded="true" />
           </folding>
         </state>
       </provider>
