@@ -21,6 +21,7 @@ Instr *instrItemInit ();
 int instrStackEmpty (const instrStack* stc);
 int instrStackFull (const instrStack* stc);
 void invertStack(instrStack *stc);
+void invertAllIfsAndWhiles(instrStack *stc);
 void instrStackPush (instrStack* stc, Instr* data);
 Instr *instrStackTop (instrStack* stc);
 void instrStackPop (instrStack* stc);

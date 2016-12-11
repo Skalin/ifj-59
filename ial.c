@@ -306,6 +306,7 @@ BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
     return NULL;
 }
 
+
 void addNode(BTSNode *newItem, BTSNode *start) {
     if(start != NULL) {
 
@@ -376,7 +377,7 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
     //printf("jsem po initu zakladnich hodnot\n");
 
     // Urceni zacatku podle typu uzlu
-    BTSNode *start = plusMalloc(sizeof(BTSNode)); // Kde mas alokaci mista pro ten start? taky jsem zkousel, spadlo, sraka nealokuje
+    BTSNode *start = plusMalloc(sizeof(BTSNode));
     start = NULL;
 
     switch(newNode->nodeType) {
@@ -390,7 +391,7 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
             } else {
                 start = mTree.actFunction->variables;
             }
-            //printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
+            //printf("Jsem po dokonceni ukladani mTree do startu\n");
             break;
         case function:
             newNode->data.type = variableType; // Nastavime navratovou hodnotu funkce
@@ -410,7 +411,7 @@ BTSNode *createNewNode(char *id, NodeType nodeType, varType variableType, int st
             } else {
                 start = mTree.actFunction->variables;
             }
-            //printf("Jsem po dokonceni kokotskeho ukladani mTree do startu\n");
+            //printf("Jsem po dokonceni ukladani mTree do startu\n");
             break;
     }
 
@@ -522,11 +523,3 @@ void Print_tree(BTSNode *TempTree)
     printf("\n");
     printf("=================================================\n");
 }
-
-
-/*
- * POZOR! JE TŘEBA VYUŽÍVAT SString struktury tedy postup pro uložení struktury doporučuji následující
- *
- * Provede se inicializace stringu / SString *str;
- *
- */

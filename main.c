@@ -41,16 +41,23 @@ int main(int argc, char* argv[]) {
 */
 
             //DELETE THIS
-
-                // Vytiskne obsah globálního stacku
-                char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv","insPlusTmp","insMinusTmp","insMuxTmp","insDivTmp","insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
-                printf("\nObsah globalniho iStacku:\n");
-                for (int i = 0; i<=global.iStack->count; i++) {
+		/*
+				// Vytiskne obsah globálního stacku
+				char *instrukce[] = {"insIfj16readInt", "insIfj16readDouble", "insIfj16readString", "insIfj16lenght",
+									 "insIfj16substr", "insIfj16compare", "insIfj16find", "insIfj16sort",
+									 "insIfj16print", "insPlus", "insMinus", "insMux", "insDiv", "insPlusTmp",
+									 "insMinusTmp", "insMuxTmp", "insDivTmp", "insEqual", "insNotEqual", " insLess",
+									 " insLessOrEqual", "insGreater", "insGreaterOrEqual", "insAssignment",
+									 "insFunctionCall", "insCond", "insIf", "insIfEnd", "insElse", "insCondEnd",
+									 "insWhile", "insEndWhile"};
+				printf("\nObsah globalniho iStacku:\n");
+				for (int i = 0; i <= global.iStack->count; i++) {
 					printf("\n\n");
 					printf("======================================\n");
 					printf("======================================\n");
-					Instr *instr = instrStackDataAt(global.iStack,i);
-                    printf("PRINT ALL NODES FROM THREEADDRESSED CODE:\n\tid3 = %s;\tid1 = %s;\tid2 = %s;\ttype = %s;\n",nodePrint(instr->Id3),nodePrint(instr->Id1),nodePrint(instr->Id2),instrukce[instr->type]);
+					Instr *instr = instrStackDataAt(global.iStack, i);
+					printf("PRINT ALL NODES FROM THREEADDRESSED CODE:\n\tid3 = %s;\tid1 = %s;\tid2 = %s;\ttype = %s;\n",
+						   nodePrint(instr->Id3), nodePrint(instr->Id1), nodePrint(instr->Id2), instrukce[instr->type]);
 					printf("\nPRINT SELECT NODES ON SEPARATE LINES:\n");
 
 					printf("============ id3 ============\n");
@@ -70,13 +77,13 @@ int main(int argc, char* argv[]) {
 								printf("%s", instr->Id3->data.value.stringValue);
 							}
 							printf(";\n");
-						} else if ( instr->Id3->nodeType == function) {
+						} else if (instr->Id3->nodeType == function) {
 							printf("\n\tid3");
 							printWhichNodeType(instr->Id3->nodeType);
 							printf("\nid3->type: ");
 							printInstrType(instr->Id3->data.type);
 							printf("\n");
-						} else if ( instr->Id3->nodeType == class) {
+						} else if (instr->Id3->nodeType == class) {
 							printf("\n\tid3");
 							printWhichNodeType(instr->Id3->nodeType);
 							printf("\nid3->type: ");
@@ -108,7 +115,7 @@ int main(int argc, char* argv[]) {
 								printf("%s", instr->Id1->data.value.stringValue);
 							}
 							printf(";\n");
-						} else if ( instr->Id1->nodeType == function) {
+						} else if (instr->Id1->nodeType == function) {
 							printf("\n\tid1");
 							printWhichNodeType(instr->Id1->nodeType);
 							printf("\n\tid1->type: ");
@@ -153,13 +160,13 @@ int main(int argc, char* argv[]) {
 								printf("%s", instr->Id2->data.value.stringValue);
 							}
 							printf(";\n");
-						} else if ( instr->Id2->nodeType == function) {
+						} else if (instr->Id2->nodeType == function) {
 							printf("\n\tid2");
 							printWhichNodeType(instr->Id2->nodeType);
 							printf("\n\tid2->type: ");
 							printInstrType(instr->Id2->data.type);
 							printf("\n");
-						} else if ( instr->Id2->nodeType == class) {
+						} else if (instr->Id2->nodeType == class) {
 							printf("\n\tid2");
 							printWhichNodeType(instr->Id2->nodeType);
 							printf("\n\tid2->type: ");
@@ -173,18 +180,19 @@ int main(int argc, char* argv[]) {
 					} else if (instr->Id2 == NULL) {
 						printf("\n\tid2: NULL;\n");
 					}
-                }
+				}
+			*/
             //END DELETE
-			printStack(global.iStack);
+			//printStack(global.iStack);
 			invertStack(global.iStack);
-			printStack(global.iStack);
+			//printStack(global.iStack);
 
 			// Interpret
 			semCheck(global.iStack);
 			interpretMainCore(global.iStack);
 
 			// Uvolneni pameti a ukonceni programu
-			//finalFree();
+			finalFree();
 	}
 }
 

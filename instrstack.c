@@ -70,6 +70,59 @@ void invertStack(instrStack *stc) {
 	}
 }
 
+void invertAllIfsAndWhiles(instrStack *stc) {
+	int i = stc->count;
+	int previousI = 0;
+	while (i >= 0) {
+		Instr *helpInstr;
+		if (stc->dataInstr[i]->type == insCond) {
+			for (int j = i; j >= 0; --j) {
+				if (stc->dataInstr[j]->type == insCondEnd) {
+					int l = (i + j)/2;
+					while (i != l) {
+						helpInstr = stc->dataInstr[i];
+						stc->dataInstr[i] = stc->dataInstr[j];
+						stc->dataInstr[j] = helpInstr;
+						previousI = i;
+						if ((l-i) < (l-previousI)) {
+							//printf("i: %d, j: %d\n", i, j);
+							i++;
+							j--;
+						} else {
+							//printf("i: %d, j: %d\n", i, j);
+							i--;
+							j++;
+						}
+					}
+				}
+			}
+		}
+		if (stc->dataInstr[i]->type == insWhile) {
+			for (int j = i; j >= 0; --j) {
+				if (stc->dataInstr[j]->type == insEndWhile) {
+					int l = (i + j)/2;
+					while (i != l) {
+						helpInstr = stc->dataInstr[i];
+						stc->dataInstr[i] = stc->dataInstr[j];
+						stc->dataInstr[j] = helpInstr;
+						previousI = i;
+						if ((l-i) < (l-previousI)) {
+							//printf("i: %d, j: %d\n", i, j);
+							i++;
+							j--;
+						} else {
+							//printf("i: %d, j: %d\n", i, j);
+							i--;
+							j++;
+						}
+					}
+				}
+			}
+		}
+		--i;
+	}
+}
+
 void instrStackPush(instrStack *stc, Instr *data) {
 
     // Pokud uz neni dostatek alokovane pameti, provede se realloc
@@ -96,9 +149,14 @@ Instr * instrStackTop(instrStack *stc) {
 // Funkce vrati instrukci na pozici n
 Instr * instrStackDataAt(instrStack *stc, int n) {
 	//Pokud jsou v zasobniku data, vrat data na vrcholu
-	if (!instrStackEmpty(stc)) {
+	if (stc->alloc < n) {
+		return NULL;
+	}
+	return stc->dataInstr[n];
+	/*
+	if (instrStackEmpty(stc) == 0) {
 		// pokud je pocet prvku mensi nez hledany prvek, vratim NULL, jinak vratime prvek
-		if (stc->count < n) {
+		if (stc->count <= n) {
 			return NULL;
 		} else {
 			return stc->dataInstr[n];
@@ -106,7 +164,7 @@ Instr * instrStackDataAt(instrStack *stc, int n) {
 		//Jinak vrat null
 	} else {
 		return NULL;
-	}
+	}*/
 }
 // PRO DEJVA, ZKONTROLOVAT, PRIPADNE OPRAVIT
 // FUNKCE POSUNE VRCHOL ZASOBNIKU NA NTOU HODNOTU. Kterou nejprve dostanu pomoci instrStackSize a pak se tam na tu hodnotu potrebuju vratit
@@ -138,29 +196,31 @@ int instrStackSize(instrStack *stc) {
 
 void printStack(instrStack *stc) {
 	int i = 0;
-
+	if (instrStackEmpty(stc)) {
+		printf("Prazdny stack\n");
+		return;
+	}
 	printf("Velikost stacku: %d\n", stc->count);
 	while (i <= stc->count) {
 		printf("Pozice: %d ", i);
-		printf("Key: %s ", stc->dataInstr[i]->Id1->key);
+		//printf("Key: %s ", stc->dataInstr[i]->Id1->key);
 		printf("Typ: %d\n", stc->dataInstr[i]->type);
 		i++;
 	}
-
 }
 
 void printWhichNodeType(NodeType node) {
-	printf("->nodeType: ");
+	//printf("->nodeType: ");
 	if (node == var) {
-		printf("VAR");
+		//printf("VAR");
 	} else if (node == function) {
-		printf("FUNCTION");
+		//printf("FUNCTION");
 	} else if (node == class) {
-		printf("CLASS");
+		//printf("CLASS");
 	} else {
-		printf("TEMP");
+		//printf("TEMP");
 	}
-	printf(";");
+	//printf(";");
 
 	return;
 }
@@ -178,7 +238,7 @@ void printInstrType(varType type) {
 	} else {
 		typ = "null";
 	}
-	printf("%s;", typ);
+	//printf("%s;", typ);
 	return;
 }
 
@@ -187,3 +247,10 @@ void instrItemDestroy(instrStack *data) {
     plusFree(data->dataInstr);
     plusFree(data);
 }
+
+void instrStackDestroy(instrStack *stc) {
+	while (!instrStackEmpty(stc)) {
+		instrStackPop(stc);
+	}
+}
+
