@@ -34,7 +34,7 @@ void semCheck(instrStack *interpretStack) {
         switch (instr->type) {
             case insIfj16readInt:
                 // Pokud je spatny pocet parametru
-                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL || instr->Id2->variables != NULL)
+                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
                     // Pokud neni typ int, jedna se o chybu 4
@@ -46,7 +46,7 @@ void semCheck(instrStack *interpretStack) {
                 break;
             case insIfj16readDouble:
                 // Pokud je spatny pocet parametru
-                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL || instr->Id2->variables != NULL)
+                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
                     // Pokud neni typ double, jedna se o chybu 4
@@ -58,7 +58,7 @@ void semCheck(instrStack *interpretStack) {
                 break;
             case insIfj16readString:
                 // Pokud je spatny pocet parametru
-                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL || instr->Id2->variables != NULL)
+                if(instr->Id1 != NULL || instr->Id2 != NULL || instr->Id3 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1) {
                     // Pokud neni typ int, jedna se o chybu 4
@@ -70,7 +70,7 @@ void semCheck(instrStack *interpretStack) {
                 break;
             case insIfj16lenght:
                 // Pokud je spatny pocet parametru
-                if(instr->Id2 != NULL || instr->Id3 == NULL || instr->Id1 == NULL || instr->Id2->variables != NULL)
+                if(instr->Id2 != NULL || instr->Id3 == NULL || instr->Id1 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1) {
                     // Pokud neni narvatovy typ int a parametr 1 neni string, jedna se o chybu 4
@@ -117,7 +117,7 @@ void semCheck(instrStack *interpretStack) {
                 break;
             case insIfj16sort:
                 // Pokud je spatny pocet parametru
-                if(instr->Id2 != NULL || instr->Id3 == NULL || instr->Id1 == NULL || instr->Id2->variables != NULL)
+                if(instr->Id2 != NULL || instr->Id3 == NULL || instr->Id1 == NULL)
                     throwException(4,0,0);
                 if(instr->Id3->inc == 1 && instr->Id1->inc == 1) {
                     // Pokud neni narvatovy typ string a parametr 1 neni string, jedna se o chybu 4
@@ -129,7 +129,7 @@ void semCheck(instrStack *interpretStack) {
                 break;
             case insIfj16print:
                 // Pokud je spatny pocet parametru
-                if(instr->Id3 != NULL || instr->Id2 != NULL || instr->Id1 == NULL || instr->Id2->variables != NULL)
+                if(instr->Id3 != NULL || instr->Id2 != NULL || instr->Id1 == NULL)
                     throwException(4,0,0);
                 if(instr->Id1->inc == 1) {
                     // Pokud neni jediny parametr string, jedna se o chybu 4
