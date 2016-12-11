@@ -1,12 +1,12 @@
 class Main
 {
-
+	static void fff()
+	{
+//int a = 50+1;
+	}
 	static void run()
 	{
-		int v = 5;
-		ifj16.print("Vysledek: " + v + "\n");
-
-		ifj16.print("AHOJ"+"STRING");
+int a = 5;
 	}
 
 }

@@ -53,7 +53,7 @@ int argCounter = 0;
 //DELETE THIS
 void stackPrint(tStack *stack) {
 	for (int i = 1; i <= stack->counter; i++) {
-		printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
+		// VYPIS printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
 	}
 	//printf("  Stack counter=%d\n",stack->counter);
 }
@@ -67,11 +67,9 @@ char* nodePrint(BTSNode *node) {
 //END DELETE
 
 char *addIntToStr(char *str, int integer) {
-	/*char buffer[512];
-	sprintf(buffer, "%d", 1);
-	strncat(str, buffer, 512);
-	return buffer;*/
-	return NULL;
+    char buffer[100];
+    sprintf(buffer, "0temp%d", constCounter);
+	return buffer;
 }
 
 bool isIdent(tToken *token) {
@@ -97,7 +95,7 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
 		inTokenNum = 15;
 	}
 	//DELETE THIS
-	printf("getPrecChar: [%2d][%2d] \'%c\'  vstupni token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
+	// VYPIS printf("getPrecChar: [%2d][%2d] \'%c\'  vstupni token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
 	//END DELETE
 	return precTable[stackTokenNum][inTokenNum];
 }
@@ -115,17 +113,16 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
 		// Pokud je handle větší než 3, vyvoláme syntaktickou chybu
 		if (i > 3) throwException(2,0,0);
 		handle[i-1] = item;
-		printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
+		// VYPIS printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
 		stackPop(stack);
 	}
-	printf("\n");
+	// VYPIS printf("\n");
 	// Odstraníme ze zásobníku začátek handle '<'
 	stackPop(stack);
 
 	// Pravidlo E -> id
 	if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
 		if (isConst(handle[0]->dataIt)) {
-			//TODO vytvořit nový node a jeho název vložit do handle[0]
 			BTSNode *node = createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu
 
 			if (handle[0]->dataIt->type == t_int) {
@@ -189,10 +186,6 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
 
 	// Jedná se o aritmetickou nebo porovnávací instrukci
 	if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
-
-
-
-		// TODO vytvořit tempnode, jeho pointer přiřadit do id3 a pushnout jeho název na stack
 		instr->Id3 = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
 		tToken *token = initToken();
 		updateToken(token,"abcdefgh"+tempNodeCounter);
@@ -214,7 +207,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
 
 
 		// DELETE THIS
-		printf(" \x1B[32m vytvoreni instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
+		// VYPIS printf(" \x1B[32m vytvoreni instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
 		// END DELETE
 		tempNodeCounter++;
 
@@ -280,6 +273,14 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
 void expression(BTSNode *targetNode, int isArg) {
+    // dELETE
+    char buffer[100];
+    int a = 8;
+	sprintf(buffer, "0temp%d", a);
+   
+    // VYPIS printf("vysledek=%s\n",buffer);
+    // VYPIS printf("------------------------------------ \n");
+    //end delete
 	/* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack.
 	 * V opačném případě na instruční stack aktuální funkce */
 	instrStack *localIStack = global.iStack;
@@ -311,7 +312,7 @@ void expression(BTSNode *targetNode, int isArg) {
 			}
 				// Jsme na konci výrazu
 			else if ((token->type == t_semicolon) || ((isArg) && ((token->type == t_bracket_r) || token->type == t_comma))){
-				printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
+				// VYPIS printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
 				instr->Id3 = targetNode;
 				instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,var,mTree.actFunction->variables);
 				if (instr->Id1 == NULL)
@@ -341,9 +342,9 @@ void expression(BTSNode *targetNode, int isArg) {
 			if ((strcmp(topTerm(stack)->data, "ifj16.readInt") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readDouble") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readString") == 0) || (strcmp(topTerm(stack)->data, "ifj16.length") == 0) || (strcmp(topTerm(stack)->data, "ifj16.substr") == 0) || (strcmp(topTerm(stack)->data, "ifj16.compare") == 0) || (strcmp(topTerm(stack)->data, "ifj16.find") == 0) || (strcmp(topTerm(stack)->data, "ifj16.sort") == 0)) {
 				BTSNode *tempNode = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
 				tempNodeCounter++;
-				printf("---------------------Zavolano functionCall\n");
+				// VYPIS printf("---------------------Zavolano functionCall\n");
 				functionCall(tempNode,NULL,topTerm(stack)->data);
-				printf("---------------------Konec functionCall\n");
+				// VYPIS printf("---------------------Konec functionCall\n");
 				item->typeIt = EXPR;
 				copyString(&item->dataIt->data,&tempNode->key);
 				stackPush(stack,item);
@@ -361,9 +362,9 @@ void expression(BTSNode *targetNode, int isArg) {
 				}
 				BTSNode *tempNode = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
 				tempNodeCounter++;
-				printf("---------------------Zavolano functionCall\n");
+				// VYPIS printf("---------------------Zavolano functionCall\n");
 				functionCall(tempNode,functionNode,topTerm(stack)->data);
-				printf("---------------------Konec functionCall\n");
+				// VYPIS printf("---------------------Konec functionCall\n");
 				item->typeIt = EXPR;
 				copyString(&item->dataIt->data,&tempNode->key);
 				stackPush(stack,item);
@@ -561,7 +562,7 @@ char *readString(){
 void print(char *string) {
 	// nejaka podminka kvuli typu vstupu..
 
-	printf("%s", string);
+	// VYPIS printf("%s", string);
 
 }
 
