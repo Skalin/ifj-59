@@ -70,6 +70,59 @@ void invertStack(instrStack *stc) {
 	}
 }
 
+void invertAllIfsAndWhiles(instrStack *stc) {
+	int i = stc->count;
+	int previousI = 0;
+	while (i >= 0) {
+		Instr *helpInstr;
+		if (stc->dataInstr[i]->type == insCond) {
+			for (int j = i; j >= 0; --j) {
+				if (stc->dataInstr[j]->type == insCondEnd) {
+					int l = (i + j)/2;
+					while (i != l) {
+						helpInstr = stc->dataInstr[i];
+						stc->dataInstr[i] = stc->dataInstr[j];
+						stc->dataInstr[j] = helpInstr;
+						previousI = i;
+						if ((l-i) < (l-previousI)) {
+							printf("i: %d, j: %d\n", i, j);
+							i++;
+							j--;
+						} else {
+							printf("i: %d, j: %d\n", i, j);
+							i--;
+							j++;
+						}
+					}
+				}
+			}
+		}
+		if (stc->dataInstr[i]->type == insWhile) {
+			for (int j = i; j >= 0; --j) {
+				if (stc->dataInstr[j]->type == insEndWhile) {
+					int l = (i + j)/2;
+					while (i != l) {
+						helpInstr = stc->dataInstr[i];
+						stc->dataInstr[i] = stc->dataInstr[j];
+						stc->dataInstr[j] = helpInstr;
+						previousI = i;
+						if ((l-i) < (l-previousI)) {
+							printf("i: %d, j: %d\n", i, j);
+							i++;
+							j--;
+						} else {
+							printf("i: %d, j: %d\n", i, j);
+							i--;
+							j++;
+						}
+					}
+				}
+			}
+		}
+		--i;
+	}
+}
+
 void instrStackPush(instrStack *stc, Instr *data) {
 
     // Pokud uz neni dostatek alokovane pameti, provede se realloc
@@ -138,15 +191,17 @@ int instrStackSize(instrStack *stc) {
 
 void printStack(instrStack *stc) {
 	int i = 0;
-
+	if (instrStackEmpty(stc)) {
+		printf("Prazdny stack\n");
+		return;
+	}
 	printf("Velikost stacku: %d\n", stc->count);
 	while (i <= stc->count) {
 		printf("Pozice: %d ", i);
-		printf("Key: %s ", stc->dataInstr[i]->Id1->key);
+		//printf("Key: %s ", stc->dataInstr[i]->Id1->key);
 		printf("Typ: %d\n", stc->dataInstr[i]->type);
 		i++;
 	}
-
 }
 
 void printWhichNodeType(NodeType node) {
@@ -187,3 +242,14 @@ void instrItemDestroy(instrStack *data) {
     plusFree(data->dataInstr);
     plusFree(data);
 }
+
+void instrStackDestroy(instrStack *stc) {
+	while (!instrStackEmpty(stc)) {
+		instrStackPop(stc);
+	}
+}
+
+void invertIfsStack(instrStack *stc) {
+
+}
+
