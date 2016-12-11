@@ -149,7 +149,7 @@ Instr * instrStackTop(instrStack *stc) {
 // Funkce vrati instrukci na pozici n
 Instr * instrStackDataAt(instrStack *stc, int n) {
 	//Pokud jsou v zasobniku data, vrat data na vrcholu
-	if (!instrStackEmpty(stc)) {
+	if (instrStackEmpty(stc) == 0) {
 		// pokud je pocet prvku mensi nez hledany prvek, vratim NULL, jinak vratime prvek
 		if (stc->count <= n) {
 			return NULL;
