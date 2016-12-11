@@ -42,8 +42,8 @@ void keywordCheckToken(tToken *token) {
 	};
 	token->type = t_simple_ident; 
 
-    // For cyklus prohled� prvn� tabulku a pokud v n� nalezne shodu v tokenu (strcmp()), p�i�ad� do tToken type p��slu�nou hodnotu z druh� tabulky
-    // DONE Jan Hrbotick�
+    // For cyklus prohlede prvni tabulku a pokud v ni nalezne shodu v tokenu (strcmp()), prida do tToken type prislusnou hodnotu z druhe tabulky
+    // DONE Jan Hrboticky
     for (int i=0; i < NUMBER_OF_KEY_WORDS; i++) {
         if (strcmp(keyWordTable[i], token->data) == 0)
             token->type = keyWordTokenTable[i];
@@ -58,16 +58,16 @@ tToken * t_buffer;
 
 tToken * initToken() {
     // Inicializace tokenu, prvni malloc, pak inicializace jednotlivych slozek
-    // POZOR, ZDE SE MUS� IMPLEMENTOVAT CEL� NOV� SOUBOR, KTER� BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRU�EN�
-    // Jedn� se o to, �e v�echny data budou v listov�m seznamu (viz 1. �kol IAL)
+    // POZOR, ZDE SE MUSi IMPLEMENTOVAT CELy NOVy SOUBOR, KTERy BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUSENE
+    // Jedna se o to, ze vsechny data budou v listovem seznamu (viz 1. ukol IAL)
 
 	unsigned int mallocSize = 16;
 
 	tToken * token = (tToken *) plusMalloc(sizeof(tToken) + sizeof(char)*mallocSize);
-    // TODO m�m tady vytv��et nov� token nebo pou��v�m globaln�?
+    
 
-    token->type = t_error;   // nastav� token do po��te�n�ho stavu
-    token->data[0] = '\0';      // inicializace v�ech prvk� na v�choz� hodnoty
+    token->type = t_error;   // nastavi token do pocatecniho stavu
+    token->data[0] = '\0';      // inicializace vsech prvky na vychozi hodnoty
     token->length = 0;
     token->allocated = 0;
 
@@ -77,21 +77,21 @@ tToken * initToken() {
 tToken * updateToken(tToken * token, char *string) {
 	// Alokace mista pokud je potreba, zvyseni delky ve strukture (lenght), kontrola jestli alokace probehla uspesne
 	// Pomoci strncat() pridat novy retezec nakonec
-	// POZOR, ZDE SE MUS� IMPLEMENTOVAT CEL� NOV� SOUBOR, KTER� BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRU�EN�
-	// Jedn� se o to, �e v�echny data budou v listov�m seznamu (viz 1. �kol IAL)
+	// POZOR, ZDE SE MUSi IMPLEMENTOVAT CELy NOVy SOUBOR, KTERy BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUSENE
+	//  Jedna se o to, ze vsechny data budou v listovem seznamu (viz 1. ukol IAL)
 
     int strLength = strlen(string);
 
     
-    if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokov�no m�n� ne� je pot�eba
+    if (token->allocated < (strLength + token->length + 1) ) {     // pokud je alokovano mene nez je potreba
 
 		token->allocated = strLength + token->length + 1;      // update hodnoty allocated v tokenu
 		token = plusRealloc(token, sizeof(tToken) + (sizeof(char) * (token->allocated)));   //TODO
     }
 
 
-    strncat(token->data, string, strLength);      // p�ipojen� stringu na konec tokenu
-    token->length = token->length + strLength;   // update d�lky tokenu
+    strncat(token->data, string, strLength);      // pripojeni stringu na konec tokenu
+    token->length = token->length + strLength;   // update delky tokenu
 
     return token;
 /*
@@ -111,14 +111,14 @@ tToken * updateToken(tToken * token, char *string) {
 }
 
 void tokenReturnToken(tToken * token) {
-    // Do tokenu p�i�ad� na�ten� hodnoty z pomocn�ho tokenu t_buffer
+    // Do tokenu priradi nactene hodnoty z pomocneho tokenu t_buffer
     t_buffer = token;
 }
 
 void destroyToken(tToken * token) {
-    // Zru�� dan� token
-    // POZOR, ZDE SE MUS� IMPLEMENTOVAT CEL� NOV� SOUBOR, KTER� BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRU�EN�
-    // Jedn� se o to, �e v�echny data budou v listov�m seznamu (viz 1. �kol IAL)
+    // Zrusi dany token
+    //  POZOR, ZDE SE MUSi IMPLEMENTOVAT CELy NOVy SOUBOR, KTERy BUDE OBSHAOVAT FUNKCE MALLOC, FREE, REALLOC, A ZRUSENE
+    //  Jedna se o to, ze vsechny data budou v listovem seznamu (viz 1. ukol IAL)
 
     plusFree(token);
 }
@@ -130,13 +130,13 @@ void fillToken(tToken * token, tokenType type) {
 
 
 tToken * getToken(){
-    // P�ipoj� se do souboru a postupn� na�te n�sleduj�c� token (+ o n�m p�id� informace do struktury tToken)
+    // Pripoji se do souboru a postupne nacte nasledujici token (+ o nem prida informace do struktury tToken)
 
 
 
-    char c = '\0'; // inicializovan� prom�nn� c s v�choz� hodnotou \0
+    char c = '\0'; // inicializovana promenna c s vychozi hodnotou \0
 
-	 // sta�� n�m soubor pouze pro �ten�
+	 
 
 	tToken * token = initToken(); //pomocny token
 
@@ -148,7 +148,7 @@ tToken * getToken(){
 	int i = 0;
 
 
-	while (TRUE) { // TRUE je definov�na jako 1 v .h souboru
+	while (TRUE) { // TRUE je definovana jako 1 v .h souboru
 		c = fgetc(global.file);
 		
 		switch(status) {
