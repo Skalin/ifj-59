@@ -491,16 +491,16 @@ void pSingleCommand(){
 				BTSNode * node;
 
 				//neni vestavena
-				if (isBuiltIn(tempData) == 0){
+				if (strcmp(tempData, "ifj16.print") != 0){
 					node = searchForNode(tempData, function, mTree.actClass->functions);
 					if (node == NULL){
                  		   		throwException(3,0,0);
              			  	}
 					functionCall(NULL, node, tempData);
+				}else {
+					//je vestavena
+					functionCall(NULL, NULL, tempData);
 				}
-				//je vestavena
-				functionCall(NULL, NULL, tempData);
-
 
 				token=getToken();
 				if (token->type != t_semicolon){
