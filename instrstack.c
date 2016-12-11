@@ -149,6 +149,39 @@ void printStack(instrStack *stc) {
 
 }
 
+void printWhichNodeType(NodeType node) {
+	printf("->nodeType: ");
+	if (node == var) {
+		printf("VAR");
+	} else if (node == function) {
+		printf("FUNCTION");
+	} else if (node == class) {
+		printf("CLASS");
+	} else {
+		printf("TEMP");
+	}
+	printf(";");
+
+	return;
+}
+
+void printInstrType(varType type) {
+	char *typ = '\0';
+	if (type == 0) {
+		typ = "int";
+	} else if (type == 1) {
+		typ = "double";
+	} else if (type == 2) {
+		typ = "string";
+	} else if (type == 4) {
+		typ = "void";
+	} else {
+		typ = "null";
+	}
+	printf("%s;", typ);
+	return;
+}
+
 void instrItemDestroy(instrStack *data) {
 
     plusFree(data->dataInstr);

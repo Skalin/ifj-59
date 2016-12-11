@@ -42,37 +42,6 @@ int main(int argc, char* argv[]) {
 
             //DELETE THIS
 
-				void printWhichNodeType(NodeType node) {
-					printf("->nodeType: ");
-					if (node == var) {
-						printf("VAR");
-					} else if (node == function) {
-						printf("FUNCTION");
-					} else if (node == class) {
-						printf("CLASS");
-					} else {
-						printf("TEMP");
-					}
-					printf(";");
-
-					return;
-				}
-				void printInstrType(varType type) {
-					char *typ = '\0';
-					if (type == 0) {
-						typ = "int";
-					} else if (type == 1) {
-						typ = "double";
-					} else if (type == 2) {
-						typ = "string";
-					} else if (type == 4) {
-						typ = "void";
-					} else {
-						typ = "null";
-					}
-					printf("%s;", typ);
-					return;
-				}
                 // Vytiskne obsah globálního stacku
                 char *instrukce[] ={"insIfj16readInt","insIfj16readDouble","insIfj16readString","insIfj16lenght","insIfj16substr","insIfj16compare","insIfj16find","insIfj16sort","insIfj16print","insPlus","insMinus","insMux","insDiv","insPlusTmp","insMinusTmp","insMuxTmp","insDivTmp","insEqual","insNotEqual"," insLess"," insLessOrEqual","insGreater","insGreaterOrEqual","insAssignment","insFunctionCall","insCond","insIf","insIfEnd","insElse","insCondEnd","insWhile","insEndWhile"};
                 printf("\nObsah globalniho iStacku:\n");
