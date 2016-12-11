@@ -306,6 +306,7 @@ BTSNode *searchForNode(tableName key, NodeType nodeType, BTSNode *start) {
     return NULL;
 }
 
+
 void addNode(BTSNode *newItem, BTSNode *start) {
     if(start != NULL) {
 

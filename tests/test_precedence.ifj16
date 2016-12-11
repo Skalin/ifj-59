@@ -1,14 +1,14 @@
-
 class Main
 {
-    static void foo(int a, int b) 
-    {
-       // a = 40;
-    }
-    
-    static void run ()
+ static void run ()
     {
         int c = 70;
-        ifj16.print("Promenna c je " + c);
-    }   
+        int a = 70;
+        if(a == b) {
+            int d= 0;
+            int konec = 10;
+        }
+        else {
+        }
+        }
 }
