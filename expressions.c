@@ -279,7 +279,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @param ukazatel na cílový uzel
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
-tToken *expression(BTSNode *targetNode, int isArg) {
+void expression(BTSNode *targetNode, int isArg) {
 	/* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack.
 	 * V opačném případě na instruční stack aktuální funkce */
 	instrStack *localIStack = global.iStack;
@@ -420,7 +420,6 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 		}
 	}
 	stackDestroy(stack);
-	return NULL;
 }
 
 void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName) {
@@ -441,18 +440,16 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName
 	expression(node,1);
 	instr->Id2 = node;
 
-	// Pokud se jedná o vestavěnou funkci
-	if (instr->Id1 == NULL) { // TODO možná zbytečná podmínka
-		// Volání funkce má argumenty
-		if (node->inc != 0) {
-			instr->Id1 = instr->Id2;
-			instr->Id2 = instr->Id2->variables;
-		}
-		else {
-			instr->Id1 = NULL;
-			instr->Id2 = NULL;
-		}
-	}
+
+    // Volání funkce má argumenty
+    if (node->inc != 0) {
+        instr->Id1 = instr->Id2;
+        instr->Id2 = instr->Id2->variables;
+    }
+    else {
+        instr->Id2 = NULL;
+    }
+
 
 
 	if (strcmp(functionName, "ifj16.readInt") == 0) {
