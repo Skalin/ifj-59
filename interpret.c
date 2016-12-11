@@ -434,12 +434,12 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
                 if(Id2->data.type == var_int) {
                     char buffer[512];
                     sprintf(buffer, "%d", Id1->data.value.intValue);
-                    strncpy(Id3->data.value.stringValue, buffer, 512);
+                    copyString(Id3->data.value.stringValue, buffer, 512);
                 // Pokud konkaterujeme Double + String
                 } else {
                     char buffer[512];
                     sprintf(buffer, "%g", Id1->data.value.doubleValue);
-                    strncpy(Id3->data.value.stringValue, buffer, 512);
+                    copyString(Id3->data.value.stringValue, buffer, 512);
                 }
                 // Nakonec pripojime string
                 strncat(Id3->data.value.stringValue, Id2->data.value.stringValue, 512);
@@ -1302,12 +1302,12 @@ void interpretMainCore(instrStack *interpretStack) {
                     }
                 }
                 // Nacteme instrukci reprezentujici pozici vyrazu while(vyraz)
-                instructionWhile = instrStackDataAt(interpretStack, whileCondPos);
+                instructionWhile = instrStackDataAt(interpretStack, whileCondPos+1);
 
                 // Po dokonceni jednoho cyklu overime jeslti podminka stale plati.
                 if(compareInstruction(instructionWhile->Id1, instructionWhile->Id2, instructionWhile->type) == 1) {
                     // Pokud ano, vratime ukazatel vrcholu zasobniku na pozici podminky cyklu-1 (tj prvni instrukce na stacku je insWhile a vse probehne znovu
-                    getBackTo(interpretStack, whileCondPos-2);
+                    getBackTo(interpretStack, whileCondPos+2);
                 }
                 // Pokud podminka neplati, pokracujeme ve zpracovani stacku
                 break;
