@@ -3,9 +3,8 @@ class Main
 
 	static void run()
 	{
-		int v = 5;
-		ifj16.print("Vysledek: " + v + "\n");
-
-		ifj16.print("AHOJ"+"STRING");
+	String s;
+	s = ifj16.readString();
+	ifj16.print("Vysledny string: "+ s);
 	}
 }
