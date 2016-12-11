@@ -562,7 +562,7 @@ char *readString(){
 void print(char *string) {
 	// nejaka podminka kvuli typu vstupu..
 
-	// VYPIS printf("%s", string);
+	printf("%s", string);
 
 }
 
