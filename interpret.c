@@ -1301,12 +1301,12 @@ void interpretMainCore(instrStack *interpretStack) {
                     }
                 }
                 // Nacteme instrukci reprezentujici pozici vyrazu while(vyraz)
-                instructionWhile = instrStackDataAt(interpretStack, whileCondPos);
+                instructionWhile = instrStackDataAt(interpretStack, whileCondPos+1);
 
                 // Po dokonceni jednoho cyklu overime jeslti podminka stale plati.
                 if(compareInstruction(instructionWhile->Id1, instructionWhile->Id2, instructionWhile->type) == 1) {
                     // Pokud ano, vratime ukazatel vrcholu zasobniku na pozici podminky cyklu-1 (tj prvni instrukce na stacku je insWhile a vse probehne znovu
-                    getBackTo(interpretStack, whileCondPos-2);
+                    getBackTo(interpretStack, whileCondPos+2);
                 }
                 // Pokud podminka neplati, pokracujeme ve zpracovani stacku
                 break;

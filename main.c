@@ -192,7 +192,7 @@ int main(int argc, char* argv[]) {
 			interpretMainCore(global.iStack);
 
 			// Uvolneni pameti a ukonceni programu
-			finalFree();
+			//finalFree();
 	}
 }
 
