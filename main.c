@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 */
 
             //DELETE THIS
-        /*
+
 				void printWhichNodeType(NodeType node) {
 					printf("->nodeType: ");
 					if (node == var) {
@@ -209,7 +209,7 @@ int main(int argc, char* argv[]) {
 			printStack(global.iStack);
 			invertStack(global.iStack);
 			printStack(global.iStack);
-            */
+
 			// Interpret
 			semCheck(global.iStack);
 			interpretMainCore(global.iStack);

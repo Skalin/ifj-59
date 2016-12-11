@@ -22,16 +22,14 @@ void semCheck(instrStack *interpretStack) {
 	instrStack tmpStack;
 	instrStackInit(&tmpStack);
 	instrStackCopy(interpretStack, &tmpStack);
-    invertStack(&tmpStack);
 
 	struct Instr *instr;
 	instr = plusMalloc(sizeof(Instr));
-	if (instr == NULL) {
-		throwException(99, 0, 0);
-	}
 
-
-    while((instr = instrStackTop(&tmpStack)) != NULL) {
+    while(instr != NULL) {
+        instr = instrStackTop(&tmpStack);
+        if (instr == NULL)
+            break;
         switch (instr->type) {
             case insIfj16readInt:
                 // Pokud je spatny pocet parametru
@@ -139,6 +137,67 @@ void semCheck(instrStack *interpretStack) {
                     // Pokud neni promenna kam se ulozi vysledke inicializovan
                 } else
                     throwException(8,0,0);
+                break;
+            case insPlusTmp:
+                instr->Id3->inc = 1;
+                if(instr->Id1->data.type == var_string || instr->Id2->data.type == var_string) {
+                    instr->Id3->data.type = var_string;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                }else if(instr->Id1->data.type == var_double || instr->Id2->data.type == var_double) {
+                    instr->Id3->data.type = var_double;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                } else {
+                    instr->Id3->data.type = var_int;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                }
+                break;
+            case insMinusTmp:
+                instr->Id3->inc = 1;
+                if(instr->Id1->data.type == var_double || instr->Id2->data.type == var_double) {
+                    instr->Id3->data.type = var_double;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                } else {
+                    instr->Id3->data.type = var_int;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                }
+                break;
+            case insMuxTmp:
+                instr->Id3->inc = 1;
+                if(instr->Id1->data.type == var_double || instr->Id2->data.type == var_double) {
+                    instr->Id3->data.type = var_double;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                } else {
+                    instr->Id3->data.type = var_int;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                }
+                break;
+            case insDivTmp:
+                instr->Id3->inc = 1;
+                if(instr->Id1->data.type == var_double || instr->Id2->data.type == var_double) {
+                    instr->Id3->data.type = var_double;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                } else {
+                    instr->Id3->data.type = var_int;
+                    instr->Id3->data.value.doubleValue = 0.0;
+                    instr->Id3->data.value.intValue = 0;
+                    instr->Id3->data.value.stringValue = NULL;
+                }
                 break;
             case insPlus:
                 // Pokud je spatny pocet parametru
@@ -320,7 +379,7 @@ void mathInstruction(BTSNode *Id1, BTSNode *Id2, BTSNode *Id3, char operation) {
             // Pokud se jedna o 2 int, je vysledek int
             if(Id1->data.type == var_int && Id2->data.type == var_int) {
                 Id3->data.type = var_int;
-                Id3->data.value.intValue = Id1->data.value.intValue + Id3->data.value.intValue;
+                Id3->data.value.intValue = Id1->data.value.intValue + Id2->data.value.intValue;
                 Id3->inc = 1;
             // Pokud je alespon jeden operand double a druhy neni string, pak se provede secteni double a int
             } else if ((Id1->data.type == var_double || Id2->data.type == var_double) && (Id1->data.type != var_string || Id2->data.type != var_string)) {
@@ -598,7 +657,6 @@ void interpretMainCore(instrStack *interpretStack) {
     // Pointer na instrukci
     struct Instr *instruction;
     struct Instr *instructionWhile;
-    invertStack(interpretStack);
 
     while((instruction = instrStackTop(interpretStack)) != NULL) {
         // Switch pro jednotlive typy instrukci

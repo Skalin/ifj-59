@@ -7,11 +7,8 @@ class Main
     
     static void run ()
     {
-        String s = "Ahoj";
-        //z = x * y ;
-        ifj16.print(s);
-        //z = ifj16.readInt(x,y);
-        //if (x+y){}else{}
-
+        int a = 20;
+        int b = 50;
+        int c = a + b;
     }   
 }
