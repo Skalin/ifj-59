@@ -53,7 +53,7 @@ int argCounter = 0;
 //DELETE THIS
 void stackPrint(tStack *stack) {
 	for (int i = 1; i <= stack->counter; i++) {
-		printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
+		// VYPIS printf( "  Stack: pozice=%d obsah=%c type=%d\n", i, stack->data[i]->dataIt->data[0],stack->data[i]->typeIt );
 	}
 	//printf("  Stack counter=%d\n",stack->counter);
 }
@@ -65,14 +65,6 @@ char* nodePrint(BTSNode *node) {
 	return node->key;
 }
 //END DELETE
-
-char *addIntToStr(char *str, int integer) {
-	/*char buffer[512];
-	sprintf(buffer, "%d", 1);
-	strncat(str, buffer, 512);
-	return buffer;*/
-	return NULL;
-}
 
 bool isIdent(tToken *token) {
 	if ((token->type >= t_simple_ident) && (token->type <= t_complete_ident))
@@ -97,7 +89,7 @@ char getPrecChar(tToken *stackToken, tToken *inToken) {
 		inTokenNum = 15;
 	}
 	//DELETE THIS
-	printf("getPrecChar: [%2d][%2d] \'%c\'  vstupni token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
+	// VYPIS printf("getPrecChar: [%2d][%2d] \'%c\'  vstupni token:|%s|\n",stackTokenNum,inTokenNum,precTable[stackTokenNum][inTokenNum],inToken->data);
 	//END DELETE
 	return precTable[stackTokenNum][inTokenNum];
 }
@@ -115,19 +107,24 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
 		// Pokud je handle větší než 3, vyvoláme syntaktickou chybu
 		if (i > 3) throwException(2,0,0);
 		handle[i-1] = item;
-		printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
+		// VYPIS printf("  Handle[%d]=%c  ",i-1,handle[i-1]->dataIt->data[0]);
 		stackPop(stack);
 	}
-	printf("\n");
+	// VYPIS printf("\n");
 	// Odstraníme ze zásobníku začátek handle '<'
 	stackPop(stack);
 
 	// Pravidlo E -> id
 	if ((i == 1) && (handle[0]->typeIt == TERM) && ((isIdent(handle[0]->dataIt)) || (isConst(handle[0]->dataIt)))) {
 		if (isConst(handle[0]->dataIt)) {
-			//TODO vytvořit nový node a jeho název vložit do handle[0]
+            
 			BTSNode *node = createNewNode("ABCDEFGH" + constCounter,temp,var_int,0,1); // TODO typ konstanty je v tokenu
+            /* TODO
+            char buffer[20];
+            sprintf(buffer, "0const%d\0", constCounter);
+            //copyString(&node->key,&buffer);*/
 
+            
 			if (handle[0]->dataIt->type == t_int) {
 				node->data.type = var_int;
 				node->data.value.intValue = atoi(handle[0]->dataIt->data);
@@ -170,7 +167,7 @@ tStackIt **chnToExp(tStack *stack, tStackIt *handle[3]) {
 }
 
 // Vyhledává pravidla pro aritmetické a porovnávací instrukce
-void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tStack *stack) {
+void reduceExp(tStackIt *handle[3], instrStack *iStack, tStack *stack) {
 	// Pokud byl výraz zredukován již v chnToExpr, neděláme nic
 	if (handle[0] == NULL) {
 		//DELETE THIS
@@ -189,10 +186,6 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
 
 	// Jedná se o aritmetickou nebo porovnávací instrukci
 	if ((handle[0]->typeIt == EXPR) && (handle[2]->typeIt == EXPR)) {
-
-
-
-		// TODO vytvořit tempnode, jeho pointer přiřadit do id3 a pushnout jeho název na stack
 		instr->Id3 = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
 		tToken *token = initToken();
 		updateToken(token,"abcdefgh"+tempNodeCounter);
@@ -214,7 +207,7 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
 
 
 		// DELETE THIS
-		printf(" \x1B[32m vytvoreni instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
+		// VYPIS printf(" \x1B[32m vytvoreni instrukce: \x1B[0m%s = %s operace %s\n","temp"+tempNodeCounter,nodePrint(instr->Id1),nodePrint(instr->Id2));
 		// END DELETE
 		tempNodeCounter++;
 
@@ -279,7 +272,15 @@ void reduceExp(BTSNode *targetNode, tStackIt *handle[3], instrStack *iStack, tSt
  * @param ukazatel na cílový uzel
  * @return vrací poslední načtený token (možná nebude potřeba)
  */
-tToken *expression(BTSNode *targetNode, int isArg) {
+void expression(BTSNode *targetNode, int isArg) {
+    // dELETE
+    char buffer[100];
+    int a = 8;
+	sprintf(buffer, "0temp%d", a);
+   
+    // VYPIS printf("vysledek=%s\n",buffer);
+    // VYPIS printf("------------------------------------ \n");
+    //end delete
 	/* Pokud jsme mimo funkci nebo jsme ve funkci run, ukládáme instrukce na globální instrukční stack.
 	 * V opačném případě na instruční stack aktuální funkce */
 	instrStack *localIStack = global.iStack;
@@ -311,7 +312,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 			}
 				// Jsme na konci výrazu
 			else if ((token->type == t_semicolon) || ((isArg) && ((token->type == t_bracket_r) || token->type == t_comma))){
-				printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
+				// VYPIS printf("\x1B[32m  Vytvoření instrukce:\x1B[0m TargetNode = %c\n",stackTop(stack)->dataIt->data[0]);
 				instr->Id3 = targetNode;
 				instr->Id1 = searchForNode(stackTop(stack)->dataIt->data,var,mTree.actFunction->variables);
 				if (instr->Id1 == NULL)
@@ -341,11 +342,11 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 			if ((strcmp(topTerm(stack)->data, "ifj16.readInt") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readDouble") == 0) || (strcmp(topTerm(stack)->data, "ifj16.readString") == 0) || (strcmp(topTerm(stack)->data, "ifj16.length") == 0) || (strcmp(topTerm(stack)->data, "ifj16.substr") == 0) || (strcmp(topTerm(stack)->data, "ifj16.compare") == 0) || (strcmp(topTerm(stack)->data, "ifj16.find") == 0) || (strcmp(topTerm(stack)->data, "ifj16.sort") == 0)) {
 				BTSNode *tempNode = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
 				tempNodeCounter++;
-				printf("---------------------Zavolano functionCall\n");
+				// VYPIS printf("---------------------Zavolano functionCall\n");
 				functionCall(tempNode,NULL,topTerm(stack)->data);
-				printf("---------------------Konec functionCall\n");
+				// VYPIS printf("---------------------Konec functionCall\n");
 				item->typeIt = EXPR;
-				copyString(item->dataIt->data,tempNode->key);
+				copyString(item->dataIt->data,&tempNode->key);
 				stackPush(stack,item);
 			}
 				// Situace kdy ifj16.print je součástí výrazu = sémantická chyba
@@ -355,19 +356,23 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 				// Jedná se o nevestavnou funkci
 			else {
 				BTSNode *functionNode = searchForNode(topTerm(stack)->data,function,mTree.actClass->functions);
-				// Pokud funkce neexistuje
-				if (functionNode == NULL) {
+				// Pokud funkce neexistuje nebo je void
+				if ((functionNode == NULL) || (functionNode->data.type == var_null)) {
 					throwException(3,0,0); // TODO doplnit správný kód chyby
 				}
-				functionCall("", functionNode, functionNode->key); // TODO doplnit cíl
-				// TODO ošetřit void typ = sémantická chyba
+				BTSNode *tempNode = createNewNode("abcdefgh"+tempNodeCounter,temp,var_null,0,1);
+				tempNodeCounter++;
+				// VYPIS printf("---------------------Zavolano functionCall\n");
+				functionCall(tempNode,functionNode,topTerm(stack)->data);
+				// VYPIS printf("---------------------Konec functionCall\n");
+				item->typeIt = EXPR;
+				copyString(&item->dataIt->data,&tempNode->key);
+				stackPush(stack,item);
 			}
-			// TODO TADY BYL BREAK
 			token = getToken();
 			if (token->type != t_semicolon) {
 				throwException(2,0,0); // TODO doplnit správný kód chyby
 			}
-			else
 				break;
 		}
 			// Pokud token do výrazu nepatří, jedná se o syntaktickou chybu
@@ -407,7 +412,7 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 			case '>': ; // Stejná situace se středníkem jako v první case
 				tStackIt *handle[3];
 				chnToExp(stack,handle);
-				reduceExp(targetNode,handle,localIStack,stack);
+				reduceExp(handle,localIStack,stack);
 				break;
 			default:
 				// Syntaktická chyba
@@ -416,7 +421,6 @@ tToken *expression(BTSNode *targetNode, int isArg) {
 		}
 	}
 	stackDestroy(stack);
-	return NULL;
 }
 
 void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName) {
@@ -437,18 +441,16 @@ void functionCall(BTSNode *targetNode, BTSNode *functionNode, char *functionName
 	expression(node,1);
 	instr->Id2 = node;
 
-	// Pokud se jedná o vestavěnou funkci
-	if (instr->Id1 == NULL) { // TODO možná zbytečná podmínka
-		// Volání funkce má argumenty
-		if (node->inc != 0) {
-			instr->Id1 = instr->Id2;
-			instr->Id2 = instr->Id2->variables;
-		}
-		else {
-			instr->Id1 = NULL;
-			instr->Id2 = NULL;
-		}
-	}
+
+    // Volání funkce má argumenty
+    if (node->inc != 0) {
+        instr->Id1 = instr->Id2;
+        instr->Id2 = instr->Id2->variables;
+    }
+    else {
+        instr->Id2 = NULL;
+    }
+
 
 
 	if (strcmp(functionName, "ifj16.readInt") == 0) {

@@ -1,14 +1,12 @@
 class Main
 {
- static void run ()
-    {
-        int c = 70;
-        int a = 70;
-        if(a == b) {
-            int d= 0;
-            int konec = 10;
-        }
-        else {
-        }
-        }
+	static void fff()
+	{
+//int a = 50+1;
+	}
+	static void run()
+	{
+int a = 5;
+	}
+
 }

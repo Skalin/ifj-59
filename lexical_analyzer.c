@@ -270,8 +270,6 @@ tToken * getToken(){
 				// konec cislic
 				// zacatek stringu
 				} else if (c == 34) { // "
-                    buffer[i] = c;
-					i++;
 					status = LA_STRING_PREP;
 				// konec stringu
 				} else {
@@ -403,8 +401,6 @@ tToken * getToken(){
 				if (c == 92) { // "\"
 					status = LA_BACKSLASH;
 				} else if (c == 34) { // ""
-					buffer[i] = c;
-					i++;
 					
 					token = updateToken(token, buffer);
 					token->type = t_string;
