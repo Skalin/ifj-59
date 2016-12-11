@@ -144,17 +144,17 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_string;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }else if(instr->Id1->data.type == var_double || instr->Id2->data.type == var_double) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insMinusTmp:
@@ -163,12 +163,12 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insMuxTmp:
@@ -177,12 +177,12 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insDivTmp:
@@ -191,12 +191,12 @@ void semCheck(instrStack *interpretStack) {
                     instr->Id3->data.type = var_double;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 } else {
                     instr->Id3->data.type = var_int;
                     instr->Id3->data.value.doubleValue = 0.0;
                     instr->Id3->data.value.intValue = 0;
-                    instr->Id3->data.value.stringValue = NULL;
+                    instr->Id3->data.value.stringValue = '\0';
                 }
                 break;
             case insPlus:
