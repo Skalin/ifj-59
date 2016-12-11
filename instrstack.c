@@ -142,6 +142,7 @@ void printStack(instrStack *stc) {
 	printf("Velikost stacku: %d\n", stc->count);
 	while (i <= stc->count) {
 		printf("Pozice: %d ", i);
+		printf("Key: %s ", stc->dataInstr[i]->Id1->key);
 		printf("Typ: %d\n", stc->dataInstr[i]->type);
 		i++;
 	}
