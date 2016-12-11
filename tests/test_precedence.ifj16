@@ -2,16 +2,18 @@ class Main
 {
     static void foo(int a, int b) 
     {
-        a = 40;
+       // a = 40;
     }
     
     static void run ()
     {
-        int x = 10;
-        int y = 20;
-        int z = x + y;
-        //foo(x+4,y);
-        //if (x==y){}else{}
+        int x;
+        int y;
+        int z;
+
+        ifj16.print();
+        //z = ifj16.readInt(x,y);
+        //if (x+y){}else{}
 
     }   
 }
