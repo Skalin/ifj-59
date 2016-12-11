@@ -298,7 +298,7 @@ void pVar(tToken *token, int dataType){
 		node = searchForNode(tempData, var, mTree.actFunction->variables); //TODO zatim jen lokalni
 
 		if (node == NULL){
-			throwException(3,0,0);
+			throwException(8,0,0);
 		}
 
 	}
